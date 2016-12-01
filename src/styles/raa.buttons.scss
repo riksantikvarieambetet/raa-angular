@@ -1,0 +1,30 @@
+button {
+  display: block;
+  font-size: 1.25rem;
+  color: #fff;
+  margin: 0;
+  background-color: $orange;
+  padding: .4rem 1.4rem;
+  border: solid 1px $orange;
+  border-radius: 2px;
+
+  &:hover{
+    background-color: darken($orange, 5%);
+    cursor: pointer;
+    }
+
+  &:disabled {
+      background-color: $selected-hover-color;
+      border-color: $selected-hover-color;
+  }
+}
+
+
+.button-confirm {
+    background-color: $done-color;
+    border-color: $done-color;
+
+    &:hover{
+        background-color: darken( $done-color, 5%);
+    }
+}

@@ -1,0 +1,90 @@
+@import "../../styles/raa.colors";
+
+.raa-select {
+  background-color: inherit;
+  display: flex;
+  flex-direction: column;
+
+  .active {
+    background-color: $selected-color;
+    border-color: $selected-color;
+  }
+
+  .input-row {
+    display: flex;
+    flex-direction: row;
+
+    button {
+      padding: .4rem .4rem .4rem .4rem;
+      border-left: none;
+      border-color: $border-color;
+      border-radius: 0 2px 2px 0;
+      color: $orange;
+      background-color: white;
+    }
+
+    button:hover {
+      background-color: $orange;
+      color: white;
+    }
+  }
+
+  .input-field {
+    border-right: none;
+  }
+
+  .dropdown {
+    position: relative;
+    z-index: 1;
+
+    ul {
+      top: 0;
+      left: 0;
+      position: absolute;
+      width: 100%;
+      border-top: solid 1px white;
+      background-color: $super-light-gray;
+      padding: 0;
+      margin: 0;
+      list-style-type: none;
+
+      overflow-y: auto;
+      max-height: 17rem;
+
+      &.display-top {
+        bottom: 2.6rem;
+      }
+    }
+
+    li {
+      .item {
+        padding: 0.5rem 0 0.5rem 0;
+        margin: 0 1rem 0 1rem;
+      }
+
+      &.selectItem {
+        background-color: $gray;
+      }
+
+    }
+
+    li:hover {
+      color: white;
+      background-color:$selected-color;
+      .item {
+        border-bottom: none;
+      }
+    }
+
+
+  }
+
+}
+
+
+:host(.ng-invalid.ng-dirty) {
+  input[type="text"]{
+    background-color: $error-background-color;
+  }
+}
+

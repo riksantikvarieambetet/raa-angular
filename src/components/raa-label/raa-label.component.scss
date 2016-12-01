@@ -1,0 +1,11 @@
+@import '../../styles/raa.colors';
+
+.label {
+  display: block;
+  color: $selected-color;
+  font-size: 0.9rem;
+}
+
+:host {
+  display: block;
+}

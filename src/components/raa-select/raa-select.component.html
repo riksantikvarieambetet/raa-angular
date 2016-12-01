@@ -1,0 +1,18 @@
+<div class="raa-select" [ngClass]="{'raa-component-focus': componentHasFocus === true}" [(outsideClick)]="focusLost">
+
+    <div class="input-row">
+        <input class="input-field" raaSelectAllOnFocus [requestFocus]="setFocusToInputField" [disabled]="disabled" ng-required="required" type="text" [(ngModel)]="filterInput" (ngModelChange)="onFilterdInputChange()"  (focus)="focusGained()" (click)="openDropdownIfClosed()" (keydown)="handleKeyPressed($event)">
+        <button class="fa fa-chevron-down dropdown-btn square-btn" [disabled]="disabled" [ngClass]="{'active': showDropdown}" type="button" (click)="toggleDropdown()" tabIndex="-1"></button>
+    </div>
+    <div class="dropdown" *ngIf="showDropdown">
+        <ul [ngClass]="{'display-top': displayTop}">
+            <li *ngIf="filteredDomainValues.length === 0">
+                <div class="info-element">Ingen träff</div>
+            </li>
+            <li *ngFor="let item of filteredDomainValues; trackBy: index; let rowIndex = index" [ngClass]="{'selectItem': hoverIndex === rowIndex }">
+                <div class="item" (click)="select(item)">{{item.displayValue}}</div>
+            </li>
+        </ul>
+
+    </div>
+</div>
