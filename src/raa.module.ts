@@ -50,6 +50,5 @@ import { OrgnummerPipe } from './pipes/orgnummer.pipe';
     ]
 })
 export class RaaModule {
-  constructor() {
-  }
+  constructor() {}
 }

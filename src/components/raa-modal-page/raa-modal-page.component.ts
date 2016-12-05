@@ -5,10 +5,18 @@ import { Component, OnInit, Input } from "@angular/core";
     templateUrl: "./raa-modal-page.component.html",
     styleUrls: ["./raa-modal-page.component.scss"]
 })
-export class RaaModalPageComponent{
+export class RaaModalPageComponent implements OnInit{
 
     @Input()
-    close: Function;
+    onClose: Function;
+
+    ngOnInit(){
+
+        if (!this.onClose) {
+            throw 'ERROR: raa-select.component -> onClose must be specified (function)';
+        }
+
+    }
 
 }
 
