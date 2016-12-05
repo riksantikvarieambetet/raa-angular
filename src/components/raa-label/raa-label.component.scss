@@ -4,6 +4,11 @@
   display: block;
   color: $selected-color;
   font-size: 0.9rem;
+
+  .red {
+    color: red;
+    font-size: 1rem;
+  }
 }
 
 :host {

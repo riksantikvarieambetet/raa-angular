@@ -25,10 +25,6 @@ export class RaaDialogueComponent implements OnInit{
     constructor() {}
 
     ngOnInit(): void {
-
-        if (!this.displayDialogue) {
-            throw 'ERROR: raa-select.component -> displayDialogue must be specified';
-        }
  
     }
 
