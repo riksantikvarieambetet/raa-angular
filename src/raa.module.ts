@@ -8,6 +8,7 @@ import { RaaModalPageComponent } from './components/raa-modal-page/raa-modal-pag
 import { RaaDialogueComponent } from './components/raa-dialogue/raa-dialogue.component';
 import { RaaLabel } from './components/raa-label/raa-label.component';
 import { RaaTextWithSpinner } from './components/raa-text-with-spinner/raa-text-with-spinner.component';
+import { RaaSpinnerComponent } from './components/raa-spinner/raa-spinner.component';
 
 // Directives
 import { OutsideClickDirective } from './directives/raa-outside-click.directive';
@@ -31,12 +32,14 @@ import { OrgnummerPipe } from './pipes/orgnummer.pipe';
       RaaDialogueComponent,
       RaaLabel,
       RaaTextWithSpinner,
+      RaaSpinnerComponent,
       OrgnummerPipe
     ],
     exports: [
         RaaSelect,
         RaaLabel,
         RaaTextWithSpinner,
+        RaaSpinnerComponent,
         RaaModalPageComponent,
         RaaDialogueComponent,
         OutsideClickDirective,
