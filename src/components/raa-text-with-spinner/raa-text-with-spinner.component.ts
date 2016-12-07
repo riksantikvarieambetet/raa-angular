@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'raa-text-with-spinner',
@@ -11,7 +11,16 @@ import { Component, Input } from '@angular/core';
    </div>`,
   styleUrls: ['raa-text-with-spinner.component.scss']
 })
-export class RaaTextWithSpinner {
+export class RaaTextWithSpinner implements OnInit{
+
   @Input()
   showSpinner: boolean;
+
+  ngOnInit(){
+    
+    if (typeof this.showSpinner !== "boolean") {
+          throw 'ERROR: raa-select.component -> showSpinner must be specified (boolean)';
+      }
+
+  }
 }

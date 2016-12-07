@@ -15,12 +15,13 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   ]
 })
 export class RaaSelect implements OnInit, ControlValueAccessor {
-  @Input() value: any
+
   @Input() domain: any[];
   @Input() disabled: boolean;
   @Input() valueAttr: string;
   @Input() displayAttr: string;
 
+  value: any;
   filterInput = '';
   showDropdown = false;
   componentHasFocus = false;

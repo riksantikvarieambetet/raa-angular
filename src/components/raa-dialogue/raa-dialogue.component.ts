@@ -11,9 +11,6 @@ export class RaaDialogueComponent implements OnInit{
     displayDialogue: boolean;
 
     @Input()
-    message: string;
-
-    @Input()
     onYes: Function;
 
     @Input()
