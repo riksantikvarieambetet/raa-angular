@@ -1,9 +1,9 @@
-import { Directive, ElementRef, Input, Output, EventEmitter, Renderer } from "@angular/core";
+import { Directive, ElementRef, Input, Output, EventEmitter, Renderer, OnInit } from "@angular/core";
 
 @Directive({
   selector: "[outsideClick]"
 })
-export class OutsideClickDirective {
+export class OutsideClickDirective implements OnInit {
 
   @Input("outsideClick") clickOutsideCb: () => void;
 
@@ -14,9 +14,9 @@ export class OutsideClickDirective {
     private renderer: Renderer
   ) {
 
-    if (!this.clickOutsideCb) {
-        throw 'ERROR: raa-select.component -> outsideClick must be specified (function)';
-    }
+    // if (!this.clickOutsideCb) {
+    //     throw 'ERROR: raa-select.component -> outsideClick must be specified (function)';
+    // }
 
     let firstTime = true;
     let that = this;
@@ -34,6 +34,12 @@ export class OutsideClickDirective {
       else {
         firstTime = false;
       }
+    }
+  }
+
+  ngOnInit() {
+    if (!this.clickOutsideCb) {
+      throw 'ERROR: raa-select.component -> outsideClick must be specified (function)';
     }
   }
 
