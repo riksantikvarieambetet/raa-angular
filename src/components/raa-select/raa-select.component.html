@@ -1,5 +1,4 @@
 <div class="raa-select" [ngClass]="{'raa-component-focus': componentHasFocus === true}" [(outsideClick)]="focusLost">
-    <h1>kaka</h1>
     <div class="input-row">
         <input class="input-field" raaSelectAllOnFocus [requestFocus]="setFocusToInputField" [disabled]="disabled" ng-required="required" type="text" [(ngModel)]="filterInput" (ngModelChange)="onFilterdInputChange()"  (focus)="focusGained()" (click)="openDropdownIfClosed()" (keydown)="handleKeyPressed($event)">
         <button class="fa fa-chevron-down dropdown-btn square-btn" [disabled]="disabled" [ngClass]="{'active': showDropdown}" type="button" (click)="toggleDropdown()" tabIndex="-1"></button>

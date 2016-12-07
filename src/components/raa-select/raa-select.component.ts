@@ -79,9 +79,11 @@ export class RaaSelect implements OnInit, ControlValueAccessor {
   }
 
   select(item: DomainValue) {
-    this.value = item.id;
-    this.propagateChange(this.value);
-    this.filterInput = item.displayValue;
+    if (typeof item !== 'undefined') {
+      this.value = item.id;
+      this.propagateChange(this.value);
+      this.filterInput = item.displayValue;
+    }
     this.focusLost();
   }
 
