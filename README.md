@@ -3,8 +3,8 @@ Angular 2 module som innehåller gemensamma komponenter för RAÄ:s webbapplikat
 
 ## Användning
 
-### Gemensamma komponenter
-För att använda ng2-raa-common i en applikation behöver npm känna till beroende och ladda ner paketet. Lägg till beroendet i projektets `package.json`
+### I andra projekt
+För att använda ng2-raa-common i en andra projekt behöver npm känna till beroende och ladda ner paketet. Lägg till beroendet i projektets `package.json`
 
         "ng2-raa-common": "git+http://stash.raa.se/scm/tek/ng2-raa-common.git#master"
 
