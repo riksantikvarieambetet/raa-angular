@@ -67,3 +67,11 @@ Ex:
     export * from './orgnummer.pipe';
 
 Denna fil exporteras sedan från `/pipes.ts` så att dom enkelt kan importeras från externa projekt genom att skriva  tillexempel `import { OrgnummerPipe } from 'ng2-raa-common/pipes';`
+
+
+### Incheckning
+Innan incheckning till stash ska 
+
+    npm run prepublish
+
+köras för att kompilera ts-koden
