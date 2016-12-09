@@ -1,13 +1,17 @@
+@import "../../../styles";
+
 .raa-modal-page{
 
     .dark-overlay{
         position: fixed;
         top: 0;
         left:0;
+        bottom: 0;
         padding: 0 2rem;
         width: 100%;
         min-height: 100%;
         background-color: rgba(0,0,0,0.5);
+        overflow-y: auto;
 
         .center-page{
             max-width: 900px;
@@ -15,6 +19,7 @@
             margin: 2rem auto;
             box-shadow: #222 2px 2px 10px;
             border-radius: 2px;
+            overflow-y: scroll;
 
             .close-button{
                 float: right;
@@ -33,14 +38,29 @@
 }
 
 
-@media screen and (max-width: 600px){
-    .raa-modal-page{
+
+@include respond-to(handhelds){
+     .raa-modal-page{
         .dark-overlay{
+             padding: 0;
              .center-page{
                  width: inherit;
              }
         }
     }
 }
+
+@include respond-to(medium-screens){
+     .raa-modal-page{
+        .dark-overlay{
+             padding: 0;
+             .center-page{
+                 width: inherit;
+             }
+        }
+    }
+}
+
+
 
 

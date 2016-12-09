@@ -6,8 +6,8 @@
   flex-direction: column;
 
   .active {
-    background-color: $selected-color;
-    border-color: $selected-color;
+    background-color: $dark-gray;
+    border-color: $dark-gray;
   }
 
   .input-row {
@@ -17,7 +17,7 @@
     button {
       padding: .4rem .4rem .4rem .4rem;
       border-left: none;
-      border-color: $border-color;
+      border-color: $gray;
       border-radius: 0 2px 2px 0;
       color: $orange;
       background-color: white;
@@ -43,7 +43,7 @@
       position: absolute;
       width: 100%;
       border-top: solid 1px white;
-      background-color: $super-light-gray;
+      background-color: lighten($gray, 20%);
       padding: 0;
       margin: 0;
       list-style-type: none;
@@ -63,14 +63,14 @@
       }
 
       &.selectItem {
-        background-color: $gray;
+        background-color: lighten($gray, 5%);
       }
 
     }
 
     li:hover {
       color: white;
-      background-color:$selected-color;
+      background-color: $dark-gray;
       .item {
         border-bottom: none;
       }
@@ -84,7 +84,7 @@
 
 :host(.ng-invalid.ng-dirty) {
   input[type="text"]{
-    background-color: $error-background-color;
+    background-color: $light-red;
   }
 }
 
