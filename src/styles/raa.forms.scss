@@ -4,7 +4,7 @@ input[type=text], input[type="tel"], select, textarea {
   flex: 1;
   background-color: white;
   border-radius: 2px 0 0 2px;
-  border: 1px solid $border-color;
+  border: 1px solid $gray-1;
   padding: 0.5rem;
 
   .error &, &.error {
@@ -18,14 +18,14 @@ input[type=text], input[type="tel"], select, textarea {
   overflow-y: auto;
 
   &.ng-invalid.ng-dirty {
-    background-color: $error-background-color;
+    background-color: $light-red;
   }
 
 }
 
 input[type="checkbox"]{
   &.ng-invalid.ng-dirty {
-    border-color: $error-background-color;
+    border-color: $light-red;
   }
 }
 

@@ -1,3 +1,5 @@
+@import "../../../styles";
+
 .raa-modal-page{
 
     .dark-overlay{
@@ -37,14 +39,29 @@
 }
 
 
-@media screen and (max-width: 600px){
-    .raa-modal-page{
+
+@include respond-to(handhelds){
+     .raa-modal-page{
         .dark-overlay{
+             padding: 0;
              .center-page{
                  width: inherit;
              }
         }
     }
 }
+
+@include respond-to(medium-screens){
+     .raa-modal-page{
+        .dark-overlay{
+             padding: 0;
+             .center-page{
+                 width: inherit;
+             }
+        }
+    }
+}
+
+
 
 

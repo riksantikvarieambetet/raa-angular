@@ -6,8 +6,8 @@
   flex-direction: column;
 
   .active {
-    background-color: $selected-color;
-    border-color: $selected-color;
+    background-color: $dark-gray-1;
+    border-color: $dark-gray-1;
   }
 
   .input-row {
@@ -17,16 +17,26 @@
     button {
       padding: .4rem .4rem .4rem .4rem;
       border-left: none;
-      border-color: $border-color;
+      border-color: $gray-1;
       border-radius: 0 2px 2px 0;
-      color: $orange;
+      color: $orange-1;
       background-color: white;
     }
 
     button:hover {
-      background-color: $orange;
+      background-color: $orange-1;
       color: white;
     }
+
+    input:focus{
+      border-radius: 2px 0 0 0;
+
+      & ~ button {
+         border-radius: 0 2px 0 0;
+      }
+    }
+
+
   }
 
   .input-field {
@@ -36,20 +46,21 @@
   .dropdown {
     position: relative;
     z-index: 1;
-
+    
     ul {
       top: 0;
       left: 0;
       position: absolute;
       width: 100%;
-      border-top: solid 1px white;
-      background-color: $super-light-gray;
+      background-color: white;
       padding: 0;
       margin: 0;
       list-style-type: none;
-
+      border: solid 1px $gray-1;
+      border-top: none;
       overflow-y: auto;
       max-height: 17rem;
+      border-radius: 0  0 2px 2px  ;
 
       &.display-top {
         bottom: 2.6rem;
@@ -63,14 +74,19 @@
       }
 
       &.selectItem {
-        background-color: $gray;
+        background-color: $gray-1;
+      } 
+
+      &:not(:last-child){
+        border-bottom: solid 1px $gray-1;
       }
 
     }
+    
 
     li:hover {
       color: white;
-      background-color:$selected-color;
+      background-color: $dark-gray-1;
       .item {
         border-bottom: none;
       }
@@ -84,7 +100,7 @@
 
 :host(.ng-invalid.ng-dirty) {
   input[type="text"]{
-    background-color: $error-background-color;
+    background-color: $light-red;
   }
 }
 
