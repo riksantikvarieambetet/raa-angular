@@ -9,6 +9,7 @@ import { RaaDialogueComponent } from './components/raa-dialogue/raa-dialogue.com
 import { RaaLabel } from './components/raa-label/raa-label.component';
 import { RaaTextWithSpinner } from './components/raa-text-with-spinner/raa-text-with-spinner.component';
 import { RaaSpinnerComponent } from './components/raa-spinner/raa-spinner.component';
+import { RaaOverlaySpinnerComponent } from './components/raa-overlay-spinner/raa-overlay-spinner.component';
 
 // Directives
 import { OutsideClickDirective } from './directives/raa-outside-click.directive';
@@ -19,39 +20,41 @@ import { RaaSelectAllOnFocus } from './directives/raa-select-all-on-focus.direct
 import { OrgnummerPipe } from './pipes/orgnummer.pipe';
 
 @NgModule({
-    imports: [
-      CommonModule,
-      FormsModule,
-    ],
-    declarations: [
-      RaaSelect,
-      OutsideClickDirective,
-      RaaRequestFocusDirective,
-      RaaSelectAllOnFocus,
-      RaaModalPageComponent,
-      RaaDialogueComponent,
-      RaaLabel,
-      RaaTextWithSpinner,
-      RaaSpinnerComponent,
-      OrgnummerPipe
-    ],
-    exports: [
-        RaaSelect,
-        RaaLabel,
-        RaaTextWithSpinner,
-        RaaSpinnerComponent,
-        RaaModalPageComponent,
-        RaaDialogueComponent,
-        OutsideClickDirective,
-        RaaRequestFocusDirective,
-        CommonModule,
-        FormsModule,
-        OrgnummerPipe,
-    ],
-    providers: [
-      OrgnummerPipe
-    ]
+  imports: [
+    CommonModule,
+    FormsModule,
+  ],
+  declarations: [
+    RaaSelect,
+    OutsideClickDirective,
+    RaaRequestFocusDirective,
+    RaaSelectAllOnFocus,
+    RaaModalPageComponent,
+    RaaDialogueComponent,
+    RaaLabel,
+    RaaTextWithSpinner,
+    RaaSpinnerComponent,
+    RaaOverlaySpinnerComponent,
+    OrgnummerPipe
+  ],
+  exports: [
+    RaaSelect,
+    RaaLabel,
+    RaaTextWithSpinner,
+    RaaSpinnerComponent,
+    RaaOverlaySpinnerComponent,
+    RaaModalPageComponent,
+    RaaDialogueComponent,
+    OutsideClickDirective,
+    RaaRequestFocusDirective,
+    CommonModule,
+    FormsModule,
+    OrgnummerPipe,
+  ],
+  providers: [
+    OrgnummerPipe
+  ]
 })
 export class RaaModule {
-  constructor() {}
+  constructor() { }
 }
