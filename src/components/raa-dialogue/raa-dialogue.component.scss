@@ -1,3 +1,5 @@
+@import '../../../styles';
+
 .raa-dialogue{
 
       .dark-overlay{
@@ -21,6 +23,10 @@
           padding: 2rem;
           max-width: 940px;
           width: 33%;
+
+          @include respond-to(handhelds){
+            width: 90%;
+          }
 
           // Vi måste sätta width 100% för att få radbrytningen att fungera
           // i IE11
