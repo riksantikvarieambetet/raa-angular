@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostListener, Input, EventEmitter } from "@angular/core";
+import { Directive, ElementRef, HostListener, Input, EventEmitter } from '@angular/core';
 
 @Directive({
   selector: '[raaSelectAllOnFocus]'

@@ -1,11 +1,11 @@
-import { Directive, ElementRef, Input, Output, EventEmitter, Renderer, OnInit } from "@angular/core";
+import { Directive, ElementRef, Input, Output, EventEmitter, Renderer, OnInit } from '@angular/core';
 
 @Directive({
-  selector: "[outsideClick]"
+  selector: '[outsideClick]'
 })
 export class OutsideClickDirective implements OnInit {
 
-  @Input("outsideClick") clickOutsideCb: () => void;
+  @Input('outsideClick') clickOutsideCb: () => void;
 
   cancelListener: Function;
 

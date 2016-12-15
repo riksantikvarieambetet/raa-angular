@@ -1,7 +1,7 @@
-import { Directive, ElementRef, Input, EventEmitter } from "@angular/core";
+import { Directive, ElementRef, Input, EventEmitter } from '@angular/core';
 
 @Directive({
-  selector: "[requestFocus]"
+  selector: '[requestFocus]'
 })
 export class RaaRequestFocusDirective {
   private focusEmitterSubscription: EventEmitter<any>;
@@ -11,7 +11,7 @@ export class RaaRequestFocusDirective {
     if (this.focusEmitterSubscription) {
       this.focusEmitterSubscription.unsubscribe();
     }
-    this.focusEmitterSubscription = focusEmitter.subscribe(() => this.element.nativeElement.focus())
+    this.focusEmitterSubscription = focusEmitter.subscribe(() => this.element.nativeElement.focus());
   }
   constructor(private element: ElementRef) { }
 }

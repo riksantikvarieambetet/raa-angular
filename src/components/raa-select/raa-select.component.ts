@@ -92,7 +92,7 @@ export class RaaSelect implements OnInit, ControlValueAccessor {
       return {
         id: item[this.valueAttr],
         displayValue: item[this.displayAttr]
-      }
+      };
     });
   }
 
@@ -126,7 +126,7 @@ export class RaaSelect implements OnInit, ControlValueAccessor {
     }
 
     return domainObject[0].displayValue;
-  };
+  }
 
 
   handleKeyPressed(event: KeyboardEvent) {

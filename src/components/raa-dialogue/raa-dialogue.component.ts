@@ -1,11 +1,11 @@
-import { Component, OnInit, Input} from "@angular/core";
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-    selector: "raa-dialogue",
-    templateUrl: "./raa-dialogue.component.html",
-    styleUrls: ["./raa-dialogue.component.scss"]
+    selector: 'raa-dialogue',
+    templateUrl: './raa-dialogue.component.html',
+    styleUrls: ['./raa-dialogue.component.scss']
 })
-export class RaaDialogueComponent implements OnInit{
+export class RaaDialogueComponent implements OnInit {
 
     @Input()
     displayDialogue: boolean;
@@ -22,10 +22,10 @@ export class RaaDialogueComponent implements OnInit{
     @Input()
     onCancel: Function;
 
-    constructor() {}
+    constructor() { }
 
     ngOnInit(): void {
- 
+
     }
 
 }
