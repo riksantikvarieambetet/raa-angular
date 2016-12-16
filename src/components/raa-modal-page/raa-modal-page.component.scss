@@ -12,6 +12,10 @@
         min-height: 100%;
         background-color: rgba(0,0,0,0.5);
 
+        // Chrome har en bugg i sig vilket gör att dialogen inte renderas om inte overflow är synligt och det finns en animation 
+        // i child komponenterna (tillexempel en spinner). 
+        overflow: auto;
+
         .center-page{
             $margin-top-bottom: 2rem;
             max-height: calc(100% - #{$margin-top-bottom * 2});
