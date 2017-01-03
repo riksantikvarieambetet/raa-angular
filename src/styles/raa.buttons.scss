@@ -28,7 +28,14 @@ button {
   &:disabled {
       background-color: $gray-1;
       border-color: $gray-1;
+
+      &:hover {
+        background-color: $gray-1;
+        border-color: $gray-1;
+        cursor: default;
+      }
   }
+
 }
 
 .button-icon {
@@ -53,7 +60,7 @@ button {
      border: 2px solid $orange-1;
 
      &:hover {
-        
+
         background-color: $orange-1;
         color:white;
     }
