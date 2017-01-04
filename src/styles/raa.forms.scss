@@ -29,6 +29,15 @@ input[type="checkbox"]{
   }
 }
 
+
+div {
+  .error &, &.error {
+    background-color: #FFEEEE;
+    border-radius: 2px;
+    padding: 1rem;
+  }
+}
+
 .invalid-input-msg{
   color: red;
 }
