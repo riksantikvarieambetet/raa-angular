@@ -1,7 +1,23 @@
 <div class="raa-select" [ngClass]="{'raa-component-focus': componentHasFocus === true}" [(outsideClick)]="focusLost">
     <div class="input-row">
-        <input class="input-field" raaSelectAllOnFocus [requestFocus]="setFocusToInputField" [disabled]="disabled" ng-required="required" type="text" [(ngModel)]="filterInput" (ngModelChange)="onFilterdInputChange()"  (focus)="focusGained()" (click)="openDropdownIfClosed()" (keydown)="handleKeyPressed($event)">
-        <button class="fa fa-chevron-down dropdown-btn square-btn" [disabled]="disabled" [ngClass]="{'active': showDropdown}" type="button" (click)="toggleDropdown()" tabIndex="-1"></button>
+        <input class="input-field" 
+            ng-required="required" 
+            type="text" 
+            placeholder="{{placeholder}}" 
+            raaSelectAllOnFocus 
+            [requestFocus]="setFocusToInputField" 
+            [disabled]="disabled"             
+            [(ngModel)]="filterInput" 
+            (ngModelChange)="onFilterdInputChange()"  
+            (focus)="focusGained()" (click)="openDropdownIfClosed()" 
+            (keydown)="handleKeyPressed($event)">
+        <button class="fa fa-chevron-down dropdown-btn square-btn" 
+            type="button" 
+            tabIndex="-1"
+            [disabled]="disabled" 
+            [ngClass]="{'active': showDropdown}" 
+            (click)="toggleDropdown()" >
+        </button>
     </div>
     <div class="dropdown" *ngIf="showDropdown">
         <ul [ngClass]="{'display-top': displayTop}">

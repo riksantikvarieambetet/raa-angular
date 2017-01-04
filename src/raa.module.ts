@@ -15,6 +15,8 @@ import { RaaOverlaySpinnerComponent } from './components/raa-overlay-spinner/raa
 import { OutsideClickDirective } from './directives/raa-outside-click.directive';
 import { RaaRequestFocusDirective } from './directives/raa-request-focus.directive';
 import { RaaSelectAllOnFocus } from './directives/raa-select-all-on-focus.directive';
+import { RaaFocusInvalidElementDirective } from './directives/raa-focus-invalid-element.directive';
+export { RaaFocusInvalidElementDirective } from './directives/raa-focus-invalid-element.directive';
 
 // Pipes
 import { OrgnummerPipe } from './pipes/orgnummer.pipe';
@@ -29,6 +31,7 @@ import { OrgnummerPipe } from './pipes/orgnummer.pipe';
     OutsideClickDirective,
     RaaRequestFocusDirective,
     RaaSelectAllOnFocus,
+    RaaFocusInvalidElementDirective,
     RaaModalPageComponent,
     RaaDialogueComponent,
     RaaLabel,
@@ -47,6 +50,7 @@ import { OrgnummerPipe } from './pipes/orgnummer.pipe';
     RaaDialogueComponent,
     OutsideClickDirective,
     RaaRequestFocusDirective,
+    RaaFocusInvalidElementDirective,
     CommonModule,
     FormsModule,
     OrgnummerPipe,
