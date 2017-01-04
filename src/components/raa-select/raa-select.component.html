@@ -8,7 +8,7 @@
             <li *ngIf="filteredDomainValues.length === 0">
                 <div class="info-element">Ingen träff</div>
             </li>
-            <li *ngFor="let item of filteredDomainValues; trackBy: index; let rowIndex = index" [ngClass]="{'selectItem': hoverIndex === rowIndex }">
+            <li *ngFor="let item of filteredDomainValues; let rowIndex = index" [ngClass]="{'selectItem': hoverIndex === rowIndex }">
                 <div class="item" (click)="select(item)">{{item.displayValue}}</div>
             </li>
         </ul>
