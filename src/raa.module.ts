@@ -16,7 +16,6 @@ import { OutsideClickDirective } from './directives/raa-outside-click.directive'
 import { RaaRequestFocusDirective } from './directives/raa-request-focus.directive';
 import { RaaSelectAllOnFocus } from './directives/raa-select-all-on-focus.directive';
 import { RaaFocusInvalidElementDirective } from './directives/raa-focus-invalid-element.directive';
-export { RaaFocusInvalidElementDirective } from './directives/raa-focus-invalid-element.directive';
 
 // Pipes
 import { OrgnummerPipe } from './pipes/orgnummer.pipe';
