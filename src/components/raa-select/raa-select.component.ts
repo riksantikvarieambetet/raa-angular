@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, forwardRef, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, forwardRef, EventEmitter, HostListener, HostBinding } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 
@@ -16,10 +16,19 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 })
 export class RaaSelect implements OnInit, ControlValueAccessor {
 
+  @HostBinding() tabindex = 0;
+
+  @HostListener('focus', ['$event.target'])
+  onFocus() {
+    this.setFocusToInputField.emit(null);
+    this.focusGained();
+  }
+
   @Input() domain: any[];
   @Input() disabled: boolean;
   @Input() valueAttr: string;
   @Input() displayAttr: string;
+  @Input() placeholder: string;
 
   value: any;
   filterInput = '';
@@ -32,8 +41,7 @@ export class RaaSelect implements OnInit, ControlValueAccessor {
 
   setFocusToInputField = new EventEmitter();
 
-  constructor() {
-  };
+  constructor() {};
 
   // Handling of ngModel
   writeValue(value: any) {
@@ -202,6 +210,7 @@ export class RaaSelect implements OnInit, ControlValueAccessor {
     // sätter visningsvärde till valt värde, detta om användaren börjar justera men avbryter
     this.filterInput = this.getDisplayValue(this.value);
     this.hoverIndex = -1;
+    this.tabindex = -1;
   }
 
   // clearDisplayTextWhenEmptyModel() {
