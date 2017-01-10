@@ -27,6 +27,5 @@ export class RaaDialogueComponent implements OnInit {
     ngOnInit(): void {
 
     }
-
 }
 
