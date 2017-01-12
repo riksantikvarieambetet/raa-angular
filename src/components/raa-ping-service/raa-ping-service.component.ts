@@ -22,6 +22,7 @@ export class RaaPingServiceComponent implements OnInit{
         private http: Http
     ) {
         this.info = new PingInfo();
+        this.info.header = 'null';
     }
 
     ngOnInit(): void {
