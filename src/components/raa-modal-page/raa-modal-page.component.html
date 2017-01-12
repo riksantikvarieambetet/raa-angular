@@ -1,7 +1,7 @@
 <div class="raa-modal-page">
      <div class="dark-overlay">
         <div class="center-page">
-            <button (click)="onClose()" class="close-button">&times;</button>
+            <h2 *ngIf="header" class="header">{{header}}</h2><button (click)="onClose()" class="button-icon close-button">&times;</button>
             <ng-content></ng-content>
         </div>
      </div>

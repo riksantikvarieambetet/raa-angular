@@ -22,10 +22,18 @@ export class RaaDialogueComponent implements OnInit {
     @Input()
     onCancel: Function;
 
+    @Input()
+    onClose: Function;
+
+    @Input()
+    header: string;
+
     constructor() { }
 
     ngOnInit(): void {
-
+         if (!this.header) {
+            throw 'ERROR: raa-dialogue.component -> header must be specified (string)';
+        }
     }
 
 }

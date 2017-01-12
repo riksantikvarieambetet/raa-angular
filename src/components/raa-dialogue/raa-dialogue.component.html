@@ -3,6 +3,7 @@
     <div class="dialogue-container">
 
       <div class="ng-content">
+        <h2 class="header">{{header}}</h2><button *ngIf="onClose" (click)="onClose()" class="button-icon close-button">&times;</button>
         <ng-content></ng-content>
       </div>
 
@@ -14,12 +15,15 @@
         </div>
 
         <div class="center">
+           <button *ngIf="onNo" (click)="onNo()" class="button-decline">Nej</button>
+        </div>
+
+        <div class="center">
           <button class="btn-ok" *ngIf="onOk" (click)="onOk()">OK</button>
         </div>
 
         <div class="right">
-          <button *ngIf="onNo" (click)="onNo()" class="button-decline">Nej</button>
-          <button *ngIf="onCancel" (click)="onCancel()">Avbryt</button>
+           <button *ngIf="onCancel" (click)="onCancel()" class="button-cancel">Avbryt</button>
         </div>
 
       </div>
