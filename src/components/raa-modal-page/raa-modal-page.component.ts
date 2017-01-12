@@ -10,6 +10,9 @@ export class RaaModalPageComponent implements OnInit {
     @Input()
     onClose: Function;
 
+    @Input()
+    header: string;
+
     ngOnInit() {
 
         if (!this.onClose) {
