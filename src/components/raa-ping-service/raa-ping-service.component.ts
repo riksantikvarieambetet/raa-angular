@@ -14,23 +14,29 @@ export class RaaPingServiceComponent implements OnInit{
     @Input()
     timeLimit: number = 600000;
 
+    @Input()
+    unauthorizedInfo: PingInfo = {
+        header: 'Utloggad',
+        message: 'Du är inte längre inloggad i systemet. Hämta om sidan eller tryck på länken nedanför för att logga in in igen',
+        linkText: 'Logga in'
+    };
+
+    @Input()
+    noConnectionInfo: PingInfo = {
+        header: 'Ingen anslutning till tjänsten',
+        message: 'Du är inte längre ansluten till tjänsten. Kontrollera att du har internetuppkoppling, eller försök igen senare',
+        linkText: 'Hämta om sidan'
+    };
+
     keepAliveRunning: boolean = false;
     showDialogue: boolean = false;
-    info: PingInfo;
+    info: PingInfo | undefined;
 
     constructor(
         private http: Http
-    ) {
-        this.info = new PingInfo();
-        this.info.header = 'null';
-    }
+    ) {}
 
     ngOnInit(): void {
-
-        if (!this.pingUrl) {
-            throw 'ERROR: raa-ping-service.component -> pingUrl must be specified (string)';
-        }
-
         this.startKeepAlivePing();
     }
 
@@ -39,12 +45,9 @@ export class RaaPingServiceComponent implements OnInit{
         let timer = Observable.timer(this.timeLimit, this.timeLimit);
 
         timer.subscribe(() => {
-            console.log('..sending ping');
 
-            let ping = this.http.get(this.pingUrl)
-            .map((res) => res);
-
-            ping.subscribe(res => {
+            this.http.get(this.pingUrl)
+            .subscribe(res => {
 
                  this.showDialogue = false;
 
@@ -53,21 +56,12 @@ export class RaaPingServiceComponent implements OnInit{
                 this.showDialogue = true;
 
                 if (error.status === 302 || error.status === 401 || error.status === 403) {
-                    this.info = {
-                        header: 'Utloggad',
-                        message: 'Du är inte längre inloggad i systemet. Hämta om sidan eller tryck på länken nedanför för att logga in in igen',
-                        linkText: 'Logga in'
-                    };
+                    this.info = this.unauthorizedInfo;
                 }
                 else {
-                    this.info = {
-                        header: 'Ingen anslutning till tjänsten',
-                        message: 'Du är inte längre ansluten till tjänsten. Kontrollera att du har internetuppkoppling, eller försök igen senare',
-                        linkText: 'Hämta om sidan'
-                    };
+                    this.info = this.noConnectionInfo;
                 }
 
-                return error;
             });
 
         });
@@ -82,7 +76,7 @@ export class RaaPingServiceComponent implements OnInit{
     }
 }
 
-export class PingInfo {
+export interface PingInfo {
     header: string;
     message: string;
     linkText?: string;
