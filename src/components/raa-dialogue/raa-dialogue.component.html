@@ -3,7 +3,10 @@
     <div class="dialogue-container">
 
       <div class="ng-content">
-        <h2 class="header">{{header}}</h2><button *ngIf="onClose" (click)="onClose()" class="button-icon close-button">&times;</button>
+        <div>
+          <button *ngIf="onClose" (click)="onClose()" class="button-icon close-button">&times;</button>
+        </div>
+        <h2 *ngIf="header" class="header">{{header}}</h2>
         <ng-content></ng-content>
       </div>
 
