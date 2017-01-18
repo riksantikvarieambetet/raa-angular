@@ -14,3 +14,20 @@ $break-large: 1024px;
 }
 
 
+.hide-when-handhelds{
+  @include respond-to(handhelds){
+    display: none;
+  }
+}
+
+.hide-when-medium-screens{
+  @include respond-to(medium-screens){
+    display: none;
+  }
+}
+
+.hide-when-wide-screens{
+  @include respond-to(wide-screens){
+    display: none;
+  }
+}

@@ -21,6 +21,12 @@ button {
   border: solid 1px $orange-1;
   border-radius: 2px;
 
+    font-size: 14px;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 800;
+    min-width: 10rem;
+    height: 2.6rem;
+
   &:hover{
     cursor: pointer;
   }
@@ -56,7 +62,7 @@ button {
 .button-border {
      background-color: white;
      border-color: $orange-1;
-     color: $orange-1;
+     color: $dark-gray-1;
      border: 2px solid $orange-1;
 
      &:hover {
