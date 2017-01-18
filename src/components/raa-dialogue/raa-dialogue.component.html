@@ -11,19 +11,20 @@
 
       <div class="btn-group">
         <div class="left">
-          <button *ngIf="onYes" (click)="onYes()" class="button-confirm">Ja</button>
+
+          <button *ngIf="onYes" (click)="onYes()" class="button-border std-width ">Ja</button>
         </div>
 
         <div class="center">
-           <button *ngIf="onNo" (click)="onNo()" class="button-decline">Nej</button>
+           <button *ngIf="onNo" (click)="onNo()" class="button-cancel std-width ">Nej</button>
         </div>
 
         <div class="center">
-          <button class="btn-ok" *ngIf="onOk" (click)="onOk()">OK</button>
+          <button *ngIf="onOk" (click)="onOk()" class="btn-ok std-width">OK</button>
         </div>
 
         <div class="right">
-           <button *ngIf="onCancel" (click)="onCancel()" class="button-cancel">Avbryt</button>
+           <button *ngIf="onCancel" (click)="onCancel()" class="button-cancel std-width ">Avbryt</button>
         </div>
 
       </div>

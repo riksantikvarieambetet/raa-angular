@@ -23,11 +23,15 @@
           border-radius: 2px;
           padding: 2rem;
           max-width: 940px;
-          width: 33%;
+          width: 35%;
           z-index: 99999;
 
           @include respond-to(handhelds){
-            width: 90%;
+            width: 95%;
+          }
+
+          @include respond-to(medium-screens){
+            width: 55%;
           }
 
           // Vi måste sätta width 100% för att få radbrytningen att fungera

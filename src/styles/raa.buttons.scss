@@ -21,6 +21,10 @@ button {
   border: solid 1px $orange-1;
   border-radius: 2px;
 
+  font-size: 14px;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 800;
+   
   &:hover{
     cursor: pointer;
   }
@@ -34,6 +38,10 @@ button {
         border-color: $gray-1;
         cursor: default;
       }
+  }
+
+  &.std-width {
+    min-width: 10rem;
   }
 
 }
