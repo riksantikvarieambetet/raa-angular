@@ -49,6 +49,7 @@
         .btn-group {
           display: flex;
           flex-direction: row;
+          justify-content: space-around;
           margin-top: 1rem;
           .left, .center, .right {
             flex: 1 0 0;
