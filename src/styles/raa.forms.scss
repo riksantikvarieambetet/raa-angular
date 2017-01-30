@@ -8,7 +8,7 @@ input[type=text], input[type="tel"], select, textarea {
   padding: 0.5rem;
 
   .error &, &.error {
-    background-color: #FFEEEE;
+    background-color: $light-red;
   }
 
   -moz-box-sizing: border-box;
@@ -17,14 +17,14 @@ input[type=text], input[type="tel"], select, textarea {
   box-sizing: border-box;
   overflow-y: auto;
 
-  &.ng-invalid.ng-dirty {
+  &.ng-invalid.ng-touched {
     background-color: $light-red;
   }
 
 }
 
 input[type="checkbox"]{
-  &.ng-invalid.ng-dirty {
+  &.ng-invalid.ng-touched {
     border-color: $light-red;
   }
 }
@@ -32,7 +32,7 @@ input[type="checkbox"]{
 
 div {
   .error &, &.error {
-    background-color: #FFEEEE;
+    background-color: $light-red;
     border-radius: 2px;
     padding: 1rem;
   }
@@ -44,17 +44,18 @@ div {
 
 
 /* to hide the checkbox itself */
-  input[type=checkbox] {
-    position: absolute;
-    left: -99999999px;
-  }
-  // Font awesome checkbox
-  input[type=checkbox] + label:before {
-    font-family: FontAwesome;
-    font-size: 1.3rem;
-    display: inline-block;
-  }
+input[type=checkbox] {
+  position: absolute;
+  left: -99999999px;
+}
 
-  input[type=checkbox] + label:before { content: "\f096"; width: 1.5rem;} /* unchecked icon */
-  input[type=checkbox]:checked + label:before { content: "\f046"; width: 1.5rem;} /* checked icon */
-  input[type="checkbox"]:focus + label:before { font-weight: bold; }
+// Font awesome checkbox
+input[type=checkbox] + label:before {
+  font-family: FontAwesome;
+  font-size: 1.3rem;
+  display: inline-block;
+}
+
+input[type=checkbox] + label:before { content: "\f096"; width: 1.5rem;} /* unchecked icon */
+input[type=checkbox]:checked + label:before { content: "\f046"; width: 1.5rem;} /* checked icon */
+input[type="checkbox"]:focus + label:before { font-weight: bold; }
