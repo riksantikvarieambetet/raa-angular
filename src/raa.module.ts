@@ -53,6 +53,7 @@ import { OrgnummerPipe } from './pipes/orgnummer.pipe';
     RaaDialogueComponent,
     OutsideClickDirective,
     RaaRequestFocusDirective,
+    RaaSelectAllOnFocus,
     RaaFocusInvalidElementDirective,
     CommonModule,
     FormsModule,
