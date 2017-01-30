@@ -7,7 +7,7 @@ $break-medium-screens-max: 1024px;
   @if $media == handhelds {
     @media only screen
     and (min-device-width: $break-handhelds-min)
-    and (max-width: $break-medium-screens-max - 1) { @content; }
+    and (max-width: $break-medium-screens-min - 1) { @content; }
   }
   @else if $media == medium-screens {
     @media only screen
