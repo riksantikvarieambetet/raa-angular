@@ -17,14 +17,14 @@ input[type=text], input[type="tel"], select, textarea {
   box-sizing: border-box;
   overflow-y: auto;
 
-  &.ng-invalid.ng-touched {
+  &.ng-invalid.ng-dirty {
     background-color: $light-red;
   }
 
 }
 
 input[type="checkbox"]{
-  &.ng-invalid.ng-touched {
+  &.ng-invalid.ng-dirty {
     border-color: $light-red;
   }
 }
@@ -32,7 +32,7 @@ input[type="checkbox"]{
 
 div {
   .error &, &.error {
-    background-color: $light-red;
+    background-color: #FFEEEE;
     border-radius: 2px;
     padding: 1rem;
   }
