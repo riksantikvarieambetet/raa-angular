@@ -1,5 +1,4 @@
 @import '../../styles/raa';
-
 .dark-overlay {
     position: fixed;
     width: 100%;
@@ -8,38 +7,33 @@
     bottom: 0;
     left: 0;
     right: 0;
-
     background-color: rgba(0, 0, 0, 0.5);
-
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 2rem;
+    z-index: 99996;
 }
 
 .center-page {
     flex: 1;
     flex-basis: auto; // IE11 collapse workaround
-
     max-height: 100%;
     min-height: 0%;
-
     width: inherit;
     max-width: 900px;
-
     overflow: auto;
-
     background: white;
     box-shadow: #222 2px 2px 10px;
     border-radius: 2px;
-
     transform: translateZ(0); // Tvinga chrome och rendera
+    z-index: 99997;
 }
 
 .header {
     text-align: center;
     font-weight: 300;
-    margin-top: 2.5rem; 
+    margin-top: 2.5rem;
 }
 
 .close-button {
@@ -52,14 +46,14 @@
     line-height: 0px;
 }
 
-@include respond-to(handhelds){
-    .dark-overlay{
+@include respond-to(handhelds) {
+    .dark-overlay {
         padding: 0;
     }
 }
 
-@include respond-to(medium-screens){
-    .dark-overlay{
+@include respond-to(medium-screens) {
+    .dark-overlay {
         padding: 1rem;
     }
 }

@@ -1,49 +1,39 @@
-@mixin colored-button($color){
-
+@mixin colored-button($color) {
     background-color: $color;
     border-color: $color;
-
-    &:hover{
+    &:hover {
         background-color: darken( $color, 5%);
     }
-
 }
 
 button {
-
-  @include colored-button($orange-1);
-
-  display: block;
-  font-size: 1.25rem;
-  color: #fff;
-  margin: 0;
-  padding: .4rem 1.4rem;
-  border: solid 1px $orange-1;
-  border-radius: 2px;
-
-  font-size: 14px;
-  font-family: 'Source Sans Pro', sans-serif;
-  font-weight: 800;
-   
-  &:hover{
-    cursor: pointer;
-  }
-
-  &:disabled {
-      background-color: $gray-1;
-      border-color: $gray-1;
-
-      &:hover {
+    @include colored-button($orange-1);
+    display: block;
+    font-size: 1.25rem;
+    color: #fff;
+    margin: 0;
+    padding: .4rem 1.4rem;
+    border: solid 1px $orange-1;
+    border-radius: 2px;
+    font-size: 14px;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 800;
+    &:hover {
+        cursor: pointer;
+    }
+    &:disabled {
         background-color: $gray-1;
         border-color: $gray-1;
-        cursor: default;
-      }
-  }
-
-  &.std-width {
-    min-width: 10rem;
-  }
-
+        &:hover {
+            background-color: $gray-1;
+            border-color: $gray-1;
+            cursor: default;
+            color: white;
+        }
+    }
+    &.std-width {
+        min-width: 10rem;
+    }
 }
 
 .button-icon {
@@ -53,24 +43,21 @@ button {
     min-width: auto;
     padding: .2rem 0.45rem;
     font-size: 1.5rem;
-
     &:hover {
         border-color: $orange-1;
         background-color: $orange-1;
-        color:white;
+        color: white;
     }
 }
 
 .button-border {
-     background-color: white;
-     border-color: $orange-1;
-     color: $dark-gray-1;
-     border: 2px solid $orange-1;
-
-     &:hover {
-
+    background-color: white;
+    border-color: $orange-1;
+    color: $dark-gray-1;
+    border: 2px solid $orange-1;
+    &:hover {
         background-color: $orange-1;
-        color:white;
+        color: white;
     }
 }
 
@@ -81,4 +68,3 @@ button {
 .button-cancel {
     @include colored-button($dark-gray-1);
 }
-

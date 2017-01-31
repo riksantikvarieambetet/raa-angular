@@ -1,37 +1,37 @@
 <div class="raa-dialogue" *ngIf="displayDialogue">
-  <div class="dark-overlay">
-    <div class="dialogue-container">
+    <div class="dark-overlay">
+        <div class="dialogue-container">
 
-      <div class="ng-content">
-        <div>
-          <button *ngIf="onClose" (click)="onClose()" class="button-icon close-button">&times;</button>
+            <div class="ng-content">
+                <div>
+                    <button *ngIf="onClose" (click)="onClose()" class="button-icon close-button">&times;</button>
+                </div>
+                <h2 *ngIf="header" class="header">{{header}}</h2>
+                <ng-content></ng-content>
+            </div>
+
+            <br>
+
+            <div class="btn-group">
+                <div class="left">
+
+                    <button *ngIf="onYes" (click)="onYes()" class="button-border std-width ">JA</button>
+                </div>
+
+                <div class="center">
+                    <button *ngIf="onNo" (click)="onNo()" class="button-cancel std-width ">NEJ</button>
+                </div>
+
+                <div class="center">
+                    <button *ngIf="onOk" (click)="onOk()" class="btn-ok std-width">OK</button>
+                </div>
+
+                <div class="right">
+                    <button *ngIf="onCancel" (click)="onCancel()" class="button-cancel std-width ">AVBRYT</button>
+                </div>
+
+            </div>
         </div>
-        <h2 *ngIf="header" class="header">{{header}}</h2>
-        <ng-content></ng-content>
-      </div>
 
-      <br>
-
-      <div class="btn-group">
-        <div class="left">
-
-          <button *ngIf="onYes" (click)="onYes()" class="button-border std-width ">Ja</button>
-        </div>
-
-        <div class="center">
-           <button *ngIf="onNo" (click)="onNo()" class="button-cancel std-width ">Nej</button>
-        </div>
-
-        <div class="center">
-          <button *ngIf="onOk" (click)="onOk()" class="btn-ok std-width">OK</button>
-        </div>
-
-        <div class="right">
-           <button *ngIf="onCancel" (click)="onCancel()" class="button-cancel std-width ">Avbryt</button>
-        </div>
-
-      </div>
     </div>
-
-  </div>
 </div>
