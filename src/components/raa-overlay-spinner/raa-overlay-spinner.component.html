@@ -1,4 +1,4 @@
-<div class="loading-overlay" *ngIf="showSpinner">
+<div class="loading-overlay" *ngIf="showSpinner" [ngClass]="{absolute: posAbsolute, fixed: posFixed}">
     <div class="loading-view">
         <i class="fa fa-circle-o-notch fa-spin fa-fw spinner"></i>
     </div>

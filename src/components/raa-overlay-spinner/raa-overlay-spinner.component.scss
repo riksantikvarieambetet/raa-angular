@@ -1,6 +1,5 @@
 @import '../../styles/raa';
-
-.loading-overlay{
+.loading-overlay {
     position: fixed;
     left: 0;
     top: 0;
@@ -10,15 +9,24 @@
     background-color: rgba(white, 0.4);
 }
 
-.loading-view{
+.loading-view {
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     font-size: 5rem;
-    background-color: transparent
+    background-color: transparent;
+    text-align: center;
 }
 
 .spinner {
     margin-top: -2.5rem;
+}
+
+.absolute {
+    position: absolute;
+}
+
+.fixed {
+    position: fixed;
 }

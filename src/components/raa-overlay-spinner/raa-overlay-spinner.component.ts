@@ -9,6 +9,12 @@ export class RaaOverlaySpinnerComponent implements OnInit {
     @Input()
     showSpinner: boolean;
 
+    @Input()
+    posAbsolute: boolean;
+
+    @Input()
+    posFixed: boolean;
+
     constructor() { }
 
     ngOnInit(): void {
