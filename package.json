@@ -1,6 +1,6 @@
 {
   "name": "ng2-raa-common",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Gemensama angular 2 komponenter/pipes för Riksantikvarieämbetet",
   "main": "index.js",
   "typings": "./ng2-raa-common.d.ts",
