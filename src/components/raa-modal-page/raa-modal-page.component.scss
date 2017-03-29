@@ -28,6 +28,14 @@
     border-radius: 2px;
     transform: translateZ(0); // Tvinga chrome och rendera
     z-index: 99997;
+
+    &.small {
+        max-width: 600px;
+    }
+
+    &.large {
+        max-width: 1400px;
+    }
 }
 
 .header {

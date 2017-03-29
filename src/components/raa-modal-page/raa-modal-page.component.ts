@@ -13,6 +13,9 @@ export class RaaModalPageComponent implements OnInit {
     @Input()
     header: string;
 
+    @Input()
+    size: 'small' | 'large';
+
     ngOnInit() {
 
         if (!this.onClose) {
