@@ -26,7 +26,10 @@
     background: white;
     box-shadow: #222 2px 2px 10px;
     border-radius: 2px;
-    transform: translateZ(0); // Tvinga chrome och rendera
+    // Chrome har fixat till en här buggen nu, tyvärr fungerar inte vårat hack längre vilket betyder att
+    // på ädlre versioner av chrome kommer felet uppstå men inte på nya...
+    // Har kvar koden här för tillfället och kan städas bort när det verkar vara lugnt
+    // transform: translateZ(0); // Tvinga chrome och rendera
     z-index: 99997;
 
     &.small {
