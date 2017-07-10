@@ -2,7 +2,10 @@
   "name": "ng2-raa-common",
   "version": "0.1.1",
   "description": "Gemensama angular 2 komponenter/pipes för Riksantikvarieämbetet",
-  "main": "index.js",
+  "main": "ng2-raa.common.js",
+  "module": "ng2-raa.common.js",
+  "jsnext:main": "ng2-raa.common.js",
+  "types": "ng2-raa-common.d.ts",
   "typings": "./ng2-raa-common.d.ts",
   "scripts": {
     "prepublish": "tsc",
@@ -15,21 +18,21 @@
   "author": "Emil Klasson",
   "license": "ISC",
   "dependencies": {
-    "@angular/common": "2.1.1",
-    "@angular/compiler": "2.1.1",
-    "@angular/core": "2.1.1",
-    "@angular/forms": "2.1.0",
-    "@angular/http": "2.1.1",
-    "@angular/platform-browser": "2.1.1",
-    "@angular/platform-browser-dynamic": "2.1.1",
-    "@angular/platform-server": "2.1.1",
-    "@angular/router": "3.1.1",
-    "@angularclass/conventions-loader": "^1.0.2",
-    "@angularclass/hmr": "~1.2.0",
-    "@angularclass/hmr-loader": "~3.0.2",
+    "@angular/common": "^4.2.5",
+    "@angular/compiler": "^4.2.5",
+    "@angular/core": "^4.2.5",
+    "@angular/forms": "^4.2.5",
+    "@angular/http": "^4.2.5",
+    "@angular/platform-browser": "^4.2.5",
+    "@angular/platform-browser-dynamic": "^4.2.5",
+    "@angular/platform-server": "^4.2.5",
+    "@angular/router": "^4.2.5",
+    "@angularclass/conventions-loader": "^1.0.13",
+    "@angularclass/hmr": "^2.1.1",
+    "@angularclass/hmr-loader": "^3.0.2",
     "core-js": "^2.4.1",
-    "rxjs": "^5.0.0-rc.1",
-    "zone.js": "~0.6.17"
+    "rxjs": "^5.4.2",
+    "zone.js": "^0.8.12"
   },
   "devDependencies": {
     "@types/chai": "^3.4.34",
@@ -41,6 +44,6 @@
     "@types/source-map": "^0.1.27",
     "@types/uglify-js": "^2.0.27",
     "tslint": "^4.0.2",
-    "typescript": "^2.0.10"
+    "typescript": "2.3.4"
   }
 }

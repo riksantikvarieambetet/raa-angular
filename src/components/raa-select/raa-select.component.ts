@@ -20,7 +20,7 @@ export class RaaSelect implements OnInit, ControlValueAccessor {
 
   @HostListener('focus', ['$event.target'])
   onFocus() {
-    this.setFocusToInputField.emit(null);
+    this.setFocusToInputField.emit();
     this.focusGained();
   }
 
@@ -41,7 +41,7 @@ export class RaaSelect implements OnInit, ControlValueAccessor {
 
   setFocusToInputField = new EventEmitter();
 
-  constructor() {};
+  constructor() {}
 
   // Handling of ngModel
   writeValue(value: any) {
@@ -57,7 +57,7 @@ export class RaaSelect implements OnInit, ControlValueAccessor {
     this.propagateChange = fn;
   }
 
-  registerOnTouched() { };
+  registerOnTouched() { }
 
   ngOnInit() {
     if (!this.domain) {
@@ -122,7 +122,7 @@ export class RaaSelect implements OnInit, ControlValueAccessor {
 
   getValue(item: any) {
     return item[this.valueAttr];
-  };
+  }
 
   getDisplayValue = (itemKey: any): string => {
     if (typeof itemKey === 'undefined' || itemKey.length < 1) {
@@ -176,12 +176,12 @@ export class RaaSelect implements OnInit, ControlValueAccessor {
 
   toggleDropdown() {
     if (!this.showDropdown) {
-      this.setFocusToInputField.emit(null);
+      this.setFocusToInputField.emit();
     }
     else {
       this.focusLost();
     }
-  };
+  }
 
   openDropDownIfClosed() {
     if (!this.showDropdown) {
