@@ -3,76 +3,28 @@
 
 
 "@angular/common@^4.2.5":
-  version "4.2.5"
-  resolved "https://registry.yarnpkg.com/@angular/common/-/common-4.2.5.tgz#4d50a95b444cd58cf706f0da9dd1407d3b83362e"
-  dependencies:
-    tslib "^1.7.1"
-
-"@angular/compiler@^4.2.5":
-  version "4.2.5"
-  resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-4.2.5.tgz#b48674c7456b2b0df1072d70e4e667af86cddf83"
+  version "4.2.6"
+  resolved "https://registry.yarnpkg.com/@angular/common/-/common-4.2.6.tgz#210ace4bd24e375f8b41ba52feb34b18a887d5da"
   dependencies:
     tslib "^1.7.1"
 
 "@angular/core@^4.2.5":
-  version "4.2.5"
-  resolved "https://registry.yarnpkg.com/@angular/core/-/core-4.2.5.tgz#61c1b5885c262332d737fbe0f5d71151759a8464"
+  version "4.2.6"
+  resolved "https://registry.yarnpkg.com/@angular/core/-/core-4.2.6.tgz#0c1c8ff0157f076f4a7c0b721ca1423f1bbe164e"
   dependencies:
     tslib "^1.7.1"
 
 "@angular/forms@^4.2.5":
-  version "4.2.5"
-  resolved "https://registry.yarnpkg.com/@angular/forms/-/forms-4.2.5.tgz#a7e55c8d1f5a4e8537efe1edd7834e4a1f59c6e4"
+  version "4.2.6"
+  resolved "https://registry.yarnpkg.com/@angular/forms/-/forms-4.2.6.tgz#9d32399608e4603bbf197417aa5b94e80a467eb0"
   dependencies:
     tslib "^1.7.1"
 
-"@angular/http@^4.2.5":
-  version "4.2.5"
-  resolved "https://registry.yarnpkg.com/@angular/http/-/http-4.2.5.tgz#3fff8e5cf8e88262bacd1c996304312c3c5a3aef"
+"@angular/platform-browser@^4.2.6":
+  version "4.2.6"
+  resolved "https://registry.yarnpkg.com/@angular/platform-browser/-/platform-browser-4.2.6.tgz#a131ff592225fe6496bca2c9aff612a4dbddf437"
   dependencies:
     tslib "^1.7.1"
-
-"@angular/platform-browser-dynamic@^4.2.5":
-  version "4.2.5"
-  resolved "https://registry.yarnpkg.com/@angular/platform-browser-dynamic/-/platform-browser-dynamic-4.2.5.tgz#8076ec4a885cc3a1a23c5e540c40a7fdd3f7e7b2"
-  dependencies:
-    tslib "^1.7.1"
-
-"@angular/platform-browser@^4.2.5":
-  version "4.2.5"
-  resolved "https://registry.yarnpkg.com/@angular/platform-browser/-/platform-browser-4.2.5.tgz#d9ddfe0f81084e98ef24a79f485dbb112e78a0c4"
-  dependencies:
-    tslib "^1.7.1"
-
-"@angular/platform-server@^4.2.5":
-  version "4.2.5"
-  resolved "https://registry.yarnpkg.com/@angular/platform-server/-/platform-server-4.2.5.tgz#d4e3d7e87d0a770615ddc4abd1c7c07554496079"
-  dependencies:
-    parse5 "^3.0.1"
-    tslib "^1.7.1"
-    xhr2 "^0.1.4"
-
-"@angular/router@^4.2.5":
-  version "4.2.5"
-  resolved "https://registry.yarnpkg.com/@angular/router/-/router-4.2.5.tgz#7f364089493ab1a06eac5f0c628c0f9fdb11008f"
-  dependencies:
-    tslib "^1.7.1"
-
-"@angularclass/conventions-loader@^1.0.13":
-  version "1.0.13"
-  resolved "https://registry.yarnpkg.com/@angularclass/conventions-loader/-/conventions-loader-1.0.13.tgz#893e18275a78a1c8a40d17d6b98f92db52309aef"
-  dependencies:
-    loader-utils "^0.2.15"
-
-"@angularclass/hmr-loader@^3.0.2":
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/@angularclass/hmr-loader/-/hmr-loader-3.0.2.tgz#c789182411f09d0b98929e6acbfd3e4aeaace597"
-  dependencies:
-    loader-utils "^0.2.15"
-
-"@angularclass/hmr@^2.1.1":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@angularclass/hmr/-/hmr-2.1.1.tgz#2a797f5d282ec0513b8a2c29ac9e316376c563ef"
 
 "@types/chai@^3.4.34":
   version "3.5.2"
@@ -86,7 +38,7 @@
   version "2.5.53"
   resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-2.5.53.tgz#4e0cefad09df5ec48c8dd40433512f84b1568d61"
 
-"@types/node@^6.0.38", "@types/node@^6.0.46":
+"@types/node@^6.0.38":
   version "6.0.79"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-6.0.79.tgz#5efe7d4a6d8c453c7e9eaf55d931f4a22fac5169"
 
@@ -139,10 +91,6 @@ babel-code-frame@^6.20.0:
 balanced-match@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
-
-big.js@^3.1.3:
-  version "3.1.3"
-  resolved "https://registry.yarnpkg.com/big.js/-/big.js-3.1.3.tgz#4cada2193652eb3ca9ec8e55c9015669c9806978"
 
 boxen@^1.0.0:
   version "1.1.0"
@@ -246,10 +194,6 @@ dot-prop@^4.1.0:
 duplexer3@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/duplexer3/-/duplexer3-0.1.4.tgz#ee01dd1cac0ed3cbc7fdbea37dc0a8f1ce002ce2"
-
-emojis-list@^2.0.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/emojis-list/-/emojis-list-2.1.0.tgz#4daa4d9db00f9819880c79fa457ae5b09a1fd389"
 
 escape-string-regexp@^1.0.2:
   version "1.0.5"
@@ -392,24 +336,11 @@ js-tokens@^3.0.0:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-3.0.2.tgz#9866df395102130e38f7f996bceb65443209c25b"
 
-json5@^0.5.0:
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/json5/-/json5-0.5.1.tgz#1eade7acc012034ad84e2396767ead9fa5495821"
-
 latest-version@^3.0.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/latest-version/-/latest-version-3.1.0.tgz#a205383fea322b33b5ae3b18abee0dc2f356ee15"
   dependencies:
     package-json "^4.0.0"
-
-loader-utils@^0.2.15:
-  version "0.2.17"
-  resolved "https://registry.yarnpkg.com/loader-utils/-/loader-utils-0.2.17.tgz#f86e6374d43205a6e6c60e9196f17c0299bfb348"
-  dependencies:
-    big.js "^3.1.3"
-    emojis-list "^2.0.0"
-    json5 "^0.5.0"
-    object-assign "^4.0.1"
 
 lowercase-keys@^1.0.0:
   version "1.0.0"
@@ -477,12 +408,6 @@ package-json@^4.0.0:
     registry-auth-token "^3.0.1"
     registry-url "^3.0.3"
     semver "^5.1.0"
-
-parse5@^3.0.1:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/parse5/-/parse5-3.0.2.tgz#05eff57f0ef4577fb144a79f8b9a967a6cc44510"
-  dependencies:
-    "@types/node" "^6.0.46"
 
 path-is-absolute@^1.0.0:
   version "1.0.1"
@@ -699,10 +624,6 @@ write-file-atomic@^2.0.0:
 xdg-basedir@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/xdg-basedir/-/xdg-basedir-3.0.0.tgz#496b2cc109eca8dbacfe2dc72b603c17c5870ad4"
-
-xhr2@^0.1.4:
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/xhr2/-/xhr2-0.1.4.tgz#7f87658847716db5026323812f818cadab387a5f"
 
 yallist@^2.1.2:
   version "2.1.2"
