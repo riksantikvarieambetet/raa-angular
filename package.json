@@ -15,8 +15,8 @@
     "type": "git",
     "url": "ssh://git@lx-ra-jira.raa.se:7999/tek/ng2-raa-common.git"
   },
-  "author": "Emil Klasson",
-  "license": "ISC",
+  "author": "Riksantikvarietämbetet",
+  "license": "UNLICENSED",
   "dependencies": {},
   "devDependencies": {
     "@angular/common": "^4.2.5",
