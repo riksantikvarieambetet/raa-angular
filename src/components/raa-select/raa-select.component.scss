@@ -73,28 +73,23 @@
         margin: 0 1rem 0 1rem;
       }
 
-      &.selectItem {
-        background-color: $gray-1;
-      } 
-
       &:not(:last-child){
         border-bottom: solid 1px $gray-1;
       }
 
+      &.selectItem {
+        background-color: $gray-1;
+      }     
     }
-    
 
     li:hover {
       color: white;
       background-color: $dark-gray-1;
       .item {
-        border-bottom: none;
+        border-color: transparent;
       }
     }
-
-
   }
-
 }
 
 
