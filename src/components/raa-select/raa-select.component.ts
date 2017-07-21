@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, forwardRef, EventEmitter, HostListener, HostBinding } from '@angular/core';
+import { Component, Input, OnInit, forwardRef, EventEmitter, HostListener, HostBinding, OnChanges, SimpleChanges } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 
@@ -14,13 +14,13 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
     }
   ]
 })
-export class RaaSelect implements OnInit, ControlValueAccessor {
+export class RaaSelect implements OnInit, ControlValueAccessor, OnChanges {
 
   @HostBinding() tabindex = 0;
 
   @HostListener('focus', ['$event.target'])
   onFocus() {
-    this.setFocusToInputField.emit(null);
+    this.setFocusToInputField.emit(undefined);
     this.focusGained();
   }
 
@@ -43,22 +43,6 @@ export class RaaSelect implements OnInit, ControlValueAccessor {
 
   constructor() {};
 
-  // Handling of ngModel
-  writeValue(value: any) {
-    if (value) {
-      this.filterInput = this.getDisplayValue(value);
-    }
-
-    this.value = value;
-  }
-
-  propagateChange = (_: any) => { };
-  registerOnChange(fn: any) {
-    this.propagateChange = fn;
-  }
-
-  registerOnTouched() { };
-
   ngOnInit() {
     if (!this.domain) {
       throw 'ERROR: raa-select.component -> domain must be specified';
@@ -77,6 +61,28 @@ export class RaaSelect implements OnInit, ControlValueAccessor {
     this.domainValues = this.mapDomainValues();
     this.filterValues();
   }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['domain']) {
+        this.domainValues = this.mapDomainValues();
+    }
+  }
+
+  // Handling of ngModel
+  writeValue(value: any) {
+    if (value) {
+      this.filterInput = this.getDisplayValue(value);
+    }
+
+    this.value = value;
+  }
+
+  propagateChange = (_: any) => { };
+  registerOnChange(fn: any) {
+    this.propagateChange = fn;
+  }
+
+  registerOnTouched() { };
 
   onFilterdInputChange() {
     this.filterValues();
@@ -176,7 +182,7 @@ export class RaaSelect implements OnInit, ControlValueAccessor {
 
   toggleDropdown() {
     if (!this.showDropdown) {
-      this.setFocusToInputField.emit(null);
+      this.setFocusToInputField.emit(undefined);
     }
     else {
       this.focusLost();
