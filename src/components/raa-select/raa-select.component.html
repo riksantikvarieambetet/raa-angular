@@ -1,21 +1,21 @@
 <div class="raa-select" [ngClass]="{'raa-component-focus': componentHasFocus === true}" [(outsideClick)]="focusLost">
     <div class="input-row">
-        <input class="input-field" 
-            ng-required="required" 
-            type="text" 
-            placeholder="{{placeholder}}" 
-            raaSelectAllOnFocus 
-            [requestFocus]="setFocusToInputField" 
-            [disabled]="disabled"             
-            [(ngModel)]="filterInput" 
-            (ngModelChange)="onFilterdInputChange()"  
-            (focus)="focusGained()" (click)="openDropdownIfClosed()" 
+        <input class="input-field"
+            type="text"
+            placeholder="{{placeholder}}"
+            raaSelectAllOnFocus
+            [requestFocus]="setFocusToInputField"
+            [disabled]="disabled"
+            [(ngModel)]="filterInput"
+            (ngModelChange)="onFilterdInputChange()"
+            (focus)="focusGained()"
+            (click)="openDropdownIfClosed()"
             (keydown)="handleKeyPressed($event)">
-        <button class="fa fa-chevron-down dropdown-btn square-btn" 
-            type="button" 
+        <button class="fa fa-chevron-down square-btn"
+            type="button"
             tabIndex="-1"
-            [disabled]="disabled" 
-            [ngClass]="{'active': showDropdown}" 
+            [disabled]="disabled"
+            [ngClass]="{'active': showDropdown}"
             (click)="toggleDropdown()" >
         </button>
     </div>
@@ -24,8 +24,10 @@
             <li *ngIf="filteredDomainValues.length === 0">
                 <div class="info-element">Ingen träff</div>
             </li>
-            <li *ngFor="let item of filteredDomainValues; let rowIndex = index" [ngClass]="{'selectItem': hoverIndex === rowIndex }">
-                <div class="item" (click)="select(item)">{{item.displayValue}}</div>
+            <li *ngFor="let item of filteredDomainValues; let rowIndex = index"
+              (mouseover)="hoverIndex = rowIndex"
+              [ngClass]="{ 'selectItem': item.id === value, 'hoverItem': hoverIndex === rowIndex }">
+                <div class="dropdown-item" (click)="select(item)">{{item.displayValue}}</div>
             </li>
         </ul>
 

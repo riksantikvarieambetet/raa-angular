@@ -41,7 +41,7 @@ export class RaaSelect implements OnInit, ControlValueAccessor {
 
   setFocusToInputField = new EventEmitter();
 
-  constructor() {}
+  constructor() { }
 
   // Handling of ngModel
   writeValue(value: any) {
@@ -83,7 +83,12 @@ export class RaaSelect implements OnInit, ControlValueAccessor {
   }
 
   openDropdownIfClosed() {
-    this.showDropdown = true;
+    if (!this.showDropdown) {
+      this.setHoverIndexFromSelectedValue();
+      return this.showDropdown = true;
+    }
+
+    return false;
   }
 
   select(item: DomainValue) {
@@ -136,13 +141,15 @@ export class RaaSelect implements OnInit, ControlValueAccessor {
     return domainObject[0].displayValue;
   }
 
-
   handleKeyPressed(event: KeyboardEvent) {
     const keyCode = event.which;
     if (keyCode === KeyCode.ArrowDown) {
       event.preventDefault();
 
-      this.showDropdown = true;
+      if (this.openDropdownIfClosed()) {
+        return;
+      }
+
       if (this.hoverIndex < this.filteredDomainValues.length - 1) {
         this.hoverIndex += 1;
       }
@@ -150,7 +157,10 @@ export class RaaSelect implements OnInit, ControlValueAccessor {
     else if (keyCode === KeyCode.ArrowUp) {
       event.preventDefault();
 
-      this.showDropdown = true;
+      if (this.openDropdownIfClosed()) {
+        return;
+      }
+
       if (this.hoverIndex > 0) {
         this.hoverIndex -= 1;
       }
@@ -170,7 +180,7 @@ export class RaaSelect implements OnInit, ControlValueAccessor {
       this.focusLost();
     }
     else {
-      this.showDropdown = true;
+      this.openDropdownIfClosed();
     }
   }
 
@@ -183,16 +193,7 @@ export class RaaSelect implements OnInit, ControlValueAccessor {
     }
   }
 
-  openDropDownIfClosed() {
-    if (!this.showDropdown) {
-      this.showDropdown = true;
-    }
-  }
-
-  focusGained() {
-    this.componentHasFocus = true;
-    this.showDropdown = true;
-    this.clearFilters();
+  setHoverIndexFromSelectedValue() {
     if (this.value) {
       this.filteredDomainValues.forEach((item, index) => {
         if (item.id === this.value) {
@@ -200,6 +201,12 @@ export class RaaSelect implements OnInit, ControlValueAccessor {
         }
       });
     }
+  }
+
+  focusGained() {
+    this.componentHasFocus = true;
+    this.openDropdownIfClosed();
+    this.clearFilters();
   }
 
   focusLost = () => {
