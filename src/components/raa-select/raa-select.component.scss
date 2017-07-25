@@ -1,106 +1,123 @@
 @import "../../styles/raa.colors";
 
+$border-color: $gray-1;
+$border-size: 1px;
+$border-radius-size: 2px;
+
+$button-width: 3rem;
+$button-color: $orange-1;
+$button-bg-color: white;
+$button-hover-color: white;
+$button-hover-bg-color: $orange-1;
+$button-active-color: darken($button-hover-color, 5%);
+$button-active-bg-color: darken($button-hover-bg-color, 5%);
+
+$dropdown-max-height: 17rem;
+$dropdown-bg-color: white;
+
+$dropdown-item-padding: 0.5rem 1rem;
+
+$dropdown-item-hover-color: white;
+$dropdown-item-hover-bg-color: $dark-gray-1;
+
+$dropdown-item-selected-bg-color: $gray-1;
+
 .raa-select {
   background-color: inherit;
   display: flex;
   flex-direction: column;
+}
 
-  .active {
-    background-color: $dark-gray-1;
-    border-color: $dark-gray-1;
-  }
+.raa-select-input-row {
+  display: flex;
+  flex-direction: row;
+}
 
-  .input-row {
-    display: flex;
-    flex-direction: row;
-
-    button {
-      padding: .4rem .4rem .4rem .4rem;
-      border-left: none;
-      border-color: $gray-1;
-      border-radius: 0 2px 2px 0;
-      color: $orange-1;
-      background-color: white;
+input.raa-select-input {
+    &::-ms-clear { // https://stackoverflow.com/a/14007839
+      display: none;
     }
 
-    button:hover {
-      background-color: $orange-1;
-      color: white;
-    }
+    position: relative; // Se till att outline
+    z-index: 0;         // ligger över knapp
 
-    input:focus{
-      border-radius: 2px 0 0 0;
-
-      & ~ button {
-         border-radius: 0 2px 0 0;
-      }
-    }
-
-
-  }
-
-  .input-field {
+    border: $border-size solid $border-color;
     border-right: none;
+    border-radius: $border-radius-size 0 0 $border-radius-size;
+
+    &.active {
+      border-radius: $border-radius-size 0 0 0;
+    }
   }
 
-  .dropdown {
-    position: relative;
-    z-index: 1;
-    
-    ul {
-      top: 0;
-      left: 0;
-      position: absolute;
-      width: 100%;
-      background-color: white;
-      padding: 0;
-      margin: 0;
-      list-style-type: none;
-      border: solid 1px $gray-1;
-      border-top: none;
-      overflow-y: auto;
-      max-height: 17rem;
-      border-radius: 0  0 2px 2px  ;
-
-      &.display-top {
-        bottom: 2.6rem;
-      }
+:host {
+  &.ng-invalid.ng-dirty {
+    .raa-select-input {
+      background-color: $light-red;
     }
-
-    li {
-      .item {
-        padding: 0.5rem 0 0.5rem 0;
-        margin: 0 1rem 0 1rem;
-      }
-
-      &.selectItem {
-        background-color: $gray-1;
-      } 
-
-      &:not(:last-child){
-        border-bottom: solid 1px $gray-1;
-      }
-
-    }
-    
-
-    li:hover {
-      color: white;
-      background-color: $dark-gray-1;
-      .item {
-        border-bottom: none;
-      }
-    }
-
-
-  }
-
-}
-
-
-:host(.ng-invalid.ng-dirty) {
-  input[type="text"]{
-    background-color: $light-red;
   }
 }
 
+button.raa-select-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: $button-width;
+  padding: 0;
+  border: $border-size solid $border-color;
+  border-left: none;
+  border-radius: 0 $border-radius-size $border-radius-size 0;
+  background-color: $button-bg-color;
+  color: $button-color;
+
+  &:not(.active):not(:active):hover {
+    background-color: $button-hover-bg-color;
+    color: $button-hover-color;
+  }
+
+  &.active,
+  &:active {
+    color: $button-active-color;
+    background-color: $button-active-bg-color;
+    border-radius: 0 $border-radius-size 0 0;
+
+    &:before {
+      transform: translateX(1px) translateY(1px);
+    }
+  }
+}
+
+.raa-select-dropdown-container {
+  position: relative;
+  z-index: 1;
+}
+
+.raa-select-dropdown {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  overflow-y: auto;
+  max-height: $dropdown-max-height;
+  background-color: $dropdown-bg-color;
+  border: $border-size solid $border-color;
+  border-top: none;
+  border-radius: 0 0 $border-radius-size $border-radius-size;
+  box-shadow: 5px 5px 10px -3px $border-color;
+}
+
+.raa-select-dropdown-item {
+  padding: $dropdown-item-padding;
+
+  &.selected {
+    background-color: $dropdown-item-selected-bg-color;
+  }
+
+  &.hovered {
+    color: $dropdown-item-hover-color;
+    background-color: $dropdown-item-hover-bg-color;
+  }
+}

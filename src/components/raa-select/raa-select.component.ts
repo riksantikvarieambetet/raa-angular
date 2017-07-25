@@ -1,6 +1,25 @@
-import { Component, Input, OnInit, forwardRef, EventEmitter, HostListener, HostBinding } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  AfterViewInit,
+  forwardRef,
+  EventEmitter,
+  HostListener,
+  HostBinding,
+  ViewChild,
+  ViewChildren,
+  QueryList,
+  ElementRef
+} from '@angular/core';
+
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
+const ignoreOpenOnKeyCodes = {
+  [KeyCode.Alt]: true,
+  [KeyCode.Ctrl]: true,
+  [KeyCode.Shift]: true
+};
 
 @Component({
   selector: 'raa-select',
@@ -14,14 +33,16 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
     }
   ]
 })
-export class RaaSelect implements OnInit, ControlValueAccessor {
+export class RaaSelect implements OnInit, AfterViewInit, ControlValueAccessor {
 
   @HostBinding() tabindex = 0;
 
   @HostListener('focus', ['$event.target'])
   onFocus() {
-    this.setFocusToInputField.emit();
-    this.focusGained();
+    if (!this.showDropdown) {
+      this.setFocusToInputField.emit();
+      this.focusGained();
+    }
   }
 
   @Input() domain: any[];
@@ -30,10 +51,15 @@ export class RaaSelect implements OnInit, ControlValueAccessor {
   @Input() displayAttr: string;
   @Input() placeholder: string;
 
+  @ViewChild('dropdown')
+  dropdown: ElementRef;
+
+  @ViewChildren('dropdownItem')
+  dropdownItems: QueryList<ElementRef>;
+
   value: any;
   filterInput = '';
   showDropdown = false;
-  componentHasFocus = false;
   hoverIndex = 0;
 
   domainValues: DomainValue[] = [];
@@ -41,7 +67,9 @@ export class RaaSelect implements OnInit, ControlValueAccessor {
 
   setFocusToInputField = new EventEmitter();
 
-  constructor() {}
+  scrollToSelected = false;
+
+  constructor() { }
 
   // Handling of ngModel
   writeValue(value: any) {
@@ -78,12 +106,46 @@ export class RaaSelect implements OnInit, ControlValueAccessor {
     this.filterValues();
   }
 
+  ngAfterViewInit() {
+    this.dropdownItems.changes.subscribe(() => this.handleDropdownItemsChanged());
+  }
+
+  handleDropdownItemsChanged() {
+    if (this.scrollToSelected) {
+      this.scrollToSelected = false;
+
+      const selectedEl = this.findSelectedDropdownItem();
+
+      if (selectedEl) {
+        this.scrollToDropdownItem(selectedEl);
+      }
+    }
+  }
+
+  findSelectedDropdownItem(): HTMLElement | undefined {
+    return this.dropdownItems
+      .map(elRef => elRef.nativeElement as HTMLElement)
+      .filter(el => el.classList.contains('selected'))[0];
+  }
+
+  scrollToDropdownItem(dropdownItem: HTMLElement) {
+    const dropdownEl = this.dropdown.nativeElement as HTMLElement;
+    dropdownEl.scrollTop = dropdownItem.offsetTop;
+  }
+
   onFilterdInputChange() {
     this.filterValues();
   }
 
   openDropdownIfClosed() {
-    this.showDropdown = true;
+    if (!this.showDropdown) {
+      this.setHoverIndexFromSelectedValue();
+      this.scrollToSelected = true;
+
+      return this.showDropdown = true;
+    }
+
+    return false;
   }
 
   select(item: DomainValue) {
@@ -136,13 +198,16 @@ export class RaaSelect implements OnInit, ControlValueAccessor {
     return domainObject[0].displayValue;
   }
 
-
   handleKeyPressed(event: KeyboardEvent) {
     const keyCode = event.which;
+
     if (keyCode === KeyCode.ArrowDown) {
       event.preventDefault();
 
-      this.showDropdown = true;
+      if (this.openDropdownIfClosed()) {
+        return;
+      }
+
       if (this.hoverIndex < this.filteredDomainValues.length - 1) {
         this.hoverIndex += 1;
       }
@@ -150,7 +215,10 @@ export class RaaSelect implements OnInit, ControlValueAccessor {
     else if (keyCode === KeyCode.ArrowUp) {
       event.preventDefault();
 
-      this.showDropdown = true;
+      if (this.openDropdownIfClosed()) {
+        return;
+      }
+
       if (this.hoverIndex > 0) {
         this.hoverIndex -= 1;
       }
@@ -170,29 +238,23 @@ export class RaaSelect implements OnInit, ControlValueAccessor {
       this.focusLost();
     }
     else {
-      this.showDropdown = true;
+      if (!ignoreOpenOnKeyCodes[keyCode]) {
+        this.openDropdownIfClosed();
+      }
     }
   }
 
   toggleDropdown() {
     if (!this.showDropdown) {
-      this.setFocusToInputField.emit();
+      this.onFocus();
+      this.openDropdownIfClosed();
     }
     else {
       this.focusLost();
     }
   }
 
-  openDropDownIfClosed() {
-    if (!this.showDropdown) {
-      this.showDropdown = true;
-    }
-  }
-
-  focusGained() {
-    this.componentHasFocus = true;
-    this.showDropdown = true;
-    this.clearFilters();
+  setHoverIndexFromSelectedValue() {
     if (this.value) {
       this.filteredDomainValues.forEach((item, index) => {
         if (item.id === this.value) {
@@ -202,8 +264,14 @@ export class RaaSelect implements OnInit, ControlValueAccessor {
     }
   }
 
+  focusGained() {
+    // this.componentHasFocus = true;
+    // this.openDropdownIfClosed();
+    this.clearFilters();
+  }
+
   focusLost = () => {
-    this.componentHasFocus = false;
+    // this.componentHasFocus = false;
     this.showDropdown = false;
     // this.clearDisplayTextWhenEmptyModel();
 
@@ -226,6 +294,9 @@ export type DomainValue = { id: any; displayValue: string };
 
 const enum KeyCode {
   Tab = 9,
+  Shift = 16,
+  Ctrl = 17,
+  Alt = 18,
   Return = 13,
   Escape = 27,
   ArrowUp = 38,
