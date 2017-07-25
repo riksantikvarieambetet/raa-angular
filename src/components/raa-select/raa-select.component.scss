@@ -1,101 +1,119 @@
 @import "../../styles/raa.colors";
 
+$border-color: $gray-1;
+$border-size: 1px;
+$border-radius-size: 2px;
+
+$button-width: 3rem;
+$button-color: $orange-1;
+$button-hover-color: white;
+$button-hover-bg-color: $orange-1;
+$button-active-bg-color: $dark-gray-1;
+
+$dropdown-max-height: 17rem;
+$dropdown-bg-color: white;
+
+$dropdown-item-padding: 0.5rem 1rem;
+
+$dropdown-item-hover-color: white;
+$dropdown-item-hover-bg-color: $dark-gray-1;
+
+$dropdown-item-selected-bg-color: $gray-1;
+
 .raa-select {
   background-color: inherit;
   display: flex;
   flex-direction: column;
-
-  .active {
-    background-color: $dark-gray-1;
-    border-color: $dark-gray-1;
-  }
-
-  .dropdown {
-    position: relative;
-    z-index: 1;
-    margin-right: 2px;
-
-    ul {
-      top: 0;
-      left: 0;
-      position: absolute;
-      width: 100%;
-      background-color: $gray-4;
-      padding: 0;
-      margin: 0;
-      list-style-type: none;
-      border: solid 1px $gray-1;
-      border-top: none;
-      overflow-y: auto;
-      max-height: 17rem;
-      border-radius: 0  0 2px 2px;
-
-      &.display-top {
-        bottom: 2.6rem;
-      }
-    }
-
-    li {
-      .dropdown-item {
-        padding: 0.5rem 0 0.5rem 0;
-        margin: 0 1rem 0 1rem;
-      }
-
-      &:not(:last-child){
-        border-bottom: solid 1px white;
-      }
-
-      &.selectItem {
-        background-color: $gray-1;
-      }
-
-      &.hoverItem {
-        color: white;
-        background-color: $dark-gray-1;
-      }
-    }
-  }
-
 }
 
-.input-row {
+.raa-select-input-row {
   display: flex;
   flex-direction: row;
-  border: 1px solid $gray-1;
-  border-radius: 2px;
+}
 
-  button {
-    padding: .4rem .4rem .4rem .4rem;
-    border: none;
-    border-radius: 0;
-    color: $orange-1;
-    background-color: white;
+input.raa-select-input {
+    border: $border-size solid $border-color;
+    border-right: none;
+    border-radius: $border-radius-size 0 0 $border-radius-size;
+
+    &.active {
+      border-radius: $border-radius-size 0 0 0;
+    }
   }
 
-  button:not(.active):hover {
-    background-color: $orange-1;
-    color: white;
-  }
-
-  input {
-    border: none;
-    border-radius: 2px 0px 0px 2px;
-
-    &:focus {
-      outline: none;
+:host {
+  &.ng-invalid.ng-dirty {
+    .raa-select-input {
+      background-color: $light-red;
     }
   }
 }
 
-.raa-component-focus {
-  .input-row {
-    border-color: $blue-4;
+button.raa-select-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: $button-width;
+  border: $border-size solid $border-color;
+  border-left: none;
+  border-radius: 0 $border-radius-size $border-radius-size 0;
+  background-color: inherit;
+  color: $button-color;
+
+  &.active {
+    background-color: $button-active-bg-color;
+    border-color: $button-active-bg-color;
+    border-radius: 0 $border-radius-size 0 0;
+  }
+
+  &:not(.active):hover {
+    background-color: $button-hover-bg-color;
+    color: $button-hover-color;
   }
 }
 
-:host(.ng-invalid.ng-dirty) {
-  input[type="text"]{
-    background-color: $light-red;
-  }
+.raa-select-dropdown-container {
+  position: relative;
+  z-index: 1;
 }
 
+.raa-select-dropdown {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  border: none;
+  overflow-y: auto;
+  max-height: $dropdown-max-height;
+  background-color: $dropdown-bg-color;
+  box-shadow: 5px 5px 10px -3px $border-color;
+}
+
+.raa-select-dropdown-item {
+  padding: $dropdown-item-padding;
+
+  border-width: $border-size;
+  border-color: $border-color;
+
+  border-left-style: solid;
+  border-right-style: solid;
+
+  &.selected {
+    background-color: $dropdown-item-selected-bg-color;
+    border-color: $dropdown-item-selected-bg-color;
+  }
+
+  &.hovered {
+    color: $dropdown-item-hover-color;
+    background-color: $dropdown-item-hover-bg-color;
+    border-color: $dropdown-item-hover-bg-color;
+  }
+
+  &:last-child {
+    border-radius: 0 0 $border-radius-size $border-radius-size;
+    border-bottom-style: solid;
+  }
+}
