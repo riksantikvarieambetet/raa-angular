@@ -47,11 +47,14 @@ input.raa-select-input {
 
     &.active {
       border-radius: $border-radius-size 0 0 0;
+      border-bottom: none;
+      z-index: 2; // Outline ska hamna över dropdown
     }
   }
 
 :host {
-  &.ng-invalid.ng-dirty {
+  &.ng-invalid.ng-dirty,
+  &.ng-invalid.error {
     .raa-select-input {
       background-color: $light-red;
     }
@@ -82,7 +85,7 @@ button.raa-select-button {
     border-radius: 0 $border-radius-size 0 0;
 
     &:before {
-      transform: translateX(1px) translateY(1px);
+      transform: translateX($border-size) translateY($border-size);
     }
   }
 }

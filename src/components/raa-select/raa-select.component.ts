@@ -15,6 +15,17 @@ import {
 
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
+const enum KeyCode {
+  Tab = 9,
+  Shift = 16,
+  Ctrl = 17,
+  Alt = 18,
+  Return = 13,
+  Escape = 27,
+  ArrowUp = 38,
+  ArrowDown = 40
+}
+
 const ignoreOpenOnKeyCodes = {
   [KeyCode.Alt]: true,
   [KeyCode.Ctrl]: true,
@@ -291,14 +302,3 @@ export class RaaSelect implements OnInit, AfterViewInit, ControlValueAccessor {
 }
 
 export type DomainValue = { id: any; displayValue: string };
-
-const enum KeyCode {
-  Tab = 9,
-  Shift = 16,
-  Ctrl = 17,
-  Alt = 18,
-  Return = 13,
-  Escape = 27,
-  ArrowUp = 38,
-  ArrowDown = 40
-}
