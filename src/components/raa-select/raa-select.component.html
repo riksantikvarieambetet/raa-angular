@@ -12,13 +12,12 @@
           (click)="openDropdownIfClosed()"
           (keydown)="handleKeyPressed($event)"
           [ngClass]="{'active': showDropdown}">
-      <button class="fa fa-chevron-down raa-select-button"
+      <button class="raa-select-button fa fa-chevron-down"
           type="button"
           tabIndex="-1"
           [disabled]="disabled"
           (click)="toggleDropdown()"
-          [ngClass]="{'active': showDropdown}">
-      </button>
+          [ngClass]="{'active': showDropdown}"></button>
   </div>
   <div class="raa-select-dropdown-container" *ngIf="showDropdown">
     <ul #dropdown class="raa-select-dropdown">

@@ -6,9 +6,11 @@ $border-radius-size: 2px;
 
 $button-width: 3rem;
 $button-color: $orange-1;
+$button-bg-color: white;
 $button-hover-color: white;
 $button-hover-bg-color: $orange-1;
-$button-active-bg-color: $dark-gray-1;
+$button-active-color: darken($button-hover-color, 5%);
+$button-active-bg-color: darken($button-hover-bg-color, 5%);
 
 $dropdown-max-height: 17rem;
 $dropdown-bg-color: white;
@@ -32,6 +34,13 @@ $dropdown-item-selected-bg-color: $gray-1;
 }
 
 input.raa-select-input {
+    &::-ms-clear { // https://stackoverflow.com/a/14007839
+      display: none;
+    }
+
+    position: relative; // Se till att outline
+    z-index: 0;         // ligger över knapp
+
     border: $border-size solid $border-color;
     border-right: none;
     border-radius: $border-radius-size 0 0 $border-radius-size;
@@ -54,21 +63,27 @@ button.raa-select-button {
   justify-content: center;
   align-items: center;
   width: $button-width;
+  padding: 0;
   border: $border-size solid $border-color;
   border-left: none;
   border-radius: 0 $border-radius-size $border-radius-size 0;
-  background-color: inherit;
+  background-color: $button-bg-color;
   color: $button-color;
 
-  &.active {
-    background-color: $button-active-bg-color;
-    border-color: $button-active-bg-color;
-    border-radius: 0 $border-radius-size 0 0;
-  }
-
-  &:not(.active):hover {
+  &:not(.active):not(:active):hover {
     background-color: $button-hover-bg-color;
     color: $button-hover-color;
+  }
+
+  &.active,
+  &:active {
+    color: $button-active-color;
+    background-color: $button-active-bg-color;
+    border-radius: 0 $border-radius-size 0 0;
+
+    &:before {
+      transform: translateX(1px) translateY(1px);
+    }
   }
 }
 
@@ -85,12 +100,13 @@ button.raa-select-button {
   padding: 0;
   margin: 0;
   list-style-type: none;
-  border: none;
   overflow-y: auto;
   max-height: $dropdown-max-height;
   background-color: $dropdown-bg-color;
+  border: $border-size solid $border-color;
+  border-top: none;
   border-radius: 0 0 $border-radius-size $border-radius-size;
-  box-shadow: inset 1px -1px 0 0 $border-color, 5px 5px 10px -3px $border-color;
+  box-shadow: 5px 5px 10px -3px $border-color;
 }
 
 .raa-select-dropdown-item {
@@ -98,16 +114,10 @@ button.raa-select-button {
 
   &.selected {
     background-color: $dropdown-item-selected-bg-color;
-    // border-color: $dropdown-item-selected-bg-color;
   }
 
   &.hovered {
     color: $dropdown-item-hover-color;
     background-color: $dropdown-item-hover-bg-color;
-  }
-
-  &:last-child {
-    // border-radius: 0 0 $border-radius-size $border-radius-size;
-    // border-bottom-style: solid;
   }
 }
