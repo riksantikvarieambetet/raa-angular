@@ -33,7 +33,7 @@ $dropdown-item-selected-bg-color: $gray-1;
   flex-direction: row;
 }
 
-input.raa-select-input {
+.raa-select-input {
     &::-ms-clear { // https://stackoverflow.com/a/14007839
       display: none;
     }
@@ -41,13 +41,15 @@ input.raa-select-input {
     position: relative; // Se till att outline
     z-index: 0;         // ligger över knapp
 
+    width: 100%;
+    padding: 0.5rem 1rem;
+
     border: $border-size solid $border-color;
     border-right: none;
     border-radius: $border-radius-size 0 0 $border-radius-size;
 
     &.active {
       border-radius: $border-radius-size 0 0 0;
-      border-bottom: none;
       z-index: 2; // Outline ska hamna över dropdown
     }
   }
@@ -61,7 +63,7 @@ input.raa-select-input {
   }
 }
 
-button.raa-select-button {
+.raa-select-button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -83,10 +85,6 @@ button.raa-select-button {
     color: $button-active-color;
     background-color: $button-active-bg-color;
     border-radius: 0 $border-radius-size 0 0;
-
-    &:before {
-      transform: translateX($border-size) translateY($border-size);
-    }
   }
 }
 

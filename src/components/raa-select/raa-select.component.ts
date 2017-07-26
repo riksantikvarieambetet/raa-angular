@@ -2,6 +2,8 @@ import {
   Component,
   Input,
   OnInit,
+  OnChanges,
+  SimpleChanges,
   AfterViewInit,
   forwardRef,
   EventEmitter,
@@ -44,7 +46,7 @@ const ignoreOpenOnKeyCodes = {
     }
   ]
 })
-export class RaaSelect implements OnInit, AfterViewInit, ControlValueAccessor {
+export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValueAccessor {
 
   @HostBinding() tabindex = 0;
 
@@ -121,6 +123,15 @@ export class RaaSelect implements OnInit, AfterViewInit, ControlValueAccessor {
     this.dropdownItems.changes.subscribe(() => this.handleDropdownItemsChanged());
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.domain) {
+      this.domainValues = this.mapDomainValues();
+      this.filterValues();
+
+      setTimeout(() => this.focusLost());
+    }
+  }
+
   handleDropdownItemsChanged() {
     if (this.scrollToSelected) {
       this.scrollToSelected = false;
@@ -144,7 +155,7 @@ export class RaaSelect implements OnInit, AfterViewInit, ControlValueAccessor {
     dropdownEl.scrollTop = dropdownItem.offsetTop;
   }
 
-  onFilterdInputChange() {
+  onFilterdInputChange(newValue: string) {
     this.filterValues();
   }
 
@@ -166,6 +177,7 @@ export class RaaSelect implements OnInit, AfterViewInit, ControlValueAccessor {
       this.filterInput = item.displayValue;
     }
     this.focusLost();
+    this.setFocusToInputField.emit();
   }
 
   mapDomainValues() {
@@ -198,7 +210,7 @@ export class RaaSelect implements OnInit, AfterViewInit, ControlValueAccessor {
   }
 
   getDisplayValue = (itemKey: any): string => {
-    if (typeof itemKey === 'undefined' || itemKey.length < 1) {
+    if (typeof itemKey === 'undefined' || itemKey.length < 1 || this.domainValues.length === 0) {
       return '';
     }
     let domainObject = this.domainValues.filter(domainItem => domainItem.id === itemKey);

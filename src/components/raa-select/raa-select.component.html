@@ -6,8 +6,9 @@
           raaSelectAllOnFocus
           [requestFocus]="setFocusToInputField"
           [disabled]="disabled"
+          [ngModelOptions]="{standalone: true}"
           [(ngModel)]="filterInput"
-          (ngModelChange)="onFilterdInputChange()"
+          (ngModelChange)="onFilterdInputChange($event)"
           (focus)="focusGained()"
           (click)="openDropdownIfClosed()"
           (keydown)="handleKeyPressed($event)"

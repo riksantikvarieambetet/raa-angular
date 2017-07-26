@@ -67,3 +67,6 @@ import { OrgnummerPipe } from './pipes/orgnummer.pipe';
 export class RaaModule {
   constructor() { }
 }
+
+// För att kunna temp. downgrade till angularjs
+export { RaaSelect } from './components/raa-select/raa-select.component';
