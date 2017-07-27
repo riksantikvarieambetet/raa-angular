@@ -158,7 +158,7 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
     dropdownEl.scrollTop = dropdownItem.offsetTop;
   }
 
-  onFilterdInputChange(newValue: string) {
+  onFilterdInputChange() {
     this.filterValues();
   }
 
