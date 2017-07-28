@@ -1,49 +1,47 @@
-import { Directive, ElementRef, Input, Renderer, OnInit } from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  Output,
+  Renderer,
+  OnInit,
+  EventEmitter
+} from '@angular/core';
 
 @Directive({
-  selector: '[outsideClick]'
+  selector: '[raaOutsideClick]'
 })
 export class OutsideClickDirective implements OnInit {
 
-  @Input('outsideClick') clickOutsideCb: () => void;
+  @Output('raaOutsideClick')
+  onOutsideClick = new EventEmitter<void>();
 
-  cancelListener: Function;
+  private cancelListener: Function;
+
+  private firstTime = true;
 
   constructor(
-    private el: ElementRef,
+    private elementRef: ElementRef,
     private renderer: Renderer
-  ) {
-
-    // if (!this.clickOutsideCb) {
-    //     throw 'ERROR: raa-select.component -> outsideClick must be specified (function)';
-    // }
-
-    let firstTime = true;
-    let that = this;
-
-    this.cancelListener = this.renderer.listenGlobal('document', 'click', handleClick);
-
-    function handleClick(event: MouseEvent) {
-
-      if (!firstTime) {
-        const active = that.el.nativeElement.contains(event.target);
-        if (!active) {
-          that.clickOutsideCb();
-        }
-      }
-      else {
-        firstTime = false;
-      }
-    }
-  }
+  ) {  }
 
   ngOnInit() {
-    if (!this.clickOutsideCb) {
-      throw 'ERROR: raa-select.component -> outsideClick must be specified (function)';
-    }
+    this.cancelListener = this.renderer.listenGlobal('document', 'click', (event: MouseEvent) => this.handleClick(event));
   }
 
   ngOnDestroy() {
     this.cancelListener();
+  }
+
+  private handleClick(event: MouseEvent) {
+    if (!this.firstTime) {
+      const el = this.elementRef.nativeElement as HTMLElement;
+      const active = el.contains(event.target as Node);
+
+      if (!active) {
+        this.onOutsideClick.emit();
+      }
+    } else {
+      this.firstTime = false;
+    }
   }
 }
