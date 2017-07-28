@@ -35,7 +35,7 @@ export class OutsideClickDirective implements OnInit {
   private handleClick(event: MouseEvent) {
     if (!this.firstTime) {
       const el = this.elementRef.nativeElement as HTMLElement;
-      const active = el.contains(event.toElement);
+      const active = el.contains(event.target as Node);
 
       if (!active) {
         this.onOutsideClick.emit();
