@@ -1,4 +1,4 @@
-<div class="raa-dialogue" *ngIf="displayDialogue">
+<div class="raa-dialogue">
     <div class="dark-overlay">
         <div class="dialogue-container">
 
@@ -13,23 +13,10 @@
             <br>
 
             <div class="btn-group">
-                <div class="left">
-
-                    <button *ngIf="onYes" (click)="onYes()" class="button-border std-width ">JA</button>
-                </div>
-
-                <div class="center">
-                    <button *ngIf="onNo" (click)="onNo()" class="button-cancel std-width ">NEJ</button>
-                </div>
-
-                <div class="center">
-                    <button *ngIf="onOk" (click)="onOk()" class="btn-ok std-width">OK</button>
-                </div>
-
-                <div class="right">
-                    <button *ngIf="onCancel" (click)="onCancel()" class="button-cancel std-width ">AVBRYT</button>
-                </div>
-
+              <button *ngIf="onYes" (click)="onYes()" class="left button-border std-width ">JA</button>
+              <button *ngIf="onNo" (click)="onNo()" class=" center button-cancel std-width ">NEJ</button>
+              <button *ngIf="onOk" (click)="onOk()" class=" center btn-ok std-width">OK</button>
+              <button *ngIf="onCancel" (click)="onCancel()" class="right button-cancel std-width ">AVBRYT</button>
             </div>
         </div>
 
