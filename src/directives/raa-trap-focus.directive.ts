@@ -1,5 +1,7 @@
 import { Directive, AfterViewInit, ElementRef, Input } from '@angular/core';
 
+const TAB_KEY_CODE = 9;
+
 @Directive({
   selector: '[raaTrapFocus]'
 })
@@ -19,7 +21,6 @@ export class RaaTrapFocusDirective implements AfterViewInit{
 
     if (tabbableElements && tabbableElements.length) {
 
-      let tabButton = 9;
       let first = tabbableElements[0];
       let last = tabbableElements[tabbableElements.length - 1];
 
@@ -30,14 +31,14 @@ export class RaaTrapFocusDirective implements AfterViewInit{
       }
 
       last.addEventListener('keydown', function (e: KeyboardEvent) {
-          if ((e.which === tabButton && !e.shiftKey)) {
+          if ((e.which === TAB_KEY_CODE && !e.shiftKey)) {
               e.preventDefault();
               first.focus();
           }
       });
 
       first.addEventListener('keydown', function (e: KeyboardEvent) {
-          if ((e.which === tabButton && e.shiftKey)) {
+          if ((e.which === TAB_KEY_CODE && e.shiftKey)) {
               e.preventDefault();
               last.focus();
           }
