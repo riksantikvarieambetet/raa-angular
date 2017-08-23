@@ -1,7 +1,7 @@
 {
   "name": "ng-raa-common",
   "version": "0.1.1",
-  "description": "Gemensama angular 2 komponenter/pipes för Riksantikvarieämbetet",
+  "description": "Gemensamma Angular-komponenter/direktiv/pipes/scss för Riksantikvarieämbetet",
   "main": "index.js",
   "typings": "./ng-raa-common.d.ts",
   "scripts": {
@@ -12,7 +12,6 @@
     "type": "git",
     "url": "ssh://git@lx-ra-jira.raa.se:7999/tek/ng-raa-common.git"
   },
-  "author": "Emil Klasson",
   "license": "ISC",
   "dependencies": {
     "@angular/common": "4.3.5",
