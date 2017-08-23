@@ -25,7 +25,7 @@
         <li class="raa-select-dropdown-item" *ngIf="filteredDomainValues.length === 0">
             <span>Ingen träff</span>
         </li>
-        <li #dropdownItem class="raa-select-dropdown-item" raaStopClickPropagation *ngFor="let item of filteredDomainValues; let rowIndex = index"
+        <li #dropdownItem class="raa-select-dropdown-item" *ngFor="let item of filteredDomainValues; let rowIndex = index"
           (mouseover)="hoverIndex = rowIndex"
           (click)="select(item)"
           [ngClass]="{ 'selected': item.id === value, 'hovered': hoverIndex === rowIndex }">

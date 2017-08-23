@@ -301,13 +301,11 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
   }
 
   focusGained() {
-    // this.componentHasFocus = true;
     // this.openDropdownIfClosed();
     this.clearFilters();
   }
 
   focusLost = () => {
-    // this.componentHasFocus = false;
     this.showDropdown = false;
     // this.clearDisplayTextWhenEmptyModel();
 
