@@ -2,46 +2,34 @@ import {
   Directive,
   ElementRef,
   Output,
-  Renderer,
-  OnInit,
-  EventEmitter
+  EventEmitter,
+  HostListener
 } from '@angular/core';
 
 @Directive({
   selector: '[raaOutsideClick]'
 })
-export class OutsideClickDirective implements OnInit {
+export class OutsideClickDirective {
+  // Vi måste lyssna på mouseup eller mousedown istället för click. Vid klick så kan element ha tagit borts från DOM:en och då ge ett
+  // felaktigt "utanförklick".
+  @HostListener('document:mouseup', ['$event'])
+  onClick(event: MouseEvent) {
+    this.handleClick(event);
+  }
 
   @Output('raaOutsideClick')
   onOutsideClick = new EventEmitter<void>();
 
-  private cancelListener: Function;
-
-  private firstTime = true;
-
   constructor(
-    private elementRef: ElementRef,
-    private renderer: Renderer
-  ) {  }
-
-  ngOnInit() {
-    this.cancelListener = this.renderer.listenGlobal('document', 'click', (event: MouseEvent) => this.handleClick(event));
-  }
-
-  ngOnDestroy() {
-    this.cancelListener();
-  }
+    private elementRef: ElementRef
+  ) { }
 
   private handleClick(event: MouseEvent) {
-    if (!this.firstTime) {
-      const el = this.elementRef.nativeElement as HTMLElement;
-      const active = el.contains(event.target as Node);
+      const containerElement = this.elementRef.nativeElement as HTMLElement;
+      const targetExistsInContainer = containerElement.contains(event.target as Node);
 
-      if (!active) {
+      if (!targetExistsInContainer) {
         this.onOutsideClick.emit();
       }
-    } else {
-      this.firstTime = false;
-    }
   }
 }
