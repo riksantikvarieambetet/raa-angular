@@ -1,9 +1,9 @@
 <div class="raa-select" (raaOutsideClick)="focusLost()">
   <div class="raa-select-input-row">
       <input class="raa-select-input"
+          #inputField
           type="text"
           placeholder="{{placeholder}}"
-          raaSelectAllOnFocus
           [requestFocus]="setFocusToInputField"
           [disabled]="disabled"
           [ngModelOptions]="{standalone: true}"

@@ -67,6 +67,9 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
 
   @Output() onSelect = new EventEmitter<any>();
 
+  @ViewChild('inputField')
+  inputField: ElementRef;
+
   @ViewChild('dropdown')
   dropdown: ElementRef;
 
@@ -164,9 +167,10 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
 
   openDropdownIfClosed() {
     if (!this.showDropdown) {
-      this.filterValues();
+      this.clearFilters();
       this.setHoverIndexFromSelectedValue();
       this.scrollToSelected = true;
+      this.selectAllTextInInput();
 
       return this.showDropdown = true;
     }
@@ -322,6 +326,9 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
   // }
 
 
+  private selectAllTextInInput() {
+    this.inputField.nativeElement.select();
+  }
 }
 
 export type DomainValue = { id: any; displayValue: string };
