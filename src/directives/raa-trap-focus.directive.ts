@@ -2,17 +2,18 @@ import { Directive, AfterViewInit, ElementRef, Input } from '@angular/core';
 
 const TAB_KEY_CODE = 9;
 
+/**
+ * Directive that isolates focus within an element. Set the class "initialFocus" on the element you want to be focused first (if you need to
+ * have multiple possibie elements, the first element with the class will be focused).
+ */
 @Directive({
   selector: '[raaTrapFocus]'
 })
-export class RaaTrapFocusDirective implements AfterViewInit{
-
-  @Input()
-  hasCloseCrossButton: boolean;
+export class RaaTrapFocusDirective implements AfterViewInit {
 
   constructor(
     private element: ElementRef
-  ) { }
+  ) {}
 
   ngAfterViewInit() {
 
@@ -23,11 +24,12 @@ export class RaaTrapFocusDirective implements AfterViewInit{
 
       let first = tabbableElements[0];
       let last = tabbableElements[tabbableElements.length - 1];
+      let initialFocusElement = this.element.nativeElement.getElementsByClassName('initialFocus')[0];
 
-      let ElementToFocus = this.hasCloseCrossButton ? 1 : 0;
+      let elementToFocus = initialFocusElement ? initialFocusElement : tabbableElements[0];
 
-      if (tabbableElements[ElementToFocus]) {
-        tabbableElements[ElementToFocus].focus();
+      if (elementToFocus) {
+        elementToFocus.focus();
       }
 
       last.addEventListener('keydown', function (e: KeyboardEvent) {
@@ -45,5 +47,4 @@ export class RaaTrapFocusDirective implements AfterViewInit{
       });
     }
   }
-
 }

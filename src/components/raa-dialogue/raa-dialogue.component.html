@@ -1,4 +1,4 @@
-<div class="raa-dialogue" raaTrapFocus [hasCloseCrossButton]="onClose !== undefined">
+<div class="raa-dialogue" raaTrapFocus>
     <div class="dark-overlay">
         <div class="dialogue-container">
 
@@ -13,10 +13,10 @@
             <br>
 
             <div class="btn-group">
-              <button *ngIf="onYes" (click)="onYes()" class="left button-border std-width ">JA</button>
-              <button *ngIf="onNo" (click)="onNo()" class=" center button-cancel std-width ">NEJ</button>
-              <button *ngIf="onOk" (click)="onOk()" class=" center btn-ok std-width">OK</button>
-              <button *ngIf="onCancel" (click)="onCancel()" class="right button-cancel std-width ">AVBRYT</button>
+              <button *ngIf="onYes" (click)="onYes()" class="left button-border std-width initialFocus">JA</button>
+              <button *ngIf="onNo" (click)="onNo()" class=" center button-cancel std-width initialFocus">NEJ</button>
+              <button *ngIf="onOk" (click)="onOk()" class=" center btn-ok std-width initialFocus">OK</button>
+              <button *ngIf="onCancel" (click)="onCancel()" class="right button-cancel std-width initialFocus">AVBRYT</button>
             </div>
         </div>
 
