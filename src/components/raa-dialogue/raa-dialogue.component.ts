@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef, AfterContentChecked } from '@angular/core';
 
 @Component({
     selector: 'raa-dialogue',
@@ -24,5 +24,31 @@ export class RaaDialogueComponent {
 
   @Input()
   header: string;
+
+  @ViewChild('yesButton')
+  yesButton: ElementRef;
+
+  @ViewChild('noButton')
+  noButton: ElementRef;
+
+  @ViewChild('okButton')
+  okButton: ElementRef;
+
+  @ViewChild('cancelButton')
+  cancelButton: ElementRef;
+
+  focusElement: ElementRef;
+
+  ngAfterContentChecked() {
+    if (this.cancelButton) {
+      this.focusElement = this.cancelButton;
+    } else if (this.okButton) {
+      this.focusElement = this.okButton;
+    } else if (this.noButton) {
+      this.focusElement = this.noButton;
+    } else {
+      this.focusElement = this.yesButton;
+    }
+  }
 }
 

@@ -1,4 +1,4 @@
-import { Directive, AfterViewInit, ElementRef, Input } from '@angular/core';
+import { Directive, AfterViewInit, ElementRef, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 const TAB_KEY_CODE = 9;
 
@@ -9,11 +9,20 @@ const TAB_KEY_CODE = 9;
 @Directive({
   selector: '[raaTrapFocus]'
 })
-export class RaaTrapFocusDirective implements AfterViewInit {
+export class RaaTrapFocusDirective implements AfterViewInit, OnChanges {
+
+  @Input('raaTrapFocus')
+  initialFocusElement: ElementRef;
 
   constructor(
     private element: ElementRef
   ) {}
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['initialFocusElement'] && changes['initialFocusElement'].currentValue) {
+      changes['initialFocusElement'].currentValue.nativeElement.focus();
+    }
+  }
 
   ngAfterViewInit() {
 
@@ -24,11 +33,10 @@ export class RaaTrapFocusDirective implements AfterViewInit {
 
       let first = tabbableElements[0];
       let last = tabbableElements[tabbableElements.length - 1];
-      let initialFocusElement = this.element.nativeElement.getElementsByClassName('initialFocus')[0];
 
-      let elementToFocus = initialFocusElement ? initialFocusElement : tabbableElements[0];
+      let elementToFocus = (this.initialFocusElement && this.initialFocusElement.nativeElement) ? this.initialFocusElement.nativeElement : tabbableElements[0];
 
-      if (elementToFocus) {
+      if (elementToFocus && elementToFocus.focus) {
         elementToFocus.focus();
       }
 
