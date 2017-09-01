@@ -5,16 +5,16 @@ import { Component, Input } from '@angular/core';
     templateUrl: './raa-modal-page.component.html',
     styleUrls: ['./raa-modal-page.component.scss']
 })
-export class RaaModalPageComponent {
+export class RaaModalPageComponent  {
 
-    @Input()
+  @Input()
     onClose: Function;
 
-    @Input()
-    header: string;
+  @Input()
+  header: string;
 
-    @Input()
-    size: 'small' | 'large';
+  @Input()
+  size: 'small' | 'large';
 
 }
 

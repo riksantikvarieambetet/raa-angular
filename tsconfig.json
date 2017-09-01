@@ -9,7 +9,7 @@
         "declaration": true
     },
     "files": [
-        "ng2-raa-common.ts",
+        "ng-raa-common.ts",
         "node_modules/typescript/lib/lib.es6.d.ts"
     ],
     "exclude": [
