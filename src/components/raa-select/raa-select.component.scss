@@ -7,10 +7,10 @@ $border-radius-size: 2px;
 $button-width: 3rem;
 $button-color: $orange-1;
 $button-bg-color: white;
-$button-hover-color: white;
-$button-hover-bg-color: $orange-1;
-$button-active-color: darken($button-hover-color, 5%);
-$button-active-bg-color: darken($button-hover-bg-color, 5%);
+$button-hover-color: $button-color;
+$button-hover-bg-color: $gray-4;
+$button-active-color: darken($button-hover-color, 0%);
+$button-active-bg-color: darken($button-hover-bg-color, 0%);
 
 $dropdown-max-height: 17rem;
 $dropdown-bg-color: white;
@@ -18,9 +18,9 @@ $dropdown-bg-color: white;
 $dropdown-item-padding: 0.5rem 1rem;
 
 $dropdown-item-hover-color: white;
-$dropdown-item-hover-bg-color: $dark-gray-1;
+$dropdown-item-hover-bg-color: $gray-4;
 
-$dropdown-item-selected-bg-color: $gray-1;
+$dropdown-item-selected-bg-color: $gray-4;
 
 .raa-select {
   background-color: inherit;
@@ -44,6 +44,8 @@ $dropdown-item-selected-bg-color: $gray-1;
     width: 100%;
     padding: 0.5rem 1rem;
 
+    background-color: transparent;
+
     border: $border-size solid $border-color;
     border-right: none;
     border-radius: $border-radius-size 0 0 $border-radius-size;
@@ -63,6 +65,19 @@ $dropdown-item-selected-bg-color: $gray-1;
   }
 }
 
+.raa-select-input-row {
+  &:not(.active):hover {
+    background-color: $button-hover-bg-color;
+    color: $button-hover-color;
+  }
+
+  &.active .raa-select-button {
+    color: $button-active-color;
+    background-color: $button-active-bg-color;
+    border-radius: 0 $border-radius-size 0 0;
+  }
+}
+
 .raa-select-button {
   display: flex;
   justify-content: center;
@@ -72,20 +87,9 @@ $dropdown-item-selected-bg-color: $gray-1;
   border: $border-size solid $border-color;
   border-left: none;
   border-radius: 0 $border-radius-size $border-radius-size 0;
-  background-color: $button-bg-color;
+  background-color: transparent;
   color: $button-color;
-
-  &:not(.active):not(:active):hover {
-    background-color: $button-hover-bg-color;
-    color: $button-hover-color;
-  }
-
-  &.active,
-  &:active {
-    color: $button-active-color;
-    background-color: $button-active-bg-color;
-    border-radius: 0 $border-radius-size 0 0;
-  }
+  cursor: pointer;
 }
 
 .raa-select-dropdown-container {
@@ -118,7 +122,6 @@ $dropdown-item-selected-bg-color: $gray-1;
   }
 
   &.hovered {
-    color: $dropdown-item-hover-color;
     background-color: $dropdown-item-hover-bg-color;
   }
 }
