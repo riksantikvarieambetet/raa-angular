@@ -9,8 +9,8 @@ $button-color: $orange-1;
 $button-bg-color: white;
 $button-hover-color: $button-color;
 $button-hover-bg-color: $gray-4;
-$button-active-color: darken($button-hover-color, 0%);
-$button-active-bg-color: darken($button-hover-bg-color, 0%);
+$button-active-color: $button-color;
+$button-active-bg-color: $gray-4;
 
 $dropdown-max-height: 17rem;
 $dropdown-bg-color: white;
@@ -34,7 +34,7 @@ $dropdown-item-selected-bg-color: $gray-4;
 }
 
 .raa-select-input {
-    &::-ms-clear { // https://stackoverflow.com/a/14007839
+    &::-ms-clear { // Tar bort IE "clear field"-knapp
       display: none;
     }
 
