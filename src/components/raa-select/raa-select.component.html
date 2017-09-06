@@ -1,5 +1,6 @@
 <div class="raa-select" (raaOutsideClick)="focusLost()">
-  <div class="raa-select-input-row">
+  <div class="raa-select-input-row"
+    [ngClass]="{'active': showDropdown}">
       <input class="raa-select-input"
           #inputField
           type="text"
@@ -11,8 +12,7 @@
           (ngModelChange)="onFilterdInputChange($event)"
           (focus)="focusGained()"
           (click)="openDropdownIfClosed()"
-          (keydown)="handleKeyPressed($event)"
-          [ngClass]="{'active': showDropdown}">
+          (keydown)="handleKeyPressed($event)">
       <button class="raa-select-button fa fa-chevron-down"
           type="button"
           tabIndex="-1"
