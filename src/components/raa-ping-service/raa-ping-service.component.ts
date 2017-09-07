@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
 
 @Component({
@@ -33,7 +33,7 @@ export class RaaPingServiceComponent implements OnInit {
     info: PingInfo | undefined;
 
     constructor(
-        private http: Http
+        private httpClient: HttpClient
     ) {}
 
     ngOnInit(): void {
@@ -46,8 +46,8 @@ export class RaaPingServiceComponent implements OnInit {
 
         timer.subscribe(() => {
 
-            this.http.get(this.pingUrl)
-            .subscribe(res => {
+            this.httpClient.get(this.pingUrl)
+            .subscribe(_res => {
 
                  this.showDialogue = false;
 

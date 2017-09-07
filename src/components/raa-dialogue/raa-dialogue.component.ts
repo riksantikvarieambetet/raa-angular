@@ -1,9 +1,14 @@
-import { Component, Input, ViewChild, ElementRef, AfterContentChecked } from '@angular/core';
+import {
+  Component,
+  Input,
+  ViewChild,
+  ElementRef
+} from '@angular/core';
 
 @Component({
-    selector: 'raa-dialogue',
-    templateUrl: './raa-dialogue.component.html',
-    styleUrls: ['./raa-dialogue.component.scss']
+  selector: 'raa-dialogue',
+  templateUrl: './raa-dialogue.component.html',
+  styleUrls: ['./raa-dialogue.component.scss']
 })
 export class RaaDialogueComponent {
 
