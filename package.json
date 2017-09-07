@@ -2,8 +2,8 @@
   "name": "ng-raa-common",
   "version": "0.1.1",
   "description": "Gemensamma Angular-komponenter/direktiv/pipes/scss för Riksantikvarieämbetet",
-  "main": "index.js",
-  "typings": "./ng-raa-common.d.ts",
+  "main": "index.ts",
+  "typings": "./index.d.ts",
   "scripts": {
     "prepublish": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"

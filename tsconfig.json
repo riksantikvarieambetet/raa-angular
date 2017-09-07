@@ -15,10 +15,11 @@
     "noUnusedParameters": true,
     "sourceMap": true,
     "declaration": true,
+    "baseUrl": "./src",
     "outDir": "./dist"
   },
   "files": [
-    "ng-raa-common.ts"
+    "index.ts"
   ],
   "angularCompilerOptions": {
     "skipTemplateCodegen": true
