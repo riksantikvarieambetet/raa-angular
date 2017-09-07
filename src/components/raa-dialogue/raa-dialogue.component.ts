@@ -1,39 +1,54 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef, AfterContentChecked } from '@angular/core';
 
 @Component({
     selector: 'raa-dialogue',
     templateUrl: './raa-dialogue.component.html',
     styleUrls: ['./raa-dialogue.component.scss']
 })
-export class RaaDialogueComponent implements OnInit {
+export class RaaDialogueComponent {
 
-    @Input()
-    displayDialogue: boolean;
+  @Input()
+  onYes: Function;
 
-    @Input()
-    onYes: Function;
+  @Input()
+  onNo: Function;
 
-    @Input()
-    onNo: Function;
+  @Input()
+  onOk: Function;
 
-    @Input()
-    onOk: Function;
+  @Input()
+  onCancel: Function;
 
-    @Input()
-    onCancel: Function;
+  @Input()
+  onClose: Function;
 
-    @Input()
-    onClose: Function;
+  @Input()
+  header: string;
 
-    @Input()
-    header: string;
+  @ViewChild('yesButton')
+  yesButton: ElementRef;
 
-    constructor() { }
+  @ViewChild('noButton')
+  noButton: ElementRef;
 
-    ngOnInit(): void {
-         if (!this.header) {
-            throw 'ERROR: raa-dialogue.component -> header must be specified (string)';
-        }
+  @ViewChild('okButton')
+  okButton: ElementRef;
+
+  @ViewChild('cancelButton')
+  cancelButton: ElementRef;
+
+  focusElement: ElementRef;
+
+  ngAfterContentChecked() {
+    if (this.cancelButton) {
+      this.focusElement = this.cancelButton;
+    } else if (this.okButton) {
+      this.focusElement = this.okButton;
+    } else if (this.noButton) {
+      this.focusElement = this.noButton;
+    } else {
+      this.focusElement = this.yesButton;
     }
+  }
 }
 

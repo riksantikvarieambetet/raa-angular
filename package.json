@@ -1,28 +1,25 @@
 {
-  "name": "ng2-raa-common",
+  "name": "ng-raa-common",
   "version": "0.1.1",
-  "description": "Gemensama angular 2 komponenter/pipes för Riksantikvarieämbetet",
-  "main": "ng2-raa.common.js",
-  "module": "ng2-raa.common.js",
-  "jsnext:main": "ng2-raa.common.js",
-  "types": "ng2-raa-common.d.ts",
-  "typings": "./ng2-raa-common.d.ts",
+  "description": "Gemensamma Angular-komponenter/direktiv/pipes/scss för Riksantikvarieämbetet",
+  "main": "index.js",
+  "typings": "./ng-raa-common.d.ts",
   "scripts": {
     "prepublish": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "ssh://git@lx-ra-jira.raa.se:7999/tek/ng2-raa-common.git"
+    "url": "ssh://git@lx-ra-jira.raa.se:7999/tek/ng-raa-common.git"
   },
   "author": "Riksantikvarietämbetet",
   "license": "UNLICENSED",
   "dependencies": {},
   "devDependencies": {
-    "@angular/common": "^4.2.5",
-    "@angular/core": "^4.2.5",
-    "@angular/forms": "^4.2.5",
-    "@angular/platform-browser": "^4.2.6",
+    "@angular/common": "^4.3.5",
+    "@angular/core": "^4.3.5",
+    "@angular/forms": "^4.3.5",
+    "@angular/platform-browser": "^4.3.5",
     "@types/chai": "^3.4.34",
     "@types/hammerjs": "^2.0.33",
     "@types/jasmine": "^2.2.34",
@@ -41,7 +38,7 @@
     "@angular/common": "4.x",
     "@angular/core": "4.x",
     "@angular/forms": "4.x",
-    "core-js": "2.4.x",
+    "core-js": "2.5.x",
     "rxjs": "5.4.x",
     "zone.js": "0.8.x"
   }

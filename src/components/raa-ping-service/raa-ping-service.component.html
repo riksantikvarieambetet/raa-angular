@@ -1,5 +1,5 @@
 <div class="raa-ping-service" *ngIf="info">
-    <raa-dialogue [displayDialogue]="showDialogue" [onClose]="closeDialogue" [header]="info.header">
+    <raa-dialogue *ngIf="showDialogue" [onClose]="closeDialogue" [header]="info.header">
         <p>{{info.message}}</p>
         <p><a (click)="refreshPage()">{{info.linkText}}</a></p>
     </raa-dialogue>

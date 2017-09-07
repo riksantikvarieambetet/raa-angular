@@ -1,17 +1,17 @@
-# ng2-raa-common
+# ng-raa-common
 Angular 2 module som innehåller gemensamma komponenter för RAÄ:s webbapplikationer.
 
 ## Användning
 
 ### I andra projekt
-För att använda ng2-raa-common i andra projekt behöver npm känna till beroendet och ladda ner paketet. Lägg till beroendet i projektets `package.json`
+För att använda ng-raa-common i andra projekt behöver npm känna till beroendet och ladda ner paketet. Lägg till beroendet i projektets `package.json`
 
-        "ng2-raa-common": "git+http://stash.raa.se/scm/tek/ng2-raa-common.git#master"
+        "ng-raa-common": "git+http://stash.raa.se/scm/tek/ng-raa-common.git#master"
 
 Då kommer `npm install` ladda ner senaste incheckningen från master-branchen till projektet.
 För att angular ska känna till modulen måste denna defineras i applikationens modul/moduler.
 
-    import { RaaModule } from 'ng2-raa-common';
+    import { RaaModule } from 'ng-raa-common';
 
     @NgModule({
         bootstrap: [AppComponent],
@@ -27,23 +27,23 @@ att tillexempel använda raa-select i ditt projekt anger du bara komponenten i d
 
     <raa-select [domain]="din_domän" valueAttr="domänens_nyckel_attribut" displayAttr="domänens_visningsvärde_attribut"></raa-select>
 
-För att kunna använda gemensamma Pipes i direkt i javascriptkod behöver dessa inject:as från `ng2-raa-common/pipes`
+För att kunna använda gemensamma Pipes i direkt i javascriptkod behöver dessa inject:as från `ng-raa-common/pipes`
 
 Exempel:
 
-    import { OrgnummerPipe } from "ng2-raa-common/pipes";
+    import { OrgnummerPipe } from "ng-raa-common/pipes";
 
 ### Gemensam Sass
 Gemensamm css kod som ska användas inom RAÄ:s webbapplikationer importeras i varje Sass-fil där dom behövs:
 
-    @import '~ng2-raa-common/styles';
+    @import '~ng-raa-common/styles';
 
 Då kan våra gemensama sass-variabler och mixin:s användas direkt
 
 ## Utveckling
 För att fixa buggar/utveckla ny funktionalitet, checka ut projektet till valfri mapp med kommandot
 
-    git clone ssh://git@lx-ra-jira.raa.se:7999/tek/ng2-raa-common.git
+    git clone ssh://git@lx-ra-jira.raa.se:7999/tek/ng-raa-common.git
 
 Hämta hem alla npm beroenden med kommandot
 
@@ -54,7 +54,7 @@ I filen `/pipes.ts` exporterar vi våra pipe klasser. Se nedan under [Pipes](#pi
 
 ### <a name="nya-komponenter"></a>Angular 2 gemensamma komponenter
 Under mappen `/src/` ligger alla `components`, `directives`, `pipes` och `styles`
-som angular modulen `ng2-raa-common` innehåller. För att bygga en ny komponent skapa en ny katalog för komponenten
+som angular modulen `ng-raa-common` innehåller. För att bygga en ny komponent skapa en ny katalog för komponenten
 och lägg till ett beroende under `declarations` och exportera komponenten till övriga projekt genom att lägga till komponenten 
 under `exports` i filen `/src/raa.module.ts`.
 
@@ -66,7 +66,7 @@ Ex:
 
     export * from './orgnummer.pipe';
 
-Denna fil exporteras sedan från `/pipes.ts` så att dom enkelt kan importeras från externa projekt genom att skriva  tillexempel `import { OrgnummerPipe } from 'ng2-raa-common/pipes';`
+Denna fil exporteras sedan från `/pipes.ts` så att dom enkelt kan importeras från externa projekt genom att skriva  tillexempel `import { OrgnummerPipe } from 'ng-raa-common/pipes';`
 
 
 ### Incheckning

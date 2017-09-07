@@ -45,7 +45,8 @@
 .header {
     text-align: center;
     font-weight: 300;
-    margin-top: 2.5rem;
+    width: calc(100% - 4rem);
+    margin: 2.5rem 2rem;
 }
 
 .close-button {

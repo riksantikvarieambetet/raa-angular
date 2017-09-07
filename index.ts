@@ -1,1 +1,1 @@
-export * from './ng2-raa-common';
+export * from './ng-raa-common';
