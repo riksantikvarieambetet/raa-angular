@@ -92,11 +92,6 @@ $dropdown-item-selected-bg-color: $gray-4;
   cursor: pointer;
 }
 
-.raa-select-dropdown-container {
-  position: relative;
-  z-index: 1;
-}
-
 .raa-select-dropdown {
   position: absolute;
   top: 0;
@@ -109,6 +104,15 @@ $dropdown-item-selected-bg-color: $gray-4;
   max-height: $dropdown-max-height;
   background-color: $dropdown-bg-color;
   border: $border-size solid $border-color;
+}
+
+.dropdown-is-above {
+  border-bottom: none;
+  border-radius: $border-radius-size $border-radius-size 0 0;
+  box-shadow: 5px -5px 10px -3px $border-color;
+}
+
+.dropdown-is-below {
   border-top: none;
   border-radius: 0 0 $border-radius-size $border-radius-size;
   box-shadow: 5px 5px 10px -3px $border-color;
