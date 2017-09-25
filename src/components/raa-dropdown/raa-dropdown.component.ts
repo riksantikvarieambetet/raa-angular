@@ -64,7 +64,7 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit {
 
   private setDropdownAbove(spaceAbove: number) {
     // IE11 har en bugg som gör att den overflow fortfarande blir kvar fast vi flyttar hela elementet med translate
-    // genom att sätta om top  top till auto och istället sätta bottom till 0 så så får vi ingen overflow
+    // genom att sätta om top till auto och bottom till 0 så så får vi ingen overflow
     this.dropdown.style.top = 'auto';
     this.dropdown.style.bottom = '0';
     const pixelsToMoveDropdownUp = this.element.getBoundingClientRect().height;
