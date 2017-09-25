@@ -70,14 +70,16 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit {
     const pixelsToMoveDropdownUp = this.element.getBoundingClientRect().height;
     this.dropdown.style.transform += `translateY(-${pixelsToMoveDropdownUp}px)`;
 
-    // Justerar max-höjden beroende på hur mycket plats som finns tillgängligt
-    this.dropdown.style.maxHeight = `${spaceAbove}px`;
+    // Justerar max-höjden beroende på hur mycket plats som finns tillgängligt. Lämnar 10px för att det ser trevligare ut då
+    const maxDropdownHeight = spaceAbove - 10;
+    this.dropdown.style.maxHeight = `${maxDropdownHeight}px`;
     this.dropdownMovedUp.emit(true);
   }
 
   private setDropdownBelow(spaceBelow: number) {
-    // Justerar max höjden beroden på hur mycket plats som finns kvar under
-    this.dropdown.style.maxHeight = `${spaceBelow}px`;
+    // Justerar max höjden beroden på hur mycket plats som finns kvar under. Lämnar 10px för att ser trevligare ut då
+    const maxDropdownHeight = spaceBelow - 10;
+    this.dropdown.style.maxHeight = `${maxDropdownHeight}px`;
     this.dropdownMovedUp.emit(false);
   }
 
