@@ -9,6 +9,8 @@ import {
   EventEmitter
 } from '@angular/core';
 
+const EXTRA_SPACING = 10;
+
 /**
  * Komponent för att justera höjden på en dropdown så att den får plats inom en scrollpane, om den inte får plats försöker vi
  * flytta upp dropdownen ovanför elementet om det finns mer plats där
@@ -49,8 +51,11 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit {
   private handleDropdownPositionAndSize() {
     const spaceAbove = this.element.getBoundingClientRect().top - this.parent.getBoundingClientRect().top;
     const spaceBelow = this.getViewBottomPosition() - this.element.getBoundingClientRect().bottom;
+    const dropdownHeight = this.dropdown.getBoundingClientRect().height;
 
-    if (spaceBelow < this.moveUpHeightThreshold && spaceAbove > spaceBelow) {
+    if (spaceBelow < dropdownHeight + EXTRA_SPACING
+      && spaceBelow < this.moveUpHeightThreshold
+      && spaceAbove > spaceBelow) {
       this.setDropdownAbove(spaceAbove);
     }
     else {
@@ -71,16 +76,20 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit {
     this.dropdown.style.transform += `translateY(-${pixelsToMoveDropdownUp}px)`;
 
     // Justerar max-höjden beroende på hur mycket plats som finns tillgängligt. Lämnar 10px för att det ser trevligare ut då
-    const maxDropdownHeight = spaceAbove - 10;
+    const maxDropdownHeight = this.getMaxDropdownHeight(spaceAbove - EXTRA_SPACING);
     this.dropdown.style.maxHeight = `${maxDropdownHeight}px`;
     this.dropdownMovedUp.emit(true);
   }
 
   private setDropdownBelow(spaceBelow: number) {
     // Justerar max höjden beroden på hur mycket plats som finns kvar under. Lämnar 10px för att ser trevligare ut då
-    const maxDropdownHeight = spaceBelow - 10;
+    const maxDropdownHeight = this.getMaxDropdownHeight(spaceBelow - EXTRA_SPACING);
     this.dropdown.style.maxHeight = `${maxDropdownHeight}px`;
     this.dropdownMovedUp.emit(false);
+  }
+
+  private getMaxDropdownHeight(availableSpace: number) {
+    return Math.min(availableSpace, this.dropdown.getBoundingClientRect().height);
   }
 
   private getParent(element: HTMLElement) {
