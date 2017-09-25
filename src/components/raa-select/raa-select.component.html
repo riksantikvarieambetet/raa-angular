@@ -1,4 +1,4 @@
-<div class="raa-select" (raaOutsideClick)="focusLost()">
+<div #raaSelect class="raa-select" (raaOutsideClick)="focusLost()">
   <div class="raa-select-input-row"
     [ngClass]="{'active': showDropdown}">
       <input class="raa-select-input"
@@ -20,8 +20,12 @@
           (click)="toggleDropdown()"
           [ngClass]="{'active': showDropdown}"></button>
   </div>
-  <div class="raa-select-dropdown-container" *ngIf="showDropdown">
-    <ul #dropdown class="raa-select-dropdown">
+  <raa-dropdown
+    [element]="raaSelect"
+    (dropdownMovedUp)="dropdownMovedUp($event)"
+    [moveUpHeightThreshold]="120"
+    *ngIf="showDropdown">
+    <ul #dropdown class="raa-select-dropdown" [ngClass]="{ 'dropdown-is-above': dropdownIsAbove, 'dropdown-is-below': !dropdownIsAbove }">
         <li class="raa-select-dropdown-item" *ngIf="filteredDomainValues.length === 0">
             <span>Ingen träff</span>
         </li>
@@ -32,5 +36,5 @@
             <span>{{item.displayValue}}</span>
         </li>
     </ul>
-  </div>
+  </raa-dropdown>
 </div>

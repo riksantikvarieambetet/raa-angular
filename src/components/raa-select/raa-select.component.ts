@@ -80,6 +80,7 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
   filterInput = '';
   showDropdown = false;
   hoverIndex = 0;
+  dropdownIsAbove = false;
 
   domainValues: DomainValue[] = [];
   filteredDomainValues: DomainValue[] = [];
@@ -176,6 +177,10 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
     }
 
     return false;
+  }
+
+  dropdownMovedUp(event: boolean) {
+    this.dropdownIsAbove = event;
   }
 
   select(item: DomainValue) {

@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 // Components
 import { RaaSelect } from './components/raa-select/raa-select.component';
+import { RaaDropdownComponent } from './components/raa-dropdown/raa-dropdown.component';
 import { RaaModalPageComponent } from './components/raa-modal-page/raa-modal-page.component';
 import { RaaDialogueComponent } from './components/raa-dialogue/raa-dialogue.component';
 import { RaaLabel } from './components/raa-label/raa-label.component';
@@ -29,6 +30,7 @@ import { OrgnummerPipe } from './pipes/orgnummer.pipe';
   ],
   declarations: [
     RaaSelect,
+    RaaDropdownComponent,
     OutsideClickDirective,
     RaaRequestFocusDirective,
     RaaSelectAllOnFocus,
@@ -45,6 +47,7 @@ import { OrgnummerPipe } from './pipes/orgnummer.pipe';
   ],
   exports: [
     RaaSelect,
+    RaaDropdownComponent,
     RaaLabel,
     RaaTextWithSpinner,
     RaaSpinnerComponent,
