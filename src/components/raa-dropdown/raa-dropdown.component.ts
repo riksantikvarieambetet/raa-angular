@@ -8,6 +8,7 @@ import {
   AfterViewInit,
   EventEmitter
 } from '@angular/core';
+import * as $ from 'jquery';
 
 const EXTRA_SPACING = 10;
 
@@ -45,12 +46,12 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.dropdown = (this.dropdownElementRef.nativeElement as HTMLElement).firstElementChild as HTMLElement;
-    this.parent = this.getParent(this.element);
-    console.info('Init raa-select dropdown again');
+    this.parent = this.parentConstrictor || this.getParent(this.element);
   }
 
   ngAfterViewInit() {
     this.handleDropdownPositionAndSize();
+    console.info('this.parentConstrictor', this.parentConstrictor);
   }
 
   private handleDropdownPositionAndSize() {
@@ -87,9 +88,42 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit {
   }
 
   private setDropdownBelow(spaceBelow: number) {
+    console.info('******************setDropdownBelow********************');
     // Justerar max höjden beroden på hur mycket plats som finns kvar under. Lämnar 10px för att ser trevligare ut då
     const maxDropdownHeight = this.getMaxDropdownHeight(spaceBelow - EXTRA_SPACING);
+    const topOffset = (this.element.getBoundingClientRect().bottom === (<HTMLElement>this.dropdown.parentElement).getBoundingClientRect().top) ?
+      this.element.getBoundingClientRect().top : this.element.getBoundingClientRect().bottom;
     this.dropdown.style.maxHeight = `${maxDropdownHeight}px`;
+    this.dropdown.style.position = 'fixed';
+    this.dropdown.style.top = `${ topOffset}px`;
+    this.dropdown.style.width = `${this.element.getBoundingClientRect().width}px`;
+    this.dropdown.style.left = `${this.element.getBoundingClientRect().left }px`;
+    console.info('$(this.dropdown).offset()', $(this.dropdown).offset());
+    console.info('$(this.element).offset()', $(this.element).offset());
+    console.info('(<HTMLElement>this.dropdown.parentElement)', $((<HTMLElement>this.dropdown.parentElement)).offset());
+    console.info('this.element', this.element);
+    console.info('topOffset', topOffset);
+    console.info('this.dropdown.getBoundingClientRect()', this.dropdown.getBoundingClientRect());
+    console.info('this.element.getBoundingClientRect()', this.element.getBoundingClientRect());
+    console.info('this.dropdown.parentElement.getBoundingClientRect', (<HTMLElement>this.dropdown.parentElement).getBoundingClientRect());
+
+    console.info('this.dropdown.style', this.dropdown.style);
+    console.info('this.dropdown.parentElement', this.dropdown.parentElement);
+
+    if (this.element.getBoundingClientRect().top === this.dropdown.getBoundingClientRect().top) {
+      this.dropdown.style.top = this.element.getBoundingClientRect().bottom + 'px';
+    } else {
+      if (this.dropdown.getBoundingClientRect().top > this.element.getBoundingClientRect().bottom) {
+        // const offsetTopThroughJQuery: number = (<any>$(this.dropdown).offset()).top || 0;
+        // const offsetTopThroughJQuery: number = this.dropdown.getBoundingClientRect().top;
+        const offsetFromInputBottom = this.dropdown.getBoundingClientRect().top - this.element.getBoundingClientRect().bottom;
+        this.dropdown.style.top = (this.element.getBoundingClientRect().top - offsetFromInputBottom) + 'px'; // Trial and error
+        console.info('offsetFromInputBottom top', this.dropdown.getBoundingClientRect().top);
+        console.info('offsetFromInputBottom', offsetFromInputBottom);
+      }
+
+    }
+
     this.dropdownMovedUp.emit(false);
   }
 

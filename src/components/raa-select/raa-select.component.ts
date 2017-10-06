@@ -90,7 +90,8 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
 
   scrollToSelected = false;
 
-  constructor() { }
+  constructor() {
+  }
 
   // Handling of ngModel
   writeValue(value: any) {
@@ -101,12 +102,15 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
     this.value = value;
   }
 
-  propagateChange = (_: any) => { };
+  propagateChange = (_: any) => {
+  };
+
   registerOnChange(fn: any) {
     this.propagateChange = fn;
   }
 
-  registerOnTouched() { }
+  registerOnTouched() {
+  }
 
   ngOnInit() {
     if (!this.domain) {
@@ -129,6 +133,7 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
 
   ngAfterViewInit() {
     this.dropdownItems.changes.subscribe(() => this.handleDropdownItemsChanged());
+    console.info('raaSelect parentConstrictor', this.parentConstrictor);
   }
 
   ngOnChanges(changes: SimpleChanges) {
