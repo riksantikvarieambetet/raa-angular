@@ -28,6 +28,9 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit {
   @Input()
   moveUpHeightThreshold = 120;
 
+  @Input()
+  parentConstrictor?: HTMLElement;
+
   @Output()
   private dropdownMovedUp = new EventEmitter<boolean>(true);
 
@@ -37,12 +40,13 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit {
   private dropdown: HTMLElement;
   private parent: HTMLElement;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
     this.dropdown = (this.dropdownElementRef.nativeElement as HTMLElement).firstElementChild as HTMLElement;
     this.parent = this.getParent(this.element);
-    console.info('Init raa-select'); 
+    console.info('Init raa-select dropdown again');
   }
 
   ngAfterViewInit() {

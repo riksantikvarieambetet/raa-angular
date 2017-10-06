@@ -64,6 +64,7 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
   @Input() valueAttr: string;
   @Input() displayAttr: string;
   @Input() placeholder: string;
+  @Input() parentConstrictor?: HTMLElement;
 
   @Output() onSelect = new EventEmitter<any>();
 
