@@ -42,6 +42,7 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.dropdown = (this.dropdownElementRef.nativeElement as HTMLElement).firstElementChild as HTMLElement;
     this.parent = this.getParent(this.element);
+    console.info('Init raa-select'); 
   }
 
   ngAfterViewInit() {
