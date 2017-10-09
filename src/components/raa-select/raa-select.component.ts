@@ -195,11 +195,14 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
     this.dropdownIsAbove = event;
   }
 
-  onParentScrolled(event: boolean) {
-    console.info('this.raaSelect', this.raaSelect);
-    if (this.raaSelect) {
-      console.info('this.raaSelect', this.raaSelect);
-    }
+  onParentScrolled(scrollingParentClientRect: ClientRect) {
+
+    if (this.raaSelect && scrollingParentClientRect) {
+      const raaSelectIsNotVisible = this.raaSelect.getBoundingClientRect().top > scrollingParentClientRect.bottom || this.raaSelect.getBoundingClientRect().bottom < scrollingParentClientRect.top;
+      if (raaSelectIsNotVisible) {
+        this.showDropdown = false;
+      }
+     }
   }
 
   select(item: DomainValue) {
