@@ -108,7 +108,7 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
   }
 
   propagateChange = (_: any) => {
-  };
+  }
 
   registerOnChange(fn: any) {
     this.propagateChange = fn;

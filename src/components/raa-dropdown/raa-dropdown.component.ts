@@ -96,7 +96,7 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit {
     const maxDropdownHeight = this.getMaxDropdownHeight(spaceAbove - EXTRA_SPACING);
     const topOffset = this.element.getBoundingClientRect().top - ( maxDropdownHeight + this.element.getBoundingClientRect().height);
 
-    this.setBasicDropdownDimensions(maxDropdownHeight, topOffset)
+    this.setBasicDropdownDimensions(maxDropdownHeight, topOffset);
     this.dropdownMovedUp.emit(true);
     const offsetFromInputTop = this.dropdown.getBoundingClientRect().bottom - this.element.getBoundingClientRect().top;
     if (this.dropdown.getBoundingClientRect().bottom > this.element.getBoundingClientRect().top) {
@@ -117,7 +117,7 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit {
     const maxDropdownHeight = this.getMaxDropdownHeight(spaceBelow - EXTRA_SPACING);
     const topOffset = (this.element.getBoundingClientRect().bottom === (<HTMLElement>this.dropdown.parentElement).getBoundingClientRect().top) ?
       this.element.getBoundingClientRect().top : this.element.getBoundingClientRect().bottom;
-    this.setBasicDropdownDimensions(maxDropdownHeight, topOffset)
+    this.setBasicDropdownDimensions(maxDropdownHeight, topOffset);
 
     if (this.element.getBoundingClientRect().top === this.dropdown.getBoundingClientRect().top) {
       this.dropdown.style.top = this.element.getBoundingClientRect().bottom + 'px';
