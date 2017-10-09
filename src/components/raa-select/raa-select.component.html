@@ -23,6 +23,7 @@
   <raa-dropdown
     [element]="raaSelect"
     (dropdownMovedUp)="dropdownMovedUp($event)"
+    (parentScrolled)="onParentScrolled($event)"
     [moveUpHeightThreshold]="120"
     [parentConstrictor]="parentConstrictor"
     *ngIf="showDropdown">

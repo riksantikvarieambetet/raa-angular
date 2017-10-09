@@ -77,6 +77,11 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
   @ViewChildren('dropdownItem')
   dropdownItems: QueryList<ElementRef>;
 
+  @ViewChild('raaSelect')
+  private raaSelectElementRef: ElementRef;
+
+  private raaSelect: HTMLElement;
+
   value: any;
   filterInput = '';
   showDropdown = false;
@@ -125,6 +130,8 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
       throw 'ERROR: raa-select.component -> displayAttr must be specified';
     }
 
+    this.raaSelect = this.raaSelectElementRef.nativeElement as HTMLElement;
+
     this.showDropdown = false;
     this.filterInput = '';
     this.domainValues = this.mapDomainValues();
@@ -133,7 +140,6 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
 
   ngAfterViewInit() {
     this.dropdownItems.changes.subscribe(() => this.handleDropdownItemsChanged());
-    console.info('raaSelect parentConstrictor', this.parentConstrictor);
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -187,6 +193,13 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
 
   dropdownMovedUp(event: boolean) {
     this.dropdownIsAbove = event;
+  }
+
+  onParentScrolled(event: boolean) {
+    console.info('this.raaSelect', this.raaSelect);
+    if (this.raaSelect) {
+      console.info('this.raaSelect', this.raaSelect);
+    }
   }
 
   select(item: DomainValue) {

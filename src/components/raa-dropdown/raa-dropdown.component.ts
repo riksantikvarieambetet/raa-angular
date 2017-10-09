@@ -35,6 +35,9 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit {
   @Output()
   private dropdownMovedUp = new EventEmitter<boolean>(true);
 
+  @Output()
+  private parentScrolled = new EventEmitter<boolean>(true);
+
   @ViewChild('dropdown')
   private dropdownElementRef: ElementRef;
 
@@ -59,6 +62,11 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.dropdown = (this.dropdownElementRef.nativeElement as HTMLElement).firstElementChild as HTMLElement;
     this.parent = this.parentConstrictor || this.getParent(this.element);
+    this.parent.addEventListener('scroll', () => {
+      console.info('parent scroll dropdown');
+      this.handleDropdownPositionAndSize();
+      this.parentScrolled.emit(true);
+    });
   }
 
   ngAfterViewInit() {
