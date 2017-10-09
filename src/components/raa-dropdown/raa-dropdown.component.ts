@@ -6,7 +6,8 @@ import {
   ViewChild,
   ElementRef,
   AfterViewInit,
-  EventEmitter
+  EventEmitter,
+  HostListener
 } from '@angular/core';
 import * as $ from 'jquery';
 
@@ -37,6 +38,17 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit {
 
   @ViewChild('dropdown')
   private dropdownElementRef: ElementRef;
+
+  @HostListener('window:scroll', ['$event'])
+  onDocumentScroll(event: MouseEvent) {
+    console.info('Something has scrolled in the document.', event);
+    this.handleDropdownPositionAndSize();
+  }
+  @HostListener('window:resize', ['$event'])
+  onWindowResize(event: MouseEvent) {
+    console.info('The window has resized', event);
+    this.handleDropdownPositionAndSize();
+  }
 
   private dropdown: HTMLElement;
   private parent: HTMLElement;
