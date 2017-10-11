@@ -61,15 +61,17 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit {
     this.dropdown = (this.dropdownElementRef.nativeElement as HTMLElement).firstElementChild as HTMLElement;
     this.parent = this.parentConstrictor || this.getParent(this.element);
     this.parent.addEventListener('scroll', () => {
-      this.handleDropdownPositionAndSize();
-      this.parentScrolled.emit(this.parent.getBoundingClientRect());
+     this.onParentScroll();
     });
   }
 
   ngAfterViewInit() {
     this.handleDropdownPositionAndSize();
   }
-
+  private onParentScroll() {
+     this.handleDropdownPositionAndSize();
+    this.parentScrolled.emit(this.parent.getBoundingClientRect());
+  }
   private handleDropdownPositionAndSize() {
     const spaceAbove = this.element.getBoundingClientRect().top - this.parent.getBoundingClientRect().top;
     const spaceBelow = this.getViewBottomPosition() - this.element.getBoundingClientRect().bottom;
