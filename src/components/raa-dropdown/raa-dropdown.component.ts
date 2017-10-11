@@ -99,13 +99,16 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit {
     this.setBasicDropdownDimensions(maxDropdownHeight, topOffset);
     this.dropdownMovedUp.emit(true);
     const offsetFromInputTop = this.dropdown.getBoundingClientRect().bottom - this.element.getBoundingClientRect().top;
-    if (this.dropdown.getBoundingClientRect().bottom > this.element.getBoundingClientRect().top) {
+    const dropdownListIsAboveSelectField = this.dropdown.getBoundingClientRect().bottom > this.element.getBoundingClientRect().top;
+    const dropdownListIsBelowSelectField = this.element.getBoundingClientRect().top > this.dropdown.getBoundingClientRect().bottom;
+
+    if (dropdownListIsAboveSelectField) {
 
       if (offsetFromInputTop < this.dropdown.getBoundingClientRect().height) {
         this.dropdown.style.top = (this.dropdown.getBoundingClientRect().top - this.element.getBoundingClientRect().height - (offsetFromInputTop * 2)) + 'px'; // Trial and error
       }
 
-    } else if (this.element.getBoundingClientRect().top > this.dropdown.getBoundingClientRect().bottom) {
+    } else if (dropdownListIsBelowSelectField) {
       if (Math.abs(offsetFromInputTop) >= this.element.getBoundingClientRect().height) {
         this.dropdown.style.top = (this.dropdown.getBoundingClientRect().top - Math.abs(this.element.getBoundingClientRect().height) - (offsetFromInputTop * 2)) + 'px'; // Trial and error
       }
@@ -119,10 +122,13 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit {
       this.element.getBoundingClientRect().top : this.element.getBoundingClientRect().bottom;
     this.setBasicDropdownDimensions(maxDropdownHeight, topOffset);
 
-    if (this.element.getBoundingClientRect().top === this.dropdown.getBoundingClientRect().top) {
+    const dropdownListIsAtSameLevelAsSelectField = this.element.getBoundingClientRect().top === this.dropdown.getBoundingClientRect().top;
+    const dropdownListIsBelowSelectField = this.dropdown.getBoundingClientRect().top > this.element.getBoundingClientRect().bottom;
+
+    if (dropdownListIsAtSameLevelAsSelectField) {
       this.dropdown.style.top = this.element.getBoundingClientRect().bottom + 'px';
     } else {
-      if (this.dropdown.getBoundingClientRect().top > this.element.getBoundingClientRect().bottom) {
+      if (dropdownListIsBelowSelectField) {
         const offsetFromInputBottom = this.dropdown.getBoundingClientRect().top - this.element.getBoundingClientRect().bottom;
         this.dropdown.style.top = (this.element.getBoundingClientRect().top - offsetFromInputBottom) + 'px'; // Trial and error
       }
