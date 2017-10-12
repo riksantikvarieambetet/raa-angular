@@ -10,7 +10,6 @@ import {
   HostListener
 } from '@angular/core';
 
-import { debounce } from 'lodash';
 
 const EXTRA_SPACING = 10;
 
@@ -37,8 +36,6 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit {
   @Output()
   private dropdownMovedUp = new EventEmitter<boolean>(true);
 
-  @Output()
-  private parentScrolled = new EventEmitter<string>(true);
 
   @ViewChild('dropdown')
   private dropdownElementRef: ElementRef;
@@ -57,9 +54,7 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit {
   private parent: HTMLElement;
   private raaSelectIsVisible: boolean;
   private maxDropdownHeight: number;
-  private debouncedParentScroll = debounce(() => {
-    this.parentScrolled.emit('scrolled');
-  }, 10, { 'maxWait': 10 });
+
 
   constructor() {
   }
@@ -70,10 +65,7 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit {
     this.parent.addEventListener('scroll', () => {
       this.onParentScroll();
     });
-    // this.parentScrolled.subscribe(() => {
-    //   console.info('parent scrolled');
-    //   this.onParentScroll();
-    // });
+
   }
 
 
@@ -81,35 +73,21 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit {
     this.handleDropdownPositionAndSize();
   }
 
-  onDebounceScroll() {
-    this.parentScrolled.emit('scrolled');
-  }
 
   onParentScroll() {
-    console.info('parent scrolled');
     this.handleDropdownPositionAndSize();
     if (this.element && this.parent) {
-      // console.info('this.element.getBoundingClientRect():', this.element.getBoundingClientRect());
-      // console.info('this.parent.getBoundingClientRect()', this.parent.getBoundingClientRect());
-      // this.raaSelectIsVisible = this.element.getBoundingClientRect().top <= this.parent.getBoundingClientRect().bottom || this.element.getBoundingClientRect().bottom >= this.parent.getBoundingClientRect().top;
       this.raaSelectIsVisible = !(
         (Math.round(this.element.getBoundingClientRect().top) > Math.round(this.parent.getBoundingClientRect().bottom))
         || (Math.round(this.element.getBoundingClientRect().bottom) < Math.round(this.parent.getBoundingClientRect().top))
       );
 
-      // console.info('this.raaSelectIsVisible', this.raaSelectIsVisible);
-      // console.info(' this.dropdown.style.display', this.dropdown.style.display);
       if (!this.raaSelectIsVisible && this.dropdown.style.visibility !== 'hidden') {
         this.dropdown.style.visibility = 'hidden';
-        // this.maxDropdownHeightAtMomentOfHiding = this.maxDropdownHeight;
       } else if (this.raaSelectIsVisible && this.dropdown.style.visibility === 'hidden') {
         this.dropdown.style.visibility = 'visible';
-        // this.dropdown.style.maxHeight = (this.maxDropdownHeightAtMomentOfHiding > this.maxDropdownHeight) ? `${this.maxDropdownHeightAtMomentOfHiding}px` : `${this.maxDropdownHeight}px`;
       }
     }
-    // console.info('this.maxDropdownHeight', this.maxDropdownHeight);
-    // this.parentScrolled.emit(this.parent.getBoundingClientRect());
-
   }
 
   private handleDropdownPositionAndSize() {
@@ -149,16 +127,11 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit {
 
     if (dropdownListIsAboveSelectField) {
       if (offsetFromInputTopIsLessThanDropdownsHeight) {
-        // console.info('setBasicDropdownDimensions offsetFromInputTopIsLessThanDropdownsHeight', offsetFromInputTopIsLessThanDropdownsHeight);
         this.dropdown.style.top = (this.dropdown.getBoundingClientRect().top - this.element.getBoundingClientRect().height - (offsetFromInputTop * 2)) + 'px'; // Trial and error
       }
 
     } else if (dropdownListIsBelowSelectField) {
-      // console.info('setBasicDropdownDimensions dropdownListIsBelowSelectField');
-      // console.info('this.dropdown.getBoundingClientRect()', this.dropdown.getBoundingClientRect());
-      // console.info('this.element.getBoundingClientRect()', this.element.getBoundingClientRect());
       if (offsetFromInputTopIsGreaterThanOrEqualToSelectFieldHeight) {
-        // console.info('setBasicDropdownDimensions dropdownListIsBelowSelectField');
         this.dropdown.style.top = (this.dropdown.getBoundingClientRect().top - Math.abs(this.element.getBoundingClientRect().height) - (offsetFromInputTop * 2)) + 'px'; // Trial and error
       }
     }
@@ -177,15 +150,10 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit {
 
     const dropdownListIsBelowSelectField = Math.round(this.dropdown.getBoundingClientRect().top) > Math.round(this.element.getBoundingClientRect().bottom);
 
-    // console.info('setDropdownBelow ');
-    // console.info('this.dropdown.getBoundingClientRect()', this.dropdown.getBoundingClientRect());
-    // console.info('this.element.getBoundingClientRect()', this.element.getBoundingClientRect());
     if (dropdownListIsAtSameLevelAsSelectField) {
-      // console.info('setDropdownBelow dropdownListIsAtSameLevelAsSelectField');
       this.dropdown.style.top = this.element.getBoundingClientRect().bottom + 'px';
     } else {
       if (dropdownListIsBelowSelectField) {
-        // console.info('setDropdownBelow dropdownListIsBelowSelectField');
         const offsetFromInputBottom = this.dropdown.getBoundingClientRect().top - this.element.getBoundingClientRect().bottom;
         this.dropdown.style.top = (this.element.getBoundingClientRect().top - offsetFromInputBottom) + 'px'; // Trial and error
       }
