@@ -64,7 +64,6 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
   @Input() valueAttr: string;
   @Input() displayAttr: string;
   @Input() placeholder: string;
-  @Input() parentConstrictor?: HTMLElement;
 
   @Output() onSelect = new EventEmitter<any>();
 
@@ -77,10 +76,6 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
   @ViewChildren('dropdownItem')
   dropdownItems: QueryList<ElementRef>;
 
-  @ViewChild('raaSelect')
-  private raaSelectElementRef: ElementRef;
-
-  private raaSelect: HTMLElement;
 
   value: any;
   filterInput = '';
@@ -130,7 +125,6 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
       throw 'ERROR: raa-select.component -> displayAttr must be specified';
     }
 
-    this.raaSelect = this.raaSelectElementRef.nativeElement as HTMLElement;
 
     this.showDropdown = false;
     this.filterInput = '';
