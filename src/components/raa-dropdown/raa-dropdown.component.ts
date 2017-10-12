@@ -10,6 +10,8 @@ import {
   HostListener
 } from '@angular/core';
 
+import { debounce } from 'lodash';
+
 const EXTRA_SPACING = 10;
 
 /**
@@ -36,7 +38,7 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit {
   private dropdownMovedUp = new EventEmitter<boolean>(true);
 
   @Output()
-  private parentScrolled = new EventEmitter<ClientRect>(true);
+  private parentScrolled = new EventEmitter<string>(true);
 
   @ViewChild('dropdown')
   private dropdownElementRef: ElementRef;
@@ -55,8 +57,9 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit {
   private parent: HTMLElement;
   private raaSelectIsVisible: boolean;
   private maxDropdownHeight: number;
-
-  // private maxDropdownHeightAtMomentOfHiding: number;
+  private debouncedParentScroll = debounce(() => {
+    this.parentScrolled.emit('scrolled');
+  }, 10, { 'maxWait': 10 });
 
   constructor() {
   }
@@ -67,17 +70,27 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit {
     this.parent.addEventListener('scroll', () => {
       this.onParentScroll();
     });
+    // this.parentScrolled.subscribe(() => {
+    //   console.info('parent scrolled');
+    //   this.onParentScroll();
+    // });
   }
+
 
   ngAfterViewInit() {
     this.handleDropdownPositionAndSize();
   }
 
-  private onParentScroll() {
+  onDebounceScroll() {
+    this.parentScrolled.emit('scrolled');
+  }
+
+  onParentScroll() {
+    console.info('parent scrolled');
     this.handleDropdownPositionAndSize();
     if (this.element && this.parent) {
-      console.info('this.element.getBoundingClientRect():', this.element.getBoundingClientRect());
-      console.info('this.parent.getBoundingClientRect()', this.parent.getBoundingClientRect());
+      // console.info('this.element.getBoundingClientRect():', this.element.getBoundingClientRect());
+      // console.info('this.parent.getBoundingClientRect()', this.parent.getBoundingClientRect());
       // this.raaSelectIsVisible = this.element.getBoundingClientRect().top <= this.parent.getBoundingClientRect().bottom || this.element.getBoundingClientRect().bottom >= this.parent.getBoundingClientRect().top;
       this.raaSelectIsVisible = !(
         (Math.round(this.element.getBoundingClientRect().top) > Math.round(this.parent.getBoundingClientRect().bottom))
@@ -95,7 +108,7 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit {
       }
     }
     // console.info('this.maxDropdownHeight', this.maxDropdownHeight);
-    this.parentScrolled.emit(this.parent.getBoundingClientRect());
+    // this.parentScrolled.emit(this.parent.getBoundingClientRect());
 
   }
 
