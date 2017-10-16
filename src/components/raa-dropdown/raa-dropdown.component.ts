@@ -10,6 +10,7 @@ import {
   HostListener
 } from '@angular/core';
 
+import { throttle } from 'lodash';
 
 const EXTRA_SPACING = 10;
 
@@ -36,7 +37,6 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit {
   @Output()
   private dropdownMovedUp = new EventEmitter<boolean>(true);
 
-
   @ViewChild('dropdown')
   private dropdownElementRef: ElementRef;
 
@@ -54,7 +54,11 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit {
   private parent: HTMLElement;
   private raaSelectIsVisible: boolean;
   private maxDropdownHeight: number;
+  private throttledParentScroll = throttle(() => {
+      this.onParentScroll();
 
+    }
+  );
 
   constructor() {
   }
@@ -62,10 +66,7 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.dropdown = (this.dropdownElementRef.nativeElement as HTMLElement).firstElementChild as HTMLElement;
     this.parent = this.parentConstrictor || this.getParent(this.element);
-    this.parent.addEventListener('scroll', () => {
-      this.onParentScroll();
-    });
-
+    this.parent.addEventListener('scroll', this.throttledParentScroll);
   }
 
 
