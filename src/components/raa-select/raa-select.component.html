@@ -24,7 +24,6 @@
     [element]="raaSelect"
     (dropdownMovedUp)="dropdownMovedUp($event)"
     [moveUpHeightThreshold]="120"
-    [parentConstrictor]="parentConstrictor"
     *ngIf="showDropdown">
     <ul #dropdown class="raa-select-dropdown" [ngClass]="{ 'dropdown-is-above': dropdownIsAbove, 'dropdown-is-below': !dropdownIsAbove }">
         <li class="raa-select-dropdown-item" *ngIf="filteredDomainValues.length === 0">

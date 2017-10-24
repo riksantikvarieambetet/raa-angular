@@ -7,12 +7,14 @@ import {
   ElementRef,
   AfterViewInit,
   EventEmitter,
-  HostListener
+  HostListener,
+  OnDestroy,
 } from '@angular/core';
 
 import { throttle } from 'lodash';
 
 const EXTRA_SPACING = 10;
+const DEFAULT_MAX_HEIGHT = 500;
 
 /**
  * Komponent för att justera höjden på en dropdown så att den får plats inom en scrollpane, om den inte får plats försöker vi
@@ -23,16 +25,13 @@ const EXTRA_SPACING = 10;
   templateUrl: './raa-dropdown.component.html',
   styleUrls: ['./raa-dropdown.component.scss']
 })
-export class RaaDropdownComponent implements OnInit, AfterViewInit {
+export class RaaDropdownComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @Input()
-  private element: HTMLElement; // raa-select
+  private element: HTMLElement;
 
   @Input()
   moveUpHeightThreshold = 120;
-
-  @Input()
-  parentConstrictor?: HTMLElement;
 
   @Output()
   private dropdownMovedUp = new EventEmitter<boolean>(true);
@@ -40,55 +39,67 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit {
   @ViewChild('dropdown')
   private dropdownElementRef: ElementRef;
 
-  @HostListener('window:scroll', ['$event'])
-  onDocumentScroll() {
-    this.handleDropdownPositionAndSize();
-  }
-
   @HostListener('window:resize', ['$event'])
   onWindowResize() {
     this.handleDropdownPositionAndSize();
   }
 
   private dropdown: HTMLElement;
+  private preferredHeight: number;
   private parent: HTMLElement;
-  private raaSelectIsVisible: boolean;
-  private maxDropdownHeight: number;
   private throttledParentScroll = throttle(() => {
-      this.onParentScroll();
-
-    }
-  );
+    this.onParentScroll();
+  }, 16);
 
   constructor() {
   }
 
   ngOnInit() {
     this.dropdown = (this.dropdownElementRef.nativeElement as HTMLElement).firstElementChild as HTMLElement;
-    this.parent = this.parentConstrictor || this.getParent(this.element);
+    this.parent = this.getParent(this.element);
     this.parent.addEventListener('scroll', this.throttledParentScroll);
   }
 
-
-  ngAfterViewInit() {
-    this.handleDropdownPositionAndSize();
+  ngOnDestroy() {
+    this.parent.removeEventListener('scroll', this.throttledParentScroll);
   }
 
+  ngAfterViewInit() {
+    this.preferredHeight = this.getDropdownPreferredMaxHeight();
+
+    this.setDropdownPositionFixed();
+    this.handleDropdownPositionAndSize();
+  }
 
   onParentScroll() {
     this.handleDropdownPositionAndSize();
     if (this.element && this.parent) {
-      this.raaSelectIsVisible = !(
+      const elementIsVisibleWithinScrollView = !(
         (Math.round(this.element.getBoundingClientRect().top) > Math.round(this.parent.getBoundingClientRect().bottom))
         || (Math.round(this.element.getBoundingClientRect().bottom) < Math.round(this.parent.getBoundingClientRect().top))
       );
 
-      if (!this.raaSelectIsVisible && this.dropdown.style.visibility !== 'hidden') {
+      if (!elementIsVisibleWithinScrollView && this.dropdown.style.visibility !== 'hidden') {
         this.dropdown.style.visibility = 'hidden';
-      } else if (this.raaSelectIsVisible && this.dropdown.style.visibility === 'hidden') {
+      } else if (elementIsVisibleWithinScrollView && this.dropdown.style.visibility === 'hidden') {
         this.dropdown.style.visibility = 'visible';
       }
     }
+  }
+
+  private getDropdownPreferredMaxHeight() {
+    const maxHeight = document.defaultView.getComputedStyle(this.dropdown).getPropertyValue('max-height');
+    if (maxHeight.length !== 0) {
+      return parseInt(maxHeight.replace(/\D/g, ''));
+    }
+
+    return DEFAULT_MAX_HEIGHT;
+  }
+
+  private setDropdownPositionFixed() {
+    this.dropdown.style.width = `${this.dropdown.getBoundingClientRect().width}px`;
+    this.dropdown.style.left = `${this.element.getBoundingClientRect().left}px`;
+    this.dropdown.style.position = 'fixed';
   }
 
   private handleDropdownPositionAndSize() {
@@ -111,69 +122,36 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit {
   }
 
   private setDropdownAbove(spaceAbove: number) {
-    // IE11 har en bugg som gör att den overflow fortfarande blir kvar fast vi flyttar hela elementet med translate
-    // genom att sätta om top till auto och bottom till 0 så så får vi ingen overflow
-    // Justerar max-höjden beroende på hur mycket plats som finns tillgängligt. Lämnar 10px för att det ser trevligare ut då
     const maxDropdownHeight = this.getMaxDropdownHeight(spaceAbove - EXTRA_SPACING);
-    this.maxDropdownHeight = maxDropdownHeight;
-    const topOffset = this.element.getBoundingClientRect().top - ( maxDropdownHeight + this.element.getBoundingClientRect().height);
 
-    this.setBasicDropdownDimensions(maxDropdownHeight, topOffset);
+    const pixelsFromDocumentBodyBottomToParentBottom = document.body.clientHeight - this.getViewBottomPosition();
+    const pixelsFromParentBottomToElementTopPosition = this.getViewBottomPosition() - this.element.getBoundingClientRect().top;
+
+    // + 1 så att focue outlines forfarande syns
+    const dropdownBottomPosition = pixelsFromDocumentBodyBottomToParentBottom + pixelsFromParentBottomToElementTopPosition + 1;
+
+    // Sätter bottom position så att dropdownen kan växa och minska med height uppåt
+    this.dropdown.style.bottom = `${dropdownBottomPosition}px`;
+    this.dropdown.style.maxHeight = `${maxDropdownHeight}px`;
+    this.dropdown.style.top = `inherit`;
+
     this.dropdownMovedUp.emit(true);
-    const offsetFromInputTop = this.dropdown.getBoundingClientRect().bottom - this.element.getBoundingClientRect().top;
-    const dropdownListIsAboveSelectField = this.dropdown.getBoundingClientRect().bottom > this.element.getBoundingClientRect().top;
-    const dropdownListIsBelowSelectField = this.element.getBoundingClientRect().top > this.dropdown.getBoundingClientRect().bottom;
-    const offsetFromInputTopIsLessThanDropdownsHeight = offsetFromInputTop < this.dropdown.getBoundingClientRect().height;
-    const offsetFromInputTopIsGreaterThanOrEqualToSelectFieldHeight = Math.abs(offsetFromInputTop) >= this.element.getBoundingClientRect().height;
-
-    if (dropdownListIsAboveSelectField) {
-      if (offsetFromInputTopIsLessThanDropdownsHeight) {
-        this.dropdown.style.top = (this.dropdown.getBoundingClientRect().top - this.element.getBoundingClientRect().height - (offsetFromInputTop * 2)) + 'px'; // Trial and error
-      }
-
-    } else if (dropdownListIsBelowSelectField) {
-      if (offsetFromInputTopIsGreaterThanOrEqualToSelectFieldHeight) {
-        this.dropdown.style.top = (this.dropdown.getBoundingClientRect().top - Math.abs(this.element.getBoundingClientRect().height) - (offsetFromInputTop * 2)) + 'px'; // Trial and error
-      }
-    }
-
   }
 
   private setDropdownBelow(spaceBelow: number) {
-    // Justerar max höjden beroden på hur mycket plats som finns kvar under. Lämnar 10px för att ser trevligare ut då
     const maxDropdownHeight = this.getMaxDropdownHeight(spaceBelow - EXTRA_SPACING);
-    this.maxDropdownHeight = maxDropdownHeight;
-    const topOffset = (this.element.getBoundingClientRect().bottom === (<HTMLElement>this.dropdown.parentElement).getBoundingClientRect().top) ?
-      this.element.getBoundingClientRect().top : this.element.getBoundingClientRect().bottom;
-    this.setBasicDropdownDimensions(maxDropdownHeight, topOffset);
+    const dropdownTopPosition = this.element.getBoundingClientRect().bottom;
 
-    const dropdownListIsAtSameLevelAsSelectField = Math.round(this.element.getBoundingClientRect().top) === Math.round(this.dropdown.getBoundingClientRect().top);
-
-    const dropdownListIsBelowSelectField = Math.round(this.dropdown.getBoundingClientRect().top) > Math.round(this.element.getBoundingClientRect().bottom);
-
-    if (dropdownListIsAtSameLevelAsSelectField) {
-      this.dropdown.style.top = this.element.getBoundingClientRect().bottom + 'px';
-    } else {
-      if (dropdownListIsBelowSelectField) {
-        const offsetFromInputBottom = this.dropdown.getBoundingClientRect().top - this.element.getBoundingClientRect().bottom;
-        this.dropdown.style.top = (this.element.getBoundingClientRect().top - offsetFromInputBottom) + 'px'; // Trial and error
-      }
-    }
+    // Sätter top positionen så att dropdownen kan växa och minska med height nedåt
+    this.dropdown.style.top = `${dropdownTopPosition}px`;
+    this.dropdown.style.maxHeight = `${maxDropdownHeight}px`;
+    this.dropdown.style.bottom = `inherit`;
 
     this.dropdownMovedUp.emit(false);
   }
 
-  private setBasicDropdownDimensions(maxDropdownHeight: number, topOffset: number) {
-    this.dropdown.style.maxHeight = `${maxDropdownHeight}px`;
-
-    this.dropdown.style.position = 'fixed';
-    this.dropdown.style.top = `${topOffset}px`;
-    this.dropdown.style.width = `${this.element.getBoundingClientRect().width}px`;
-    this.dropdown.style.left = `${this.element.getBoundingClientRect().left }px`;
-  }
-
   private getMaxDropdownHeight(availableSpace: number) {
-    return Math.min(availableSpace, this.dropdown.getBoundingClientRect().height);
+    return Math.min(availableSpace, this.preferredHeight);
   }
 
   private getParent(element: HTMLElement) {
