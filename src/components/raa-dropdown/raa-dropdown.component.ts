@@ -33,6 +33,12 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input()
   moveUpHeightThreshold = 120;
 
+  @Input()
+  appendToBody: boolean = false;
+
+  @Input()
+  dropdownBodyZIndex: string = '1000';
+
   @Output()
   private dropdownMovedUp = new EventEmitter<boolean>(true);
 
@@ -60,22 +66,29 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit, OnDestroy {
     this.parent.addEventListener('scroll', this.throttledParentScroll);
   }
 
-  ngOnDestroy() {
-    this.parent.removeEventListener('scroll', this.throttledParentScroll);
-  }
-
   ngAfterViewInit() {
     this.preferredHeight = this.getDropdownPreferredMaxHeight();
-
     this.setDropdownPositionFixed();
     this.handleDropdownPositionAndSize();
+
+    if (this.appendToBody) {
+      this.appendDropdownToBody();
+    }
+  }
+
+  ngOnDestroy() {
+    this.parent.removeEventListener('scroll', this.throttledParentScroll);
+
+    if (this.appendToBody) {
+      document.body.removeChild(this.dropdown);
+    }
   }
 
   onParentScroll() {
     this.handleDropdownPositionAndSize();
     if (this.element && this.parent) {
       const elementIsVisibleWithinScrollView = !(
-        (Math.round(this.element.getBoundingClientRect().top) > Math.round(this.parent.getBoundingClientRect().bottom))
+        (Math.round(this.element.getBoundingClientRect().bottom) > Math.round(this.parent.getBoundingClientRect().bottom))
         || (Math.round(this.element.getBoundingClientRect().bottom) < Math.round(this.parent.getBoundingClientRect().top))
       );
 
@@ -103,8 +116,8 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private handleDropdownPositionAndSize() {
-    const spaceAbove = this.element.getBoundingClientRect().top - this.parent.getBoundingClientRect().top;
-    const spaceBelow = this.getViewBottomPosition() - this.element.getBoundingClientRect().bottom;
+    const spaceAbove = this.element.getBoundingClientRect().top - document.body.getBoundingClientRect().top;
+    const spaceBelow = document.body.getBoundingClientRect().bottom - this.element.getBoundingClientRect().bottom;
     const dropdownHeight = this.dropdown.getBoundingClientRect().height;
 
     if (spaceBelow < dropdownHeight + EXTRA_SPACING
@@ -117,21 +130,12 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  private getViewBottomPosition() {
-    return this.parent.getBoundingClientRect().top + this.parent.clientHeight;
-  }
-
   private setDropdownAbove(spaceAbove: number) {
     const maxDropdownHeight = this.getMaxDropdownHeight(spaceAbove - EXTRA_SPACING);
-
-    const pixelsFromDocumentBodyBottomToParentBottom = document.body.clientHeight - this.getViewBottomPosition();
-    const pixelsFromParentBottomToElementTopPosition = this.getViewBottomPosition() - this.element.getBoundingClientRect().top;
-
-    // + 1 så att focue outlines forfarande syns
-    const dropdownBottomPosition = pixelsFromDocumentBodyBottomToParentBottom + pixelsFromParentBottomToElementTopPosition + 1;
+    const dropdownBottomPosFromBodyBottom = document.body.getBoundingClientRect().height - this.element.getBoundingClientRect().top;
 
     // Sätter bottom position så att dropdownen kan växa och minska med height uppåt
-    this.dropdown.style.bottom = `${dropdownBottomPosition}px`;
+    this.dropdown.style.bottom = `${dropdownBottomPosFromBodyBottom}px`;
     this.dropdown.style.maxHeight = `${maxDropdownHeight}px`;
     this.dropdown.style.top = `inherit`;
 
@@ -148,6 +152,11 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit, OnDestroy {
     this.dropdown.style.bottom = `inherit`;
 
     this.dropdownMovedUp.emit(false);
+  }
+
+  private appendDropdownToBody() {
+    document.body.appendChild(this.dropdown);
+    this.dropdown.style.zIndex = this.dropdownBodyZIndex;
   }
 
   private getMaxDropdownHeight(availableSpace: number) {
