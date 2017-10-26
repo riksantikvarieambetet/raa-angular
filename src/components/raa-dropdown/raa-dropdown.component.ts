@@ -69,7 +69,7 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit() {
     this.preferredHeight = this.getDropdownPreferredMaxHeight();
     this.setDropdownPositionFixed();
-    this.handleDropdownPositionAndSize();
+    this.handleDropdownPositionAndSize(this.element.getBoundingClientRect());
 
     if (this.appendToBody) {
       this.appendDropdownToBody();
@@ -85,11 +85,14 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   onParentScroll() {
-    this.handleDropdownPositionAndSize();
+    const elementBoundingClientRect = this.element.getBoundingClientRect();
+    const parentBoundingClientRect = this.parent.getBoundingClientRect();
+
+    this.handleDropdownPositionAndSize(elementBoundingClientRect);
     if (this.element && this.parent) {
       const elementIsVisibleWithinScrollView = !(
-        (Math.round(this.element.getBoundingClientRect().bottom) > Math.round(this.parent.getBoundingClientRect().bottom))
-        || (Math.round(this.element.getBoundingClientRect().bottom) < Math.round(this.parent.getBoundingClientRect().top))
+        (Math.round(elementBoundingClientRect.bottom) > Math.round(parentBoundingClientRect.bottom))
+        || (Math.round(elementBoundingClientRect.bottom) < Math.round(parentBoundingClientRect.top))
       );
 
       if (!elementIsVisibleWithinScrollView && this.dropdown.style.visibility !== 'hidden') {
@@ -113,26 +116,37 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit, OnDestroy {
     this.dropdown.style.width = `${this.dropdown.getBoundingClientRect().width}px`;
     this.dropdown.style.left = `${this.element.getBoundingClientRect().left}px`;
     this.dropdown.style.position = 'fixed';
+
+    // Sätter transalteZ(0) för att tvinga IE att rita om elementet, blir annars halvtransparant
+    // när den visas utanför sin container
+    if (!this.appendToBody) {
+      this.dropdown.style.transform = 'translateZ(0)';
+    }
   }
 
-  private handleDropdownPositionAndSize() {
-    const spaceAbove = this.element.getBoundingClientRect().top - document.body.getBoundingClientRect().top;
-    const spaceBelow = document.body.getBoundingClientRect().bottom - this.element.getBoundingClientRect().bottom;
-    const dropdownHeight = this.dropdown.getBoundingClientRect().height;
+  private handleDropdownPositionAndSize(elementBoundingClientRect: ClientRect) {
+    const dropdownBoundingClientRect = this.dropdown.getBoundingClientRect();
+    const documentBoundingClientRect = document.body.getBoundingClientRect();
+
+    const spaceAbove = elementBoundingClientRect.top - documentBoundingClientRect.top;
+    const spaceBelow = documentBoundingClientRect.bottom - elementBoundingClientRect.bottom;
+    const dropdownHeight = dropdownBoundingClientRect.height;
 
     if (spaceBelow < dropdownHeight + EXTRA_SPACING
       && spaceBelow < this.moveUpHeightThreshold
       && spaceAbove > spaceBelow) {
-      this.setDropdownAbove(spaceAbove);
+      this.setDropdownAbove(spaceAbove, documentBoundingClientRect, elementBoundingClientRect);
     }
     else {
-      this.setDropdownBelow(spaceBelow);
+      this.setDropdownBelow(spaceBelow, elementBoundingClientRect);
     }
   }
 
-  private setDropdownAbove(spaceAbove: number) {
+  private setDropdownAbove(spaceAbove: number,
+    documentBoundingClientRect: ClientRect,
+    elementBoundingClientRect: ClientRect) {
     const maxDropdownHeight = this.getMaxDropdownHeight(spaceAbove - EXTRA_SPACING);
-    const dropdownBottomPosFromBodyBottom = document.body.getBoundingClientRect().height - this.element.getBoundingClientRect().top;
+    const dropdownBottomPosFromBodyBottom = documentBoundingClientRect.height - elementBoundingClientRect.top;
 
     // Sätter bottom position så att dropdownen kan växa och minska med height uppåt
     this.dropdown.style.bottom = `${dropdownBottomPosFromBodyBottom}px`;
@@ -142,9 +156,9 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit, OnDestroy {
     this.dropdownMovedUp.emit(true);
   }
 
-  private setDropdownBelow(spaceBelow: number) {
+  private setDropdownBelow(spaceBelow: number, elementBoundingClientRect: ClientRect) {
     const maxDropdownHeight = this.getMaxDropdownHeight(spaceBelow - EXTRA_SPACING);
-    const dropdownTopPosition = this.element.getBoundingClientRect().bottom;
+    const dropdownTopPosition = elementBoundingClientRect.bottom;
 
     // Sätter top positionen så att dropdownen kan växa och minska med height nedåt
     this.dropdown.style.top = `${dropdownTopPosition}px`;
