@@ -87,13 +87,9 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit, OnDestroy {
     const elementBoundingClientRect = this.element.getBoundingClientRect();
     const parentBoundingClientRect = this.parent.getBoundingClientRect();
 
-    this.handleDropdownPositionAndSize(elementBoundingClientRect);
+    const dropdownPosition = this.handleDropdownPositionAndSize(elementBoundingClientRect);
     if (this.element && this.parent) {
-      const elementIsVisibleWithinScrollView = !(
-        (Math.round(elementBoundingClientRect.bottom) > Math.round(parentBoundingClientRect.bottom))
-        || (Math.round(elementBoundingClientRect.bottom) < Math.round(parentBoundingClientRect.top))
-      );
-
+      const elementIsVisibleWithinScrollView = this.isElementVisibleWithinScrollView(dropdownPosition, elementBoundingClientRect, parentBoundingClientRect);
       if (!elementIsVisibleWithinScrollView && this.dropdown.style.visibility !== 'hidden') {
         this.dropdown.style.visibility = 'hidden';
       } else if (elementIsVisibleWithinScrollView && this.dropdown.style.visibility === 'hidden') {
@@ -123,7 +119,7 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  private handleDropdownPositionAndSize(elementBoundingClientRect: ClientRect) {
+  private handleDropdownPositionAndSize(elementBoundingClientRect: ClientRect): DropdownPositon {
     const dropdownBoundingClientRect = this.dropdown.getBoundingClientRect();
     const documentBoundingClientRect = document.body.getBoundingClientRect();
 
@@ -135,10 +131,11 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit, OnDestroy {
       && spaceBelow < this.moveUpHeightThreshold
       && spaceAbove > spaceBelow) {
       this.setDropdownAbove(spaceAbove, documentBoundingClientRect, elementBoundingClientRect);
+      return 'ABOVE';
     }
-    else {
-      this.setDropdownBelow(spaceBelow, elementBoundingClientRect);
-    }
+
+    this.setDropdownBelow(spaceBelow, elementBoundingClientRect);
+    return 'BELOW';
   }
 
   private setDropdownAbove(spaceAbove: number,
@@ -166,6 +163,17 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.dropdownMovedUp.emit(false);
   }
+
+  private isElementVisibleWithinScrollView(dropdownPosition: DropdownPositon, elementBoundingClientRect: ClientRect, parentBoundingClientRect: ClientRect) {
+    if (dropdownPosition === 'BELOW') {
+      return elementBoundingClientRect.bottom < parentBoundingClientRect.bottom
+        && elementBoundingClientRect.bottom > parentBoundingClientRect.top;
+    }
+
+    return elementBoundingClientRect.top < parentBoundingClientRect.bottom
+      && elementBoundingClientRect.top > parentBoundingClientRect.top;
+  }
+
 
   private appendDropdownToBody() {
     document.body.appendChild(this.dropdown);
@@ -198,3 +206,5 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit, OnDestroy {
     return elements;
   }
 }
+
+type DropdownPositon = 'ABOVE' | 'BELOW';
