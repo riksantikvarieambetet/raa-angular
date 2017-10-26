@@ -1,6 +1,7 @@
 import {
   Directive,
   ElementRef,
+  Input,
   Output,
   EventEmitter,
   HostListener
@@ -20,16 +21,29 @@ export class OutsideClickDirective {
   @Output('raaOutsideClick')
   onOutsideClick = new EventEmitter<void>();
 
+  @Input()
+  includedElement: HTMLElement | undefined;
+
   constructor(
     private elementRef: ElementRef
   ) { }
 
   private handleClick(event: MouseEvent) {
-      const containerElement = this.elementRef.nativeElement as HTMLElement;
-      const targetExistsInContainer = containerElement.contains(event.target as Node);
+    const containerElement = this.elementRef.nativeElement as HTMLElement;
+    const targetExistsInContainer = containerElement.contains(event.target as Node);
 
-      if (!targetExistsInContainer) {
+    if (!targetExistsInContainer) {
+      if (!this.clickOnIncludedElement(event.target as Node)) {
         this.onOutsideClick.emit();
       }
+    }
+  }
+
+  private clickOnIncludedElement(target: Node) {
+    if (this.includedElement) {
+      return this.includedElement.contains(target);
+    }
+
+    return false;
   }
 }

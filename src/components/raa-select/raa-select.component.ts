@@ -76,6 +76,7 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
   @ViewChildren('dropdownItem')
   dropdownItems: QueryList<ElementRef>;
 
+
   value: any;
   filterInput = '';
   showDropdown = false;
@@ -89,7 +90,8 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
 
   scrollToSelected = false;
 
-  constructor() { }
+  constructor() {
+  }
 
   // Handling of ngModel
   writeValue(value: any) {
@@ -100,12 +102,15 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
     this.value = value;
   }
 
-  propagateChange = (_: any) => { };
+  propagateChange = (_: any) => {
+  }
+
   registerOnChange(fn: any) {
     this.propagateChange = fn;
   }
 
-  registerOnTouched() { }
+  registerOnTouched() {
+  }
 
   ngOnInit() {
     if (!this.domain) {
@@ -119,6 +124,7 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
     if (!this.displayAttr) {
       throw 'ERROR: raa-select.component -> displayAttr must be specified';
     }
+
 
     this.showDropdown = false;
     this.filterInput = '';

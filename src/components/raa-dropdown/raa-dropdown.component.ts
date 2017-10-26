@@ -6,10 +6,15 @@ import {
   ViewChild,
   ElementRef,
   AfterViewInit,
-  EventEmitter
+  EventEmitter,
+  HostListener,
+  OnDestroy,
 } from '@angular/core';
 
+import { throttle } from 'lodash';
+
 const EXTRA_SPACING = 10;
+const DEFAULT_MAX_HEIGHT = 500;
 
 /**
  * Komponent för att justera höjden på en dropdown så att den får plats inom en scrollpane, om den inte får plats försöker vi
@@ -20,7 +25,7 @@ const EXTRA_SPACING = 10;
   templateUrl: './raa-dropdown.component.html',
   styleUrls: ['./raa-dropdown.component.scss']
 })
-export class RaaDropdownComponent implements OnInit, AfterViewInit {
+export class RaaDropdownComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @Input()
   private element: HTMLElement;
@@ -28,68 +33,159 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit {
   @Input()
   moveUpHeightThreshold = 120;
 
+  @Input()
+  appendToBody: boolean = false;
+
+  @Input()
+  dropdownBodyZIndex: string = '1000';
+
   @Output()
   private dropdownMovedUp = new EventEmitter<boolean>(true);
 
   @ViewChild('dropdown')
   private dropdownElementRef: ElementRef;
 
-  private dropdown: HTMLElement;
-  private parent: HTMLElement;
+  @HostListener('window:resize', ['$event'])
+  onWindowResize() {
+    this.throttledParentScroll();
+  }
 
-  constructor() { }
+  private dropdown: HTMLElement;
+  private preferredHeight: number;
+  private parent: HTMLElement;
+  private throttledParentScroll = throttle(() => {
+    this.onParentScroll();
+  }, 16);
+
+  constructor() {
+  }
 
   ngOnInit() {
     this.dropdown = (this.dropdownElementRef.nativeElement as HTMLElement).firstElementChild as HTMLElement;
     this.parent = this.getParent(this.element);
+    this.parent.addEventListener('scroll', this.throttledParentScroll);
   }
 
   ngAfterViewInit() {
-    this.handleDropdownPositionAndSize();
+    this.preferredHeight = this.getDropdownPreferredMaxHeight();
+    const elementBoundingClientRect = this.element.getBoundingClientRect();
+    const parentBoundingClientRect = this.parent.getBoundingClientRect();
+
+    this.tryToScrollElementIntoView(elementBoundingClientRect, parentBoundingClientRect);
+    this.setDropdownPositionFixed();
+    if (this.appendToBody) {
+      this.appendDropdownToBody();
+    }
+    this.handleDropdownPositionAndSize(elementBoundingClientRect);
   }
 
-  private handleDropdownPositionAndSize() {
-    const spaceAbove = this.element.getBoundingClientRect().top - this.parent.getBoundingClientRect().top;
-    const spaceBelow = this.getViewBottomPosition() - this.element.getBoundingClientRect().bottom;
-    const dropdownHeight = this.dropdown.getBoundingClientRect().height;
+  ngOnDestroy() {
+    this.parent.removeEventListener('scroll', this.throttledParentScroll);
+
+    if (this.appendToBody) {
+      document.body.removeChild(this.dropdown);
+    }
+  }
+
+  onParentScroll() {
+    const elementBoundingClientRect = this.element.getBoundingClientRect();
+    const parentBoundingClientRect = this.parent.getBoundingClientRect();
+
+    const dropdownPosition = this.handleDropdownPositionAndSize(elementBoundingClientRect);
+    if (this.element && this.parent) {
+      const elementIsVisibleWithinScrollView = this.isElementVisibleWithinScrollView(dropdownPosition, elementBoundingClientRect, parentBoundingClientRect);
+      if (!elementIsVisibleWithinScrollView && this.dropdown.style.visibility !== 'hidden') {
+        this.dropdown.style.visibility = 'hidden';
+      } else if (elementIsVisibleWithinScrollView && this.dropdown.style.visibility === 'hidden') {
+        this.dropdown.style.visibility = 'visible';
+      }
+    }
+  }
+
+  private getDropdownPreferredMaxHeight() {
+    const maxHeight = document.defaultView.getComputedStyle(this.dropdown).getPropertyValue('max-height');
+    if (maxHeight.length !== 0) {
+      return parseInt(maxHeight.replace(/\D/g, ''));
+    }
+
+    return DEFAULT_MAX_HEIGHT;
+  }
+
+  private setDropdownPositionFixed() {
+    this.dropdown.style.width = `${this.dropdown.getBoundingClientRect().width}px`;
+    this.dropdown.style.left = `${this.element.getBoundingClientRect().left}px`;
+    this.dropdown.style.position = 'fixed';
+
+    // Sätter transalteZ(0) för att tvinga IE att rita om elementet, blir annars halvtransparant
+    // när den visas utanför sin container
+    if (!this.appendToBody) {
+      this.dropdown.style.transform = 'translateZ(0)';
+    }
+  }
+
+  private handleDropdownPositionAndSize(elementBoundingClientRect: ClientRect): DropdownPositon {
+    const dropdownBoundingClientRect = this.dropdown.getBoundingClientRect();
+    const documentBoundingClientRect = document.body.getBoundingClientRect();
+
+    const spaceAbove = elementBoundingClientRect.top - documentBoundingClientRect.top;
+    const spaceBelow = documentBoundingClientRect.bottom - elementBoundingClientRect.bottom;
+    const dropdownHeight = dropdownBoundingClientRect.height;
 
     if (spaceBelow < dropdownHeight + EXTRA_SPACING
       && spaceBelow < this.moveUpHeightThreshold
       && spaceAbove > spaceBelow) {
-      this.setDropdownAbove(spaceAbove);
+      this.setDropdownAbove(spaceAbove, documentBoundingClientRect, elementBoundingClientRect);
+      return 'ABOVE';
     }
-    else {
-      this.setDropdownBelow(spaceBelow);
-    }
+
+    this.setDropdownBelow(spaceBelow, elementBoundingClientRect);
+    return 'BELOW';
   }
 
-  private getViewBottomPosition() {
-    return this.parent.getBoundingClientRect().top + this.parent.clientHeight;
-  }
-
-  private setDropdownAbove(spaceAbove: number) {
-    // IE11 har en bugg som gör att den overflow fortfarande blir kvar fast vi flyttar hela elementet med translate
-    // genom att sätta om top till auto och bottom till 0 så så får vi ingen overflow
-    this.dropdown.style.top = 'auto';
-    this.dropdown.style.bottom = '0';
-    const pixelsToMoveDropdownUp = this.element.getBoundingClientRect().height;
-    this.dropdown.style.transform += `translateY(-${pixelsToMoveDropdownUp}px)`;
-
-    // Justerar max-höjden beroende på hur mycket plats som finns tillgängligt. Lämnar 10px för att det ser trevligare ut då
+  private setDropdownAbove(spaceAbove: number,
+    documentBoundingClientRect: ClientRect,
+    elementBoundingClientRect: ClientRect) {
     const maxDropdownHeight = this.getMaxDropdownHeight(spaceAbove - EXTRA_SPACING);
+    const dropdownBottomPosFromBodyBottom = documentBoundingClientRect.height - elementBoundingClientRect.top;
+
+    // Sätter bottom position så att dropdownen kan växa och minska med height uppåt
+    this.dropdown.style.bottom = `${dropdownBottomPosFromBodyBottom}px`;
     this.dropdown.style.maxHeight = `${maxDropdownHeight}px`;
+    this.dropdown.style.top = `inherit`;
+
     this.dropdownMovedUp.emit(true);
   }
 
-  private setDropdownBelow(spaceBelow: number) {
-    // Justerar max höjden beroden på hur mycket plats som finns kvar under. Lämnar 10px för att ser trevligare ut då
+  private setDropdownBelow(spaceBelow: number, elementBoundingClientRect: ClientRect) {
     const maxDropdownHeight = this.getMaxDropdownHeight(spaceBelow - EXTRA_SPACING);
+    const dropdownTopPosition = elementBoundingClientRect.bottom;
+
+    // Sätter top positionen så att dropdownen kan växa och minska med height nedåt
+    this.dropdown.style.top = `${dropdownTopPosition}px`;
     this.dropdown.style.maxHeight = `${maxDropdownHeight}px`;
+    this.dropdown.style.bottom = `inherit`;
+
     this.dropdownMovedUp.emit(false);
   }
 
+  private isElementVisibleWithinScrollView(dropdownPosition: DropdownPositon, elementBoundingClientRect: ClientRect, parentBoundingClientRect: ClientRect) {
+    if (dropdownPosition === 'BELOW') {
+      return elementBoundingClientRect.bottom < parentBoundingClientRect.bottom
+        && elementBoundingClientRect.bottom > parentBoundingClientRect.top;
+    }
+
+    return elementBoundingClientRect.top < parentBoundingClientRect.bottom
+      && elementBoundingClientRect.top > parentBoundingClientRect.top;
+  }
+
+
+  private appendDropdownToBody() {
+    document.body.appendChild(this.dropdown);
+    this.dropdown.style.zIndex = this.dropdownBodyZIndex;
+  }
+
   private getMaxDropdownHeight(availableSpace: number) {
-    return Math.min(availableSpace, this.dropdown.getBoundingClientRect().height);
+    return Math.min(availableSpace, this.preferredHeight);
   }
 
   private getParent(element: HTMLElement) {
@@ -113,4 +209,21 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit {
 
     return elements;
   }
+
+  private tryToScrollElementIntoView(elementBoundingClientRect: ClientRect, parentBoundingClientRect: ClientRect) {
+    if (!this.element || !this.parent || typeof this.parent.scrollTop === 'undefined') {
+      return ;
+    }
+
+    if (elementBoundingClientRect.bottom > parentBoundingClientRect.bottom) {
+      const scrollLength = this.parent.scrollTop + elementBoundingClientRect.bottom - parentBoundingClientRect.bottom + 1;
+      this.parent.scrollTop = scrollLength;
+    }
+    else if (elementBoundingClientRect.top < parentBoundingClientRect.top) {
+      const scrollLength = this.parent.scrollTop - (parentBoundingClientRect.top - elementBoundingClientRect.top + 1);
+      this.parent.scrollTop = scrollLength;
+    }
+  }
 }
+
+type DropdownPositon = 'ABOVE' | 'BELOW';
