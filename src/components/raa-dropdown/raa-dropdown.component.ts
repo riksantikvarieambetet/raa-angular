@@ -69,11 +69,10 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit() {
     this.preferredHeight = this.getDropdownPreferredMaxHeight();
     this.setDropdownPositionFixed();
-    this.handleDropdownPositionAndSize(this.element.getBoundingClientRect());
-
     if (this.appendToBody) {
       this.appendDropdownToBody();
     }
+    this.handleDropdownPositionAndSize(this.element.getBoundingClientRect());
   }
 
   ngOnDestroy() {
