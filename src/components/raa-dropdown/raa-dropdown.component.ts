@@ -68,11 +68,15 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngAfterViewInit() {
     this.preferredHeight = this.getDropdownPreferredMaxHeight();
+    const elementBoundingClientRect = this.element.getBoundingClientRect();
+    const parentBoundingClientRect = this.parent.getBoundingClientRect();
+
+    this.tryToScrollElementIntoView(elementBoundingClientRect, parentBoundingClientRect);
     this.setDropdownPositionFixed();
     if (this.appendToBody) {
       this.appendDropdownToBody();
     }
-    this.handleDropdownPositionAndSize(this.element.getBoundingClientRect());
+    this.handleDropdownPositionAndSize(elementBoundingClientRect);
   }
 
   ngOnDestroy() {
@@ -204,6 +208,21 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     return elements;
+  }
+
+  private tryToScrollElementIntoView(elementBoundingClientRect: ClientRect, parentBoundingClientRect: ClientRect) {
+    if (!this.element || !this.parent || typeof this.parent.scrollTop === 'undefined') {
+      return ;
+    }
+
+    if (elementBoundingClientRect.bottom > parentBoundingClientRect.bottom) {
+      const scrollLength = this.parent.scrollTop + elementBoundingClientRect.bottom - parentBoundingClientRect.bottom + 1;
+      this.parent.scrollTop = scrollLength;
+    }
+    else if (elementBoundingClientRect.top < parentBoundingClientRect.top) {
+      const scrollLength = this.parent.scrollTop - (parentBoundingClientRect.top - elementBoundingClientRect.top + 1);
+      this.parent.scrollTop = scrollLength;
+    }
   }
 }
 
