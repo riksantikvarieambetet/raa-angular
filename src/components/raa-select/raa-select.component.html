@@ -9,7 +9,7 @@
           [disabled]="disabled"
           [ngModelOptions]="{standalone: true}"
           [(ngModel)]="filterInput"
-          (ngModelChange)="onFilterdInputChange($event)"
+          (ngModelChange)="onFilterdInputChange()"
           (focus)="focusGained()"
           (click)="openDropdownIfClosed()"
           (keydown)="handleKeyPressed($event)">
