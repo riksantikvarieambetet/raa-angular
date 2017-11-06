@@ -24,8 +24,4 @@
   "files": [
     "index.ts"
   ]
-  //,
-  // "angularCompilerOptions": {
-  //   "skipTemplateCodegen": true
-  // }
 }
