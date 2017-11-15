@@ -7,21 +7,21 @@
       "dom",
       "es2015"
     ],
-    "noImplicitAny": true,
+    "typeRoots": [
+      "node_modules/@types"
+    ],
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "strictNullChecks": true,
+    "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "sourceMap": true,
     "declaration": true,
     "baseUrl": "./src",
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "skipLibCheck": true
   },
   "files": [
     "index.ts"
-  ],
-  "angularCompilerOptions": {
-    "skipTemplateCodegen": true
-  }
+  ]
 }

@@ -16,23 +16,23 @@
   "license": "UNLICENSED",
   "dependencies": {},
   "devDependencies": {
-    "@angular/common": "^4.3.5",
-    "@angular/core": "^4.3.5",
-    "@angular/forms": "^4.3.5",
-    "@angular/platform-browser": "^4.3.5",
-    "@types/lodash": "^4.14.77",
-     "rxjs": "^5.4.2",
-    "tslint": "^4.0.2",
-    "typescript": "2.3.4",
-    "zone.js": "^0.8.12",
-    "lodash": "^4.17.4"
+    "@angular/common": "^5.0.0",
+    "@angular/core": "^5.0.0",
+    "@angular/forms": "^5.0.0",
+    "@angular/platform-browser": "^5.0.0",
+    "@types/lodash": "^4.14.80",
+    "lodash": "^4.17.4",
+    "rxjs": "^5.5.2",
+    "tslint": "^5.8.0",
+    "typescript": "2.6.1",
+    "zone.js": "^0.8.18"
   },
   "peerDependencies": {
-    "@angular/common": "4.x",
-    "@angular/core": "4.x",
-    "@angular/forms": "4.x",
-    "rxjs": "5.4.x",
-    "zone.js": "0.8.x",
-    "lodash": "^4.17.4"
+    "@angular/common": "5.x",
+    "@angular/core": "5.x",
+    "@angular/forms": "5.x",
+    "lodash": "4.x",
+    "rxjs": "5.x",
+    "zone.js": "0.8.x"
   }
 }

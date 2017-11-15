@@ -29,11 +29,12 @@ const enum KeyCode {
   ArrowDown = 40
 }
 
-const ignoreOpenOnKeyCodes = {
-  [KeyCode.Alt]: true,
-  [KeyCode.Ctrl]: true,
-  [KeyCode.Shift]: true
-};
+const ignoreOpenOnKeyCodes: { [key: number]: boolean; }
+  = {
+    [KeyCode.Alt]: true,
+    [KeyCode.Ctrl]: true,
+    [KeyCode.Shift]: true
+  };
 
 @Component({
   selector: 'raa-select',
