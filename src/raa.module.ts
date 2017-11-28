@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 
 // Components
 import { RaaSelect } from './components/raa-select/raa-select.component';
+import { RaaDropdownComponent } from './components/raa-dropdown/raa-dropdown.component';
 import { RaaModalPageComponent } from './components/raa-modal-page/raa-modal-page.component';
 import { RaaDialogueComponent } from './components/raa-dialogue/raa-dialogue.component';
 import { RaaLabel } from './components/raa-label/raa-label.component';
@@ -27,10 +27,10 @@ import { OrgnummerPipe } from './pipes/orgnummer.pipe';
   imports: [
     CommonModule,
     FormsModule,
-    HttpModule
   ],
   declarations: [
     RaaSelect,
+    RaaDropdownComponent,
     OutsideClickDirective,
     RaaRequestFocusDirective,
     RaaSelectAllOnFocus,
@@ -47,6 +47,7 @@ import { OrgnummerPipe } from './pipes/orgnummer.pipe';
   ],
   exports: [
     RaaSelect,
+    RaaDropdownComponent,
     RaaLabel,
     RaaTextWithSpinner,
     RaaSpinnerComponent,
@@ -68,5 +69,4 @@ import { OrgnummerPipe } from './pipes/orgnummer.pipe';
   ]
 })
 export class RaaModule {
-  constructor() { }
 }

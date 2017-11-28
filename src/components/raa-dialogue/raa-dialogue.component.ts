@@ -1,11 +1,19 @@
-import { Component, Input, ViewChild, ElementRef, AfterContentChecked, OnInit, OnDestroy } from '@angular/core';
+import {
+  Component,
+  Input,
+  ViewChild,
+  ElementRef,
+  AfterContentChecked,
+  OnInit,
+  OnDestroy
+} from '@angular/core';
 
 @Component({
-    selector: 'raa-dialogue',
-    templateUrl: './raa-dialogue.component.html',
-    styleUrls: ['./raa-dialogue.component.scss']
+  selector: 'raa-dialogue',
+  templateUrl: './raa-dialogue.component.html',
+  styleUrls: ['./raa-dialogue.component.scss']
 })
-export class RaaDialogueComponent implements OnInit, OnDestroy {
+export class RaaDialogueComponent implements OnInit, OnDestroy, AfterContentChecked {
 
   @Input()
   onYes: Function;
@@ -40,11 +48,11 @@ export class RaaDialogueComponent implements OnInit, OnDestroy {
   focusElement: ElementRef;
 
   ngOnInit() {
-      document.querySelector('body').style.overflow = 'hidden';
+    document.querySelector('body').style.overflow = 'hidden';
   }
 
   ngOnDestroy() {
-      document.querySelector('body').style.overflow = 'auto';
+    document.querySelector('body').style.overflow = 'auto';
   }
 
   ngAfterContentChecked() {

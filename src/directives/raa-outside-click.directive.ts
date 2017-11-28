@@ -1,49 +1,49 @@
-import { Directive, ElementRef, Input, Output, EventEmitter, Renderer, OnInit } from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  Input,
+  Output,
+  EventEmitter,
+  HostListener
+} from '@angular/core';
 
 @Directive({
-  selector: '[outsideClick]'
+  selector: '[raaOutsideClick]'
 })
-export class OutsideClickDirective implements OnInit {
+export class OutsideClickDirective {
+  // Vi måste lyssna på mouseup eller mousedown istället för click. Vid klick så kan element ha tagit borts från DOM:en och då ge ett
+  // felaktigt "utanförklick".
+  @HostListener('document:mouseup', ['$event'])
+  onClick(event: MouseEvent) {
+    this.handleClick(event);
+  }
 
-  @Input('outsideClick') clickOutsideCb: () => void;
+  @Output('raaOutsideClick')
+  onOutsideClick = new EventEmitter<void>();
 
-  cancelListener: Function;
+  @Input()
+  includedElement: HTMLElement | undefined;
 
   constructor(
-    private el: ElementRef,
-    private renderer: Renderer
-  ) {
+    private elementRef: ElementRef
+  ) { }
 
-    // if (!this.clickOutsideCb) {
-    //     throw 'ERROR: raa-select.component -> outsideClick must be specified (function)';
-    // }
+  private handleClick(event: MouseEvent) {
+    const containerElement = this.elementRef.nativeElement as HTMLElement;
+    const targetExistsInContainer = containerElement.contains(event.target as Node);
 
-    let firstTime = true;
-    let that = this;
-
-    this.cancelListener = this.renderer.listenGlobal('document', 'click', handleClick);
-
-    function handleClick(event: MouseEvent) {
-
-      if (!firstTime) {
-        const active = that.el.nativeElement.contains(event.target);
-        if (!active) {
-          that.clickOutsideCb();
-        }
-      }
-      else {
-        firstTime = false;
+    if (!targetExistsInContainer) {
+      if (!this.clickOnIncludedElement(event.target as Node)) {
+        this.onOutsideClick.emit();
       }
     }
   }
 
-  ngOnInit() {
-    if (!this.clickOutsideCb) {
-      throw 'ERROR: raa-select.component -> outsideClick must be specified (function)';
+  private clickOnIncludedElement(target: Node) {
+    if (this.includedElement) {
+      return this.includedElement.contains(target);
     }
-  }
 
-  ngOnDestroy() {
-    this.cancelListener();
+    return false;
   }
 }
