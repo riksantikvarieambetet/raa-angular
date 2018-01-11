@@ -48,19 +48,11 @@ export class RaaDialogueComponent implements OnInit, OnDestroy, AfterContentChec
   focusElement: ElementRef;
 
   ngOnInit() {
-    const body = document.querySelector('body');
-    if (body) {
-      body.style.overflow = 'hidden';
-    } else {
-      throw new Error('Kan inte hämta ut <body> från dokumentet');
-    }
+    document.body.style.overflow = 'hidden';
   }
 
   ngOnDestroy() {
-    const body = document.querySelector('body');
-    if (body) {
-      body.style.overflow = 'auto';
-    }
+    document.body.style.overflow = 'auto';
   }
 
   ngAfterContentChecked() {
