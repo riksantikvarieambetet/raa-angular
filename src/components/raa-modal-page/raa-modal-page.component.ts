@@ -17,11 +17,19 @@ export class RaaModalPageComponent implements OnInit, OnDestroy {
   size: 'small' | 'large';
 
     ngOnInit() {
-        document.querySelector('body').style.overflow = 'hidden';
+      const body = document.querySelector('body');
+      if (body) {
+        body.style.overflow = 'hidden';
+      } else {
+        throw new Error('Kan inte hämta ut <body> från dokumentet');
+      }
     }
 
     ngOnDestroy() {
-        document.querySelector('body').style.overflow = 'auto';
+      const body = document.querySelector('body');
+      if (body) {
+        body.style.overflow = 'auto';
+      }
     }
 
 }
