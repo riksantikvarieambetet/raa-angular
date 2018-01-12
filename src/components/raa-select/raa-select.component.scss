@@ -120,6 +120,7 @@ $dropdown-item-selected-bg-color: $gray-4;
 
 .raa-select-dropdown-item {
   padding: $dropdown-item-padding;
+  cursor: default;
 
   &.selected {
     background-color: $dropdown-item-selected-bg-color;
