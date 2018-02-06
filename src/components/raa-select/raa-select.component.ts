@@ -53,7 +53,7 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
   @HostBinding() tabindex = 0;
 
   @HostListener('focus', ['$event.target'])
-  onFocus() {
+  onFocus(_event?: FocusEvent) {
     if (!this.showDropdown) {
       this.setFocusToInputField.emit();
       this.focusGained();
