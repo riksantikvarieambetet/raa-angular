@@ -96,10 +96,7 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
 
   // Handling of ngModel
   writeValue(value: any) {
-    if (value) {
-      this.filterInput = this.getDisplayValue(value);
-    }
-
+    this.filterInput = this.getDisplayValue(value);
     this.value = value;
   }
 
@@ -239,7 +236,7 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
   }
 
   getDisplayValue = (itemKey: any): string => {
-    if (typeof itemKey === 'undefined' || itemKey.length < 1 || this.domainValues.length === 0) {
+    if (typeof itemKey === 'undefined' || itemKey === null || itemKey.length < 1 || this.domainValues.length === 0) {
       return '';
     }
     let domainObject = this.domainValues.filter(domainItem => domainItem.id === itemKey);
