@@ -16,7 +16,10 @@ import {
   ElementRef
 } from '@angular/core';
 
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import {
+  ControlValueAccessor,
+  NG_VALUE_ACCESSOR
+} from '@angular/forms';
 
 const enum KeyCode {
   Tab = 9,
@@ -61,7 +64,6 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
   }
 
   @Input() domain: any[];
-  @Input() disabled: boolean;
   @Input() valueAttr: string;
   @Input() displayAttr: string;
   @Input() placeholder: string;
@@ -83,6 +85,7 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
   showDropdown = false;
   hoverIndex = 0;
   dropdownIsAbove = false;
+  disabled: boolean = false;
 
   domainValues: DomainValue[] = [];
   filteredDomainValues: DomainValue[] = [];
@@ -90,9 +93,6 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
   setFocusToInputField = new EventEmitter();
 
   scrollToSelected = false;
-
-  constructor() {
-  }
 
   // Handling of ngModel
   writeValue(value: any) {
@@ -110,6 +110,10 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
   registerOnTouched() {
   }
 
+  setDisabledState(isDisabled: boolean) {
+    this.disabled = isDisabled;
+  }
+
   ngOnInit() {
     if (!this.domain) {
       throw 'ERROR: raa-select.component -> domain must be specified';
@@ -122,7 +126,6 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
     if (!this.displayAttr) {
       throw 'ERROR: raa-select.component -> displayAttr must be specified';
     }
-
 
     this.showDropdown = false;
     this.filterInput = '';
