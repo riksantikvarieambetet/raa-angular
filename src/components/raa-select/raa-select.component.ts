@@ -16,7 +16,10 @@ import {
   ElementRef
 } from '@angular/core';
 
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import {
+  ControlValueAccessor,
+  NG_VALUE_ACCESSOR
+} from '@angular/forms';
 
 const enum KeyCode {
   Tab = 9,
@@ -61,7 +64,7 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
   }
 
   @Input() domain: any[];
-  @Input() disabled: boolean;
+  @Input() enabled: boolean = true;
   @Input() valueAttr: string;
   @Input() displayAttr: string;
   @Input() placeholder: string;
@@ -91,9 +94,6 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
 
   scrollToSelected = false;
 
-  constructor() {
-  }
-
   // Handling of ngModel
   writeValue(value: any) {
     this.filterInput = this.getDisplayValue(value);
@@ -122,7 +122,6 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
     if (!this.displayAttr) {
       throw 'ERROR: raa-select.component -> displayAttr must be specified';
     }
-
 
     this.showDropdown = false;
     this.filterInput = '';

@@ -1,12 +1,12 @@
 <div #raaSelect class="raa-select">
   <div class="raa-select-input-row"
-    [ngClass]="{'active': showDropdown}">
+    [ngClass]="{'disabled': !enabled}">
       <input class="raa-select-input"
           #inputField
           type="text"
           placeholder="{{placeholder}}"
           [requestFocus]="setFocusToInputField"
-          [disabled]="disabled"
+          [disabled]="!enabled"
           [ngModelOptions]="{standalone: true}"
           [(ngModel)]="filterInput"
           (ngModelChange)="onFilterdInputChange()"
@@ -16,7 +16,7 @@
       <button class="raa-select-button fa fa-chevron-down"
           type="button"
           tabIndex="-1"
-          [disabled]="disabled"
+          [disabled]="!enabled"
           (click)="toggleDropdown()"
           [ngClass]="{'active': showDropdown}"></button>
   </div>
