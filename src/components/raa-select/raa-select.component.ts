@@ -67,6 +67,7 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
   @Input() valueAttr: string;
   @Input() displayAttr: string;
   @Input() placeholder: string;
+  @Input() disabled: boolean = false;
 
   @Output() onSelect = new EventEmitter<any>();
 
@@ -85,7 +86,6 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
   showDropdown = false;
   hoverIndex = 0;
   dropdownIsAbove = false;
-  disabled: boolean = false;
 
   domainValues: DomainValue[] = [];
   filteredDomainValues: DomainValue[] = [];
