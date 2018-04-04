@@ -1,6 +1,6 @@
 {
   "name": "ng-raa-common",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Gemensamma Angular-komponenter/direktiv/pipes/scss för Riksantikvarieämbetet",
   "main": "index.ts",
   "typings": "./index.d.ts",
