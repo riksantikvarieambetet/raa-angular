@@ -11,7 +11,7 @@ import {
   OnDestroy,
 } from '@angular/core';
 
-import { throttle } from 'lodash';
+import throttle from 'lodash-es/throttle';
 
 const EXTRA_SPACING = 10;
 const DEFAULT_MAX_HEIGHT = 500;
