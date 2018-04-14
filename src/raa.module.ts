@@ -24,10 +24,7 @@ import { RaaTrapFocusDirective } from './directives/raa-trap-focus.directive';
 import { OrgnummerPipe } from './pipes/orgnummer.pipe';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-  ],
+  imports: [CommonModule, FormsModule],
   declarations: [
     RaaSelect,
     RaaDropdownComponent,
@@ -58,15 +55,10 @@ import { OrgnummerPipe } from './pipes/orgnummer.pipe';
     RaaRequestFocusDirective,
     RaaSelectAllOnFocus,
     RaaFocusInvalidElementDirective,
-    CommonModule,
-    FormsModule,
     OrgnummerPipe,
     RaaPingServiceComponent,
     RaaTrapFocusDirective
   ],
-  providers: [
-    OrgnummerPipe
-  ]
+  providers: [OrgnummerPipe]
 })
-export class RaaModule {
-}
+export class RaaModule {}
