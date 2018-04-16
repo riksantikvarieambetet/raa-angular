@@ -1,6 +1,8 @@
 # Node generated files
 node_modules
 npm-debug.log
+yarn-error.log
+
 # OS generated files
 Thumbs.db
 .DS_Store
@@ -10,3 +12,7 @@ Thumbs.db
 *.d.ts
 *.iml
 .idea/
+.vscode
+
+# Other
+dist

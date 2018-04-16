@@ -1,6 +1,4 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+export * from './raa.module';
 
 // Components
 import { RaaSelect } from './components/raa-select/raa-select.component';
@@ -22,43 +20,3 @@ import { RaaTrapFocusDirective } from './directives/raa-trap-focus.directive';
 
 // Pipes
 import { OrgnummerPipe } from './pipes/orgnummer.pipe';
-
-@NgModule({
-  imports: [CommonModule, FormsModule],
-  declarations: [
-    RaaSelect,
-    RaaDropdownComponent,
-    OutsideClickDirective,
-    RaaRequestFocusDirective,
-    RaaSelectAllOnFocus,
-    RaaFocusInvalidElementDirective,
-    RaaTrapFocusDirective,
-    RaaModalPageComponent,
-    RaaDialogueComponent,
-    RaaLabel,
-    RaaTextWithSpinner,
-    RaaSpinnerComponent,
-    RaaOverlaySpinnerComponent,
-    OrgnummerPipe,
-    RaaPingServiceComponent
-  ],
-  exports: [
-    RaaSelect,
-    RaaDropdownComponent,
-    RaaLabel,
-    RaaTextWithSpinner,
-    RaaSpinnerComponent,
-    RaaOverlaySpinnerComponent,
-    RaaModalPageComponent,
-    RaaDialogueComponent,
-    OutsideClickDirective,
-    RaaRequestFocusDirective,
-    RaaSelectAllOnFocus,
-    RaaFocusInvalidElementDirective,
-    OrgnummerPipe,
-    RaaPingServiceComponent,
-    RaaTrapFocusDirective
-  ],
-  providers: [OrgnummerPipe]
-})
-export class RaaModule {}
