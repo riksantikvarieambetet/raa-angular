@@ -15,17 +15,10 @@
       tabindex="3"
       [routerLink]="route.link"
       routerLinkActive="active-link">{{route.name}}</a>
-    <!-- <a class="nav-link" tabindex="3" [routerLink]="['./home']" routerLinkActive="active-link">HEM</a>
-    <a class="nav-link" tabindex="3" [routerLink]="['./styles']" routerLinkActive="active-link">STYLE</a>
-      <a class="nav-link" tabindex="3" [routerLink]="['./icons']" routerLinkActive="active-link">IKONER</a>
-      <a class="nav-link" tabindex="3" [routerLink]="['./logotypes']" routerLinkActive="active-link">LOGOTYPER</a>
-      <a class="nav-link" tabindex="3" [routerLink]="['./angular']" routerLinkActive="active-link">ANGULAR</a> -->
-    <!-- <a class="nav-link log-in-button" tabindex="6" *ngIf="!user" (click)="logIn()" (keyup.enter)="logIn()">LOGGA IN</a>
-      <a class="nav-link log-in-button" tabindex="7" *ngIf="user" (click)="logOut()" (keyup.enter)="logOut()">LOGGA UT</a> -->
   </nav>
   <div class="menu-button hide-when-large">
     <button (click)="toggleMenu()" id="menu-button" class="button-secondary">
-      <i class="raa-icon-menu"></i>
+      <i class="raa-icon-menu" title="Huvudmeny"></i>
     </button>
   </div>
 
@@ -41,17 +34,7 @@
         tabindex="3"
         [routerLink]="route.link"
         routerLinkActive="active-link">{{route.name}}</a>
-      <!-- <a class="nav-link" [routerLink]=" ['./']">HEM</a>
-      <a class="nav-link" tabindex="3" [routerLink]="['./styles']">STYLE</a>
-      <a class="nav-link" tabindex="3" [routerLink]="['./icons']">IKONER</a>
-      <a class="nav-link" tabindex="3" [routerLink]="['./logotypes']">LOGOTYPER</a>
-      <a class="nav-link" tabindex="3" [routerLink]="['./angular']" routerLinkActive="active-link">ANGULAR</a> -->
     </nav>
-    <!--
-    <div class="button-group">
-        <button class="button-border" (click)="logIn()" *ngIf="!user" >LOGGA IN</button>
-        <button class="button-border" (click)="logOut()" *ngIf="user" >LOGGA UT</button>
-    </div> -->
 
   </div>
 </div>
