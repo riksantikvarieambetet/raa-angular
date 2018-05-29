@@ -11,7 +11,6 @@ import { RaaLabel } from './components/raa-label/raa-label.component';
 import { RaaTextWithSpinner } from './components/raa-text-with-spinner/raa-text-with-spinner.component';
 import { RaaSpinnerComponent } from './components/raa-spinner/raa-spinner.component';
 import { RaaOverlaySpinnerComponent } from './components/raa-overlay-spinner/raa-overlay-spinner.component';
-import { RaaPingServiceComponent } from './components/raa-ping-service/raa-ping-service.component';
 
 // Directives
 import { OutsideClickDirective } from './directives/raa-outside-click.directive';
@@ -40,7 +39,6 @@ import { OrgnummerPipe } from './pipes/orgnummer.pipe';
     RaaSpinnerComponent,
     RaaOverlaySpinnerComponent,
     OrgnummerPipe,
-    RaaPingServiceComponent
   ],
   exports: [
     RaaSelect,
@@ -56,7 +54,6 @@ import { OrgnummerPipe } from './pipes/orgnummer.pipe';
     RaaSelectAllOnFocus,
     RaaFocusInvalidElementDirective,
     OrgnummerPipe,
-    RaaPingServiceComponent,
     RaaTrapFocusDirective
   ],
   providers: [OrgnummerPipe]
