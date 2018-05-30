@@ -6,7 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
   `<div class="raa-text-with-spinner">
         <div [ngClass]="{'hide': showSpinner}"><ng-content></ng-content></div>
         <div class="spinner" [ngClass]="{'no-display': !showSpinner}">
-          <i class="raa-icon-hourglass"></i>
+          <raa-spinner [showSpinner]="showSpinner"></raa-spinner>
         </div>
    </div>`,
   styleUrls: ['raa-text-with-spinner.component.scss']

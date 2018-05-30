@@ -1,5 +1,5 @@
 <div class="loading-overlay" *ngIf="showSpinner" [ngClass]="{absolute: posAbsolute, fixed: posFixed}">
   <div class="loading-view">
-    <i class="raa-icon-hourglass" title="Laddar innehåll..."></i>
+    <raa-spinner [showSpinner]="showSpinner"></raa-spinner>
   </div>
 </div>
