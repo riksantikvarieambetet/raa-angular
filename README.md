@@ -1,14 +1,18 @@
-# ng-raa-common
-Angular 2 module som innehåller gemensamma komponenter för RAÄ:s webbapplikationer.
+# raa-angular
+
+Angular-modul som innehåller gemensamma komponenter för RAÄ:s webbapplikationer.
 
 ## Användning
 
 ### I andra projekt
-För att använda ng-raa-common i andra projekt behöver npm känna till beroendet och ladda ner paketet. Lägg till beroendet i projektets `package.json`
 
-        "ng-raa-common": "git+http://stash.raa.se/scm/tek/ng-raa-common.git#master"
+För att kunna installera det här paketet direkt via npm/yarn måste man ange Riksantikvarieämbetets egna registry som källa.
+Detta gör man genom att lägga till en .npmrc-fil i sitt projekt som innehåller länken till registryt. En sådan fil finns i detta projekt, så det enklaste är att kopiera den.
 
-Då kommer `npm install` ladda ner senaste incheckningen från master-branchen till projektet.
+När man gjort detta kan man installera med
+
+  yarn install raa-angular
+
 För att angular ska känna till modulen måste denna defineras i applikationens modul/moduler.
 
     import { RaaModule } from 'ng-raa-common';
@@ -33,33 +37,29 @@ Exempel:
 
     import { OrgnummerPipe } from "ng-raa-common/pipes";
 
-### Gemensam Sass
-Gemensamm css kod som ska användas inom RAÄ:s webbapplikationer importeras i varje Sass-fil där dom behövs:
-
-    @import '~ng-raa-common/styles';
-
-Då kan våra gemensama sass-variabler och mixin:s användas direkt
-
 ## Utveckling
+
 För att fixa buggar/utveckla ny funktionalitet, checka ut projektet till valfri mapp med kommandot
 
-    git clone ssh://git@lx-ra-jira.raa.se:7999/tek/ng-raa-common.git
+    git clone http://stash.raa.se/projects/GRAP/repos/raa-angular
 
-Hämta hem alla npm beroenden med kommandot
+Hämta hem alla beroenden med kommandot
 
-    npm install
+    yarn install
 
 Filen `/index.ts` definerar vad npm-paketet ska exportera för komponenter och där har vi angivet att vi vill exportera vår angular module `raa.module`.
 I filen `/pipes.ts` exporterar vi våra pipe klasser. Se nedan under [Pipes](#pipes) för vad man behöver göra utöver det nedanför för dessa.
 
-### <a name="nya-komponenter"></a>Angular 2 gemensamma komponenter
+### <a name="nya-komponenter"></a>Angular gemensamma komponenter
+
 Under mappen `/src/` ligger alla `components`, `directives`, `pipes` och `styles`
 som angular modulen `ng-raa-common` innehåller. För att bygga en ny komponent skapa en ny katalog för komponenten
 och lägg till ett beroende under `declarations` och exportera komponenten till övriga projekt genom att lägga till komponenten 
 under `exports` i filen `/src/raa.module.ts`.
 
 ### <a name="pipes"></a>Pipes
-För Pipes gäller samma som för [Angular 2 gemensamma komponenter](#nya-komponenter) samt att vi även måste exportera `.ts` filerna för att kunna injecta dessa med rätt typning till våra projekt som vill använda dessa i kod och inte bara i `html`-kod.
+
+För Pipes gäller samma som för [Angular gemensamma komponenter](#nya-komponenter) samt att vi även måste exportera `.ts` filerna för att kunna injecta dessa med rätt typning till våra projekt som vill använda dessa i kod och inte bara i `html`-kod.
 I filen `/src/pipes/pipes.ts` måste samtliga pipes listas och exporteras. Viktigt att man lägger till en ny rad när en ny Pipe skapats.
 
 Ex:
@@ -68,9 +68,9 @@ Ex:
 
 Denna fil exporteras sedan från `/pipes.ts` så att dom enkelt kan importeras från externa projekt genom att skriva  tillexempel `import { OrgnummerPipe } from 'ng-raa-common/pipes';`
 
-
 ### Incheckning
-Innan incheckning till stash ska 
+
+Innan incheckning till stash ska
 
     npm run prepublish
 
