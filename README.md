@@ -25,6 +25,13 @@ För att angular ska känna till modulen måste denna defineras i applikationens
         ],
         providers: []
         })
+        
+Index.ts måste också inkluderas i tsconfig.json
+
+	"include": [
+    	"src/**/*",
+    	"node_modules/raa-angular/index.ts"
+  	]
 
 Nu kan du använda våra gemensamma komponenter i ditt projekt. För
 att tillexempel använda raa-select i ditt projekt anger du bara komponenten i din html-kod
