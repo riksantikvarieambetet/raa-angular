@@ -1,7 +1,7 @@
 <div class="navigation">
 
   <div>
-    <button class="skip-link" title="Hoppa över navigationen" title="skip-link" (click)="skip($event)"></button>
+    <button class="skip-link" title="Hoppa över navigationen" title="skip-link" (click)="skip($event)">Hoppa över navigationen</button>
     <a class="raa-logo-link"
       [routerLink]=" ['./']">
         <img [src]="logoImageSrc"
@@ -32,7 +32,7 @@
     <nav>
       <a *ngFor="let route of applicationRoutes"
         class="nav-link"
-        tabindex="3"
+        tabindex="0"
         [routerLink]="route.link"
         routerLinkActive="active-link">{{route.name}}</a>
     </nav>

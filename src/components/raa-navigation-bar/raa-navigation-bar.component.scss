@@ -155,8 +155,13 @@
 }
 
 .skip-link {
-  height: 0;
-  width: 0;
-  padding: 0;
-  min-width: 0;
+  position: absolute;
+}
+
+.skip-link:not(:focus) {
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
 }
