@@ -1,18 +1,19 @@
 <div class="navigation">
 
-  <a class="raa-logo-link"
-    [routerLink]=" ['./']"
-    tabindex="1">
-      <img [src]="logoImageSrc"
-        alt="Logotyp"
-        height="50px"
-        title="Gå till startsidan">
-  </a>
+  <div>
+    <button class="skip-link" title="Hoppa över navigationen" title="skip-link" (click)="skip($event)">Hoppa över navigationen</button>
+    <a class="raa-logo-link"
+      [routerLink]=" ['./']">
+        <img [src]="logoImageSrc"
+          alt="Logotyp"
+          height="50px"
+          title="Gå till startsidan">
+    </a>
+  </div>
 
   <nav class="hide-when-handheld hide-when-medium-screens">
     <a *ngFor="let route of applicationRoutes"
       class="nav-link"
-      tabindex="3"
       [routerLink]="route.link"
       routerLinkActive="active-link">{{route.name}}</a>
   </nav>
@@ -31,7 +32,7 @@
     <nav>
       <a *ngFor="let route of applicationRoutes"
         class="nav-link"
-        tabindex="3"
+        tabindex="0"
         [routerLink]="route.link"
         routerLinkActive="active-link">{{route.name}}</a>
     </nav>

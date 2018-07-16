@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, Input } from '@angular/core';
+import { Component, HostListener, OnInit, Input, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'raa-navigation-bar',
@@ -18,7 +18,11 @@ export class RaaNavigationBarComponent implements OnInit {
 
   menuBtn: HTMLElement | null = null;
 
-  ngOnInit(): void {
+  constructor(
+    private element: ElementRef
+  ) {}
+
+  ngOnInit() {
     this.displayMenu = false;
     this.menuBtn = document.getElementById('menu-button');
   }
@@ -32,8 +36,24 @@ export class RaaNavigationBarComponent implements OnInit {
     }
   }
 
-  toggleMenu(): void {
+  toggleMenu() {
     this.displayMenu = !this.displayMenu;
+  }
+
+  skip(event: Event) {
+    const tabbables = document.querySelectorAll('input, textarea, button, a');
+    const activeElement = event.target;
+    let activeElementIndex = -1;
+
+    for (let i = 0; i < tabbables.length; i++) {
+      if (activeElement === tabbables.item(i)) {
+        activeElementIndex = i;
+      } else if (activeElementIndex >= 0 && !this.element.nativeElement.contains(tabbables.item(i))) {
+        const item = tabbables.item(i) as HTMLElement;
+        item.focus();
+        break;
+      }
+    }
   }
 
   logIn() {
