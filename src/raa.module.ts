@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Components
 import { RaaSelect } from './components/raa-select/raa-select.component';
@@ -12,6 +13,7 @@ import { RaaTextWithSpinner } from './components/raa-text-with-spinner/raa-text-
 import { RaaSpinnerComponent } from './components/raa-spinner/raa-spinner.component';
 import { RaaOverlaySpinnerComponent } from './components/raa-overlay-spinner/raa-overlay-spinner.component';
 import { RaaNavigationBarComponent } from './components/raa-navigation-bar/raa-navigation-bar.component';
+import { BottomDialogueComponent } from './components/raa-bottom-dialogue/raa-bottom-dialogue.component';
 
 // Directives
 import { OutsideClickDirective } from './directives/raa-outside-click.directive';
@@ -24,7 +26,12 @@ import { RaaTrapFocusDirective } from './directives/raa-trap-focus.directive';
 import { OrgnummerPipe } from './pipes/orgnummer.pipe';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    RouterModule,
+    BrowserAnimationsModule
+  ],
   declarations: [
     RaaSelect,
     RaaDropdownComponent,
@@ -39,7 +46,8 @@ import { OrgnummerPipe } from './pipes/orgnummer.pipe';
     RaaSpinnerComponent,
     RaaOverlaySpinnerComponent,
     OrgnummerPipe,
-    RaaNavigationBarComponent
+    RaaNavigationBarComponent,
+    BottomDialogueComponent
   ],
   exports: [
     RaaSelect,
@@ -55,7 +63,8 @@ import { OrgnummerPipe } from './pipes/orgnummer.pipe';
     RaaFocusInvalidElementDirective,
     OrgnummerPipe,
     RaaTrapFocusDirective,
-    RaaNavigationBarComponent
+    RaaNavigationBarComponent,
+    BottomDialogueComponent
   ],
   providers: [OrgnummerPipe]
 })
