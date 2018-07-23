@@ -13,7 +13,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 2rem;
     z-index: 99996;
 }
 
@@ -23,6 +22,7 @@
     max-height: 100%;
     min-height: 0%;
     width: inherit;
+    margin: 0 2rem;
     max-width: 900px;
     overflow: auto;
     background: white;
@@ -46,8 +46,6 @@
 .header {
     text-align: center;
     font-weight: 300;
-    width: calc(100% - 4rem);
-    margin: 2.5rem 2rem;
 }
 
 .close-button {
@@ -56,20 +54,20 @@
   float: right;
   width: 25px;
   min-width: auto;
-  font-size: 20px;
+  font-size: 28px;
   padding: 0;
   height: 24px;
   line-height: 0px;
 }
 
 @include respond-to(handhelds) {
-    .dark-overlay {
-        padding: 0;
+    .center-page {
+      margin: 0;
     }
 }
 
 @include respond-to(medium-screens) {
-    .dark-overlay {
-        padding: 1rem;
-    }
+  .center-page {
+    margin: 0 1rem;
+  }
 }
