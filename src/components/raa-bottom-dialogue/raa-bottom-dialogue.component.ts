@@ -83,5 +83,3 @@ export class BottomDialogueComponent implements OnInit {
     this.onYesAction.emit();
   }
 }
-
-export type DialogueType = 'underkann' | 'komplettera' | 'godkann' | 'radera';
