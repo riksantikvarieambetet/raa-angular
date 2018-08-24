@@ -26,7 +26,7 @@ const modalAnimation = [
   styleUrls: ['./raa-bottom-dialogue.component.scss'],
   animations: [modalAnimation],
 })
-export class BottomDialogueComponent implements OnInit {
+export class RaaBottomDialogueComponent implements OnInit {
 
   @Input() isVisible: boolean;
 
