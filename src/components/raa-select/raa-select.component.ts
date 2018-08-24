@@ -314,25 +314,17 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
   }
 
   focusGained() {
-    // this.openDropdownIfClosed();
     this.clearFilters();
   }
 
   focusLost = () => {
     this.showDropdown = false;
-    // this.clearDisplayTextWhenEmptyModel();
 
     // sätter visningsvärde till valt värde, detta om användaren börjar justera men avbryter
     this.filterInput = this.getDisplayValue(this.value);
     this.hoverIndex = -1;
     this.tabindex = -1;
   };
-
-  // clearDisplayTextWhenEmptyModel() {
-  //   if (!this.value) {
-  //     this.filterInput = '';
-  //   }
-  // }
 
   private selectAllTextInInput() {
     this.inputField.nativeElement.select();

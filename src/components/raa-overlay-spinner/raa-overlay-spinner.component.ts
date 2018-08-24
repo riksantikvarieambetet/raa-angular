@@ -1,11 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'raa-overlay-spinner',
   templateUrl: './raa-overlay-spinner.component.html',
   styleUrls: ['./raa-overlay-spinner.component.scss'],
 })
-export class RaaOverlaySpinnerComponent implements OnInit {
+export class RaaOverlaySpinnerComponent {
   @Input()
   showSpinner: boolean;
 
@@ -14,8 +14,4 @@ export class RaaOverlaySpinnerComponent implements OnInit {
 
   @Input()
   posFixed: boolean;
-
-  constructor() {}
-
-  ngOnInit(): void {}
 }

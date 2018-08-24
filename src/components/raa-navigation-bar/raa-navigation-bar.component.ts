@@ -55,14 +55,6 @@ export class RaaNavigationBarComponent implements OnInit {
       }
     }
   }
-
-  logIn() {
-    // emit event
-  }
-
-  logOut() {
-    // emit event
-  }
 }
 
 export interface ApplicationRoute {
