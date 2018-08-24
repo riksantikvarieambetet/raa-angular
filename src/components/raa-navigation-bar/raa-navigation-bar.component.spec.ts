@@ -11,9 +11,8 @@ describe('RaaNavigationBarComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RaaNavigationBarComponent ]
-    })
-    .compileComponents();
+      declarations: [RaaNavigationBarComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

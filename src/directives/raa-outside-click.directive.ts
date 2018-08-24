@@ -1,14 +1,7 @@
-import {
-  Directive,
-  ElementRef,
-  Input,
-  Output,
-  EventEmitter,
-  HostListener
-} from '@angular/core';
+import { Directive, ElementRef, Input, Output, EventEmitter, HostListener } from '@angular/core';
 
 @Directive({
-  selector: '[raaOutsideClick]'
+  selector: '[raaOutsideClick]',
 })
 export class OutsideClickDirective {
   // Vi måste lyssna på mouseup eller mousedown istället för click. Vid klick så kan element ha tagit borts från DOM:en och då ge ett
@@ -24,9 +17,7 @@ export class OutsideClickDirective {
   @Input()
   includedElement: HTMLElement | undefined;
 
-  constructor(
-    private elementRef: ElementRef
-  ) { }
+  constructor(private elementRef: ElementRef) {}
 
   private handleClick(event: MouseEvent) {
     const containerElement = this.elementRef.nativeElement as HTMLElement;

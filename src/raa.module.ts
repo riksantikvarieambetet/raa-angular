@@ -27,12 +27,7 @@ import { RaaTrapFocusDirective } from './directives/raa-trap-focus.directive';
 import { OrgnummerPipe } from './pipes/orgnummer.pipe';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    RouterModule,
-    BrowserAnimationsModule
-  ],
+  imports: [CommonModule, FormsModule, RouterModule, BrowserAnimationsModule],
   declarations: [
     RaaSelect,
     RaaDropdownComponent,
@@ -49,7 +44,7 @@ import { OrgnummerPipe } from './pipes/orgnummer.pipe';
     RaaOverlaySpinnerComponent,
     OrgnummerPipe,
     RaaNavigationBarComponent,
-    RaaBottomDialogueComponent
+    RaaBottomDialogueComponent,
   ],
   exports: [
     RaaSelect,
@@ -67,8 +62,8 @@ import { OrgnummerPipe } from './pipes/orgnummer.pipe';
     OrgnummerPipe,
     RaaTrapFocusDirective,
     RaaNavigationBarComponent,
-    RaaBottomDialogueComponent
+    RaaBottomDialogueComponent,
   ],
   providers: [OrgnummerPipe],
 })
-export class RaaModule { }
+export class RaaModule {}

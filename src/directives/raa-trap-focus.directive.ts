@@ -1,11 +1,4 @@
-import {
-  Directive,
-  AfterViewInit,
-  ElementRef,
-  Input,
-  OnChanges,
-  SimpleChanges
-} from '@angular/core';
+import { Directive, AfterViewInit, ElementRef, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 const TAB_KEY_CODE = 9;
 
@@ -14,7 +7,7 @@ const TAB_KEY_CODE = 9;
  * have multiple possibie elements, the first element with the class will be focused).
  */
 @Directive({
-  selector: '[raaTrapFocus]'
+  selector: '[raaTrapFocus]',
 })
 export class RaaTrapFocusDirective implements AfterViewInit, OnChanges {
   @Input('raaTrapFocus')
@@ -26,21 +19,14 @@ export class RaaTrapFocusDirective implements AfterViewInit, OnChanges {
   constructor(private element: ElementRef) {}
 
   ngOnChanges(changes: SimpleChanges) {
-    if (
-      changes['initialFocusElement'] &&
-      changes['initialFocusElement'].currentValue
-    ) {
+    if (changes['initialFocusElement'] && changes['initialFocusElement'].currentValue) {
       changes['initialFocusElement'].currentValue.nativeElement.focus();
     }
   }
 
   ngAfterViewInit() {
     let tabbableElements = Array.prototype.slice
-      .call(
-        this.element.nativeElement.querySelectorAll(
-          'select, input, textarea, button, a'
-        )
-      )
+      .call(this.element.nativeElement.querySelectorAll('select, input, textarea, button, a'))
       .filter((el: HTMLElement) => !el.hidden);
 
     if (tabbableElements && tabbableElements.length) {

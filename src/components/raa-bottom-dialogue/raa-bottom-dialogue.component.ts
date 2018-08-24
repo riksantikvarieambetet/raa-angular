@@ -27,33 +27,41 @@ const modalAnimation = [
   animations: [modalAnimation],
 })
 export class RaaBottomDialogueComponent implements OnInit {
+  @Input()
+  isVisible: boolean;
 
-  @Input() isVisible: boolean;
+  @Input()
+  showLoadingSpinner: boolean;
 
-  @Input() showLoadingSpinner: boolean;
+  @Input()
+  cancelBtnText: string;
 
-  @Input() cancelBtnText: string;
+  @Input()
+  confirmBtnText: string;
 
-  @Input() confirmBtnText: string;
+  @Input()
+  confirmBtnColor: 'green' | 'grey' | 'white' = 'white';
 
-  @Input() confirmBtnColor: 'green' | 'grey' | 'white' = 'white';
+  @Input()
+  fullHeight = false;
 
-  @Input() fullHeight = false;
+  @Input()
+  header: string | null;
 
-  @Input() header: string | null;
+  @Input()
+  message: string | null;
 
-  @Input() message: string | null;
+  @Output()
+  onYesAction = new EventEmitter<void>();
 
-  @Output() onYesAction = new EventEmitter<void>();
-
-  @Output() onNoAction = new EventEmitter<void>();
+  @Output()
+  onNoAction = new EventEmitter<void>();
 
   buttonClass: string = 'button-secondary';
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
-
     if (!this.cancelBtnText) {
       throw 'ERROR: raa-bottom-dialogue.component -> cancelBtnText must be specified';
     }

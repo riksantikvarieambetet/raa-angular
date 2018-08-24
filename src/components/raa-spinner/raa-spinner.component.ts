@@ -8,5 +8,6 @@ import { ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RaaSpinnerComponent {
-  @Input() size = '7rem';
+  @Input()
+  size = '7rem';
 }
