@@ -1,0 +1,42 @@
+<div [@fade]
+  class="overlay"
+  *ngIf="isVisible">
+</div>
+
+<div [@closeConfirmationAnimation]
+  class="close-confirmation center-container"
+  [ngClass]="{'height-100-precent' : fullHeight}"
+  *ngIf="isVisible">
+
+  <div class="dialog-content">
+    <div *ngIf="!header && !message">
+      <ng-content></ng-content>
+    </div>
+
+    <div *ngIf="header || message">
+      <h2 class="dialog-header"
+        *ngIf="header">{{ header }}</h2>
+      <p *ngIf="message">{{ message }}</p>
+    </div>
+
+    <div class="button-container">
+      <button class="fornreg-button button-cancel"
+        (click)="noAction()"
+        [disabled]="showLoadingSpinner">
+        {{ cancelBtnText }}
+      </button>
+
+      <button class="fornreg-button with-spinner"
+        [disabled]="showLoadingSpinner"
+        [ngClass]="buttonClass"
+        (click)="yesAction()">
+
+        <span [ngClass]="{ hidden: showLoadingSpinner }">{{ confirmBtnText }}</span>
+        <div *ngIf="showLoadingSpinner"
+          class="spinner-container display-flex flex-items-center flex-content-center">
+          <raa-spinner size="1rem"></raa-spinner>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
