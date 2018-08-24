@@ -14,7 +14,7 @@ import { RaaLabel } from './components/raa-label/raa-label.component';
 import { RaaSpinnerComponent } from './components/raa-spinner/raa-spinner.component';
 import { RaaOverlaySpinnerComponent } from './components/raa-overlay-spinner/raa-overlay-spinner.component';
 import { RaaNavigationBarComponent } from './components/raa-navigation-bar/raa-navigation-bar.component';
-import { RaaBottomDialogueComponent } from './components/raa-bottom-dialogue/raa-bottom-dialogue.component';
+import { RaaBottomDialogComponent } from './components/raa-bottom-dialog/raa-bottom-dialog.component';
 
 // Directives
 import { OutsideClickDirective } from './directives/raa-outside-click.directive';
@@ -44,7 +44,7 @@ import { OrgnummerPipe } from './pipes/orgnummer.pipe';
     RaaOverlaySpinnerComponent,
     OrgnummerPipe,
     RaaNavigationBarComponent,
-    RaaBottomDialogueComponent,
+    RaaBottomDialogComponent,
   ],
   exports: [
     RaaSelect,
@@ -62,7 +62,7 @@ import { OrgnummerPipe } from './pipes/orgnummer.pipe';
     OrgnummerPipe,
     RaaTrapFocusDirective,
     RaaNavigationBarComponent,
-    RaaBottomDialogueComponent,
+    RaaBottomDialogComponent,
   ],
   providers: [OrgnummerPipe],
 })

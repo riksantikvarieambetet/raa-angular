@@ -1,7 +1,7 @@
 @import '~raa-style/dist/scss/media-queries';
 @import '~raa-style/dist/scss/colors';
 
-.raa-dialogue {
+.raa-dialog {
   .dark-overlay {
     position: fixed;
     top: 0;
@@ -13,8 +13,8 @@
 
     display: flex;
     align-items: center;
-    justify-content: space-around; // Funkar för ett barn (.dialogue-container) och centrerar även i IE11
-    .dialogue-container {
+    justify-content: space-around; // Funkar för ett barn (.dialog-container) och centrerar även i IE11
+    .dialog-container {
       position: relative;
       display: flex;
       flex-direction: column;

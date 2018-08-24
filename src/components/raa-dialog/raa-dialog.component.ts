@@ -1,7 +1,7 @@
 import { Component, Input, ViewChild, ElementRef, AfterContentChecked, OnInit, OnDestroy } from '@angular/core';
 
 @Component({
-  selector: 'raa-dialogue',
+  selector: 'raa-dialog',
   templateUrl: './raa-dialog.component.html',
   styleUrls: ['./raa-dialog.component.scss'],
 })

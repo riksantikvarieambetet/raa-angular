@@ -21,12 +21,12 @@ const modalAnimation = [
 ];
 
 @Component({
-  selector: 'raa-bottom-dialogue',
-  templateUrl: './raa-bottom-dialogue.component.html',
-  styleUrls: ['./raa-bottom-dialogue.component.scss'],
+  selector: 'raa-bottom-dialog',
+  templateUrl: './raa-bottom-dialog.component.html',
+  styleUrls: ['./raa-bottom-dialog.component.scss'],
   animations: [modalAnimation],
 })
-export class RaaBottomDialogueComponent implements OnInit {
+export class RaaBottomDialogComponent implements OnInit {
   @Input()
   isVisible: boolean;
 
@@ -63,11 +63,11 @@ export class RaaBottomDialogueComponent implements OnInit {
 
   ngOnInit() {
     if (!this.cancelBtnText) {
-      throw 'ERROR: raa-bottom-dialogue.component -> cancelBtnText must be specified';
+      throw 'ERROR: raa-bottom-dialog.component -> cancelBtnText must be specified';
     }
 
     if (!this.confirmBtnText) {
-      throw 'ERROR: raa-bottom-dialogue.component -> confirmBtnText must be specified';
+      throw 'ERROR: raa-bottom-dialog.component -> confirmBtnText must be specified';
     }
 
     switch (this.confirmBtnColor) {
