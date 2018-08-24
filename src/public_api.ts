@@ -9,6 +9,7 @@ export { RaaTextWithSpinner } from './components/raa-text-with-spinner/raa-text-
 export { RaaSpinnerComponent } from './components/raa-spinner/raa-spinner.component';
 export { RaaOverlaySpinnerComponent } from './components/raa-overlay-spinner/raa-overlay-spinner.component';
 export { RaaNavigationBarComponent } from './components/raa-navigation-bar/raa-navigation-bar.component';
+export { RaaLabel } from './components/raa-label/raa-label.component';
 
 // Directives
 export { OutsideClickDirective } from './directives/raa-outside-click.directive';
