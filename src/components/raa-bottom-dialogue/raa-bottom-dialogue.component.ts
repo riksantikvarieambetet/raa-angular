@@ -50,7 +50,7 @@ export class RaaBottomDialogueComponent implements OnInit {
 
   buttonClass: string = 'button-secondary';
 
-  constructor() {}
+  constructor() { }
 
   ngOnInit() {
 
