@@ -10,10 +10,10 @@ import {
 
 @Component({
   selector: 'raa-dialogue',
-  templateUrl: './raa-dialogue.component.html',
-  styleUrls: ['./raa-dialogue.component.scss']
+  templateUrl: './raa-dialog.component.html',
+  styleUrls: ['./raa-dialog.component.scss']
 })
-export class RaaDialogueComponent implements OnInit, OnDestroy, AfterContentChecked {
+export class RaaDialogComponent implements OnInit, OnDestroy, AfterContentChecked {
 
   @Input()
   onYes: Function;

@@ -4,7 +4,7 @@ export * from './raa.module';
 export { RaaSelect } from './components/raa-select/raa-select.component';
 export { RaaDropdownComponent } from './components/raa-dropdown/raa-dropdown.component';
 export { RaaModalPageComponent } from './components/raa-modal-page/raa-modal-page.component';
-export { RaaDialogueComponent } from './components/raa-dialogue/raa-dialogue.component';
+export { RaaDialogComponent } from './components/raa-dialog/raa-dialog.component';
 export { RaaTextWithSpinner } from './components/raa-text-with-spinner/raa-text-with-spinner.component';
 export { RaaSpinnerComponent } from './components/raa-spinner/raa-spinner.component';
 export { RaaOverlaySpinnerComponent } from './components/raa-overlay-spinner/raa-overlay-spinner.component';
