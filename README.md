@@ -82,6 +82,23 @@ Ex:
 
 Denna fil exporteras sedan från `/pipes.ts` så att dom enkelt kan importeras från externa projekt genom att skriva  tillexempel `import { OrgnummerPipe } from 'ng-raa-common/pipes';`
 
+### Prettier - https://prettier.io/
+
+För att formattera koden och hålla en konsekvens formattering använder vi oss av Prettier som formaterar scss, css och ts koden åt en. Ett precommit steg finns som automatiskt formaterar koden innan koden commit:as.
+
+För att formatera automatiskt vid editering finns följande plugins
+
+#### Visual Studio Code
+
+Plugin: Prettier - Code formatter
+För att formatera automatiskt vid spara lägg till configurationen
+
+    "editor.formatOnSave": true
+
+#### IntelliJ IDEA
+
+Plugin: https://plugins.jetbrains.com/plugin/10456-prettier
+
 ### Incheckning
 
 Innan incheckning till stash ska
