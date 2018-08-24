@@ -1,16 +1,12 @@
 import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-    selector: 'raa-spinner',
-    template: `
-    <div class="raa-spinner" *ngIf="showSpinner">
-        <i class="raa-icon-hourglass" title="Laddar innehåll..."></i>
-    </div>
-    `,
-    styleUrls: ['raa-spinner.component.scss']
+  selector: 'raa-spinner',
+  templateUrl: './raa-spinner.component.html',
+  styleUrls: ['./raa-spinner.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RaaSpinnerComponent {
-    @Input()
-    showSpinner: boolean = false;
-    constructor() {}
+  @Input() size = '7rem';
 }

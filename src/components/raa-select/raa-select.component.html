@@ -1,46 +1,48 @@
-<div #raaSelect class="raa-select">
+<div #raaSelect
+  class="raa-select">
   <div class="raa-select-input-row"
     [ngClass]="{'disabled': disabled}">
-      <input class="raa-select-input"
-          #inputField
-          type="text"
-          placeholder="{{placeholder}}"
-          [requestFocus]="setFocusToInputField"
-          [disabled]="disabled"
-          [ngModelOptions]="{standalone: true}"
-          [(ngModel)]="filterInput"
-          (ngModelChange)="onFilterdInputChange()"
-          (focus)="focusGained()"
-          (click)="openDropdownIfClosed()"
-          (keydown)="handleKeyPressed($event)">
-      <button class="raa-select-button raa-icon-arrow-down"
-          type="button"
-          tabIndex="-1"
-          [disabled]="disabled"
-          (click)="toggleDropdown()"
-          [ngClass]="{'active': showDropdown}"></button>
+    <input class="raa-select-input"
+      #inputField
+      type="text"
+      placeholder="{{placeholder}}"
+      [requestFocus]="setFocusToInputField"
+      [disabled]="disabled"
+      [ngModelOptions]="{standalone: true}"
+      [(ngModel)]="filterInput"
+      (ngModelChange)="onFilterdInputChange()"
+      (focus)="focusGained()"
+      (click)="openDropdownIfClosed()"
+      (keydown)="handleKeyPressed($event)">
+    <button class="raa-select-button raa-icon-arrow-down"
+      type="button"
+      tabIndex="-1"
+      [disabled]="disabled"
+      (click)="toggleDropdown()"
+      [ngClass]="{'active': showDropdown}"></button>
   </div>
-  <raa-dropdown
-    [element]="raaSelect"
+  <raa-dropdown [element]="raaSelect"
     (dropdownMovedUp)="dropdownMovedUp($event)"
     [moveUpHeightThreshold]="120"
     appendToBody="{{false}}"
     *ngIf="showDropdown">
-    <ul
-      #dropdown
+    <ul #dropdown
       (raaOutsideClick)="focusLost()"
       [includedElement]="raaSelect"
       class="raa-select-dropdown"
       [ngClass]="{ 'dropdown-is-above': dropdownIsAbove, 'dropdown-is-below': !dropdownIsAbove }">
-        <li class="raa-select-dropdown-item" *ngIf="filteredDomainValues.length === 0">
-            <span>Ingen träff</span>
-        </li>
-        <li #dropdownItem class="raa-select-dropdown-item" *ngFor="let item of filteredDomainValues; let rowIndex = index"
-          (mouseover)="hoverIndex = rowIndex"
-          (click)="select(item)"
-          [ngClass]="{ 'selected': item.id === value, 'hovered': hoverIndex === rowIndex }">
-            <span>{{item.displayValue}}</span>
-        </li>
+      <li class="raa-select-dropdown-item"
+        *ngIf="filteredDomainValues.length === 0">
+        <span>Ingen träff</span>
+      </li>
+      <li #dropdownItem
+        class="raa-select-dropdown-item"
+        *ngFor="let item of filteredDomainValues; let rowIndex = index"
+        (mouseover)="hoverIndex = rowIndex"
+        (click)="select(item)"
+        [ngClass]="{ 'selected': item.id === value, 'hovered': hoverIndex === rowIndex }">
+        <span>{{item.displayValue}}</span>
+      </li>
     </ul>
   </raa-dropdown>
 </div>
