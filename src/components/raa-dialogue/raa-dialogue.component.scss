@@ -15,6 +15,7 @@
         align-items: center;
         justify-content: space-around; // Funkar för ett barn (.dialogue-container) och centrerar även i IE11
         .dialogue-container {
+            position: relative;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -62,16 +63,20 @@
     }
 }
 
+.close-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
 .close-button {
-    background-color: transparent;
-    color: $raa-orange;
-    float: right;
-    width: 25px;
-    min-width: auto;
-    font-size: 28px;
+    font-size: 1.5rem;
     padding: 0;
-    margin-top: -1rem;
-    margin-right: -1rem;
-    height: 24px;
-    line-height: 0px;
+    margin: 1rem;
+    color: $raa-gray-4;
+    background-color: $raa-white;
+
+    &:hover {
+      color: $raa-gray-3;
+    }
 }
