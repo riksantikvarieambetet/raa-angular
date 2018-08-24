@@ -2,80 +2,58 @@
 # yarn lockfile v1
 
 
-"@angular/animations@^5.2.0":
-  version "5.2.11"
-  resolved "http://pl-sinopia01.raa.se:8080/@angular%2fanimations/-/animations-5.2.11.tgz#2bd3fe9e72916ca28de9bfaaddf0cb936565a0b8"
+"@angular/common@^6.0.9":
+  version "6.0.9"
+  resolved "http://pl-sinopia01.raa.se:8080/@angular%2fcommon/-/common-6.0.9.tgz#e12fc4ea74cdb9f007af1098d3573c8d5441680a"
   dependencies:
-    tslib "^1.7.1"
+    tslib "^1.9.0"
 
-"@angular/common@^5.2.0":
-  version "5.2.11"
-  resolved "http://pl-sinopia01.raa.se:8080/@angular%2fcommon/-/common-5.2.11.tgz#ee7520b02510a2868f30b1f91897102d48324edf"
-  dependencies:
-    tslib "^1.7.1"
-
-"@angular/compiler-cli@^5.2.0":
-  version "5.2.11"
-  resolved "http://pl-sinopia01.raa.se:8080/@angular%2fcompiler-cli/-/compiler-cli-5.2.11.tgz#71a2885ac394a3c7a407c6ba0b920b52d73add99"
+"@angular/compiler-cli@^6.0.9":
+  version "6.0.9"
+  resolved "http://pl-sinopia01.raa.se:8080/@angular%2fcompiler-cli/-/compiler-cli-6.0.9.tgz#a4b48b37d8b3dd8d702e034d4f062596d048a8a2"
   dependencies:
     chokidar "^1.4.2"
     minimist "^1.2.0"
     reflect-metadata "^0.1.2"
-    tsickle "^0.27.2"
+    tsickle "^0.29.0"
 
-"@angular/compiler@^5.2.0":
-  version "5.2.11"
-  resolved "http://pl-sinopia01.raa.se:8080/@angular%2fcompiler/-/compiler-5.2.11.tgz#ca2c38cda6ddde52b5948b8cff6551ff19d5e9de"
+"@angular/compiler@^6.0.9":
+  version "6.0.9"
+  resolved "http://pl-sinopia01.raa.se:8080/@angular%2fcompiler/-/compiler-6.0.9.tgz#7d4fbb08f88cbef7cff78e11a9474e8df5516bee"
   dependencies:
-    tslib "^1.7.1"
+    tslib "^1.9.0"
 
-"@angular/core@^5.2.0":
-  version "5.2.11"
-  resolved "http://pl-sinopia01.raa.se:8080/@angular%2fcore/-/core-5.2.11.tgz#0e38fdf4fa038a3c168c72952682f2ee3721f1a3"
+"@angular/core@^6.0.9":
+  version "6.0.9"
+  resolved "http://pl-sinopia01.raa.se:8080/@angular%2fcore/-/core-6.0.9.tgz#a68cc0f5ddffa535df65f3e798ba2fcd6f6eec1b"
   dependencies:
-    tslib "^1.7.1"
+    tslib "^1.9.0"
 
-"@angular/forms@^5.2.0":
-  version "5.2.11"
-  resolved "http://pl-sinopia01.raa.se:8080/@angular%2fforms/-/forms-5.2.11.tgz#712534fa317e194caa452d0c1a8efc72f5e040d6"
+"@angular/forms@^6.0.9":
+  version "6.0.9"
+  resolved "http://pl-sinopia01.raa.se:8080/@angular%2fforms/-/forms-6.0.9.tgz#4252626875319f09e03d6b5eb61ea8d274061b8f"
   dependencies:
-    tslib "^1.7.1"
+    tslib "^1.9.0"
 
-"@angular/http@^5.2.0":
-  version "5.2.11"
-  resolved "http://pl-sinopia01.raa.se:8080/@angular%2fhttp/-/http-5.2.11.tgz#2b649983c954ae754f6f39060e2d83da0bf352ad"
+"@angular/platform-browser@^6.0.9":
+  version "6.0.9"
+  resolved "http://pl-sinopia01.raa.se:8080/@angular%2fplatform-browser/-/platform-browser-6.0.9.tgz#3f6738046eca03fffdd4558ab3ca75673b6f11d1"
   dependencies:
-    tslib "^1.7.1"
+    tslib "^1.9.0"
 
-"@angular/platform-browser-dynamic@^5.2.0":
-  version "5.2.11"
-  resolved "http://pl-sinopia01.raa.se:8080/@angular%2fplatform-browser-dynamic/-/platform-browser-dynamic-5.2.11.tgz#1b2a9de4af207bee7040400f61c01a44e929c308"
+"@angular/router@^6.1.4":
+  version "6.1.4"
+  resolved "http://pl-sinopia01.raa.se:8080/@angular%2frouter/-/router-6.1.4.tgz#ec6d7400baea46386e3bbcf3e3acb0135f368fac"
   dependencies:
-    tslib "^1.7.1"
-
-"@angular/platform-browser@^5.2.0":
-  version "5.2.11"
-  resolved "http://pl-sinopia01.raa.se:8080/@angular%2fplatform-browser/-/platform-browser-5.2.11.tgz#5be379f96d74b4ebe84a447633ed5279cb7e641e"
-  dependencies:
-    tslib "^1.7.1"
-
-"@angular/platform-server@^5.2.0":
-  version "5.2.11"
-  resolved "http://pl-sinopia01.raa.se:8080/@angular%2fplatform-server/-/platform-server-5.2.11.tgz#0f2f9a0052fd8380cf4b3f89115bc8e3e10db85a"
-  dependencies:
-    domino "^1.0.29"
-    tslib "^1.7.1"
-    xhr2 "^0.1.4"
-
-"@angular/router@^5.2.0":
-  version "5.2.11"
-  resolved "http://pl-sinopia01.raa.se:8080/@angular%2frouter/-/router-5.2.11.tgz#65a902daea923086ec728817c43d87becd99d7a7"
-  dependencies:
-    tslib "^1.7.1"
+    tslib "^1.9.0"
 
 "@ngtools/json-schema@^1.1.0":
   version "1.1.0"
   resolved "http://pl-sinopia01.raa.se:8080/@ngtools%2fjson-schema/-/json-schema-1.1.0.tgz#c3a0c544d62392acc2813a42c8a0dc6f58f86922"
+
+"@types/estree@0.0.39":
+  version "0.0.39"
+  resolved "http://pl-sinopia01.raa.se:8080/@types%2festree/-/estree-0.0.39.tgz#e177e699ee1b8c22d23174caaa7422644389509f"
 
 "@types/lodash-es@^4.14.80":
   version "4.17.0"
@@ -87,17 +65,13 @@
   version "4.14.106"
   resolved "http://pl-sinopia01.raa.se:8080/@types%2flodash/-/lodash-4.14.106.tgz#6093e9a02aa567ddecfe9afadca89e53e5dce4dd"
 
+"@types/node@*":
+  version "10.5.2"
+  resolved "http://pl-sinopia01.raa.se:8080/@types%2fnode/-/node-10.5.2.tgz#f19f05314d5421fe37e74153254201a7bf00a707"
+
 abbrev@1:
   version "1.1.1"
   resolved "http://pl-sinopia01.raa.se:8080/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
-
-acorn@4.x:
-  version "4.0.13"
-  resolved "http://pl-sinopia01.raa.se:8080/acorn/-/acorn-4.0.13.tgz#105495ae5361d697bd195c825192e1ad7f253787"
-
-acorn@^5.2.1:
-  version "5.5.3"
-  resolved "http://pl-sinopia01.raa.se:8080/acorn/-/acorn-5.5.3.tgz#f473dd47e0277a08e28e9bec5aeeb04751f0b8c9"
 
 ajv@^4.9.1:
   version "4.11.8"
@@ -231,15 +205,19 @@ asynckit@^0.4.0:
   version "0.4.0"
   resolved "http://pl-sinopia01.raa.se:8080/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
 
-autoprefixer@^7.1.1:
-  version "7.2.6"
-  resolved "http://pl-sinopia01.raa.se:8080/autoprefixer/-/autoprefixer-7.2.6.tgz#256672f86f7c735da849c4f07d008abb056067dc"
+atob@^2.1.1:
+  version "2.1.1"
+  resolved "http://pl-sinopia01.raa.se:8080/atob/-/atob-2.1.1.tgz#ae2d5a729477f289d60dd7f96a6314a22dd6c22a"
+
+autoprefixer@^8.0.0:
+  version "8.6.5"
+  resolved "http://pl-sinopia01.raa.se:8080/autoprefixer/-/autoprefixer-8.6.5.tgz#343f3d193ed568b3208e00117a1b96eb691d4ee9"
   dependencies:
-    browserslist "^2.11.3"
-    caniuse-lite "^1.0.30000805"
+    browserslist "^3.2.8"
+    caniuse-lite "^1.0.30000864"
     normalize-range "^0.1.2"
     num2fraction "^1.2.2"
-    postcss "^6.0.17"
+    postcss "^6.0.23"
     postcss-value-parser "^3.2.3"
 
 aws-sign2@~0.6.0:
@@ -334,16 +312,12 @@ braces@^1.8.2:
     preserve "^0.2.0"
     repeat-element "^1.1.2"
 
-browserslist@^2.1.5, browserslist@^2.11.3:
-  version "2.11.3"
-  resolved "http://pl-sinopia01.raa.se:8080/browserslist/-/browserslist-2.11.3.tgz#fe36167aed1bbcde4827ebfe71347a2cc70b99b2"
+browserslist@^3.0.0, browserslist@^3.2.8:
+  version "3.2.8"
+  resolved "http://pl-sinopia01.raa.se:8080/browserslist/-/browserslist-3.2.8.tgz#b0005361d6471f0f5952797a76fc985f1f978fc6"
   dependencies:
-    caniuse-lite "^1.0.30000792"
-    electron-to-chromium "^1.3.30"
-
-buffer-crc32@^0.2.5:
-  version "0.2.13"
-  resolved "http://pl-sinopia01.raa.se:8080/buffer-crc32/-/buffer-crc32-0.2.13.tgz#0d333e3f00eac50aa1454abd30ef8c2a5d9a7242"
+    caniuse-lite "^1.0.30000844"
+    electron-to-chromium "^1.3.47"
 
 builtin-modules@^1.0.0, builtin-modules@^1.1.1:
   version "1.1.1"
@@ -372,9 +346,9 @@ camelcase@^4.0.0:
   version "4.1.0"
   resolved "http://pl-sinopia01.raa.se:8080/camelcase/-/camelcase-4.1.0.tgz#d545635be1e33c542649c69173e5de6acfae34dd"
 
-caniuse-lite@^1.0.30000792, caniuse-lite@^1.0.30000805:
-  version "1.0.30000830"
-  resolved "http://pl-sinopia01.raa.se:8080/caniuse-lite/-/caniuse-lite-1.0.30000830.tgz#cb96b8a2dd3cbfe04acea2af3c4e894249095328"
+caniuse-lite@^1.0.30000844, caniuse-lite@^1.0.30000864:
+  version "1.0.30000865"
+  resolved "http://pl-sinopia01.raa.se:8080/caniuse-lite/-/caniuse-lite-1.0.30000865.tgz#70026616e8afe6e1442f8bb4e1092987d81a2f25"
 
 capture-stack-trace@^1.0.0:
   version "1.0.0"
@@ -414,6 +388,14 @@ chalk@^2.3.0:
     escape-string-regexp "^1.0.5"
     supports-color "^4.0.0"
 
+chalk@^2.4.1:
+  version "2.4.1"
+  resolved "http://pl-sinopia01.raa.se:8080/chalk/-/chalk-2.4.1.tgz#18c49ab16a037b6eb0152cc83e3471338215b66e"
+  dependencies:
+    ansi-styles "^3.2.1"
+    escape-string-regexp "^1.0.5"
+    supports-color "^5.3.0"
+
 chokidar@^1.4.2, chokidar@^1.6.0:
   version "1.7.0"
   resolved "http://pl-sinopia01.raa.se:8080/chokidar/-/chokidar-1.7.0.tgz#798e689778151c8076b4b360e5edd28cda2bb468"
@@ -428,10 +410,6 @@ chokidar@^1.4.2, chokidar@^1.6.0:
     readdirp "^2.0.0"
   optionalDependencies:
     fsevents "^1.0.0"
-
-chownr@^1.0.1:
-  version "1.0.1"
-  resolved "http://pl-sinopia01.raa.se:8080/chownr/-/chownr-1.0.1.tgz#e2a75042a9551908bebd25b8523d5f9769d79181"
 
 ci-info@^1.0.0:
   version "1.1.3"
@@ -479,7 +457,7 @@ combined-stream@1.0.6, combined-stream@^1.0.5, combined-stream@~1.0.5:
   dependencies:
     delayed-stream "~1.0.0"
 
-commander@^2.12.0, commander@^2.9.0, commander@~2.15.0:
+commander@^2.12.0, commander@^2.9.0:
   version "2.15.1"
   resolved "http://pl-sinopia01.raa.se:8080/commander/-/commander-2.15.1.tgz#df46e867d0fc2aec66a34662b406a9ccafff5b0f"
 
@@ -487,9 +465,9 @@ commander@^2.12.1:
   version "2.14.0"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.14.0.tgz#7b25325963e6aace20d3a9285b09379b0c2208b5"
 
-commenting@1.0.5:
-  version "1.0.5"
-  resolved "http://pl-sinopia01.raa.se:8080/commenting/-/commenting-1.0.5.tgz#3104d542cac8a4f27b3d51438f4b80431fe4526b"
+commander@~2.16.0:
+  version "2.16.0"
+  resolved "http://pl-sinopia01.raa.se:8080/commander/-/commander-2.16.0.tgz#f16390593996ceb4f3eeb020b31d78528f7f8a50"
 
 concat-map@0.0.1:
   version "0.0.1"
@@ -607,6 +585,10 @@ decamelize@^1.1.1, decamelize@^1.1.2:
   version "1.2.0"
   resolved "http://pl-sinopia01.raa.se:8080/decamelize/-/decamelize-1.2.0.tgz#f6534d15148269b20352e7bee26f501f9a191290"
 
+decode-uri-component@^0.2.0:
+  version "0.2.0"
+  resolved "http://pl-sinopia01.raa.se:8080/decode-uri-component/-/decode-uri-component-0.2.0.tgz#eb3913333458775cb84cd1a1fae062106bb87545"
+
 deep-extend@~0.4.0:
   version "0.4.2"
   resolved "http://pl-sinopia01.raa.se:8080/deep-extend/-/deep-extend-0.4.2.tgz#48b699c27e334bf89f10892be432f6e4c7d34a7f"
@@ -626,10 +608,6 @@ detect-libc@^1.0.2:
 diff@^3.2.0:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/diff/-/diff-3.4.0.tgz#b1d85507daf3964828de54b37d0d73ba67dda56c"
-
-domino@^1.0.29:
-  version "1.0.30"
-  resolved "http://pl-sinopia01.raa.se:8080/domino/-/domino-1.0.30.tgz#54a4154ecae968616680f8feba3cedff355c71f4"
 
 dot-prop@^4.1.0:
   version "4.2.0"
@@ -651,9 +629,9 @@ ecc-jsbn@~0.1.1:
   dependencies:
     jsbn "~0.1.0"
 
-electron-to-chromium@^1.3.30:
-  version "1.3.42"
-  resolved "http://pl-sinopia01.raa.se:8080/electron-to-chromium/-/electron-to-chromium-1.3.42.tgz#95c33bf01d0cc405556aec899fe61fd4d76ea0f9"
+electron-to-chromium@^1.3.47:
+  version "1.3.52"
+  resolved "http://pl-sinopia01.raa.se:8080/electron-to-chromium/-/electron-to-chromium-1.3.52.tgz#d2d9f1270ba4a3b967b831c40ef71fb4d9ab5ce0"
 
 errno@^0.1.1:
   version "0.1.7"
@@ -667,10 +645,6 @@ error-ex@^1.2.0, error-ex@^1.3.1:
   dependencies:
     is-arrayish "^0.2.1"
 
-es6-promise@^3.1.2:
-  version "3.3.1"
-  resolved "http://pl-sinopia01.raa.se:8080/es6-promise/-/es6-promise-3.3.1.tgz#a08cdde84ccdbf34d027a1451bc91d4bcd28a613"
-
 escape-string-regexp@^1.0.2, escape-string-regexp@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
@@ -683,9 +657,9 @@ estree-walker@^0.3.0:
   version "0.3.1"
   resolved "http://pl-sinopia01.raa.se:8080/estree-walker/-/estree-walker-0.3.1.tgz#e6b1a51cf7292524e7237c312e5fe6660c1ce1aa"
 
-estree-walker@^0.5.0:
-  version "0.5.1"
-  resolved "http://pl-sinopia01.raa.se:8080/estree-walker/-/estree-walker-0.5.1.tgz#64fc375053abc6f57d73e9bd2f004644ad3c5854"
+estree-walker@^0.5.1:
+  version "0.5.2"
+  resolved "http://pl-sinopia01.raa.se:8080/estree-walker/-/estree-walker-0.5.2.tgz#d3850be7529c9580d815600b53126515e146dd39"
 
 esutils@^2.0.2:
   version "2.0.2"
@@ -806,19 +780,13 @@ form-data@~2.3.1:
     combined-stream "1.0.6"
     mime-types "^2.1.12"
 
-fs-extra@^5.0.0:
-  version "5.0.0"
-  resolved "http://pl-sinopia01.raa.se:8080/fs-extra/-/fs-extra-5.0.0.tgz#414d0110cdd06705734d055652c5411260c31abd"
+fs-extra@^6.0.0:
+  version "6.0.1"
+  resolved "http://pl-sinopia01.raa.se:8080/fs-extra/-/fs-extra-6.0.1.tgz#8abc128f7946e310135ddc93b98bddb410e7a34b"
   dependencies:
     graceful-fs "^4.1.2"
     jsonfile "^4.0.0"
     universalify "^0.1.0"
-
-fs-minipass@^1.2.5:
-  version "1.2.5"
-  resolved "http://pl-sinopia01.raa.se:8080/fs-minipass/-/fs-minipass-1.2.5.tgz#06c277218454ec288df77ada54a03b8702aacb9d"
-  dependencies:
-    minipass "^2.2.1"
 
 fs.realpath@^1.0.0:
   version "1.0.0"
@@ -976,7 +944,7 @@ got@^6.7.1:
     unzip-response "^2.0.1"
     url-parse-lax "^1.0.0"
 
-graceful-fs@^4.1.11, graceful-fs@^4.1.2, graceful-fs@^4.1.3, graceful-fs@^4.1.6:
+graceful-fs@^4.1.11, graceful-fs@^4.1.2, graceful-fs@^4.1.6:
   version "4.1.11"
   resolved "http://pl-sinopia01.raa.se:8080/graceful-fs/-/graceful-fs-4.1.11.tgz#0e8bdfe4d1ddb8854d64e04ea7c00e2a026e5658"
 
@@ -1287,6 +1255,12 @@ isstream@~0.1.2:
   version "0.1.2"
   resolved "http://pl-sinopia01.raa.se:8080/isstream/-/isstream-0.1.2.tgz#47e63f7af55afa6f92e1500e690eb8b8529c099a"
 
+jasmine-diff@^0.1.3:
+  version "0.1.3"
+  resolved "http://pl-sinopia01.raa.se:8080/jasmine-diff/-/jasmine-diff-0.1.3.tgz#93ccc2dcc41028c5ddd4606558074839f2deeaa8"
+  dependencies:
+    diff "^3.2.0"
+
 js-base64@^2.1.8:
   version "2.4.3"
   resolved "http://pl-sinopia01.raa.se:8080/js-base64/-/js-base64-2.4.3.tgz#2e545ec2b0f2957f41356510205214e98fad6582"
@@ -1375,18 +1349,18 @@ lcid@^1.0.0:
   dependencies:
     invert-kv "^1.0.0"
 
-less@^2.7.2:
-  version "2.7.3"
-  resolved "http://pl-sinopia01.raa.se:8080/less/-/less-2.7.3.tgz#cc1260f51c900a9ec0d91fb6998139e02507b63b"
+less@^3.0.0:
+  version "3.7.1"
+  resolved "http://pl-sinopia01.raa.se:8080/less/-/less-3.7.1.tgz#192e9dcef456ba3181a4e8d78a200f72a75e5c30"
   optionalDependencies:
     errno "^0.1.1"
     graceful-fs "^4.1.2"
     image-size "~0.5.0"
-    mime "^1.2.11"
+    mime "^1.4.1"
     mkdirp "^0.5.0"
     promise "^7.1.1"
-    request "2.81.0"
-    source-map "^0.5.3"
+    request "^2.83.0"
+    source-map "~0.6.0"
 
 load-json-file@^1.0.0:
   version "1.1.0"
@@ -1414,9 +1388,9 @@ locate-path@^2.0.0:
     p-locate "^2.0.0"
     path-exists "^3.0.0"
 
-lodash-es@^4.17.4:
-  version "4.17.8"
-  resolved "http://pl-sinopia01.raa.se:8080/lodash-es/-/lodash-es-4.17.8.tgz#6fa8c8c5d337481df0bdf1c0d899d42473121e45"
+lodash-es@^4.17.10:
+  version "4.17.10"
+  resolved "http://pl-sinopia01.raa.se:8080/lodash-es/-/lodash-es-4.17.10.tgz#62cd7104cdf5dd87f235a837f0ede0e8e5117e05"
 
 lodash.assign@^4.2.0:
   version "4.2.0"
@@ -1430,7 +1404,7 @@ lodash.mergewith@^4.6.0:
   version "4.6.1"
   resolved "http://pl-sinopia01.raa.se:8080/lodash.mergewith/-/lodash.mergewith-4.6.1.tgz#639057e726c3afbdb3e7d42741caa8d6e4335927"
 
-lodash@4.17.5, lodash@^4.0.0, lodash@~4.17.4:
+lodash@^4.0.0, lodash@~4.17.4:
   version "4.17.5"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.5.tgz#99a92d65c0272debe8c96b6057bc8fbfa3bed511"
 
@@ -1451,12 +1425,6 @@ lru-cache@^4.0.1:
   dependencies:
     pseudomap "^1.0.2"
     yallist "^2.1.2"
-
-magic-string@0.22.4:
-  version "0.22.4"
-  resolved "http://pl-sinopia01.raa.se:8080/magic-string/-/magic-string-0.22.4.tgz#31039b4e40366395618c1d6cf8193c53917475ff"
-  dependencies:
-    vlq "^0.2.1"
 
 magic-string@^0.22.4:
   version "0.22.5"
@@ -1517,7 +1485,7 @@ mime-types@^2.1.12, mime-types@~2.1.17, mime-types@~2.1.7:
   dependencies:
     mime-db "~1.33.0"
 
-mime@^1.2.11, mime@^1.4.1:
+mime@^1.4.1:
   version "1.6.0"
   resolved "http://pl-sinopia01.raa.se:8080/mime/-/mime-1.6.0.tgz#32cd9e5c64553bd58d19a568af452acff04981b1"
 
@@ -1535,28 +1503,11 @@ minimist@^1.1.0, minimist@^1.1.3, minimist@^1.2.0:
   version "1.2.0"
   resolved "http://pl-sinopia01.raa.se:8080/minimist/-/minimist-1.2.0.tgz#a35008b20f41383eec1fb914f4cd5df79a264284"
 
-minipass@^2.2.1, minipass@^2.2.4:
-  version "2.2.4"
-  resolved "http://pl-sinopia01.raa.se:8080/minipass/-/minipass-2.2.4.tgz#03c824d84551ec38a8d1bb5bc350a5a30a354a40"
-  dependencies:
-    safe-buffer "^5.1.1"
-    yallist "^3.0.0"
-
-minizlib@^1.1.0:
-  version "1.1.0"
-  resolved "http://pl-sinopia01.raa.se:8080/minizlib/-/minizlib-1.1.0.tgz#11e13658ce46bc3a70a267aac58359d1e0c29ceb"
-  dependencies:
-    minipass "^2.2.1"
-
-mkdirp@0.5.1, mkdirp@0.5.x, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1:
+mkdirp@0.5.x, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1:
   version "0.5.1"
   resolved "http://pl-sinopia01.raa.se:8080/mkdirp/-/mkdirp-0.5.1.tgz#30057438eac6cf7f8c4767f38648d6697d75c903"
   dependencies:
     minimist "0.0.8"
-
-moment@2.21.0:
-  version "2.21.0"
-  resolved "http://pl-sinopia01.raa.se:8080/moment/-/moment-2.21.0.tgz#2a114b51d2a6ec9e6d83cf803f838a878d8a023a"
 
 ms@2.0.0:
   version "2.0.0"
@@ -1566,20 +1517,20 @@ nan@^2.10.0, nan@^2.3.0:
   version "2.10.0"
   resolved "http://pl-sinopia01.raa.se:8080/nan/-/nan-2.10.0.tgz#96d0cd610ebd58d4b4de9cc0c6828cda99c7548f"
 
-ng-packagr@^2.4.2:
-  version "2.4.2"
-  resolved "http://pl-sinopia01.raa.se:8080/ng-packagr/-/ng-packagr-2.4.2.tgz#e74b744cad9e44aa7ddfdee5901b097527d03d23"
+ng-packagr@^3.0.3:
+  version "3.0.3"
+  resolved "http://pl-sinopia01.raa.se:8080/ng-packagr/-/ng-packagr-3.0.3.tgz#389d72ddc76fd67bb8e8965852d2025b76efa048"
   dependencies:
     "@ngtools/json-schema" "^1.1.0"
-    autoprefixer "^7.1.1"
-    browserslist "^2.1.5"
+    autoprefixer "^8.0.0"
+    browserslist "^3.0.0"
     chalk "^2.3.1"
     commander "^2.12.0"
     cpx "^1.5.0"
-    fs-extra "^5.0.0"
+    fs-extra "^6.0.0"
     glob "^7.1.2"
     injection-js "^2.2.1"
-    less "^2.7.2"
+    less "^3.0.0"
     node-sass "^4.5.3"
     node-sass-tilde-importer "^1.0.0"
     postcss "^6.0.2"
@@ -1587,17 +1538,14 @@ ng-packagr@^2.4.2:
     postcss-url "^7.3.0"
     read-pkg-up "^3.0.0"
     rimraf "^2.6.1"
-    rollup "^0.55.0"
-    rollup-plugin-cleanup "^2.0.0"
-    rollup-plugin-commonjs "8.3.0"
-    rollup-plugin-license "^0.6.0"
+    rollup "^0.59.0"
+    rollup-plugin-commonjs "^9.1.3"
     rollup-plugin-node-resolve "^3.0.0"
-    rxjs "^5.5.0"
-    sorcery "^0.10.0"
+    rollup-plugin-sourcemaps "^0.4.2"
+    rxjs "^6.0.0"
     strip-bom "^3.0.0"
     stylus "^0.54.5"
-    tar "^4.4.1"
-    uglify-js "^3.3.20"
+    uglify-js "^3.0.7"
     update-notifier "^2.3.0"
 
 node-gyp@^3.3.1:
@@ -1903,13 +1851,21 @@ postcss-value-parser@^3.2.3:
   version "3.3.0"
   resolved "http://pl-sinopia01.raa.se:8080/postcss-value-parser/-/postcss-value-parser-3.3.0.tgz#87f38f9f18f774a4ab4c8a232f5c5ce8872a9d15"
 
-postcss@^6.0.1, postcss@^6.0.17, postcss@^6.0.2, postcss@^6.x:
+postcss@^6.0.1, postcss@^6.0.2, postcss@^6.x:
   version "6.0.21"
   resolved "http://pl-sinopia01.raa.se:8080/postcss/-/postcss-6.0.21.tgz#8265662694eddf9e9a5960db6da33c39e4cd069d"
   dependencies:
     chalk "^2.3.2"
     source-map "^0.6.1"
     supports-color "^5.3.0"
+
+postcss@^6.0.23:
+  version "6.0.23"
+  resolved "http://pl-sinopia01.raa.se:8080/postcss/-/postcss-6.0.23.tgz#61c82cc328ac60e677645f979054eb98bc0e3324"
+  dependencies:
+    chalk "^2.4.1"
+    source-map "^0.6.1"
+    supports-color "^5.4.0"
 
 prepend-http@^1.0.1:
   version "1.0.4"
@@ -1918,6 +1874,10 @@ prepend-http@^1.0.1:
 preserve@^0.2.0:
   version "0.2.0"
   resolved "http://pl-sinopia01.raa.se:8080/preserve/-/preserve-0.2.0.tgz#815ed1f6ebc65926f865b310c0713bcb3315ce4b"
+
+prettier@^1.14.2:
+  version "1.14.2"
+  resolved "http://pl-sinopia01.raa.se:8080/prettier/-/prettier-1.14.2.tgz#0ac1c6e1a90baa22a62925f41963c841983282f9"
 
 process-nextick-args@~2.0.0:
   version "2.0.0"
@@ -1953,9 +1913,9 @@ qs@~6.5.1:
   version "6.5.1"
   resolved "http://pl-sinopia01.raa.se:8080/qs/-/qs-6.5.1.tgz#349cdf6eef89ec45c12d7d5eb3fc0c870343a6d8"
 
-raa-style@^1.1.3:
-  version "1.1.3"
-  resolved "http://pl-sinopia01.raa.se:8080/raa-style/-/raa-style-1.1.3.tgz#88ebace933d70654a965b056c73168078a7444c2"
+raa-style@^2.0.5:
+  version "2.0.5"
+  resolved "http://pl-sinopia01.raa.se:8080/raa-style/-/raa-style-2.0.5.tgz#38bdc33eeabdb584757ac64ee01dd756ff22729c"
   dependencies:
     normalize-scss "^7.0.0"
 
@@ -2132,6 +2092,31 @@ request@2.81.0:
     tunnel-agent "^0.6.0"
     uuid "^3.0.0"
 
+request@^2.83.0:
+  version "2.87.0"
+  resolved "http://pl-sinopia01.raa.se:8080/request/-/request-2.87.0.tgz#32f00235cd08d482b4d0d68db93a829c0ed5756e"
+  dependencies:
+    aws-sign2 "~0.7.0"
+    aws4 "^1.6.0"
+    caseless "~0.12.0"
+    combined-stream "~1.0.5"
+    extend "~3.0.1"
+    forever-agent "~0.6.1"
+    form-data "~2.3.1"
+    har-validator "~5.0.3"
+    http-signature "~1.2.0"
+    is-typedarray "~1.0.0"
+    isstream "~0.1.2"
+    json-stringify-safe "~5.0.1"
+    mime-types "~2.1.17"
+    oauth-sign "~0.8.2"
+    performance-now "^2.1.0"
+    qs "~6.5.1"
+    safe-buffer "^5.1.1"
+    tough-cookie "~2.3.3"
+    tunnel-agent "^0.6.0"
+    uuid "^3.1.0"
+
 request@~2.79.0:
   version "2.79.0"
   resolved "http://pl-sinopia01.raa.se:8080/request/-/request-2.79.0.tgz#4dfe5bf6be8b8cdc37fcf93e04b65577722710de"
@@ -2165,7 +2150,11 @@ require-main-filename@^1.0.1:
   version "1.0.1"
   resolved "http://pl-sinopia01.raa.se:8080/require-main-filename/-/require-main-filename-1.0.1.tgz#97f717b69d48784f5f526a6c5aa8ffdda055a4d1"
 
-resolve@^1.1.6, resolve@^1.1.7, resolve@^1.4.0:
+resolve-url@^0.2.1:
+  version "0.2.1"
+  resolved "http://pl-sinopia01.raa.se:8080/resolve-url/-/resolve-url-0.2.1.tgz#2c637fe77c893afd2a663fe21aa9080068e2052a"
+
+resolve@^1.1.6, resolve@^1.1.7:
   version "1.7.1"
   resolved "http://pl-sinopia01.raa.se:8080/resolve/-/resolve-1.7.1.tgz#aadd656374fd298aee895bc026b8297418677fd3"
   dependencies:
@@ -2177,39 +2166,26 @@ resolve@^1.3.2:
   dependencies:
     path-parse "^1.0.5"
 
-rimraf@2, rimraf@^2.5.1, rimraf@^2.5.2, rimraf@^2.6.1:
+resolve@^1.5.0:
+  version "1.8.1"
+  resolved "http://pl-sinopia01.raa.se:8080/resolve/-/resolve-1.8.1.tgz#82f1ec19a423ac1fbd080b0bab06ba36e84a7a26"
+  dependencies:
+    path-parse "^1.0.5"
+
+rimraf@2, rimraf@^2.5.1, rimraf@^2.6.1:
   version "2.6.2"
   resolved "http://pl-sinopia01.raa.se:8080/rimraf/-/rimraf-2.6.2.tgz#2ed8150d24a16ea8651e6d6ef0f47c4158ce7a36"
   dependencies:
     glob "^7.0.5"
 
-rollup-plugin-cleanup@^2.0.0:
-  version "2.0.1"
-  resolved "http://pl-sinopia01.raa.se:8080/rollup-plugin-cleanup/-/rollup-plugin-cleanup-2.0.1.tgz#62c510fe868a77000f33cf13b519fb36a9fbe2ed"
+rollup-plugin-commonjs@^9.1.3:
+  version "9.1.3"
+  resolved "http://pl-sinopia01.raa.se:8080/rollup-plugin-commonjs/-/rollup-plugin-commonjs-9.1.3.tgz#37bfbf341292ea14f512438a56df8f9ca3ba4d67"
   dependencies:
-    acorn "4.x"
+    estree-walker "^0.5.1"
     magic-string "^0.22.4"
+    resolve "^1.5.0"
     rollup-pluginutils "^2.0.1"
-
-rollup-plugin-commonjs@8.3.0:
-  version "8.3.0"
-  resolved "http://pl-sinopia01.raa.se:8080/rollup-plugin-commonjs/-/rollup-plugin-commonjs-8.3.0.tgz#91b4ba18f340951e39ed7b1901f377a80ab3f9c3"
-  dependencies:
-    acorn "^5.2.1"
-    estree-walker "^0.5.0"
-    magic-string "^0.22.4"
-    resolve "^1.4.0"
-    rollup-pluginutils "^2.0.1"
-
-rollup-plugin-license@^0.6.0:
-  version "0.6.0"
-  resolved "http://pl-sinopia01.raa.se:8080/rollup-plugin-license/-/rollup-plugin-license-0.6.0.tgz#d8e5e75ac0fcb5a7af7c5d89a644ef42f05f48a4"
-  dependencies:
-    commenting "1.0.5"
-    lodash "4.17.5"
-    magic-string "0.22.4"
-    mkdirp "0.5.1"
-    moment "2.21.0"
 
 rollup-plugin-node-resolve@^3.0.0:
   version "3.3.0"
@@ -2219,6 +2195,13 @@ rollup-plugin-node-resolve@^3.0.0:
     is-module "^1.0.0"
     resolve "^1.1.6"
 
+rollup-plugin-sourcemaps@^0.4.2:
+  version "0.4.2"
+  resolved "http://pl-sinopia01.raa.se:8080/rollup-plugin-sourcemaps/-/rollup-plugin-sourcemaps-0.4.2.tgz#62125aa94087aadf7b83ef4dfaf629b473135e87"
+  dependencies:
+    rollup-pluginutils "^2.0.1"
+    source-map-resolve "^0.5.0"
+
 rollup-pluginutils@^2.0.1:
   version "2.0.1"
   resolved "http://pl-sinopia01.raa.se:8080/rollup-pluginutils/-/rollup-pluginutils-2.0.1.tgz#7ec95b3573f6543a46a6461bd9a7c544525d0fc0"
@@ -2226,28 +2209,22 @@ rollup-pluginutils@^2.0.1:
     estree-walker "^0.3.0"
     micromatch "^2.3.11"
 
-rollup@^0.55.0:
-  version "0.55.5"
-  resolved "http://pl-sinopia01.raa.se:8080/rollup/-/rollup-0.55.5.tgz#2f88c300f7cf24b5ec2dca8a6aba73b04e087e93"
-
-rxjs@^5.5.0, rxjs@^5.5.2:
-  version "5.5.10"
-  resolved "http://pl-sinopia01.raa.se:8080/rxjs/-/rxjs-5.5.10.tgz#fde02d7a614f6c8683d0d1957827f492e09db045"
+rollup@^0.59.0:
+  version "0.59.4"
+  resolved "http://pl-sinopia01.raa.se:8080/rollup/-/rollup-0.59.4.tgz#6f80f7017c22667ff1bf3e62adf8624a44cc44aa"
   dependencies:
-    symbol-observable "1.0.1"
+    "@types/estree" "0.0.39"
+    "@types/node" "*"
+
+rxjs@^6.0.0, rxjs@^6.2.1:
+  version "6.2.1"
+  resolved "http://pl-sinopia01.raa.se:8080/rxjs/-/rxjs-6.2.1.tgz#246cebec189a6cbc143a3ef9f62d6f4c91813ca1"
+  dependencies:
+    tslib "^1.9.0"
 
 safe-buffer@^5.0.1, safe-buffer@^5.1.1, safe-buffer@~5.1.0, safe-buffer@~5.1.1:
   version "5.1.1"
   resolved "http://pl-sinopia01.raa.se:8080/safe-buffer/-/safe-buffer-5.1.1.tgz#893312af69b2123def71f57889001671eeb2c853"
-
-sander@^0.5.0:
-  version "0.5.1"
-  resolved "http://pl-sinopia01.raa.se:8080/sander/-/sander-0.5.1.tgz#741e245e231f07cafb6fdf0f133adfa216a502ad"
-  dependencies:
-    es6-promise "^3.1.2"
-    graceful-fs "^4.1.3"
-    mkdirp "^0.5.1"
-    rimraf "^2.5.2"
 
 sass-graph@^2.2.4:
   version "2.2.4"
@@ -2326,14 +2303,15 @@ sntp@2.x.x:
   dependencies:
     hoek "4.x.x"
 
-sorcery@^0.10.0:
-  version "0.10.0"
-  resolved "http://pl-sinopia01.raa.se:8080/sorcery/-/sorcery-0.10.0.tgz#8ae90ad7d7cb05fc59f1ab0c637845d5c15a52b7"
+source-map-resolve@^0.5.0:
+  version "0.5.2"
+  resolved "http://pl-sinopia01.raa.se:8080/source-map-resolve/-/source-map-resolve-0.5.2.tgz#72e2cc34095543e43b2c62b2c4c10d4a9054f259"
   dependencies:
-    buffer-crc32 "^0.2.5"
-    minimist "^1.2.0"
-    sander "^0.5.0"
-    sourcemap-codec "^1.3.0"
+    atob "^2.1.1"
+    decode-uri-component "^0.2.0"
+    resolve-url "^0.2.1"
+    source-map-url "^0.4.0"
+    urix "^0.1.0"
 
 source-map-support@^0.5.0:
   version "0.5.4"
@@ -2341,13 +2319,17 @@ source-map-support@^0.5.0:
   dependencies:
     source-map "^0.6.0"
 
+source-map-url@^0.4.0:
+  version "0.4.0"
+  resolved "http://pl-sinopia01.raa.se:8080/source-map-url/-/source-map-url-0.4.0.tgz#3e935d7ddd73631b97659956d55128e87b5084a3"
+
 source-map@0.1.x:
   version "0.1.43"
   resolved "http://pl-sinopia01.raa.se:8080/source-map/-/source-map-0.1.43.tgz#c24bc146ca517c1471f5dacbe2571b2b7f9e3346"
   dependencies:
     amdefine ">=0.0.4"
 
-source-map@0.5.x, source-map@^0.5.3:
+source-map@0.5.x:
   version "0.5.7"
   resolved "http://pl-sinopia01.raa.se:8080/source-map/-/source-map-0.5.7.tgz#8a039d2d1021d22d1ea14c80d8ea468ba2ef3fcc"
 
@@ -2357,13 +2339,9 @@ source-map@^0.4.2:
   dependencies:
     amdefine ">=0.0.4"
 
-source-map@^0.6.0, source-map@^0.6.1, source-map@~0.6.1:
+source-map@^0.6.0, source-map@^0.6.1, source-map@~0.6.0, source-map@~0.6.1:
   version "0.6.1"
   resolved "http://pl-sinopia01.raa.se:8080/source-map/-/source-map-0.6.1.tgz#74722af32e9614e9c287a8d0bbde48b5e2f1a263"
-
-sourcemap-codec@^1.3.0:
-  version "1.4.1"
-  resolved "http://pl-sinopia01.raa.se:8080/sourcemap-codec/-/sourcemap-codec-1.4.1.tgz#c8fd92d91889e902a07aee392bdd2c5863958ba2"
 
 spdx-correct@^3.0.0:
   version "3.0.0"
@@ -2505,9 +2483,11 @@ supports-color@^5.3.0:
   dependencies:
     has-flag "^3.0.0"
 
-symbol-observable@1.0.1:
-  version "1.0.1"
-  resolved "http://pl-sinopia01.raa.se:8080/symbol-observable/-/symbol-observable-1.0.1.tgz#8340fc4702c3122df5d22288f88283f513d3fdd4"
+supports-color@^5.4.0:
+  version "5.4.0"
+  resolved "http://pl-sinopia01.raa.se:8080/supports-color/-/supports-color-5.4.0.tgz#1c6b337402c2137605efe19f10fec390f6faab54"
+  dependencies:
+    has-flag "^3.0.0"
 
 tar-pack@^3.4.0:
   version "3.4.1"
@@ -2529,18 +2509,6 @@ tar@^2.0.0, tar@^2.2.1:
     block-stream "*"
     fstream "^1.0.2"
     inherits "2"
-
-tar@^4.4.1:
-  version "4.4.1"
-  resolved "http://pl-sinopia01.raa.se:8080/tar/-/tar-4.4.1.tgz#b25d5a8470c976fd7a9a8a350f42c59e9fa81749"
-  dependencies:
-    chownr "^1.0.1"
-    fs-minipass "^1.2.5"
-    minipass "^2.2.4"
-    minizlib "^1.1.0"
-    mkdirp "^0.5.0"
-    safe-buffer "^5.1.1"
-    yallist "^3.0.2"
 
 term-size@^1.2.0:
   version "1.2.0"
@@ -2568,18 +2536,32 @@ trim-newlines@^1.0.0:
   dependencies:
     glob "^6.0.4"
 
-tsickle@^0.27.2, tsickle@^0.27.5:
-  version "0.27.5"
-  resolved "http://pl-sinopia01.raa.se:8080/tsickle/-/tsickle-0.27.5.tgz#41e1a41a5acf971cbb2b0558a9590779234d591f"
+tsickle@^0.29.0:
+  version "0.29.0"
+  resolved "http://pl-sinopia01.raa.se:8080/tsickle/-/tsickle-0.29.0.tgz#812806554bb46c1aa16eb0fe2a051da95ca8f5a4"
   dependencies:
     minimist "^1.2.0"
     mkdirp "^0.5.1"
     source-map "^0.6.0"
     source-map-support "^0.5.0"
 
-tslib@^1.7.1, tslib@^1.8.0, tslib@^1.8.1:
+tsickle@^0.32.0:
+  version "0.32.0"
+  resolved "http://pl-sinopia01.raa.se:8080/tsickle/-/tsickle-0.32.0.tgz#8027eecf5872b4451ffae821a5fdbd0b3206c139"
+  dependencies:
+    jasmine-diff "^0.1.3"
+    minimist "^1.2.0"
+    mkdirp "^0.5.1"
+    source-map "^0.6.0"
+    source-map-support "^0.5.0"
+
+tslib@^1.8.0, tslib@^1.8.1:
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.9.0.tgz#e37a86fda8cbbaf23a057f473c9f4dc64e5fc2e8"
+
+tslib@^1.9.0:
+  version "1.9.3"
+  resolved "http://pl-sinopia01.raa.se:8080/tslib/-/tslib-1.9.3.tgz#d7e4dd79245d85428c4d7e4822a79917954ca286"
 
 tslint@^5.8.0:
   version "5.9.1"
@@ -2618,15 +2600,15 @@ tweetnacl@^0.14.3, tweetnacl@~0.14.0:
   version "0.14.5"
   resolved "http://pl-sinopia01.raa.se:8080/tweetnacl/-/tweetnacl-0.14.5.tgz#5ae68177f192d4456269d108afa93ff8743f4f64"
 
-typescript@2.4.2:
-  version "2.4.2"
-  resolved "http://pl-sinopia01.raa.se:8080/typescript/-/typescript-2.4.2.tgz#f8395f85d459276067c988aa41837a8f82870844"
+typescript@~2.7.2:
+  version "2.7.2"
+  resolved "http://pl-sinopia01.raa.se:8080/typescript/-/typescript-2.7.2.tgz#2d615a1ef4aee4f574425cdff7026edf81919836"
 
-uglify-js@^3.3.20:
-  version "3.3.21"
-  resolved "http://pl-sinopia01.raa.se:8080/uglify-js/-/uglify-js-3.3.21.tgz#851a34cbb31840ecb881968ed07dd3a61e7264a0"
+uglify-js@^3.0.7:
+  version "3.4.4"
+  resolved "http://pl-sinopia01.raa.se:8080/uglify-js/-/uglify-js-3.4.4.tgz#92e79532a3aeffd4b6c65755bdba8d5bad98d607"
   dependencies:
-    commander "~2.15.0"
+    commander "~2.16.0"
     source-map "~0.6.1"
 
 uid-number@^0.0.6:
@@ -2662,6 +2644,10 @@ update-notifier@^2.3.0:
     semver-diff "^2.0.0"
     xdg-basedir "^3.0.0"
 
+urix@^0.1.0:
+  version "0.1.0"
+  resolved "http://pl-sinopia01.raa.se:8080/urix/-/urix-0.1.0.tgz#da937f7a62e21fec1fd18d49b35c2935067a6c72"
+
 url-parse-lax@^1.0.0:
   version "1.0.0"
   resolved "http://pl-sinopia01.raa.se:8080/url-parse-lax/-/url-parse-lax-1.0.0.tgz#7af8f303645e9bd79a272e7a14ac68bc0609da73"
@@ -2691,7 +2677,7 @@ verror@1.10.0:
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
 
-vlq@^0.2.1, vlq@^0.2.2:
+vlq@^0.2.2:
   version "0.2.3"
   resolved "http://pl-sinopia01.raa.se:8080/vlq/-/vlq-0.2.3.tgz#8f3e4328cf63b1540c0d67e1b2778386f8975b26"
 
@@ -2740,10 +2726,6 @@ xdg-basedir@^3.0.0:
   version "3.0.0"
   resolved "http://pl-sinopia01.raa.se:8080/xdg-basedir/-/xdg-basedir-3.0.0.tgz#496b2cc109eca8dbacfe2dc72b603c17c5870ad4"
 
-xhr2@^0.1.4:
-  version "0.1.4"
-  resolved "http://pl-sinopia01.raa.se:8080/xhr2/-/xhr2-0.1.4.tgz#7f87658847716db5026323812f818cadab387a5f"
-
 xtend@^4.0.0:
   version "4.0.1"
   resolved "http://pl-sinopia01.raa.se:8080/xtend/-/xtend-4.0.1.tgz#a5c6d532be656e23db820efb943a1f04998d63af"
@@ -2761,10 +2743,6 @@ y18n@^3.2.1:
 yallist@^2.1.2:
   version "2.1.2"
   resolved "http://pl-sinopia01.raa.se:8080/yallist/-/yallist-2.1.2.tgz#1c11f9218f076089a47dd512f93c6699a6a81d52"
-
-yallist@^3.0.0, yallist@^3.0.2:
-  version "3.0.2"
-  resolved "http://pl-sinopia01.raa.se:8080/yallist/-/yallist-3.0.2.tgz#8452b4bb7e83c7c188d8041c1a837c773d6d8bb9"
 
 yargs-parser@^5.0.0:
   version "5.0.0"

@@ -44,6 +44,13 @@ Exempel:
 
     import { OrgnummerPipe } from "ng-raa-common/pipes";
 
+### Gemensam Sass
+Gemensamm css kod som ska användas inom RAÄ:s webbapplikationer importeras i varje Sass-fil där dom behövs:
+
+    @import '~ng-raa-common/styles';
+
+Då kan våra gemensama sass-variabler och mixin:s användas direkt
+
 ## Utveckling
 
 För att fixa buggar/utveckla ny funktionalitet, checka ut projektet till valfri mapp med kommandot

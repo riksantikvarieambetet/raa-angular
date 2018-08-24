@@ -1,16 +1,16 @@
-@import '~raa-style/dist/scss/colors';
+@import "../../styles/raa.colors";
 
-$border-color: $raa-gray-3;
+$border-color: $gray-1;
 $border-size: 1px;
 $border-radius-size: 2px;
 
 $button-width: 3rem;
-$button-color: $raa-orange;
+$button-color: $orange-1;
 $button-bg-color: white;
 $button-hover-color: $button-color;
-$button-hover-bg-color: $raa-gray-2;
+$button-hover-bg-color: $gray-4;
 $button-active-color: $button-color;
-$button-active-bg-color: $raa-gray-2;
+$button-active-bg-color: $gray-4;
 
 $dropdown-max-height: 17rem;
 $dropdown-bg-color: white;
@@ -18,9 +18,9 @@ $dropdown-bg-color: white;
 $dropdown-item-padding: 0.5rem 1rem;
 
 $dropdown-item-hover-color: white;
-$dropdown-item-hover-bg-color: $raa-gray-2;
+$dropdown-item-hover-bg-color: $gray-4;
 
-$dropdown-item-selected-bg-color: $raa-gray-2;
+$dropdown-item-selected-bg-color: $gray-4;
 
 .raa-select {
   background-color: inherit;
@@ -60,7 +60,7 @@ $dropdown-item-selected-bg-color: $raa-gray-2;
   &.ng-invalid.ng-dirty,
   &.ng-invalid.error {
     .raa-select-input {
-      background-color: $raa-error-red-light;
+      background-color: $light-red-1;
     }
   }
 }
@@ -78,9 +78,9 @@ $dropdown-item-selected-bg-color: $raa-gray-2;
   }
 
   &.disabled {
-    background-color: $raa-gray-2;
+    background-color: $gray-4;
     .raa-select-button {
-      background-color: $raa-gray-3;
+      background-color: $gray-3;
       color: white;
       cursor: default;
     }
@@ -92,7 +92,6 @@ $dropdown-item-selected-bg-color: $raa-gray-2;
   justify-content: center;
   align-items: center;
   width: $button-width;
-  min-width: auto;
   padding: 0;
   border: $border-size solid $border-color;
   border-left: none;
@@ -100,6 +99,8 @@ $dropdown-item-selected-bg-color: $raa-gray-2;
   background-color: transparent;
   color: $button-color;
   cursor: pointer;
+  font-weight: 700;
+  font-size: 26px;
 }
 
 .raa-select-dropdown {
