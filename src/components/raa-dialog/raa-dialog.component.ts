@@ -1,20 +1,11 @@
-import {
-  Component,
-  Input,
-  ViewChild,
-  ElementRef,
-  AfterContentChecked,
-  OnInit,
-  OnDestroy
-} from '@angular/core';
+import { Component, Input, ViewChild, ElementRef, AfterContentChecked, OnInit, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'raa-dialogue',
   templateUrl: './raa-dialog.component.html',
-  styleUrls: ['./raa-dialog.component.scss']
+  styleUrls: ['./raa-dialog.component.scss'],
 })
 export class RaaDialogComponent implements OnInit, OnDestroy, AfterContentChecked {
-
   @Input()
   onYes: Function;
 
@@ -67,4 +58,3 @@ export class RaaDialogComponent implements OnInit, OnDestroy, AfterContentChecke
     }
   }
 }
-

@@ -23,10 +23,9 @@ const DEFAULT_MAX_HEIGHT = 500;
 @Component({
   selector: 'raa-dropdown',
   templateUrl: './raa-dropdown.component.html',
-  styleUrls: ['./raa-dropdown.component.scss']
+  styleUrls: ['./raa-dropdown.component.scss'],
 })
 export class RaaDropdownComponent implements OnInit, AfterViewInit, OnDestroy {
-
   @Input()
   private element: HTMLElement;
 
@@ -57,8 +56,7 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit, OnDestroy {
     this.onParentScroll();
   }, 16);
 
-  constructor() {
-  }
+  constructor() {}
 
   ngOnInit() {
     this.dropdown = (this.dropdownElementRef.nativeElement as HTMLElement).firstElementChild as HTMLElement;
@@ -93,7 +91,11 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit, OnDestroy {
 
     const dropdownPosition = this.handleDropdownPositionAndSize(elementBoundingClientRect);
     if (this.element && this.parent) {
-      const elementIsVisibleWithinScrollView = this.isElementVisibleWithinScrollView(dropdownPosition, elementBoundingClientRect, parentBoundingClientRect);
+      const elementIsVisibleWithinScrollView = this.isElementVisibleWithinScrollView(
+        dropdownPosition,
+        elementBoundingClientRect,
+        parentBoundingClientRect
+      );
       if (!elementIsVisibleWithinScrollView && this.dropdown.style.visibility !== 'hidden') {
         this.dropdown.style.visibility = 'hidden';
       } else if (elementIsVisibleWithinScrollView && this.dropdown.style.visibility === 'hidden') {
@@ -131,9 +133,11 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit, OnDestroy {
     const spaceBelow = documentBoundingClientRect.bottom - elementBoundingClientRect.bottom;
     const dropdownHeight = dropdownBoundingClientRect.height;
 
-    if (spaceBelow < dropdownHeight + EXTRA_SPACING
-      && spaceBelow < this.moveUpHeightThreshold
-      && spaceAbove > spaceBelow) {
+    if (
+      spaceBelow < dropdownHeight + EXTRA_SPACING &&
+      spaceBelow < this.moveUpHeightThreshold &&
+      spaceAbove > spaceBelow
+    ) {
       this.setDropdownAbove(spaceAbove, documentBoundingClientRect, elementBoundingClientRect);
       return 'ABOVE';
     }
@@ -142,9 +146,11 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit, OnDestroy {
     return 'BELOW';
   }
 
-  private setDropdownAbove(spaceAbove: number,
+  private setDropdownAbove(
+    spaceAbove: number,
     documentBoundingClientRect: ClientRect,
-    elementBoundingClientRect: ClientRect) {
+    elementBoundingClientRect: ClientRect
+  ) {
     const maxDropdownHeight = this.getMaxDropdownHeight(spaceAbove - EXTRA_SPACING);
     const dropdownBottomPosFromBodyBottom = documentBoundingClientRect.height - elementBoundingClientRect.top;
 
@@ -168,16 +174,23 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit, OnDestroy {
     this.dropdownMovedUp.emit(false);
   }
 
-  private isElementVisibleWithinScrollView(dropdownPosition: DropdownPositon, elementBoundingClientRect: ClientRect, parentBoundingClientRect: ClientRect) {
+  private isElementVisibleWithinScrollView(
+    dropdownPosition: DropdownPositon,
+    elementBoundingClientRect: ClientRect,
+    parentBoundingClientRect: ClientRect
+  ) {
     if (dropdownPosition === 'BELOW') {
-      return elementBoundingClientRect.bottom < parentBoundingClientRect.bottom
-        && elementBoundingClientRect.bottom > parentBoundingClientRect.top;
+      return (
+        elementBoundingClientRect.bottom < parentBoundingClientRect.bottom &&
+        elementBoundingClientRect.bottom > parentBoundingClientRect.top
+      );
     }
 
-    return elementBoundingClientRect.top < parentBoundingClientRect.bottom
-      && elementBoundingClientRect.top > parentBoundingClientRect.top;
+    return (
+      elementBoundingClientRect.top < parentBoundingClientRect.bottom &&
+      elementBoundingClientRect.top > parentBoundingClientRect.top
+    );
   }
-
 
   private appendDropdownToBody() {
     document.body.appendChild(this.dropdown);
@@ -212,14 +225,14 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private tryToScrollElementIntoView(elementBoundingClientRect: ClientRect, parentBoundingClientRect: ClientRect) {
     if (!this.element || !this.parent || typeof this.parent.scrollTop === 'undefined') {
-      return ;
+      return;
     }
 
     if (elementBoundingClientRect.bottom > parentBoundingClientRect.bottom) {
-      const scrollLength = this.parent.scrollTop + elementBoundingClientRect.bottom - parentBoundingClientRect.bottom + 1;
+      const scrollLength =
+        this.parent.scrollTop + elementBoundingClientRect.bottom - parentBoundingClientRect.bottom + 1;
       this.parent.scrollTop = scrollLength;
-    }
-    else if (elementBoundingClientRect.top < parentBoundingClientRect.top) {
+    } else if (elementBoundingClientRect.top < parentBoundingClientRect.top) {
       const scrollLength = this.parent.scrollTop - (parentBoundingClientRect.top - elementBoundingClientRect.top + 1);
       this.parent.scrollTop = scrollLength;
     }

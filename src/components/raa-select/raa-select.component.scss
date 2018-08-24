@@ -1,4 +1,4 @@
-@import "../../styles/raa.colors";
+@import '../../styles/raa.colors';
 
 $border-color: $gray-1;
 $border-size: 1px;
@@ -34,27 +34,28 @@ $dropdown-item-selected-bg-color: $gray-4;
 }
 
 .raa-select-input {
-    &::-ms-clear { // Tar bort IE "clear field"-knapp
-      display: none;
-    }
-
-    position: relative; // Se till att outline
-    z-index: 0;         // ligger över knapp
-
-    width: 100%;
-    padding: 0.5rem 1rem;
-
-    background-color: transparent;
-
-    border: $border-size solid $border-color;
-    border-right: none;
-    border-radius: $border-radius-size 0 0 $border-radius-size;
-
-    &.active {
-      border-radius: $border-radius-size 0 0 0;
-      z-index: 2; // Outline ska hamna över dropdown
-    }
+  &::-ms-clear {
+    // Tar bort IE "clear field"-knapp
+    display: none;
   }
+
+  position: relative; // Se till att outline
+  z-index: 0; // ligger över knapp
+
+  width: 100%;
+  padding: 0.5rem 1rem;
+
+  background-color: transparent;
+
+  border: $border-size solid $border-color;
+  border-right: none;
+  border-radius: $border-radius-size 0 0 $border-radius-size;
+
+  &.active {
+    border-radius: $border-radius-size 0 0 0;
+    z-index: 2; // Outline ska hamna över dropdown
+  }
+}
 
 :host {
   &.ng-invalid.ng-dirty,

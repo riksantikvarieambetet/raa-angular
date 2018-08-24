@@ -13,13 +13,10 @@ import {
   ViewChild,
   ViewChildren,
   QueryList,
-  ElementRef
+  ElementRef,
 } from '@angular/core';
 
-import {
-  ControlValueAccessor,
-  NG_VALUE_ACCESSOR
-} from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 const enum KeyCode {
   Tab = 9,
@@ -29,15 +26,14 @@ const enum KeyCode {
   Return = 13,
   Escape = 27,
   ArrowUp = 38,
-  ArrowDown = 40
+  ArrowDown = 40,
 }
 
-const ignoreOpenOnKeyCodes: { [key: number]: boolean; }
-  = {
-    [KeyCode.Alt]: true,
-    [KeyCode.Ctrl]: true,
-    [KeyCode.Shift]: true
-  };
+const ignoreOpenOnKeyCodes: { [key: number]: boolean } = {
+  [KeyCode.Alt]: true,
+  [KeyCode.Ctrl]: true,
+  [KeyCode.Shift]: true,
+};
 
 @Component({
   selector: 'raa-select',
@@ -47,13 +43,13 @@ const ignoreOpenOnKeyCodes: { [key: number]: boolean; }
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => RaaSelect),
-      multi: true
-    }
-  ]
+      multi: true,
+    },
+  ],
 })
 export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValueAccessor {
-
-  @HostBinding() tabindex = 0;
+  @HostBinding()
+  tabindex = 0;
 
   @HostListener('focus', ['$event.target'])
   onFocus(_event?: FocusEvent) {
@@ -63,13 +59,19 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
     }
   }
 
-  @Input() domain: any[];
-  @Input() valueAttr: string;
-  @Input() displayAttr: string;
-  @Input() placeholder: string;
-  @Input() disabled: boolean = false;
+  @Input()
+  domain: any[];
+  @Input()
+  valueAttr: string;
+  @Input()
+  displayAttr: string;
+  @Input()
+  placeholder: string;
+  @Input()
+  disabled: boolean = false;
 
-  @Output() onSelect = new EventEmitter<any>();
+  @Output()
+  onSelect = new EventEmitter<any>();
 
   @ViewChild('inputField')
   inputField: ElementRef;
@@ -79,7 +81,6 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
 
   @ViewChildren('dropdownItem')
   dropdownItems: QueryList<ElementRef>;
-
 
   value: any;
   filterInput = '';
@@ -100,15 +101,13 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
     this.value = value;
   }
 
-  propagateChange = (_: any) => {
-  }
+  propagateChange = (_: any) => {};
 
   registerOnChange(fn: any) {
     this.propagateChange = fn;
   }
 
-  registerOnTouched() {
-  }
+  registerOnTouched() {}
 
   setDisabledState(isDisabled: boolean) {
     this.disabled = isDisabled;
@@ -180,7 +179,7 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
       this.scrollToSelected = true;
       this.selectAllTextInInput();
 
-      return this.showDropdown = true;
+      return (this.showDropdown = true);
     }
 
     return false;
@@ -213,7 +212,7 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
     return this.domain.map(item => {
       return {
         id: item[this.valueAttr],
-        displayValue: item[this.displayAttr]
+        displayValue: item[this.displayAttr],
       };
     });
   }
@@ -224,7 +223,9 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
       return;
     }
 
-    this.filteredDomainValues = this.domainValues.filter(item => item.displayValue.toLowerCase().indexOf(this.filterInput.toLocaleLowerCase()) > -1);
+    this.filteredDomainValues = this.domainValues.filter(
+      item => item.displayValue.toLowerCase().indexOf(this.filterInput.toLocaleLowerCase()) > -1
+    );
     if (this.filteredDomainValues.length > 0) {
       this.hoverIndex = 0;
     }
@@ -244,11 +245,13 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
     }
     let domainObject = this.domainValues.filter(domainItem => domainItem.id === itemKey);
     if (domainObject.length === 0) {
-      throw 'ERROR: raa-select.component -> There is no domain object with key ' + itemKey + '. Make sure the key exists in domain and/or the type (string/number) is correct';
+      throw 'ERROR: raa-select.component -> There is no domain object with key ' +
+        itemKey +
+        '. Make sure the key exists in domain and/or the type (string/number) is correct';
     }
 
     return domainObject[0].displayValue;
-  }
+  };
 
   handleKeyPressed(event: KeyboardEvent) {
     const keyCode = event.which;
@@ -263,8 +266,7 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
       if (this.hoverIndex < this.filteredDomainValues.length - 1) {
         this.hoverIndex += 1;
       }
-    }
-    else if (keyCode === KeyCode.ArrowUp) {
+    } else if (keyCode === KeyCode.ArrowUp) {
       event.preventDefault();
 
       if (this.openDropdownIfClosed()) {
@@ -274,22 +276,18 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
       if (this.hoverIndex > 0) {
         this.hoverIndex -= 1;
       }
-    }
-    else if (keyCode === KeyCode.Return) {
+    } else if (keyCode === KeyCode.Return) {
       if (this.hoverIndex > -1) {
         event.preventDefault();
         this.select(this.filteredDomainValues[this.hoverIndex]);
         this.focusLost();
       }
-    }
-    else if (keyCode === KeyCode.Escape) {
+    } else if (keyCode === KeyCode.Escape) {
       event.preventDefault();
       this.focusLost();
-    }
-    else if (keyCode === KeyCode.Tab) {
+    } else if (keyCode === KeyCode.Tab) {
       this.focusLost();
-    }
-    else {
+    } else {
       if (!ignoreOpenOnKeyCodes[keyCode]) {
         this.openDropdownIfClosed();
       }
@@ -300,8 +298,7 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
     if (!this.showDropdown) {
       this.onFocus();
       this.openDropdownIfClosed();
-    }
-    else {
+    } else {
       this.focusLost();
     }
   }
@@ -317,26 +314,17 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
   }
 
   focusGained() {
-    // this.openDropdownIfClosed();
     this.clearFilters();
   }
 
   focusLost = () => {
     this.showDropdown = false;
-    // this.clearDisplayTextWhenEmptyModel();
 
     // sätter visningsvärde till valt värde, detta om användaren börjar justera men avbryter
     this.filterInput = this.getDisplayValue(this.value);
     this.hoverIndex = -1;
     this.tabindex = -1;
-  }
-
-  // clearDisplayTextWhenEmptyModel() {
-  //   if (!this.value) {
-  //     this.filterInput = '';
-  //   }
-  // }
-
+  };
 
   private selectAllTextInInput() {
     this.inputField.nativeElement.select();

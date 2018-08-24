@@ -11,7 +11,7 @@ Detta gör man genom att lägga till en .npmrc-fil i sitt projekt som innehålle
 
 När man gjort detta kan man installera med
 
-  yarn install raa-angular
+yarn install raa-angular
 
 För att angular ska känna till modulen måste denna defineras i applikationens modul/moduler.
 
@@ -25,13 +25,14 @@ För att angular ska känna till modulen måste denna defineras i applikationens
         ],
         providers: []
         })
-        
+
 Index.ts måste också inkluderas i tsconfig.json
 
-	"include": [
+    "include": [
     	"src/**/*",
     	"node_modules/raa-angular/index.ts"
-  	]
+
+]
 
 Nu kan du använda våra gemensamma komponenter i ditt projekt. För
 att tillexempel använda raa-select i ditt projekt anger du bara komponenten i din html-kod
@@ -45,6 +46,7 @@ Exempel:
     import { OrgnummerPipe } from "ng-raa-common/pipes";
 
 ### Gemensam Sass
+
 Gemensamm css kod som ska användas inom RAÄ:s webbapplikationer importeras i varje Sass-fil där dom behövs:
 
     @import '~ng-raa-common/styles';
@@ -68,7 +70,7 @@ I filen `/pipes.ts` exporterar vi våra pipe klasser. Se nedan under [Pipes](#pi
 
 Under mappen `/src/` ligger alla `components`, `directives`, `pipes` och `styles`
 som angular modulen `ng-raa-common` innehåller. För att bygga en ny komponent skapa en ny katalog för komponenten
-och lägg till ett beroende under `declarations` och exportera komponenten till övriga projekt genom att lägga till komponenten 
+och lägg till ett beroende under `declarations` och exportera komponenten till övriga projekt genom att lägga till komponenten
 under `exports` i filen `/src/raa.module.ts`.
 
 ### <a name="pipes"></a>Pipes
@@ -80,7 +82,24 @@ Ex:
 
     export * from './orgnummer.pipe';
 
-Denna fil exporteras sedan från `/pipes.ts` så att dom enkelt kan importeras från externa projekt genom att skriva  tillexempel `import { OrgnummerPipe } from 'ng-raa-common/pipes';`
+Denna fil exporteras sedan från `/pipes.ts` så att dom enkelt kan importeras från externa projekt genom att skriva tillexempel `import { OrgnummerPipe } from 'ng-raa-common/pipes';`
+
+### Prettier - https://prettier.io/
+
+För att formatera koden och hålla en konsekvens formattering använder vi oss av Prettier som formaterar scss, css och ts koden åt en. Ett precommit steg finns som automatiskt formaterar koden innan koden commit:as.
+
+För att formatera automatiskt vid editering finns följande plugins
+
+#### Visual Studio Code
+
+Plugin: Prettier - Code formatter
+För att formatera automatiskt vid spara lägg till configurationen
+
+    "editor.formatOnSave": true
+
+#### IntelliJ IDEA
+
+Plugin: https://plugins.jetbrains.com/plugin/10456-prettier
 
 ### Incheckning
 

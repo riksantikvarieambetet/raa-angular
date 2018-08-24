@@ -1,65 +1,64 @@
-@import'~raa-style/src/colors';
+@import '~raa-style/src/colors';
 @import '~raa-style/src/media-queries';
 
 .navigation {
-    padding: 0.5rem 1rem;
-    background-color: white;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+  padding: 0.5rem 1rem;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 
-    nav {
-        margin: auto 0;
-        .nav-link {
-            background: white;
-            padding: 0.3rem 1rem;
-            margin-right: 1rem;
-            border-radius: 3px;
-            display: inline-block;
-            color: $raa-gray-4;
-            border: solid 2px transparent;
-            letter-spacing: .5px;
-            text-transform: uppercase;
-            cursor: pointer;
+  nav {
+    margin: auto 0;
+    .nav-link {
+      background: white;
+      padding: 0.3rem 1rem;
+      margin-right: 1rem;
+      border-radius: 3px;
+      display: inline-block;
+      color: $raa-gray-4;
+      border: solid 2px transparent;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      cursor: pointer;
 
-            &:hover, &.active-link {
-                color: darken($raa-gray-4, 15%);
-                border-bottom: solid 2px $raa-orange;
-            }
-            &.log-in-button {
-                border: solid 2px $raa-gray-4;
-                min-width: 80px;
-                text-align: center;
-                &:hover {
-                    border-color: $raa-orange;
-                }
-            }
-
-        }
-    }
-
-    #menu-button {
-      width: auto;
-      min-width: auto;
-      padding: 0.5rem;
-      border: none;
-      font-size: 2.5rem;
-
-      &:hover {
-        div {
-          background-color: darken($raa-orange, 10%);
+      &:hover,
+      &.active-link {
+        color: darken($raa-gray-4, 15%);
+        border-bottom: solid 2px $raa-orange;
+      }
+      &.log-in-button {
+        border: solid 2px $raa-gray-4;
+        min-width: 80px;
+        text-align: center;
+        &:hover {
+          border-color: $raa-orange;
         }
       }
     }
-    a {
-        text-decoration: none;
-    }
-    a h1:hover {
-        color: $raa-orange;
-    }
-}
+  }
 
+  #menu-button {
+    width: auto;
+    min-width: auto;
+    padding: 0.5rem;
+    border: none;
+    font-size: 2.5rem;
+
+    &:hover {
+      div {
+        background-color: darken($raa-orange, 10%);
+      }
+    }
+  }
+  a {
+    text-decoration: none;
+  }
+  a h1:hover {
+    color: $raa-orange;
+  }
+}
 
 .app-menu {
   border-top: 1px solid $raa-gray-2;
@@ -84,64 +83,62 @@
   nav {
     padding: 0;
     a {
-        display: block;
-        padding: 1rem 0;
-        border-bottom: 1px solid $raa-gray-3;
-        color: black;
-        text-decoration: none;
-        text-align: center;
-        text-transform: uppercase;
-
+      display: block;
+      padding: 1rem 0;
+      border-bottom: 1px solid $raa-gray-3;
+      color: black;
+      text-decoration: none;
+      text-align: center;
+      text-transform: uppercase;
     }
     a:hover {
-        cursor: pointer;
-        background-color: $raa-gray-2;
+      cursor: pointer;
+      background-color: $raa-gray-2;
     }
   }
 }
 
 @include respond-to(handhelds) {
   .hide-when-handheld {
-      display: none;
+    display: none;
   }
   .navigation {
-      width: auto;
-      .raa-logo-link {
-          align-self: flex-start;
-          padding-left: 0;
-          margin-left: 0;
-          img {
-              height: 43px;
-          }
+    width: auto;
+    .raa-logo-link {
+      align-self: flex-start;
+      padding-left: 0;
+      margin-left: 0;
+      img {
+        height: 43px;
       }
+    }
   }
   .app-menu {
-      position: absolute;
-      width: 100%;
+    position: absolute;
+    width: 100%;
   }
 }
 
 @include respond-to(medium-screens) {
   .hide-when-handheld {
-      display: none;
+    display: none;
   }
   .navigation {
-      //position: relative;
-      width: auto;
-      .raa-logo-link {
-          align-self: flex-start;
-          padding-left: 0;
-          margin-left: 0;
-          img {
-              height: 48px;
-          }
+    width: auto;
+    .raa-logo-link {
+      align-self: flex-start;
+      padding-left: 0;
+      margin-left: 0;
+      img {
+        height: 48px;
       }
+    }
   }
 }
 
 @include respond-to(wide-screens) {
   .hide-when-large {
-      display: none;
+    display: none;
   }
 }
 

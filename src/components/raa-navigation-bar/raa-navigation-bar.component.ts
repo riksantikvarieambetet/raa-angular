@@ -3,10 +3,9 @@ import { Component, HostListener, OnInit, Input, ElementRef } from '@angular/cor
 @Component({
   selector: 'raa-navigation-bar',
   templateUrl: './raa-navigation-bar.component.html',
-  styleUrls: ['./raa-navigation-bar.component.scss']
+  styleUrls: ['./raa-navigation-bar.component.scss'],
 })
 export class RaaNavigationBarComponent implements OnInit {
-
   @Input()
   logoImageSrc: string = 'assets/images/logo/RAA_logo_farg_rgb.svg';
 
@@ -18,9 +17,7 @@ export class RaaNavigationBarComponent implements OnInit {
 
   menuBtn: HTMLElement | null = null;
 
-  constructor(
-    private element: ElementRef
-  ) {}
+  constructor(private element: ElementRef) {}
 
   ngOnInit() {
     this.displayMenu = false;
@@ -29,9 +26,12 @@ export class RaaNavigationBarComponent implements OnInit {
 
   @HostListener('document:click', ['$event'])
   handleChange(event: MouseEvent) {
-    if (this.menuBtn && !this.menuBtn.contains(event.srcElement as Node)
-      && !(this.menuBtn.contains(event.target as Element))
-      && !(this.menuBtn === event.target)) {
+    if (
+      this.menuBtn &&
+      !this.menuBtn.contains(event.srcElement as Node) &&
+      !this.menuBtn.contains(event.target as Element) &&
+      !(this.menuBtn === event.target)
+    ) {
       this.displayMenu = false;
     }
   }
@@ -54,14 +54,6 @@ export class RaaNavigationBarComponent implements OnInit {
         break;
       }
     }
-  }
-
-  logIn() {
-    // emit event
-  }
-
-  logOut() {
-    // emit event
   }
 }
 
