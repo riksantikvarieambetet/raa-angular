@@ -38,7 +38,7 @@
     "@angular/common": "6.x",
     "@angular/core": "6.x",
     "@angular/forms": "6.x",
-    "@angular/router": "^6.1.4",
+    "@angular/router": "^6.x",
     "@types/lodash-es": "4.x",
     "lodash-es": "4.x",
     "raa-style": "2.x",
