@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'raa-text-with-spinner',
@@ -11,11 +11,8 @@ import { Component, Input, OnInit } from '@angular/core';
    </div>`,
   styleUrls: ['raa-text-with-spinner.component.scss']
 })
-export class RaaTextWithSpinner implements OnInit {
+export class RaaTextWithSpinner {
 
   @Input()
   showSpinner = false;
-
-  ngOnInit() {
-  }
 }

@@ -9,8 +9,4 @@ import { ChangeDetectionStrategy } from '@angular/core';
 })
 export class RaaSpinnerComponent {
   @Input() size = '7rem';
-
-  constructor() {
-  }
-
 }
