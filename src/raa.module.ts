@@ -9,6 +9,7 @@ import { RaaDropdownComponent } from './components/raa-dropdown/raa-dropdown.com
 import { RaaModalPageComponent } from './components/raa-modal-page/raa-modal-page.component';
 import { RaaDialogueComponent } from './components/raa-dialogue/raa-dialogue.component';
 import { RaaTextWithSpinner } from './components/raa-text-with-spinner/raa-text-with-spinner.component';
+import { RaaLabel } from './components/raa-label/raa-label.component';
 import { RaaSpinnerComponent } from './components/raa-spinner/raa-spinner.component';
 import { RaaOverlaySpinnerComponent } from './components/raa-overlay-spinner/raa-overlay-spinner.component';
 import { RaaNavigationBarComponent } from './components/raa-navigation-bar/raa-navigation-bar.component';
@@ -36,15 +37,17 @@ import { OrgnummerPipe } from './pipes/orgnummer.pipe';
     RaaModalPageComponent,
     RaaDialogueComponent,
     RaaTextWithSpinner,
+    RaaLabel,
     RaaSpinnerComponent,
     RaaOverlaySpinnerComponent,
     OrgnummerPipe,
-    RaaNavigationBarComponent
+    RaaNavigationBarComponent,
   ],
   exports: [
     RaaSelect,
     RaaDropdownComponent,
     RaaTextWithSpinner,
+    RaaLabel,
     RaaSpinnerComponent,
     RaaOverlaySpinnerComponent,
     RaaModalPageComponent,
@@ -55,8 +58,8 @@ import { OrgnummerPipe } from './pipes/orgnummer.pipe';
     RaaFocusInvalidElementDirective,
     OrgnummerPipe,
     RaaTrapFocusDirective,
-    RaaNavigationBarComponent
+    RaaNavigationBarComponent,
   ],
-  providers: [OrgnummerPipe]
+  providers: [OrgnummerPipe],
 })
-export class RaaModule {}
+export class RaaModule { }

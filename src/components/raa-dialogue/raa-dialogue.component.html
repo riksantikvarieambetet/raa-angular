@@ -1,11 +1,7 @@
 <div class="raa-dialogue" [raaTrapFocus]="focusElement">
     <div class="dark-overlay">
         <div class="dialogue-container">
-
             <div class="ng-content">
-                <div>
-                    <button *ngIf="onClose" (click)="onClose()" class="button-icon close-button">&times;</button>
-                </div>
                 <h2 *ngIf="header" class="header">{{header}}</h2>
                 <ng-content></ng-content>
             </div>
@@ -17,6 +13,10 @@
               <button #noButton *ngIf="onNo" (click)="onNo()" class=" center button-cancel std-width">NEJ</button>
               <button #okButton *ngIf="onOk" (click)="onOk()" class=" center btn-ok std-width">OK</button>
               <button #cancelButton *ngIf="onCancel" (click)="onCancel()" class="right button-cancel std-width">AVBRYT</button>
+            </div>
+
+            <div class="close-container">
+                <button *ngIf="onClose" (click)="onClose()" class="raa-icon-close close-button"></button>
             </div>
         </div>
 

@@ -19,7 +19,9 @@
 }
 
 .spinner {
+    display: block;
     margin-top: -2.5rem;
+    animation: raa-overlay-spinner-spin 2s infinite linear;
 }
 
 .absolute {
@@ -28,4 +30,13 @@
 
 .fixed {
     position: fixed;
+}
+
+@keyframes raa-overlay-spinner-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(359deg);
+  }
 }

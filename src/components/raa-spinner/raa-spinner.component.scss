@@ -1,25 +1,28 @@
-@import '~raa-style/dist/scss/colors';
-
-.raa-spinner {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    font-size: inherit;
+:host {
+  vertical-align: middle;
 }
 
-// Test av pulserande animation
-.raa-icon-hourglass {
-  animation: pulse 2s infinite;
+.spin {
+  animation: spinner-spin 2s infinite linear, spinner-delayed-fade-in 400ms 1 ease-in;
 }
 
-@keyframes pulse {
+@keyframes spinner-spin {
   0% {
-    color: $raa-gray-5;
-  }
-  50% {
-    color: $raa-orange;
+    transform: rotate(0deg);
   }
   100% {
-    color: $raa-gray-5;
+    transform: rotate(359deg);
+  }
+}
+
+@keyframes spinner-delayed-fade-in {
+  0% {
+    opacity: 0;
+  }
+  80% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
