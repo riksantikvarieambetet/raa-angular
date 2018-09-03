@@ -33,7 +33,7 @@
       [ngClass]="{ 'dropdown-is-above': dropdownIsAbove, 'dropdown-is-below': !dropdownIsAbove }">
       <li class="raa-select-dropdown-item"
         *ngIf="filteredDomainValues.length === 0">
-        <span>Ingen träff</span>
+        <span>{{noAvailableItemsText}}</span>
       </li>
       <li #dropdownItem
         class="raa-select-dropdown-item"
