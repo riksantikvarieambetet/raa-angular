@@ -69,6 +69,8 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
   placeholder: string;
   @Input()
   disabled: boolean = false;
+  @Input()
+  noAvailableItemsText = 'Inga val tillgängliga';
 
   @Output()
   onSelect = new EventEmitter<any>();
