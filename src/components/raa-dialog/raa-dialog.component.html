@@ -1,6 +1,6 @@
 <div class="raa-dialog" [raaTrapFocus]="focusElement">
     <div class="dark-overlay">
-        <div class="dialog-container">
+        <div class="dialog-container" (raaOutsideClick)="propagateOutsideClick()">
             <div class="ng-content">
                 <h3 *ngIf="header" class="header">{{header}}</h3>
                 <ng-content></ng-content>
@@ -19,6 +19,5 @@
                 <button *ngIf="close" (click)="close()" class="raa-icon-close close-button"></button>
             </div>
         </div>
-
     </div>
 </div>
