@@ -7,7 +7,7 @@ import { Component, Input, OnDestroy, OnInit, AfterViewInit, ViewChild, ElementR
 })
 export class RaaModalPageComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input()
-  onClose: Function;
+  close: Function;
 
   @Input()
   header: string;

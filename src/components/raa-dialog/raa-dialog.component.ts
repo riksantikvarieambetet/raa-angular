@@ -7,19 +7,19 @@ import { Component, Input, ViewChild, ElementRef, AfterContentChecked, OnInit, O
 })
 export class RaaDialogComponent implements OnInit, OnDestroy, AfterContentChecked {
   @Input()
-  onYes: Function;
+  yes: Function;
 
   @Input()
-  onNo: Function;
+  no: Function;
 
   @Input()
-  onOk: Function;
+  ok: Function;
 
   @Input()
-  onCancel: Function;
+  cancel: Function;
 
   @Input()
-  onClose: Function;
+  close: Function;
 
   @Input()
   header: string;

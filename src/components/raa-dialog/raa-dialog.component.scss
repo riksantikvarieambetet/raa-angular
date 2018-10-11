@@ -14,51 +14,46 @@
     display: flex;
     align-items: center;
     justify-content: space-around; // Funkar för ett barn (.dialog-container) och centrerar även i IE11
-    .dialog-container {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: white;
-      border-radius: 2px;
-      padding: 2rem;
-      max-width: 940px;
-      width: 36%;
-      @include respond-to(handhelds) {
-        width: 95%;
-      }
-      @include respond-to(medium-screens) {
-        width: 55%;
-      }
-      // Vi måste sätta width 100% för att få radbrytningen att fungera
-      // i IE11
-      .ng-content {
-        width: 100%;
-      }
-    }
-    .header {
-      text-align: center;
-      font-weight: 300;
-      margin-top: 0;
-    }
-    .btn-group {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-around;
-      margin-top: 1rem;
-      .left,
-      .center,
-      .right {
-        flex: 1 0 0;
-      }
-      button {
-        margin: 0.5rem;
-        @include respond-to(handhelds) {
-          min-width: auto;
-        }
-      }
-    }
+  }
+}
+
+.dialog-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: white;
+  border-radius: 2px;
+  padding: 1rem;
+  max-width: 16rem;
+  border: 1px solid $raa-gray-4;
+
+  // Vi måste sätta width 100% för att få radbrytningen att fungera
+  // i IE11
+  .ng-content {
+    width: 100%;
+  }
+}
+
+.header {
+  margin-top: 1rem;
+}
+
+.btn-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-top: 1rem;
+  .left,
+  .center,
+  .right {
+    flex: 1 0 0;
+  }
+  button:not(:last-child) {
+    margin-right: 1rem;
+  }
+  button {
+    min-width: auto;
   }
 }
 
@@ -69,13 +64,19 @@
 }
 
 .close-button {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   padding: 0;
   margin: 1rem;
-  color: $raa-gray-4;
+  color: $raa-orange;
   background-color: $raa-white;
+  min-width: auto;
+  width: auto;
 
   &:hover {
-    color: $raa-gray-3;
+    color: #b54216;
+  }
+
+  &:active {
+    color: #a33b14;
   }
 }

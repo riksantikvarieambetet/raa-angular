@@ -7,9 +7,6 @@ import { Component, Input } from '@angular/core';
 })
 export class RaaOverlaySpinnerComponent {
   @Input()
-  showSpinner: boolean;
-
-  @Input()
   posAbsolute: boolean;
 
   @Input()
