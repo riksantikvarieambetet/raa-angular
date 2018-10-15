@@ -1,24 +1,23 @@
 <div class="raa-dialog" [raaTrapFocus]="focusElement">
     <div class="dark-overlay">
-        <div class="dialog-container">
+        <div class="dialog-container" (raaOutsideClick)="propagateOutsideClick()">
             <div class="ng-content">
-                <h2 *ngIf="header" class="header">{{header}}</h2>
+                <h3 *ngIf="header" class="header">{{header}}</h3>
                 <ng-content></ng-content>
             </div>
 
             <br>
 
             <div class="btn-group">
-              <button #yesButton *ngIf="onYes" (click)="onYes()" class="left button-border std-width">JA</button>
-              <button #noButton *ngIf="onNo" (click)="onNo()" class=" center button-cancel std-width">NEJ</button>
-              <button #okButton *ngIf="onOk" (click)="onOk()" class=" center btn-ok std-width">OK</button>
-              <button #cancelButton *ngIf="onCancel" (click)="onCancel()" class="right button-cancel std-width">AVBRYT</button>
+              <button #yesButton *ngIf="yes" (click)="yes()" class="left button-confirm std-width">Ja</button>
+              <button #noButton *ngIf="no" (click)="no()" class="center button-cancel std-width">Nej</button>
+              <button #okButton *ngIf="ok" (click)="ok()" class="center button-confirm btn-ok std-width">Ok</button>
+              <button #cancelButton *ngIf="cancel" (click)="cancel()" class="right button-cancel std-width">Avbryt</button>
             </div>
 
             <div class="close-container">
-                <button *ngIf="onClose" (click)="onClose()" class="raa-icon-close close-button"></button>
+                <button *ngIf="close" (click)="close()" class="raa-icon-close close-button"></button>
             </div>
         </div>
-
     </div>
 </div>

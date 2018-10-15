@@ -1,10 +1,10 @@
 <div role="dialog" class="raa-modal-page" raaTrapFocus [trapDisabled]="focusTrapDisabled">
      <div class="dark-overlay">
-        <div #content tabindex="0" class="center-page" [ngClass]="{small: size === 'small', large: size === 'large'}">
+        <div #content tabindex="0" class="center-page" [ngClass]="{small: size === 'small', large: size === 'large'}" (raaOutsideClick)="propagateOutsideClick()">
             <h2 *ngIf="header" class="header">{{header}}</h2>
             <ng-content></ng-content>
             <div class="close-container">
-                <button *ngIf="onClose" (click)="onClose()" class="raa-icon-close close-button"></button>
+                <button *ngIf="close" (click)="close()" class="raa-icon-close close-button"></button>
             </div>
         </div>
      </div>

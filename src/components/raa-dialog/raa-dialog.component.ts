@@ -1,4 +1,14 @@
-import { Component, Input, ViewChild, ElementRef, AfterContentChecked, OnInit, OnDestroy } from '@angular/core';
+import {
+  Component,
+  Input,
+  ViewChild,
+  ElementRef,
+  AfterContentChecked,
+  OnInit,
+  OnDestroy,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 
 @Component({
   selector: 'raa-dialog',
@@ -7,22 +17,25 @@ import { Component, Input, ViewChild, ElementRef, AfterContentChecked, OnInit, O
 })
 export class RaaDialogComponent implements OnInit, OnDestroy, AfterContentChecked {
   @Input()
-  onYes: Function;
+  yes: Function;
 
   @Input()
-  onNo: Function;
+  no: Function;
 
   @Input()
-  onOk: Function;
+  ok: Function;
 
   @Input()
-  onCancel: Function;
+  cancel: Function;
 
   @Input()
-  onClose: Function;
+  close: Function;
 
   @Input()
   header: string;
+
+  @Output()
+  outsideClick = new EventEmitter();
 
   @ViewChild('yesButton')
   yesButton: ElementRef;
@@ -56,5 +69,9 @@ export class RaaDialogComponent implements OnInit, OnDestroy, AfterContentChecke
     } else {
       this.focusElement = this.yesButton;
     }
+  }
+
+  propagateOutsideClick() {
+    this.outsideClick.emit('click');
   }
 }

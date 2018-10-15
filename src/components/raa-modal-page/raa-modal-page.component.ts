@@ -1,4 +1,14 @@
-import { Component, Input, OnDestroy, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnDestroy,
+  OnInit,
+  AfterViewInit,
+  ViewChild,
+  ElementRef,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 
 @Component({
   selector: 'raa-modal-page',
@@ -7,7 +17,7 @@ import { Component, Input, OnDestroy, OnInit, AfterViewInit, ViewChild, ElementR
 })
 export class RaaModalPageComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input()
-  onClose: Function;
+  close: Function;
 
   @Input()
   header: string;
@@ -17,6 +27,9 @@ export class RaaModalPageComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @Input()
   focusTrapDisabled = false;
+
+  @Output()
+  outsideClick = new EventEmitter();
 
   @ViewChild('content')
   modalContentChild: ElementRef<HTMLElement>;
@@ -33,5 +46,9 @@ export class RaaModalPageComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnDestroy() {
     document.body.style.overflow = 'auto';
+  }
+
+  propagateOutsideClick() {
+    this.outsideClick.emit('click');
   }
 }
