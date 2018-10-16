@@ -108,3 +108,11 @@ Innan incheckning till stash ska
     npm run prepublish
 
 köras för att kompilera ts-koden
+
+### Publicering
+
+Efter prepublish kan man köra
+
+  yarn publish
+
+för att ändringarna ska hamna på vår npm-server. Tänk på att du måste göra detta i dist-mappen.
