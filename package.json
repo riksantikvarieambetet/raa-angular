@@ -1,7 +1,7 @@
 {
   "name": "raa-angular",
-  "version": "1.3.1",
-  "description": "Gemensamma Angular-komponenter/direktiv/pipes/scss för Riksantikvarieämbetet",
+  "version": "1.3.3",
+  "description": "Gemensamma Angular-komponenter/direktiv/pipes för Riksantikvarieämbetet",
   "main": "index.ts",
   "typings": "./index.d.ts",
   "scripts": {
@@ -13,8 +13,13 @@
     "type": "git",
     "url": "https://http://stash.raa.se/projects/GRAP/repos/raa-angular"
   },
+  "ngPackage": {
+    "lib": {
+      "entryFile": "index.ts"
+    }
+  },
   "author": "Riksantikvarietämbetet",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "dependencies": {},
   "devDependencies": {
     "@angular/animations": "^6.1.10",
