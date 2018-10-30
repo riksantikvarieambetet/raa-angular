@@ -22,39 +22,19 @@ $dropdown-item-hover-bg-color: $gray-4;
 
 $dropdown-item-selected-bg-color: $gray-4;
 
-.raa-select {
-  background-color: inherit;
-  display: flex;
-  flex-direction: column;
-}
-
-.raa-select-input-row {
-  display: flex;
-  flex-direction: row;
-}
-
-.raa-select-input {
-  &::-ms-clear {
+.rm-ie-clear-btn {
+  ::-ms-clear {
     // Tar bort IE "clear field"-knapp
     display: none;
   }
+}
 
-  position: relative; // Se till att outline
-  z-index: 0; // ligger över knapp
-
-  width: 100%;
-  padding: 0.5rem 1rem;
-
-  background-color: transparent;
-
-  border: $border-size solid $border-color;
-  border-right: none;
+.select-border-radius {
   border-radius: $border-radius-size 0 0 $border-radius-size;
+}
 
-  &.active {
-    border-radius: $border-radius-size 0 0 0;
-    z-index: 2; // Outline ska hamna över dropdown
-  }
+.active-select-border-radius {
+  border-radius: $border-radius-size 0 0 0;
 }
 
 :host {

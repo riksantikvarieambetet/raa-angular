@@ -1,41 +1,41 @@
 <div [@fade]
-  class="overlay"
+  class="tw-absolute tw-h-full tw-w-full tw-bg-raa-black-1 tw-opacity-50 z-index-10 tw-pin-l tw-pin-t"
   *ngIf="isVisible">
 </div>
 
 <div [@closeConfirmationAnimation]
-  class="close-confirmation center-container"
-  [ngClass]="{'height-100-precent' : fullHeight}"
+  class="tw-absolute tw-pin-b tw-pin-l tw-bg-raa-white tw-w-full tw-flex tw-flex-col tw-items-center tw-justify-center z-index-99999"
+  [ngClass]="{'tw-h-full' : fullHeight}"
   *ngIf="isVisible">
 
-  <div class="dialog-content">
+  <div class="tw-w-full tw-text-center lg:tw-p-8 md:tw-p-8 sm:tw-pb-8 max-width-41rem">
     <div *ngIf="!header && !message">
       <ng-content></ng-content>
     </div>
 
     <div *ngIf="header || message">
-      <h2 class="dialog-header"
+      <h2 class="tw-w-full tw-text-center tw-font-normal max-width-41rem"
         *ngIf="header">{{ header }}</h2>
       <p *ngIf="message">{{ message }}</p>
     </div>
 
-    <div class="button-container">
-      <button class="fornreg-button button-cancel"
+    <div class="tw-flex tw-flex-row tw-justify-center tw-w-full">
+      <button class="tw-mr-2 md:tw-mb-2 raa-button raa-button-cancel"
         (click)="noAction()"
         [disabled]="showLoadingSpinner">
         {{ cancelBtnText }}
       </button>
 
-      <button class="fornreg-button with-spinner"
+      <button class="tw-relative tw-ml-2 md:tw-m-0 raa-button raa-button-confirm"
         [disabled]="showLoadingSpinner"
         [ngClass]="buttonClass"
         (click)="yesAction()">
 
-        <span [ngClass]="{ hidden: showLoadingSpinner }">{{ confirmBtnText }}</span>
-        <div *ngIf="showLoadingSpinner"
-          class="spinner-container display-flex flex-items-center flex-content-center">
+        <span [ngClass]="{ 'tw-invisible': showLoadingSpinner }">{{ confirmBtnText }}</span>
+        <span *ngIf="showLoadingSpinner"
+          class="tw-flex tw-items-center tw-justify-center tw-pin-t tw-w-full tw-h-full">
           <raa-spinner size="1rem"></raa-spinner>
-        </div>
+        </span>
       </button>
     </div>
   </div>

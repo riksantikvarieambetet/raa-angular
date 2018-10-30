@@ -1,91 +1,31 @@
 @import '~raa-style/dist/scss/media-queries';
-@import '~raa-style/dist/scss/colors';
+@import '../../styles/shared';
 
-.dark-overlay {
-  position: fixed;
-
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
-  z-index: 99996;
-}
-
-.center-page {
-  position: relative;
-  flex: 1;
-  flex-basis: auto; // IE11 collapse workaround
-  max-height: 100%;
-  min-height: 0%;
+.width-inherit {
   width: inherit;
+}
+
+.max-width-600px {
+  max-width: 600px;
+}
+
+.max-width-900px {
   max-width: 900px;
-  overflow: auto;
-  background: white;
+}
+
+.max-width-1400px {
+  max-width: 1400px;
+}
+
+.box-shadow {
   box-shadow: #222 2px 2px 10px;
-  border-radius: 2px;
-  // Chrome har fixat till en här buggen nu, tyvärr fungerar inte vårat hack längre vilket betyder att
-  // på ädlre versioner av chrome kommer felet uppstå men inte på nya...
-  // Har kvar koden här för tillfället och kan städas bort när det verkar vara lugnt
-  // transform: translateZ(0); // Tvinga chrome och rendera
-  z-index: 99997;
-
-  outline: none;
-
-  &.small {
-    max-width: 600px;
-  }
-
-  &.large {
-    max-width: 1400px;
-  }
 }
 
-.header {
-  font-weight: 300;
+.width-calc-full-minus-4rem {
   width: calc(100% - 4rem);
-  margin: 2.5rem 2rem;
 }
 
-.close-container {
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-
-.close-button {
-  font-size: 1.2rem;
-  padding: 0;
-  margin: 1rem;
-  color: $raa-orange;
-  background-color: $raa-white;
-
-  &:hover {
-    color: #b54216;
-  }
-
-  &:active {
-    color: #a33b14;
-  }
-}
-
-.raa-icon-close {
-  min-width: auto;
-  width: auto;
-}
-
-@include respond-to(handhelds) {
-  .dark-overlay {
-    padding: 1rem 0;
-  }
-}
-
-@include respond-to(medium-screens) {
-  .dark-overlay {
-    padding: 1rem;
-  }
-}
+// Chrome har fixat till en här buggen nu, tyvärr fungerar inte vårat hack längre vilket betyder att
+// på ädlre versioner av chrome kommer felet uppstå men inte på nya...
+// Har kvar koden här för tillfället och kan städas bort när det verkar vara lugnt
+// transform: translateZ(0); // Tvinga chrome och rendera

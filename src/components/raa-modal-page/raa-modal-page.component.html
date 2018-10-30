@@ -1,10 +1,16 @@
-<div role="dialog" class="raa-modal-page" raaTrapFocus [trapDisabled]="focusTrapDisabled">
-     <div class="dark-overlay">
-        <div #content tabindex="0" class="center-page" [ngClass]="{small: size === 'small', large: size === 'large'}" (raaOutsideClick)="propagateOutsideClick()">
-            <h2 *ngIf="header" class="header">{{header}}</h2>
+<div role="dialog" raaTrapFocus [trapDisabled]="focusTrapDisabled">
+     <div class="dark-overlay black-bg-transparent">
+        <div #content tabindex="0"
+            class="tw-relative tw-flex-1 tw-max-h-full tw-min-h-0 tw-overflow-auto tw-bg-raa-white width-inherit max-width-900px box-shadow tw-rounded tw-outline-none z-index-99997"
+            [ngClass]="{ 'max-width-600px': size === 'small', 'max-width-1400px': size === 'large'}"
+            (raaOutsideClick)="propagateOutsideClick()">
+            <h2 *ngIf="header" class="tw-font-normal width-calc-full-minus-4rem tw-my-10 tw-mx-8">{{header}}</h2>
             <ng-content></ng-content>
-            <div class="close-container">
-                <button *ngIf="close" (click)="close()" class="raa-icon-close close-button"></button>
+            <div class="tw-absolute tw-pin-t tw-pin-r">
+                <button *ngIf="close"
+                    (click)="close()"
+                    class="tw-text-lg raa-button raa-button-secondary raa-icon-close min-width-auto border-none">
+                </button>
             </div>
         </div>
      </div>
