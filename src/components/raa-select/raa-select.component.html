@@ -1,37 +1,25 @@
 <div #raaSelect
-  class="tw-flex tw-flex-col bg-color-inherit">
-  <div class="tw-flex tw-flex-row"
+  class="raa-select">
+  <div class="raa-select-input-row"
     [ngClass]="{'disabled': disabled}">
-    <input class="raa-select-input
-      tw-relative
-      tw-w-full
-      tw-py-2
-      tw-px-4
-      tw-bg-transparent
-      tw-border
-      tw-border-solid
-      tw-border
-      tw-border-raa-gray-2
-      tw-border-r-0
-      z-index-0
-      rm-ie-clear-btn"
-      #inputField
-      type="text"
-      placeholder="{{placeholder}}"
-      [requestFocus]="setFocusToInputField"
-      [disabled]="disabled"
-      [ngModelOptions]="{standalone: true}"
-      [(ngModel)]="filterInput"
-      (ngModelChange)="onFilterdInputChange()"
-      (focus)="focusGained()"
-      (click)="openDropdownIfClosed()"
-      (keydown)="handleKeyPressed($event)">
+    <input class="raa-select-input z-index-0"
+       #inputField
+       type="text"
+       placeholder="{{placeholder}}"
+       [requestFocus]="setFocusToInputField"
+       [disabled]="disabled"
+       [ngModelOptions]="{standalone: true}"
+       [(ngModel)]="filterInput"
+       (ngModelChange)="onFilterdInputChange()"
+       (focus)="focusGained()"
+       (click)="openDropdownIfClosed()"
+       (keydown)="handleKeyPressed($event)">
     <button class="raa-select-button raa-icon-arrow-down"
       type="button"
       tabIndex="-1"
       [disabled]="disabled"
       (click)="toggleDropdown()"
-      [ngClass]="{'active-select-border-radius z-index-2': showDropdown}"></button>
+      [ngClass]="{'active z-index-2': showDropdown}"></button>
   </div>
   <raa-dropdown [element]="raaSelect"
     (dropdownMovedUp)="dropdownMovedUp($event)"
