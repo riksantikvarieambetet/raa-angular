@@ -1,5 +1,6 @@
 @import '../../styles/raa.colors';
 @import '../../styles/shared';
+@import '../../styles/constants';
 
 $border-color: $gray-1;
 $border-size: 1px;
@@ -140,4 +141,12 @@ $dropdown-item-selected-bg-color: $gray-4;
   &.hovered {
     background-color: $dropdown-item-hover-bg-color;
   }
+}
+
+.z-index-0 {
+  z-index: $z-index-0;
+}
+
+.z-index-2 {
+  z-index: $z-index-2;
 }

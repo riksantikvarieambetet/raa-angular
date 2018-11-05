@@ -9,55 +9,81 @@
   md\:tw-w-auto">
 
   <div>
-    <button class="raa-button skip-link" title="Hoppa över navigationen" (click)="skip($event)">Hoppa över navigationen</button>
-    <a class="sm:tw-self-start md:tw-self-start sm:tw-pl-0 sm:tw-ml-0 md:tw-pl-0 md:tw-ml-0 tw-no-underline"
+    <button class="raa-button skip-link"
+      title="Hoppa över navigationen"
+      (click)="skip($event)">
+      Hoppa över navigationen
+    </button>
+    <a class="sm:tw-self-start
+      sm:tw-pl-0
+      sm:tw-ml-0
+      md:tw-self-start
+      md:tw-pl-0
+      md:tw-ml-0
+      tw-no-underline"
       [routerLink]=" ['./']">
-        <img [src]="logoImageSrc"
-          class="height-48px"
-          alt="Logotyp"
-          height="50px"
-          title="Gå till startsidan">
+      <img [src]="logoImageSrc"
+        class="height-48px"
+        alt="Logotyp"
+        height="50px"
+        title="Gå till startsidan">
     </a>
   </div>
 
   <nav class="margin-auto-0 lg:tw-block md:tw-hidden sm:tw-hidden">
     <a *ngFor="let route of applicationRoutes"
-      class="nav-link
+      class="tw-no-underline
+        tw-border-r-0
+        tw-border-l-0
+        tw-border-t-0
+        tw-border-solid
+        tw-border-transparent
+        tw-border-b-2
         tw-bg-raa-white
         tw-rounded
         tw-cursor-pointer
         tw-uppercase
         tw-inline-block
         tw-text-raa-gray-4
-        tw-border-solid
-        tw-no-underline
-        tw-border-b-2
-        tw-border-transparent
         tw-mr-4
         tw-px-4
+        hover:tw-text-raa-gray-5
+        hover:tw-border-raa-orange-1
+        transition-all-0-4
         letter-spacing-0-5px
         py-0-3rem"
       [routerLink]="route.link"
-      routerLinkActive="active-link">{{route.name}}</a>
+      routerLinkActive="tw-border-raa-orange-2">
+      {{route.name}}
+    </a>
   </nav>
 
   <div class="lg:tw-hidden md:tw-block sm:tw-block">
     <button (click)="toggleMenu()"
       id="menu-button"
-      class="raa-button
-        raa-button-secondary
+      class="tw-bg-transparent
         tw-w-auto
         tw-p-2
         tw-text-title
-        border-none
+        tw-border-0
+        tw-text-raa-orange-1
+        tw-cursor-pointer
         min-width-auto">
       <i class="raa-icon-menu" title="Huvudmeny"></i>
     </button>
   </div>
 </div>
 
-<div class="tw-fixed tw-pin-l tw-w-full tw-h-full z-index-99999 black-bg-transparent lg:tw-hidden sm:tw-block md:tw-block"
-	*ngIf="displayMenu">
+<div *ngIf="displayMenu"
+	class="tw-fixed
+	  tw-pin-l
+	  tw-w-full
+	  tw-h-full
+	  z-index-99999
+	  black-bg-transparent
+	  lg:tw-hidden
+	  sm:tw-block
+	  md:tw-block">
   <div class="app-menu
     sm:tw-absolute
     sm:tw-w-full
@@ -68,9 +94,14 @@
     tw-overflow-y-auto
     tw-p-0
     tw-w-full
+    tw-border-l-0
+    tw-border-r-0
+    tw-border-b-0
+    tw-border-t
+    tw-border-solid
+    tw-border-raa-gray-2
     min-width-15rem
     max-height-full-minus-4-5rem
-    border-t-solid-1x-raa-gray-2
     z-index-100000"
     (click)="toggleMenu()">
     <nav class="tw-p-0">
@@ -83,8 +114,14 @@
           tw-text-center
           tw-uppercase
           tw-cursor-pointer
+          tw-border-t-0
+          tw-border-l-0
+          tw-border-r-0
+          tw-border-b
+          tw-border-solid
           tw-border-raa-gray-3
-          border-b-solid-1x-raa-gray-3"
+          hover:tw-bg-raa-gray-2
+          transition-all-0-4"
         tabindex="0"
         [routerLink]="route.link"
         routerLinkActive="active-link">{{route.name}}

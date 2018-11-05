@@ -1,5 +1,9 @@
-@import '~raa-style/dist/scss/media-queries';
 @import '../../styles/shared';
+@import '../../styles/constants';
+
+.z-index-99997 {
+  z-index: $z-index-99997;
+}
 
 .width-inherit {
   width: inherit;

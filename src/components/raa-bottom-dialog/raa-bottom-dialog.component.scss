@@ -1,5 +1,14 @@
 @import '../../styles/shared';
+@import '../../styles/constants';
 
 .max-width-41rem {
   max-width: 41rem;
+}
+
+.z-index-10 {
+  z-index: $z-index-10;
+}
+
+.z-index-99999 {
+  z-index: $z-index-99999;
 }
