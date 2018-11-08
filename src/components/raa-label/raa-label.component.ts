@@ -11,7 +11,7 @@ import { Component, Input } from '@angular/core';
 })
 export class RaaLabel {
   @Input()
-  required: boolean;
+  required = false;
 
   constructor() {}
 }

@@ -8,7 +8,6 @@ import { Component, Input } from '@angular/core';
           <raa-spinner size="1rem"></raa-spinner>
         </div>
    </div>`,
-  styleUrls: ['raa-text-with-spinner.component.scss'],
 })
 export class RaaTextWithSpinner {
   @Input()

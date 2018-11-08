@@ -1,14 +1,35 @@
 <div [@fade]
-  class="tw-absolute tw-h-full tw-w-full tw-bg-raa-black-1 tw-opacity-50 z-index-10 tw-pin-l tw-pin-t"
+  class="tw-absolute
+    tw-h-full
+    tw-w-full
+    tw-bg-raa-black-1
+    tw-opacity-50
+    tw-pin-l
+    tw-pin-t
+    z-index-10"
   *ngIf="isVisible">
 </div>
 
 <div [@closeConfirmationAnimation]
-  class="tw-absolute tw-pin-b tw-pin-l tw-bg-raa-white tw-w-full tw-flex tw-flex-col tw-items-center tw-justify-center z-index-99999"
+  class="tw-absolute
+    tw-pin-b
+    tw-pin-l
+    tw-bg-raa-white
+    tw-w-full
+    tw-flex
+    tw-flex-col
+    tw-items-center
+    tw-justify-center
+    z-index-99999"
   [ngClass]="{'tw-h-full' : fullHeight}"
   *ngIf="isVisible">
 
-  <div class="tw-w-full tw-text-center lg:tw-p-8 md:tw-p-8 sm:tw-pb-8 max-width-41rem">
+  <div class="tw-w-full
+    tw-text-center
+    lg:tw-p-8
+    md:tw-p-8
+    sm:tw-pb-8
+    max-width-41rem">
     <div *ngIf="!header && !message">
       <ng-content></ng-content>
     </div>
