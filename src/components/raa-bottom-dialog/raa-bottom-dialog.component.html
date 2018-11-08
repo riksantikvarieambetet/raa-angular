@@ -29,13 +29,13 @@
     lg:tw-p-8
     md:tw-p-8
     sm:tw-pb-8
-    max-width-41rem">
+    tw-max-w-md">
     <div *ngIf="!header && !message">
       <ng-content></ng-content>
     </div>
 
     <div *ngIf="header || message">
-      <h2 class="tw-w-full tw-text-center tw-font-normal max-width-41rem"
+      <h2 class="tw-w-full tw-text-center tw-font-normal"
         *ngIf="header">{{ header }}</h2>
       <p *ngIf="message">{{ message }}</p>
     </div>

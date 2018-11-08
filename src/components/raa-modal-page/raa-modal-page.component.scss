@@ -9,6 +9,10 @@
   width: inherit;
 }
 
+.min-width-auto {
+  min-width: auto;
+}
+
 .max-width-600px {
   max-width: 600px;
 }
@@ -29,7 +33,6 @@
   width: calc(100% - 4rem);
 }
 
-// Chrome har fixat till en här buggen nu, tyvärr fungerar inte vårat hack längre vilket betyder att
-// på ädlre versioner av chrome kommer felet uppstå men inte på nya...
-// Har kvar koden här för tillfället och kan städas bort när det verkar vara lugnt
-// transform: translateZ(0); // Tvinga chrome och rendera
+.border-none {
+  border: none;
+}
