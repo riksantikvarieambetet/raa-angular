@@ -1,4 +1,6 @@
 @import '../../styles/raa.colors';
+@import '../../styles/shared';
+@import '../../styles/constants';
 
 $border-color: $gray-1;
 $border-size: 1px;
@@ -40,7 +42,6 @@ $dropdown-item-selected-bg-color: $gray-4;
   }
 
   position: relative; // Se till att outline
-  z-index: 0; // ligger över knapp
 
   width: 100%;
   padding: 0.5rem 1rem;
@@ -53,7 +54,6 @@ $dropdown-item-selected-bg-color: $gray-4;
 
   &.active {
     border-radius: $border-radius-size 0 0 0;
-    z-index: 2; // Outline ska hamna över dropdown
   }
 }
 
@@ -141,4 +141,12 @@ $dropdown-item-selected-bg-color: $gray-4;
   &.hovered {
     background-color: $dropdown-item-hover-bg-color;
   }
+}
+
+.z-index-0 {
+  z-index: $z-index-0;
+}
+
+.z-index-2 {
+  z-index: $z-index-2;
 }

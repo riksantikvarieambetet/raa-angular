@@ -2,24 +2,24 @@
   class="raa-select">
   <div class="raa-select-input-row"
     [ngClass]="{'disabled': disabled}">
-    <input class="raa-select-input"
-      #inputField
-      type="text"
-      placeholder="{{placeholder}}"
-      [requestFocus]="setFocusToInputField"
-      [disabled]="disabled"
-      [ngModelOptions]="{standalone: true}"
-      [(ngModel)]="filterInput"
-      (ngModelChange)="onFilterdInputChange()"
-      (focus)="focusGained()"
-      (click)="openDropdownIfClosed()"
-      (keydown)="handleKeyPressed($event)">
+    <input class="raa-select-input z-index-0"
+       #inputField
+       type="text"
+       placeholder="{{placeholder}}"
+       [requestFocus]="setFocusToInputField"
+       [disabled]="disabled"
+       [ngModelOptions]="{standalone: true}"
+       [(ngModel)]="filterInput"
+       (ngModelChange)="onFilterdInputChange()"
+       (focus)="focusGained()"
+       (click)="openDropdownIfClosed()"
+       (keydown)="handleKeyPressed($event)">
     <button class="raa-select-button raa-icon-arrow-down"
       type="button"
       tabIndex="-1"
       [disabled]="disabled"
       (click)="toggleDropdown()"
-      [ngClass]="{'active': showDropdown}"></button>
+      [ngClass]="{'active z-index-2': showDropdown}"></button>
   </div>
   <raa-dropdown [element]="raaSelect"
     (dropdownMovedUp)="dropdownMovedUp($event)"

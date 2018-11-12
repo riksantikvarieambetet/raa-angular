@@ -1,4 +1,5 @@
-.raa-select-dropdown-container {
-  position: relative;
-  z-index: 1;
+@import '../../styles/constants';
+
+.z-index-1 {
+  z-index: $z-index-1;
 }

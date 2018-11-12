@@ -1,6 +1,12 @@
-<div class="loading-overlay"
-  [ngClass]="{absolute: posAbsolute, fixed: posFixed}">
-  <div class="loading-view">
+<div class="tw-fixed tw-pin-l tw-pin-t z-index-9999 tw-w-full tw-h-full white-bg-transparent"
+  [ngClass]="{'tw-absolute': posAbsolute, 'tw-fixed': posFixed}">
+  <div class="tw-absolute
+    tw-bg-transparent
+    tw-text-center
+    left-50percent
+    top-50percent
+    transform-translate-50-50
+    font-size-5rem">
     <raa-spinner></raa-spinner>
   </div>
 </div>

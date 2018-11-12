@@ -1,82 +1,9 @@
-@import '~raa-style/dist/scss/media-queries';
-@import '~raa-style/dist/scss/colors';
+@import '../../styles/shared';
 
-.raa-dialog {
-  .dark-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 99999;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-around; // Funkar för ett barn (.dialog-container) och centrerar även i IE11
-  }
+.rgba-50 {
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
-.dialog-container {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background: white;
-  border-radius: 2px;
-  padding: 1rem;
-  max-width: 16rem;
-  border: 1px solid $raa-gray-4;
-
-  // Vi måste sätta width 100% för att få radbrytningen att fungera
-  // i IE11
-  .ng-content {
-    width: 100%;
-  }
-}
-
-.header {
-  margin-top: 1rem;
-}
-
-.btn-group {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  margin-top: 1rem;
-  .left,
-  .center,
-  .right {
-    flex: 1 0 0;
-  }
-  button:not(:last-child) {
-    margin-right: 1rem;
-  }
-  button {
-    min-width: auto;
-  }
-}
-
-.close-container {
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-
-.close-button {
-  font-size: 1.2rem;
-  padding: 0;
-  margin: 1rem;
-  color: $raa-orange;
-  background-color: $raa-white;
-  min-width: auto;
-  width: auto;
-
-  &:hover {
-    color: #b54216;
-  }
-
-  &:active {
-    color: #a33b14;
-  }
+.flex-1-0-0 {
+  flex: 1 0 0;
 }

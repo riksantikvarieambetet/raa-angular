@@ -1,154 +1,24 @@
-@import '~raa-style/src/colors';
-@import '~raa-style/src/media-queries';
+@import '../../styles/shared';
+@import '../../styles/constants';
 
-.navigation {
-  padding: 0.5rem 1rem;
-  background-color: white;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-
-  nav {
-    margin: auto 0;
-    .nav-link {
-      background: white;
-      padding: 0.3rem 1rem;
-      margin-right: 1rem;
-      border-radius: 3px;
-      display: inline-block;
-      color: $raa-gray-4;
-      border: solid 2px transparent;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      cursor: pointer;
-
-      &:hover,
-      &.active-link {
-        color: darken($raa-gray-4, 15%);
-        border-bottom: solid 2px $raa-orange;
-      }
-      &.log-in-button {
-        border: solid 2px $raa-gray-4;
-        min-width: 80px;
-        text-align: center;
-        &:hover {
-          border-color: $raa-orange;
-        }
-      }
-    }
-  }
-
-  #menu-button {
-    width: auto;
-    min-width: auto;
-    padding: 0.5rem;
-    border: none;
-    font-size: 2.5rem;
-
-    &:hover {
-      div {
-        background-color: darken($raa-orange, 10%);
-      }
-    }
-  }
-  a {
-    text-decoration: none;
-  }
-  a h1:hover {
-    color: $raa-orange;
-  }
+.z-index-99999 {
+  z-index: $z-index-99999;
 }
 
-.app-menu {
-  border-top: 1px solid $raa-gray-2;
-  position: absolute;
-  right: 0;
-  max-height: calc(100% - 4.5rem);
-  z-index: 100000;
-  background-color: $raa-white;
-  overflow-y: auto;
+.z-index-100000 {
+  z-index: $z-index-100000;
+}
+
+.transition-all-0-4 {
+  transition: all 0.4s;
+}
+
+.min-width-auto {
+  min-width: auto;
+}
+
+.min-width-15rem {
   min-width: 15rem;
-  padding: 0;
-  width: 100%;
-
-  button {
-    width: 100%;
-    display: block;
-    padding: 1rem 0 1rem 1rem;
-    margin-top: 2rem;
-    height: 3.5rem;
-  }
-
-  nav {
-    padding: 0;
-    a {
-      display: block;
-      padding: 1rem 0;
-      border-bottom: 1px solid $raa-gray-3;
-      color: black;
-      text-decoration: none;
-      text-align: center;
-      text-transform: uppercase;
-    }
-    a:hover {
-      cursor: pointer;
-      background-color: $raa-gray-2;
-    }
-  }
-}
-
-@include respond-to(handhelds) {
-  .hide-when-handheld {
-    display: none;
-  }
-  .navigation {
-    width: auto;
-    .raa-logo-link {
-      align-self: flex-start;
-      padding-left: 0;
-      margin-left: 0;
-      img {
-        height: 43px;
-      }
-    }
-  }
-  .app-menu {
-    position: absolute;
-    width: 100%;
-  }
-}
-
-@include respond-to(medium-screens) {
-  .hide-when-handheld {
-    display: none;
-  }
-  .navigation {
-    width: auto;
-    .raa-logo-link {
-      align-self: flex-start;
-      padding-left: 0;
-      margin-left: 0;
-      img {
-        height: 48px;
-      }
-    }
-  }
-}
-
-@include respond-to(wide-screens) {
-  .hide-when-large {
-    display: none;
-  }
-}
-
-.dark-overlay {
-  position: fixed;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 99999;
 }
 
 .skip-link {
@@ -161,4 +31,21 @@
   width: 1px;
   height: 1px;
   overflow: hidden;
+}
+
+.py-0-3rem {
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+}
+
+.letter-spacing-0-5px {
+  letter-spacing: 0.5px;
+}
+
+.max-height-full-minus-4-5rem {
+  max-height: calc(100% - 4.5rem);
+}
+
+.margin-auto-0 {
+  margin: auto 0;
 }
