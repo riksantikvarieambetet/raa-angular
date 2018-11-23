@@ -57,7 +57,7 @@ export class RaaBottomDialogComponent implements OnInit {
   @Output()
   onNoAction = new EventEmitter<void>();
 
-  buttonClass: string = 'button-secondary';
+  buttonClass: string = 'raa-button-secondary';
 
   constructor() {}
 
@@ -72,14 +72,14 @@ export class RaaBottomDialogComponent implements OnInit {
 
     switch (this.confirmBtnColor) {
       case 'green':
-        this.buttonClass = 'button-confirm';
+        this.buttonClass = 'raa-button-confirm';
         break;
       case 'grey':
-        this.buttonClass = 'button-cancel';
+        this.buttonClass = 'raa-button-cancel';
         break;
       case 'white':
       default:
-        this.buttonClass = 'button-secondary';
+        this.buttonClass = 'raa-button-secondary';
     }
   }
 
