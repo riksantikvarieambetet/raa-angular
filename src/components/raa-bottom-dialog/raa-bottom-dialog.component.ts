@@ -5,8 +5,8 @@ const closeConfirmationAnimationTime = 250;
 
 const modalAnimation = [
   trigger('fade', [
-    transition(':enter', [style({ opacity: 0 }), animate(`.3s ease`, style({ opacity: 0.4 }))]),
-    transition(':leave', [style({ opacity: 0.4 }), animate(`.3s ease`, style({ opacity: 0 }))]),
+    transition(':enter', [style({ opacity: 0 }), animate(`.3s ease`, style({ opacity: 0.75 }))]),
+    transition(':leave', [style({ opacity: 0.75 }), animate(`.3s ease`, style({ opacity: 0 }))]),
   ]),
   trigger('closeConfirmationAnimation', [
     transition(':enter', [
