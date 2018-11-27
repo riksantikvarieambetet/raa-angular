@@ -2292,10 +2292,10 @@ qs@~6.5.2:
   resolved "http://pl-sinopia01.raa.se:8080/qs/-/qs-6.5.2.tgz#cb3ae806e8740444584ef154ce8ee98d403f3e36"
   integrity sha512-N5ZAX4/LxJmF+7wN74pUD6qAh9/wnvdQcjq9TZjevvXzSUo7bfmw91saqMjzGS2xq91/odN2dW/WOl7qQHNDGA==
 
-raa-style@^3.0.1:
-  version "3.0.1"
-  resolved "http://pl-sinopia01.raa.se:8080/raa-style/-/raa-style-3.0.1.tgz#9cefa635df62edd0a1688159ebbff739ada2b368"
-  integrity sha1-nO+mNd9i7dChaIFZ67/3Oa2is2g=
+raa-style@^4.0.0:
+  version "4.0.0"
+  resolved "http://pl-sinopia01.raa.se:8080/raa-style/-/raa-style-4.0.0.tgz#35231649a3bb43d854e1917deb40c0c8a922fcaf"
+  integrity sha512-4rKMBJyAmd4XUtK4Q3YtzpS92P2Gq5TtnMlNtU+pjgHHl4abdNOu0ATkBrpslBvoFDes6mG0fA/VaNvT7+blew==
   dependencies:
     normalize-scss "^7.0.0"
 
