@@ -17,7 +17,7 @@ $button-active-bg-color: $gray-4;
 $dropdown-max-height: 17rem;
 $dropdown-bg-color: white;
 
-$dropdown-item-padding: 0.5rem 1rem;
+$dropdown-item-padding: 0.75rem;
 
 $dropdown-item-hover-color: white;
 $dropdown-item-hover-bg-color: $gray-4;
@@ -44,7 +44,7 @@ $dropdown-item-selected-bg-color: $gray-4;
   position: relative; // Se till att outline
 
   width: 100%;
-  padding: 0.5rem 1rem;
+  padding: 0.75rem;
 
   background-color: transparent;
 
