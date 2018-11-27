@@ -28,7 +28,6 @@
   <div class="tw-w-full
     tw-text-center
     tw-p-8
-    sm:tw-pb-8
     tw-max-w-md">
     <div *ngIf="!header && !message">
       <ng-content></ng-content>
@@ -41,17 +40,15 @@
     </div>
 
     <div class="tw-flex
-        lg:tw-flex-row
-        md:tw-flex-row
-        sm:tw-flex-col
+        tw-flex-col
+        sm:tw-flex-row
         tw-justify-center
         tw-w-full">
-      <button class="lg:tw-mr-2
-          md:tw-mr-2
-          sm:tw-mr-0
-          lg:tw-mb-0
-          md:tw-mb-0
-          sm:tw-mb-2
+
+      <button class="tw-mr-0
+          tw-mb-2
+          sm:tw-mr-2
+          sm:tw-mb-0
           raa-button
           raa-button-cancel"
         (click)="noAction()"
@@ -59,12 +56,10 @@
         {{ cancelBtnText }}
       </button>
 
-      <button class="lg:tw-ml-2
-          md:tw-ml-2
-          sm:tw-ml-0
-          sm:tw-mb-2
-          md:tw-mb-0
-          lg:tw-mb-0
+      <button class="tw-ml-0
+          tw-mb-2
+          sm:tw-ml-2
+          sm:tw-mb-0
           tw-relative
           raa-button"
         [disabled]="showLoadingSpinner"
