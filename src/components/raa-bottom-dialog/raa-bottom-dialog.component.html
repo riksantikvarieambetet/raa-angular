@@ -74,7 +74,14 @@
 
         <span [ngClass]="{ 'tw-invisible': showLoadingSpinner }">{{ confirmBtnText }}</span>
         <span *ngIf="showLoadingSpinner"
-          class="tw-flex tw-items-center tw-justify-center tw-pin-t tw-w-full tw-h-full">
+          class="tw-absolute
+            tw-pin-l
+            tw-pin-t
+            tw-w-full
+            tw-h-full
+            tw-flex
+            tw-items-center
+            tw-justify-center">
           <raa-spinner size="1rem"></raa-spinner>
         </span>
       </button>
