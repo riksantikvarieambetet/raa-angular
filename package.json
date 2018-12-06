@@ -9,10 +9,8 @@
   },
   "scripts": {
     "build": "npm run packagr && cp -R src/styles dist/styles",
-    "preversion": "npm run build",
     "packagr": "ng-packagr -p ng-package.json",
-    "prepublish": "npm run build",
-    "release:patch": "yarn version --patch && yarn publish dist/",
+    "release:patch": "node publishNewVersion --patch",
     "precommit": "pretty-quick --staged"
   },
   "repository": {
