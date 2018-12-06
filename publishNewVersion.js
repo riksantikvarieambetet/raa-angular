@@ -60,7 +60,7 @@ const handleSpawnErrors = spanwSyncReturns => {
 
   if (spanwSyncReturns.stderr.byteLength > 0) {
     log(spanwSyncReturns.stderr.toString('utf8'));
-    throw new Error();
+    //throw new Error(spanwSyncReturns.stderr.toString('utf8'));
   }
 };
 
@@ -115,7 +115,7 @@ const pushToOrigin = () => {
 // Make sure everything is commited before starting release
 exec('git diff-index --quiet HEAD --', uncommitedChanges => {
   if (uncommitedChanges) {
-    console.log('ERROR: You have uncommited changes! Please commit these before proceeding!');
+    console.log('ERROR: You have uncommited changes! Please commit or stash them before proceeding!');
     return;
   }
   try {
