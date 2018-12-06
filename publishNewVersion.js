@@ -93,7 +93,7 @@ const publishVersion = () => {
     shell: true,
   });
   handleSpawnErrors(yarnPublish);
-  log(yarnVersion.stdout.toString('utf8'), true);
+  log(yarnPublish.stdout.toString('utf8'), true);
 };
 
 const pushToOrigin = () => {
@@ -120,9 +120,9 @@ exec('git diff-index --quiet HEAD --', uncommitedChanges => {
   }
   try {
     // Publish new version
-    updateNewVersion(publishType);
-    buildNewVersion();
-    publishVersion();
+    // updateNewVersion(publishType);
+    // buildNewVersion();
+    // publishVersion();
     pushToOrigin();
     log('Done!');
   } catch (exception) {
