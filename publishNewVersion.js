@@ -120,9 +120,9 @@ exec('git diff-index --quiet HEAD --', uncommitedChanges => {
   }
   try {
     // Publish new version
-    // updateNewVersion(publishType);
-    // buildNewVersion();
-    // publishVersion();
+    updateNewVersion(publishType);
+    buildNewVersion();
+    publishVersion();
     pushToOrigin();
     log('Done!');
   } catch (exception) {
