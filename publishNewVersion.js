@@ -18,8 +18,8 @@ const getPublishTypeFromArgs = () => {
   return null;
 };
 
-const getIsVerbrose = () => {
-  return process.argv.includes('--verbrose');
+const getIsVerbose = () => {
+  return process.argv.includes('--verbose');
 };
 
 const publishType = getPublishTypeFromArgs();
@@ -31,7 +31,7 @@ if (publishType === null) {
   console.log('\t--major\t\tversion when you make incompatible API changes');
 
   console.log('\nOPTIONS:');
-  console.log('\t--verbrose\tVerbrose print to stdout');
+  console.log('\t--verbose\tVerbose print to stdout');
 
   return;
 }
@@ -40,8 +40,8 @@ if (publishType === null) {
  * Program logging
  */
 var logFile = fs.createWriteStream('publishNewVersion.log', { flags: 'w', autoClose: true });
-const log = (message, verbrose = true, ...args) => {
-  if (verbrose || getIsVerbrose()) {
+const log = (message, verbose = true, ...args) => {
+  if (verbose || getIsVerbose()) {
     process.stdout.write(util.format.apply(null, [message, ...args]) + '\n');
   }
 
@@ -52,16 +52,22 @@ const log = (message, verbrose = true, ...args) => {
  * Program
  */
 
-const handleSpawnErrors = spanwSyncReturns => {
-  if (spanwSyncReturns.error) {
-    log(spanwSyncReturns.error);
-    throw new Error(spanwSyncReturns.error);
+const handleExecErrors = error => {
+  if (error) {
+    if (error.error) {
+      log(error.error, false);
+    }
+
+    if (error.stdout) {
+      log(error.stdout.toString('utf8'), false);
+    }
+
+    if (error.stderr) {
+      log(error.stderr.toString('utf8'), false);
+    }
   }
 
-  if (spanwSyncReturns.stderr.byteLength > 0) {
-    log(spanwSyncReturns.stderr.toString('utf8'));
-    //throw new Error(spanwSyncReturns.stderr.toString('utf8'));
-  }
+  throw error;
 };
 
 const updateNewVersion = versionType => {
@@ -69,47 +75,75 @@ const updateNewVersion = versionType => {
   log(`Current version in package.json: ${currentVersion}`);
   log(`Executing: yarn version --${versionType}`, true);
 
-  const yarnVersion = spawnSync(`yarn`, [`version`, `--${versionType}`], { shell: true });
-  handleSpawnErrors(yarnVersion);
+  try {
+    const yarnVersion = execSync(`yarn version --${versionType}`);
+    log(yarnVersion.toString('utf8'), false);
 
-  log(yarnVersion.stdout.toString('utf8'), false);
+    const updatedPackageJson = JSON.parse(fs.readFileSync('./package.json', 'utf8'));
+    const newVersion = updatedPackageJson.version;
+    log('New version:', true, newVersion);
 
-  const updatedPackageJson = JSON.parse(fs.readFileSync('./package.json', 'utf8'));
-  const newVersion = updatedPackageJson.version;
-  log('New version:', true, newVersion);
+    return newVersion;
+  } catch (error) {
+    handleExecErrors(error);
+  }
 };
 
 const buildNewVersion = () => {
   log('Building new release');
-  const yarnBuild = spawnSync(`yarn`, [`build`], { shell: true });
-  handleSpawnErrors(yarnBuild);
-  log(yarnBuild.stdout.toString('utf8'), false);
+  try {
+    const yarnBuild = execSync(`yarn build`);
+    log(yarnBuild.toString('utf8'), false);
+  } catch (error) {
+    handleExecErrors(error);
+  }
 };
 
-const publishVersion = () => {
-  const publishPackageJson = JSON.parse(fs.readFileSync('./dist/package.json', 'utf8'));
+const publishVersion = newVersion => {
   log('Publishing new version to registry:', true, packageJson.publishConfig.registry);
-  const yarnPublish = spawnSync(`yarn`, ['publish', 'dist/', '--new-version', publishPackageJson.version], {
-    shell: true,
-  });
-  handleSpawnErrors(yarnPublish);
-  log(yarnPublish.stdout.toString('utf8'), true);
+  try {
+    const yarnPublish = execSync(`yarn publish dist/ --new-version ${newVersion}`);
+    log(yarnPublish.toString('utf8'), true);
+  } catch (error) {
+    handleExecErrors(error);
+  }
 };
 
-const pushToOrigin = () => {
+const pushToOrigin = newVersion => {
   log('Pushing new version and tags');
-  const push = spawnSync('git', ['push'], {
-    shell: true,
-  });
-  handleSpawnErrors(push);
-  log(push.stdout.toString('utf8'), true);
+  try {
+    const push = execSync('git push');
+    log(push.toString('utf8'), true);
 
-  const newVersion = JSON.parse(fs.readFileSync('./package.json', 'utf8')).version;
-  const pushTags = spawnSync('git', ['push', 'origin', `v${newVersion}`], {
-    shell: true,
-  });
-  handleSpawnErrors(pushTags);
-  log(pushTags.stdout.toString('utf8'), true);
+    const pushTags = execSync(`git push origin v${newVersion}`);
+    log(pushTags.toString('utf8'), true);
+  } catch (error) {
+    console.log("Couldn't push to origin, please run manually:");
+    console.log('git push');
+    console.log(`git push origin v${newVersion}`);
+
+    handleExecErrors(error);
+  }
+};
+
+revertNewVersion = newVersion => {
+  log('ERROR - Reverting new version and commit');
+
+  try {
+    const deleteNewTag = execSync(`git tag -d v${newVersion}`);
+    log(`Deleted tag v${newVersion}`);
+    log(deleteNewTag.toString('utf8'), false);
+
+    const resetHead = execSync('git reset HEAD~1');
+    log(resetHead.toString('utf8'), false);
+    log('Reverted commit');
+
+    const checkoutPackageJson = execSync('git checkout package.json');
+    log(checkoutPackageJson.toString('utf8'), false);
+    log('Reverted changes in package.json');
+  } catch (error) {
+    handleExecErrors(error);
+  }
 };
 
 // Make sure everything is commited before starting release
@@ -118,13 +152,20 @@ exec('git diff-index --quiet HEAD --', uncommitedChanges => {
     console.log('ERROR: You have uncommited changes! Please commit or stash them before proceeding!');
     return;
   }
+
   try {
     // Publish new version
-    updateNewVersion(publishType);
-    buildNewVersion();
-    publishVersion();
-    pushToOrigin();
-    log('Done!');
+    const newVersion = updateNewVersion(publishType);
+    try {
+      buildNewVersion();
+      publishVersion(newVersion);
+    } catch (error) {
+      revertNewVersion(newVersion);
+    }
+
+    pushToOrigin(newVersion);
+
+    console.log(`Done! New version ${newVersion} is available on ${packageJson.publishConfig.registry}`);
   } catch (exception) {
     logFile.end();
     logFile.on('finish', () => {
