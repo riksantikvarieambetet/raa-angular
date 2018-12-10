@@ -125,7 +125,7 @@ Används vid bakåtkompatibla buggfixar.
 
 Används vid ny funktionalitet har lagts till på ett bakåtkompatibel sätt.
 
-#### major:
+#### major
 
 Används när förändringarna gör att vi int längre är bakåtkompatibla.
 
