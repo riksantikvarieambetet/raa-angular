@@ -126,7 +126,7 @@ const pushToOrigin = newVersion => {
   }
 };
 
-revertNewVersion = newVersion => {
+const revertNewVersion = newVersion => {
   log('ERROR - Reverting new version and commit');
 
   try {
