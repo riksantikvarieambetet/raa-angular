@@ -1,6 +1,6 @@
 {
   "name": "raa-angular",
-  "version": "1.4.4",
+  "version": "1.4.6",
   "description": "Gemensamma Angular-komponenter/direktiv/pipes för Riksantikvarieämbetet",
   "main": "index.ts",
   "typings": "./index.d.ts",
@@ -9,10 +9,10 @@
   },
   "scripts": {
     "build": "npm run packagr && cp -R src/styles dist/styles",
-    "preversion": "npm run build",
     "packagr": "ng-packagr -p ng-package.json",
-    "prepublish": "npm run build",
-    "release:patch": "yarn version --patch && yarn publish dist/",
+    "publish:patch": "node publishNewVersion --patch",
+    "publish:minor": "node publishNewVersion --minor",
+    "publish:major": "node publishNewVersion --major",
     "precommit": "pretty-quick --staged"
   },
   "repository": {
