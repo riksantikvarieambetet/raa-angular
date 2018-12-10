@@ -127,6 +127,6 @@ Används vid ny funktionalitet har lagts till på ett bakåtkompatibel sätt.
 
 #### major
 
-Används när förändringarna gör att vi int längre är bakåtkompatibla.
+Används när förändringarna gör att vi inte längre är bakåtkompatibla.
 
 Vid en publicering kommer paketets version i `package.json` uppdateras samt en ny tag att skapas och commitas. Sedan publiceras den nya versionen till det gemensamma npm-repository och förändringarna pushas upp till git.
