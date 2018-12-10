@@ -45,6 +45,8 @@
     "zone.js": "^0.8.26"
   },
   "peerDependencies": {
+    "@angular/common": "^7.0.0",
+    "@angular/core": "^7.0.0",
     "@types/lodash-es": "4.x",
     "lodash-es": "4.x",
     "raa-style": "2.x",
