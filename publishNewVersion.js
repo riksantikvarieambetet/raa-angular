@@ -55,7 +55,7 @@ const log = (message, verbose = true, ...args) => {
 const handleExecErrors = error => {
   if (error) {
     if (error.error) {
-      log(error.error, false);
+      log(error.error.toString('utf8'), false);
     }
 
     if (error.stdout) {
