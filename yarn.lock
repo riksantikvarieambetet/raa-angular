@@ -2293,9 +2293,9 @@ qs@~6.5.2:
   integrity sha512-N5ZAX4/LxJmF+7wN74pUD6qAh9/wnvdQcjq9TZjevvXzSUo7bfmw91saqMjzGS2xq91/odN2dW/WOl7qQHNDGA==
 
 raa-style@^4.0.0:
-  version "4.0.0"
-  resolved "http://pl-sinopia01.raa.se:8080/raa-style/-/raa-style-4.0.0.tgz#35231649a3bb43d854e1917deb40c0c8a922fcaf"
-  integrity sha512-4rKMBJyAmd4XUtK4Q3YtzpS92P2Gq5TtnMlNtU+pjgHHl4abdNOu0ATkBrpslBvoFDes6mG0fA/VaNvT7+blew==
+  version "4.0.1"
+  resolved "http://pl-sinopia01.raa.se:8080/raa-style/-/raa-style-4.0.1.tgz#bbd8849e6ef3c73599a048ee71887e91415d920c"
+  integrity sha512-quSsSiciOea241psOxKRoM2jjpZLhng4R+5rPRqh+ygo3jja6dv10qXOUNmbma3aYVrM3R6Lx8Tq0eaaE3OygA==
   dependencies:
     normalize-scss "^7.0.0"
 
