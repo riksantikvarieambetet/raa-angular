@@ -28,28 +28,31 @@ const modalAnimation = [
 })
 export class RaaBottomDialogComponent implements OnInit {
   @Input()
-  isVisible: boolean;
+  isVisible = false;
 
   @Input()
-  showLoadingSpinner: boolean;
+  showLoadingSpinner = false;
 
   @Input()
-  cancelBtnText: string;
+  cancelBtnText: string = '';
 
   @Input()
-  confirmBtnText: string;
+  confirmBtnText: string = '';
 
   @Input()
   confirmBtnColor: 'green' | 'grey' | 'white' = 'white';
 
   @Input()
+  confirmBtnDisabled = false;
+
+  @Input()
   fullHeight = false;
 
   @Input()
-  header: string | null;
+  header: string | null = null;
 
   @Input()
-  message: string | null;
+  message: string | null = null;
 
   @Output()
   onYesAction = new EventEmitter<void>();

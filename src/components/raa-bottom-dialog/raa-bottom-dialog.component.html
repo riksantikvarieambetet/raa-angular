@@ -1,4 +1,5 @@
-<div [@fade]
+<div
+  [@fade]
   class="tw-absolute
     tw-h-full
     tw-w-full
@@ -7,10 +8,11 @@
     tw-pin-l
     tw-pin-t
     z-index-10"
-  *ngIf="isVisible">
-</div>
+  *ngIf="isVisible"
+></div>
 
-<div [@closeConfirmationAnimation]
+<div
+  [@closeConfirmationAnimation]
   id="bottom-dialog"
   class="tw-absolute
     tw-pin-b
@@ -28,52 +30,58 @@
     tw-items-center
     tw-justify-center
     z-index-99999"
-  [ngClass]="{'tw-h-full' : fullHeight}"
-  *ngIf="isVisible">
-
-  <div class="tw-w-full
+  [ngClass]="{ 'tw-h-full': fullHeight }"
+  *ngIf="isVisible"
+>
+  <div
+    class="tw-w-full
     tw-text-center
     tw-p-8
-    tw-max-w-md">
+    tw-max-w-md"
+  >
     <div *ngIf="!header && !message">
       <ng-content></ng-content>
     </div>
 
     <div *ngIf="header || message">
-      <h2 class="tw-w-full tw-text-center tw-font-normal"
-        *ngIf="header">{{ header }}</h2>
+      <h2 class="tw-w-full tw-text-center tw-font-normal" *ngIf="header">{{ header }}</h2>
       <p *ngIf="message">{{ message }}</p>
     </div>
 
-    <div class="tw-flex
+    <div
+      class="tw-flex
         tw-flex-col
         sm:tw-flex-row
         tw-justify-center
-        tw-w-full">
-
-      <button class="tw-mr-0
+        tw-w-full"
+    >
+      <button
+        class="tw-mr-0
           tw-mb-2
           sm:tw-mr-2
           sm:tw-mb-0
           raa-button
           raa-button-cancel"
         (click)="noAction()"
-        [disabled]="showLoadingSpinner">
+        [disabled]="showLoadingSpinner"
+      >
         {{ cancelBtnText }}
       </button>
 
-      <button class="tw-ml-0
+      <button
+        class="tw-ml-0
           tw-mb-2
           sm:tw-ml-2
           sm:tw-mb-0
           tw-relative
           raa-button"
-        [disabled]="showLoadingSpinner"
+        [disabled]="showLoadingSpinner || confirmBtnDisabled"
         [ngClass]="buttonClass"
-        (click)="yesAction()">
-
+        (click)="yesAction()"
+      >
         <span [ngClass]="{ 'tw-invisible': showLoadingSpinner }">{{ confirmBtnText }}</span>
-        <span *ngIf="showLoadingSpinner"
+        <span
+          *ngIf="showLoadingSpinner"
           class="tw-absolute
             tw-pin-l
             tw-pin-t
@@ -81,7 +89,8 @@
             tw-h-full
             tw-flex
             tw-items-center
-            tw-justify-center">
+            tw-justify-center"
+        >
           <raa-spinner size="1rem"></raa-spinner>
         </span>
       </button>

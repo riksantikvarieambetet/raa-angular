@@ -60,13 +60,13 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
   }
 
   @Input()
-  domain: any[];
+  domain: any[] = [];
   @Input()
-  valueAttr: string;
+  valueAttr: string = '';
   @Input()
-  displayAttr: string;
+  displayAttr: string = '';
   @Input()
-  placeholder: string;
+  placeholder: string = '';
   @Input()
   disabled: boolean = false;
   @Input()

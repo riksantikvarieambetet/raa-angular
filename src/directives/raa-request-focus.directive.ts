@@ -1,17 +1,17 @@
-import { Directive, ElementRef, Input, EventEmitter } from '@angular/core';
+import { Directive, ElementRef, EventEmitter, Inject, Input, Renderer2 } from '@angular/core';
 
 @Directive({
   selector: '[requestFocus]',
 })
 export class RaaRequestFocusDirective {
-  private focusEmitterSubscription: EventEmitter<any>;
-  // Now we expect EventEmitter as binded value
-  @Input('requestFocus')
-  set requestFocus(focusEmitter: EventEmitter<any>) {
-    if (this.focusEmitterSubscription) {
-      this.focusEmitterSubscription.unsubscribe();
-    }
-    this.focusEmitterSubscription = focusEmitter.subscribe(() => this.element.nativeElement.focus());
+  @Input('requestFocus') focusEvent: EventEmitter<boolean>;
+
+  constructor(@Inject(ElementRef) private element: ElementRef, private renderer: Renderer2) {}
+
+  ngOnInit() {
+    this.focusEvent.subscribe(() => {
+      const el = this.renderer.selectRootElement(this.element.nativeElement);
+      el.focus();
+    });
   }
-  constructor(private element: ElementRef) {}
 }
