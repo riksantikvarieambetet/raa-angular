@@ -1,9 +1,8 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
 
 import { RaaNavigationBarComponent } from './raa-navigation-bar.component';
+import { beforeEach, describe, expect, it } from '@angular/core/testing/src/testing_internal';
 
 describe('RaaNavigationBarComponent', () => {
   let component: RaaNavigationBarComponent;

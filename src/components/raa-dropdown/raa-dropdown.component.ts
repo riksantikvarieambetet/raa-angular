@@ -1,14 +1,14 @@
 import {
-  Component,
-  OnInit,
-  Input,
-  Output,
-  ViewChild,
-  ElementRef,
   AfterViewInit,
+  Component,
+  ElementRef,
   EventEmitter,
   HostListener,
+  Input,
   OnDestroy,
+  OnInit,
+  Output,
+  ViewChild,
 } from '@angular/core';
 
 import throttle from 'lodash-es/throttle';
@@ -105,8 +105,9 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private getDropdownPreferredMaxHeight() {
-    const maxHeight = document.defaultView.getComputedStyle(this.dropdown).getPropertyValue('max-height');
-    if (maxHeight.length !== 0) {
+    const maxHeight =
+      document.defaultView && document.defaultView.getComputedStyle(this.dropdown).getPropertyValue('max-height');
+    if (maxHeight && maxHeight.length !== 0) {
       return parseInt(maxHeight.replace(/\D/g, ''));
     }
 
@@ -210,8 +211,7 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit, OnDestroy {
 
     return parents.find(node => {
       let overflowY = window.getComputedStyle(node).overflowY;
-      let isScrollable = overflowY !== 'visible' && overflowY !== 'hidden';
-      return isScrollable;
+      return overflowY !== 'visible' && overflowY !== 'hidden';
     });
   }
 
@@ -229,12 +229,11 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     if (elementBoundingClientRect.bottom > parentBoundingClientRect.bottom) {
-      const scrollLength =
+      this.parent.scrollTop =
         this.parent.scrollTop + elementBoundingClientRect.bottom - parentBoundingClientRect.bottom + 1;
-      this.parent.scrollTop = scrollLength;
     } else if (elementBoundingClientRect.top < parentBoundingClientRect.top) {
-      const scrollLength = this.parent.scrollTop - (parentBoundingClientRect.top - elementBoundingClientRect.top + 1);
-      this.parent.scrollTop = scrollLength;
+      this.parent.scrollTop =
+        this.parent.scrollTop - (parentBoundingClientRect.top - elementBoundingClientRect.top + 1);
     }
   }
 }

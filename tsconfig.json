@@ -3,16 +3,12 @@
     "target": "es5",
     "module": "es2015",
     "moduleResolution": "node",
-    "lib": [
-      "dom",
-      "es2015"
-    ],
-    "typeRoots": [
-      "node_modules/@types"
-    ],
+    "lib": ["dom", "es2015"],
+    "typeRoots": ["node_modules/@types"],
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "strict": true,
+    "strictPropertyInitialization": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "sourceMap": true,
@@ -21,7 +17,5 @@
     "outDir": "./dist",
     "skipLibCheck": true
   },
-  "files": [
-    "index.ts"
-  ]
+  "files": ["index.ts"]
 }
