@@ -31,7 +31,7 @@ export class RaaModalPageComponent implements OnInit, OnDestroy, AfterViewInit {
   @Output()
   outsideClick = new EventEmitter();
 
-  @ViewChild('content')
+  @ViewChild('content', { static: false })
   modalContentChild: ElementRef<HTMLElement>;
 
   ngOnInit() {
