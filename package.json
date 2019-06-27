@@ -12,8 +12,12 @@
     "packagr": "ng-packagr -p ng-package.json",
     "publish:patch": "node publishNewVersion --patch",
     "publish:minor": "node publishNewVersion --minor",
-    "publish:major": "node publishNewVersion --major",
-    "precommit": "pretty-quick --staged"
+    "publish:major": "node publishNewVersion --major"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
   },
   "repository": {
     "type": "git",
