@@ -37,16 +37,16 @@ export class RaaDialogComponent implements OnInit, OnDestroy, AfterContentChecke
   @Output()
   outsideClick = new EventEmitter();
 
-  @ViewChild('yesButton')
+  @ViewChild('yesButton', { static: false })
   yesButton: ElementRef;
 
-  @ViewChild('noButton')
+  @ViewChild('noButton', { static: false })
   noButton: ElementRef;
 
-  @ViewChild('okButton')
+  @ViewChild('okButton', { static: false })
   okButton: ElementRef;
 
-  @ViewChild('cancelButton')
+  @ViewChild('cancelButton', { static: false })
   cancelButton: ElementRef;
 
   focusElement: ElementRef;

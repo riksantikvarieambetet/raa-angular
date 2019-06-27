@@ -12,8 +12,12 @@
     "packagr": "ng-packagr -p ng-package.json",
     "publish:patch": "node publishNewVersion --patch",
     "publish:minor": "node publishNewVersion --minor",
-    "publish:major": "node publishNewVersion --major",
-    "precommit": "pretty-quick --staged"
+    "publish:major": "node publishNewVersion --major"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
   },
   "repository": {
     "type": "git",
@@ -21,37 +25,39 @@
   },
   "author": "Riksantikvarietämbetet",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+  },
   "devDependencies": {
-    "@angular/animations": "^7.1.2",
-    "@angular/common": "^7.1.2",
-    "@angular/compiler": "^7.1.2",
-    "@angular/compiler-cli": "^7.1.2",
-    "@angular/core": "^7.1.2",
-    "@angular/forms": "^7.1.2",
-    "@angular/platform-browser": "^7.1.2",
-    "@angular/router": "^7.1.2",
+    "@angular/animations": "^8.0.0",
+    "@angular/common": "^8.0.0",
+    "@angular/compiler": "^8.0.0",
+    "@angular/compiler-cli": "^8.0.0",
+    "@angular/core": "^8.0.0",
+    "@angular/forms": "^8.0.0",
+    "@angular/platform-browser": "^8.0.0",
+    "@angular/platform-browser-dynamic": "^8.0.2",
+    "@angular/router": "^8.0.0",
     "@types/lodash-es": "^4.17.1",
     "husky": "^1.1.2",
     "lodash-es": "^4.17.11",
-    "ng-packagr": "^3.0.3",
+    "ng-packagr": "^5.2.0",
     "prettier": "^1.14.3",
     "pretty-quick": "^1.7.0",
     "raa-style": "^4.0.0",
-    "rxjs": "^6.3.3",
-    "tsickle": "^0.33.0",
+    "rxjs": "^6.5.2",
+    "tsickle": "^0.35.0",
+    "tslib": "^1.9.3",
     "tslint": "^5.11.0",
-    "typescript": "~3.2.0",
-    "zone.js": "^0.8.26"
+    "typescript": "~3.4.5",
+    "zone.js": "^0.9.1"
   },
   "peerDependencies": {
-    "@angular/common": "^7.0.0",
-    "@angular/core": "^7.0.0",
     "@types/lodash-es": "4.x",
-    "lodash-es": "4.x",
-    "raa-style": "4.x",
-    "rxjs": "6.x",
-    "tslib": "^1.9.3",
-    "zone.js": "0.8.x"
+    "raa-style": "4.x"
+  },
+  "ngPackage": {
+    "whitelistedNonPeerDependencies": [
+      "angular"
+    ]
   }
 }

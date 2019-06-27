@@ -75,10 +75,10 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
   @Output()
   onSelect = new EventEmitter<any>();
 
-  @ViewChild('inputField')
+  @ViewChild('inputField', { static: false })
   inputField: ElementRef;
 
-  @ViewChild('dropdown')
+  @ViewChild('dropdown', { static: false })
   dropdown: ElementRef;
 
   @ViewChildren('dropdownItem')
