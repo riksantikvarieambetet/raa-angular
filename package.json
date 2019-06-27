@@ -22,7 +22,6 @@
   "author": "Riksantikvarietämbetet",
   "license": "MIT",
   "dependencies": {
-    "jasmine-core": "^3.4.0"
   },
   "devDependencies": {
     "@angular/animations": "^8.0.0",
@@ -34,7 +33,6 @@
     "@angular/platform-browser": "^8.0.0",
     "@angular/platform-browser-dynamic": "^8.0.2",
     "@angular/router": "^8.0.0",
-    "@types/jasmine": "^3.3.13",
     "@types/lodash-es": "^4.17.1",
     "husky": "^1.1.2",
     "lodash-es": "^4.17.11",
@@ -55,7 +53,7 @@
   },
   "ngPackage": {
     "whitelistedNonPeerDependencies": [
-      "angular", "jasmine-core"
+      "angular"
     ]
   }
 }
