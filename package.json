@@ -1,6 +1,6 @@
 {
   "name": "raa-angular",
-  "version": "1.5.0",
+  "version": "2.0.0",
   "description": "Gemensamma Angular-komponenter/direktiv/pipes för Riksantikvarieämbetet",
   "main": "index.ts",
   "typings": "./index.d.ts",
@@ -25,8 +25,7 @@
   },
   "author": "Riksantikvarietämbetet",
   "license": "MIT",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "@angular/animations": "^8.0.0",
     "@angular/common": "^8.0.0",
