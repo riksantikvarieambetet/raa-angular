@@ -23,11 +23,11 @@
       tw-no-underline"
       [routerLink]="['./']"
     >
-      <img [src]="logoImageSrc" alt="Logotyp" height="50px" title="Gå till startsidan" />
+      <img [src]="logoImageSrc" alt="Logotyp" style="height: 50px" title="Gå till startsidan" />
     </a>
   </div>
 
-  <nav class="margin-auto-0 lg:tw-block md:tw-hidden sm:tw-hidden">
+  <nav class="margin-auto-0 lg:tw-block tw-hidden">
     <a
       *ngFor="let route of applicationRoutes"
       class="tw-no-underline
