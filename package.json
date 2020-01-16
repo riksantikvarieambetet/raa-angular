@@ -5,7 +5,7 @@
   "main": "index.ts",
   "typings": "./index.d.ts",
   "publishConfig": {
-    "registry": "http://artifactory.raa.se/artifactory/api/npm/npm/"
+    "registry": "https://artifactory.raa.se/artifactory/api/npm/npm/"
   },
   "scripts": {
     "build": "npm run packagr && cp -R src/styles dist/styles",
