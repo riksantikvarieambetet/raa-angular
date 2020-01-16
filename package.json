@@ -1,6 +1,6 @@
 {
   "name": "raa-angular",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "Gemensamma Angular-komponenter/direktiv/pipes för Riksantikvarieämbetet",
   "main": "index.ts",
   "typings": "./index.d.ts",
