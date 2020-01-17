@@ -44,8 +44,8 @@
     </div>
 
     <div *ngIf="header || message">
-      <h2 class="tw-w-full tw-text-center tw-font-normal" *ngIf="header">{{ header }}</h2>
-      <p *ngIf="message">{{ message }}</p>
+      <h3 class="tw-w-full tw-text-center tw-py-4" *ngIf="header">{{ header }}</h3>
+      <p *ngIf="message" class="tw-mb-4">{{ message }}</p>
     </div>
 
     <div
