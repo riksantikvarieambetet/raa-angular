@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 // Components
 import { RaaSelect } from './components/raa-select/raa-select.component';
@@ -28,7 +29,7 @@ import { RaaTrapFocusDirective } from './directives/raa-trap-focus.directive';
 import { OrgnummerPipe } from './pipes/orgnummer.pipe';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, RouterModule, BrowserAnimationsModule],
+  imports: [CommonModule, FormsModule, RouterModule, BrowserAnimationsModule, NgxPaginationModule],
   declarations: [
     RaaSelect,
     RaaDropdownComponent,
@@ -66,6 +67,7 @@ import { OrgnummerPipe } from './pipes/orgnummer.pipe';
     RaaNavigationBarComponent,
     RaaBottomDialogComponent,
     RaaPaginatorComponent,
+    NgxPaginationModule,
   ],
   providers: [OrgnummerPipe],
 })
