@@ -40,6 +40,7 @@
     "husky": "^1.1.2",
     "lodash-es": "^4.17.11",
     "ng-packagr": "^5.2.0",
+    "ngx-pagination": "^5.0.0",
     "prettier": "^1.14.3",
     "pretty-quick": "^1.7.0",
     "raa-style": "^4.2.0",
@@ -52,7 +53,6 @@
   },
   "peerDependencies": {
     "@types/lodash-es": "4.x",
-    "ngx-pagination": "^5.0.0",
     "raa-style": "4.x"
   },
   "ngPackage": {
