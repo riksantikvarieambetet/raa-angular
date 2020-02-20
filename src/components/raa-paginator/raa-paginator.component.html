@@ -3,13 +3,13 @@
   [id]="paginatorId"
   (pageChange)="pageChanged.emit($event)"
   class="tw-flex tw-w-full tw-h-10 tw-items-center tw-justify-between"
-  alt="paginator"
+  aria-label="paginator"
 >
   <div class="pagination-previous" [class.disabled]="p.isFirstPage()">
-    <button *ngIf="!p.isFirstPage()" (click)="p.previous()" alt="previous">
+    <button *ngIf="!p.isFirstPage()" (click)="p.previous()" aria-label="previous-button">
       <span class="raa-icon raa-icon-arrow-left tw-text-lg tw-text-raa-orange"></span>
     </button>
-    <button *ngIf="p.isFirstPage()" alt="previous" disabled>
+    <button *ngIf="p.isFirstPage()" aria-label="previous-button" disabled>
       <span class="raa-icon raa-icon-arrow-left tw-text-lg tw-text-raa-orange tw-opacity-50"></span>
     </button>
   </div>
@@ -31,10 +31,10 @@
     </div>
   </div>
   <div class="pagination-next" [class.disabled]="p.isLastPage()">
-    <button *ngIf="!p.isLastPage()" (click)="p.next()" alt="next">
+    <button *ngIf="!p.isLastPage()" (click)="p.next()" aria-label="next-button">
       <span class="raa-icon raa-icon-arrow-right tw-text-lg tw-text-raa-orange"></span>
     </button>
-    <button *ngIf="p.isLastPage()" alt="next" disabled>
+    <button *ngIf="p.isLastPage()" aria-label="next-button" disabled>
       <span class="raa-icon raa-icon-arrow-right tw-text-lg tw-text-raa-orange tw-opacity-50"></span>
     </button>
   </div>
