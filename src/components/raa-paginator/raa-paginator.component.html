@@ -1,0 +1,41 @@
+<pagination-template
+  #p="paginationApi"
+  [id]="paginatorId"
+  (pageChange)="pageChanged.emit($event)"
+  class="tw-flex tw-w-full tw-h-10 tw-items-center tw-justify-between"
+  aria-label="paginator"
+>
+  <div class="pagination-previous" [class.disabled]="p.isFirstPage()">
+    <button *ngIf="!p.isFirstPage()" (click)="p.previous()" aria-label="previous-button">
+      <span class="raa-icon raa-icon-arrow-left tw-text-lg tw-text-raa-orange"></span>
+    </button>
+    <button *ngIf="p.isFirstPage()" aria-label="previous-button" disabled>
+      <span class="raa-icon raa-icon-arrow-left tw-text-lg tw-text-raa-orange tw-opacity-50"></span>
+    </button>
+  </div>
+  <div class="tw-flex  tw-h-10 tw-items-center">
+    <div *ngFor="let page of p.pages" [class.current]="p.getCurrent() === page.value" class="tw-w-8">
+      <button
+        (click)="p.setCurrent(page.value)"
+        *ngIf="p.getCurrent() !== page.value"
+        class="tw-h-8 tw-w-8 tw-flex tw-justify-center tw-items-center tw-text-raa-orange"
+      >
+        <span class="">{{ page.label }}</span>
+      </button>
+      <button
+        *ngIf="p.getCurrent() === page.value"
+        class="tw-h-8 tw-w-8 tw-flex tw-justify-center tw-items-center tw-rounded tw-bg-raa-orange tw-text-raa-white tw-underline"
+      >
+        <span class="">{{ page.label }}</span>
+      </button>
+    </div>
+  </div>
+  <div class="pagination-next" [class.disabled]="p.isLastPage()">
+    <button *ngIf="!p.isLastPage()" (click)="p.next()" aria-label="next-button">
+      <span class="raa-icon raa-icon-arrow-right tw-text-lg tw-text-raa-orange"></span>
+    </button>
+    <button *ngIf="p.isLastPage()" aria-label="next-button" disabled>
+      <span class="raa-icon raa-icon-arrow-right tw-text-lg tw-text-raa-orange tw-opacity-50"></span>
+    </button>
+  </div>
+</pagination-template>

@@ -52,6 +52,7 @@
   },
   "peerDependencies": {
     "@types/lodash-es": "4.x",
+    "ngx-pagination": "^5.0.0",
     "raa-style": "4.x"
   },
   "ngPackage": {
