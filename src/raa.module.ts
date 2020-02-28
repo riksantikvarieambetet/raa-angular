@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 // Components
 import { RaaSelect } from './components/raa-select/raa-select.component';
@@ -15,6 +16,7 @@ import { RaaSpinnerComponent } from './components/raa-spinner/raa-spinner.compon
 import { RaaOverlaySpinnerComponent } from './components/raa-overlay-spinner/raa-overlay-spinner.component';
 import { RaaNavigationBarComponent } from './components/raa-navigation-bar/raa-navigation-bar.component';
 import { RaaBottomDialogComponent } from './components/raa-bottom-dialog/raa-bottom-dialog.component';
+import { RaaPaginatorComponent } from './components/raa-paginator/raa-paginator.component';
 
 // Directives
 import { OutsideClickDirective } from './directives/raa-outside-click.directive';
@@ -27,7 +29,7 @@ import { RaaTrapFocusDirective } from './directives/raa-trap-focus.directive';
 import { OrgnummerPipe } from './pipes/orgnummer.pipe';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, RouterModule, BrowserAnimationsModule],
+  imports: [CommonModule, FormsModule, RouterModule, BrowserAnimationsModule, NgxPaginationModule],
   declarations: [
     RaaSelect,
     RaaDropdownComponent,
@@ -45,6 +47,7 @@ import { OrgnummerPipe } from './pipes/orgnummer.pipe';
     OrgnummerPipe,
     RaaNavigationBarComponent,
     RaaBottomDialogComponent,
+    RaaPaginatorComponent,
   ],
   exports: [
     RaaSelect,
@@ -63,6 +66,8 @@ import { OrgnummerPipe } from './pipes/orgnummer.pipe';
     RaaTrapFocusDirective,
     RaaNavigationBarComponent,
     RaaBottomDialogComponent,
+    RaaPaginatorComponent,
+    NgxPaginationModule,
   ],
   providers: [OrgnummerPipe],
 })

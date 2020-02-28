@@ -125,9 +125,9 @@
   integrity sha1-E0LWPZSMYGKDj7+WEBL3TU5jhEA=
 
 "@types/node@*":
-  version "13.7.4"
-  resolved "https://artifactory.raa.se:443/artifactory/api/npm/npm/@types/node/-/node-13.7.4.tgz#76c3cb3a12909510f52e5dc04a6298cdf9504ffd"
-  integrity sha1-dsPLOhKQlRD1Ll3ASmKYzflQT/0=
+  version "13.7.1"
+  resolved "https://artifactory.raa.se:443/artifactory/api/npm/npm/@types/node/-/node-13.7.1.tgz#238eb34a66431b71d2aaddeaa7db166f25971a0d"
+  integrity sha1-I46zSmZDG3HSqt3qp9sWbyWXGg0=
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"
@@ -474,9 +474,9 @@ camelcase@^5.0.0, camelcase@^5.3.1:
   integrity sha1-48mzFWnhBoEd8kL3FXJaH0xJQyA=
 
 caniuse-lite@^1.0.30001020, caniuse-lite@^1.0.30001027:
-  version "1.0.30001028"
-  resolved "https://artifactory.raa.se:443/artifactory/api/npm/npm/caniuse-lite/-/caniuse-lite-1.0.30001028.tgz#f2241242ac70e0fa9cda55c2776d32a0867971c2"
-  integrity sha1-8iQSQqxw4Pqc2lXCd20yoIZ5ccI=
+  version "1.0.30001027"
+  resolved "https://artifactory.raa.se:443/artifactory/api/npm/npm/caniuse-lite/-/caniuse-lite-1.0.30001027.tgz#283e2ef17d94889cc216a22c6f85303d78ca852d"
+  integrity sha1-KD4u8X2UiJzCFqIsb4UwPXjKhS0=
 
 canonical-path@1.0.0:
   version "1.0.0"
@@ -823,9 +823,9 @@ ecc-jsbn@~0.1.1:
     safer-buffer "^2.1.0"
 
 electron-to-chromium@^1.3.349:
-  version "1.3.355"
-  resolved "https://artifactory.raa.se:443/artifactory/api/npm/npm/electron-to-chromium/-/electron-to-chromium-1.3.355.tgz#ff805ed8a3d68e550a45955134e4e81adf1122ba"
-  integrity sha1-/4Be2KPWjlUKRZVRNOToGt8RIro=
+  version "1.3.353"
+  resolved "https://artifactory.raa.se:443/artifactory/api/npm/npm/electron-to-chromium/-/electron-to-chromium-1.3.353.tgz#c6f13f27d5212643979867a400c1a5e8a4ef042a"
+  integrity sha1-xvE/J9UhJkOXmGekAMGl6KTvBCo=
 
 emoji-regex@^7.0.1:
   version "7.0.3"
@@ -1917,6 +1917,11 @@ ng-packagr@^5.2.0:
     terser "^4.1.2"
     update-notifier "^3.0.0"
 
+ngx-pagination@^5.0.0:
+  version "5.0.0"
+  resolved "https://artifactory.raa.se:443/artifactory/api/npm/npm/ngx-pagination/-/ngx-pagination-5.0.0.tgz#a4b4c150a70aef17ccd825e4543e174a974bbd14"
+  integrity sha1-pLTBUKcK7xfM2CXkVD4XSpdLvRQ=
+
 nice-try@^1.0.4:
   version "1.0.5"
   resolved "https://artifactory.raa.se:443/artifactory/api/npm/npm/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"
@@ -2201,14 +2206,14 @@ postcss-url@^8.0.0:
     xxhashjs "^0.2.1"
 
 postcss-value-parser@^4.0.2:
-  version "4.0.3"
-  resolved "https://artifactory.raa.se:443/artifactory/api/npm/npm/postcss-value-parser/-/postcss-value-parser-4.0.3.tgz#651ff4593aa9eda8d5d0d66593a2417aeaeb325d"
-  integrity sha1-ZR/0WTqp7ajV0NZlk6JBeurrMl0=
+  version "4.0.2"
+  resolved "https://artifactory.raa.se:443/artifactory/api/npm/npm/postcss-value-parser/-/postcss-value-parser-4.0.2.tgz#482282c09a42706d1fc9a069b73f44ec08391dc9"
+  integrity sha1-SCKCwJpCcG0fyaBptz9E7Ag5Hck=
 
 postcss@^7.0.0, postcss@^7.0.2, postcss@^7.0.26:
-  version "7.0.27"
-  resolved "https://artifactory.raa.se:443/artifactory/api/npm/npm/postcss/-/postcss-7.0.27.tgz#cc67cdc6b0daa375105b7c424a85567345fc54d9"
-  integrity sha1-zGfNxrDao3UQW3xCSoVWc0X8VNk=
+  version "7.0.26"
+  resolved "https://artifactory.raa.se:443/artifactory/api/npm/npm/postcss/-/postcss-7.0.26.tgz#5ed615cfcab35ba9bbb82414a4fa88ea10429587"
+  integrity sha1-XtYVz8qzW6m7uCQUpPqI6hBClYc=
   dependencies:
     chalk "^2.4.2"
     source-map "^0.6.1"

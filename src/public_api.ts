@@ -11,6 +11,7 @@ export { RaaOverlaySpinnerComponent } from './components/raa-overlay-spinner/raa
 export { RaaNavigationBarComponent } from './components/raa-navigation-bar/raa-navigation-bar.component';
 export { RaaBottomDialogComponent } from './components/raa-bottom-dialog/raa-bottom-dialog.component';
 export { RaaLabel } from './components/raa-label/raa-label.component';
+export { RaaPaginatorComponent } from './components/raa-paginator/raa-paginator.component';
 
 // Directives
 export { OutsideClickDirective } from './directives/raa-outside-click.directive';
