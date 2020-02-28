@@ -60,6 +60,8 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
   }
 
   @Input()
+  inputElementID: string;
+  @Input()
   domain: any[] = [];
   @Input()
   valueAttr: string = '';
