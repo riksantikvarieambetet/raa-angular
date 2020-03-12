@@ -2293,7 +2293,7 @@ qs@~6.5.2:
   resolved "https://artifactory.raa.se:443/artifactory/api/npm/npm/qs/-/qs-6.5.2.tgz#cb3ae806e8740444584ef154ce8ee98d403f3e36"
   integrity sha1-yzroBuh0BERYTvFUzo7pjUA/PjY=
 
-raa-style@^4.2.0:
+raa-style@^4.2.5:
   version "4.2.5"
   resolved "https://artifactory.raa.se:443/artifactory/api/npm/npm/raa-style/-/raa-style-4.2.5.tgz#c4b425ce0da830db4380cc87190beb7f40d016de"
   integrity sha1-xLQlzg2oMNtDgMyHGQvrf0DQFt4=
