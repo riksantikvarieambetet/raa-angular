@@ -7,7 +7,7 @@
       type="text"
       autocomplete="off"
       role="combobox"
-      [attr.aria-activedescendant]="hoveredItem?.id"
+      [attr.aria-activedescendant]="activeItem?.id"
       aria-autocomplete="list"
       aria-expanded="false"
       aria-haspopup="true"
@@ -58,7 +58,7 @@
       <li
         #dropdownItem
         *ngFor="let item of filteredDomainValues; let rowIndex = index"
-        [id]="item.id + rowIndex"
+        [id]="item.id.toString() + rowIndex"
         role="option"
         class="raa-select-dropdown-item"
         [attr.aria-selected]="item.id === value"

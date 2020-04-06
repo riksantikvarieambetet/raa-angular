@@ -101,7 +101,7 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
   domainValues: DomainValue[] = [];
   filteredDomainValues: DomainValue[] = [];
 
-  hoveredItem: Element;
+  activeItem: Element | null;
 
   setFocusToInputField = new EventEmitter();
 
@@ -268,21 +268,25 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
 
   handleKeyPressed(event: KeyboardEvent) {
     const keyCode = event.which;
-
-    const hoveredItem = this.dropdownItems
+    const activeItem = this.dropdownItems
       .toArray()
       .find(element => (element.nativeElement as HTMLElement).classList.contains('hovered'));
 
-    let previousSiblingElement;
-    let nextSiblingElement;
+    let previousSiblingElement: Element | null = null;
+    let nextSiblingElement: Element | null = null;
 
-    if (hoveredItem) {
-      previousSiblingElement = (hoveredItem.nativeElement as HTMLElement).previousElementSibling;
-      nextSiblingElement = (hoveredItem.nativeElement as HTMLElement).nextElementSibling;
+    if (activeItem) {
+      previousSiblingElement = (activeItem.nativeElement as HTMLElement).previousElementSibling;
+      nextSiblingElement = (activeItem.nativeElement as HTMLElement).nextElementSibling;
     }
 
     if (keyCode === KeyCode.ArrowDown) {
       event.preventDefault();
+
+      // Sätt activeItem till första värde för att skärmläsare ska förstå.
+      if (!activeItem) {
+        this.activeItem = this.dropdownItems.first.nativeElement;
+      }
 
       if (this.openDropdownIfClosed()) {
         return;
@@ -293,8 +297,8 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
         this.scrollDropdownItemIntoView('down');
       }
 
-      if (hoveredItem && nextSiblingElement) {
-        this.hoveredItem = nextSiblingElement;
+      if (activeItem && nextSiblingElement) {
+        this.activeItem = nextSiblingElement;
       }
     } else if (keyCode === KeyCode.ArrowUp) {
       event.preventDefault();
@@ -308,8 +312,8 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
         this.scrollDropdownItemIntoView('up');
       }
 
-      if (hoveredItem && previousSiblingElement) {
-        this.hoveredItem = previousSiblingElement;
+      if (activeItem && previousSiblingElement) {
+        this.activeItem = previousSiblingElement;
       }
     } else if (keyCode === KeyCode.Return) {
       if (this.hoverIndex > -1) {
@@ -372,7 +376,7 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
 
   focusLost = () => {
     this.showDropdown = false;
-
+    this.activeItem = null;
     // sätter visningsvärde till valt värde, detta om användaren börjar justera men avbryter
     this.filterInput = this.getDisplayValue(this.value);
     this.hoverIndex = -1;
