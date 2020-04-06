@@ -1,29 +1,19 @@
 <div
   [@fade]
-  class="tw-absolute
-    tw-h-full
-    tw-w-full
-    tw-bg-raa-white
-    tw-opacity-75
-    tw-left-0
-    tw-top-0
-    z-index-10"
   *ngIf="isVisible"
+  class="tw-absolute tw-h-full tw-w-full tw-bg-raa-white tw-opacity-75 tw-left-0 tw-top-0 z-index-10"
 ></div>
 
 <div
   [@closeConfirmationAnimation]
+  (@closeConfirmationAnimation.done)="focusOnInit()"
   id="bottom-dialog"
   class="tw-absolute
     tw-bottom-0
     tw-left-0
     tw-bg-raa-gray-2
-    tw-border-solid
     tw-border-t
     tw-border-raa-gray-3
-    tw-border-r-0
-    tw-border-l-0
-    tw-border-b-0
     tw-w-full
     tw-flex
     tw-flex-col
@@ -34,62 +24,43 @@
   *ngIf="isVisible"
 >
   <div
-    class="tw-w-full
-    tw-text-center
-    tw-p-8
-    tw-max-w-md"
+    cdkTrapFocus
+    role="alertdialog"
+    aria-labelledby="dialog-header"
+    aria-describedby="dialog-message"
+    class="tw-w-full tw-text-center tw-p-8 tw-max-w-md"
   >
     <div *ngIf="!header && !message">
       <ng-content></ng-content>
     </div>
 
     <div *ngIf="header || message">
-      <h3 class="tw-w-full tw-text-center tw-py-4" *ngIf="header">{{ header }}</h3>
-      <p *ngIf="message" class="tw-mb-4">{{ message }}</p>
+      <h3 *ngIf="header" id="dialog-header" class="tw-w-full tw-text-center tw-py-4">{{ header }}</h3>
+      <p *ngIf="message" id="dialog-message" class="tw-mb-4">{{ message }}</p>
     </div>
 
-    <div
-      class="tw-flex
-        tw-flex-col
-        sm:tw-flex-row
-        tw-justify-center
-        tw-w-full"
-    >
+    <div class="tw-flex tw-flex-col sm:tw-flex-row tw-justify-center tw-w-full">
       <button
-        class="tw-mr-0
-          tw-mb-2
-          sm:tw-mr-2
-          sm:tw-mb-0
-          raa-button
-          raa-button-cancel"
+        #cancelButton
+        aria-label="avbryt"
+        class="tw-mr-0 tw-mb-2 sm:tw-mr-2 sm:tw-mb-0 raa-button raa-button-cancel tw-uppercase"
         (click)="noAction()"
         [disabled]="showLoadingSpinner"
       >
-        {{ cancelBtnText }}
+        {{ cancelBtnText.toLowerCase() }}
       </button>
 
       <button
-        class="tw-ml-0
-          tw-mb-2
-          sm:tw-ml-2
-          sm:tw-mb-0
-          tw-relative
-          raa-button"
+        aria-label="fortsätt"
+        class="tw-ml-0 tw-mb-2 sm:tw-ml-2 sm:tw-mb-0 tw-relative raa-button tw-uppercase"
         [disabled]="showLoadingSpinner || confirmBtnDisabled"
         [ngClass]="buttonClass"
         (click)="yesAction()"
       >
-        <span [ngClass]="{ 'tw-invisible': showLoadingSpinner }">{{ confirmBtnText }}</span>
+        <span [ngClass]="{ 'tw-invisible': showLoadingSpinner }">{{ confirmBtnText.toLowerCase() }}</span>
         <span
           *ngIf="showLoadingSpinner"
-          class="tw-absolute
-            tw-left-0
-            tw-top-0
-            tw-w-full
-            tw-h-full
-            tw-flex
-            tw-items-center
-            tw-justify-center"
+          class="tw-absolute tw-left-0 tw-top-0 tw-w-full tw-h-full tw-flex tw-items-center tw-justify-center"
         >
           <raa-spinner size="1rem"></raa-spinner>
         </span>
