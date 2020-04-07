@@ -24,11 +24,11 @@
   *ngIf="isVisible"
 >
   <div
-    cdkTrapFocus
     role="alertdialog"
     aria-labelledby="dialog-header"
     aria-describedby="dialog-message"
     class="tw-w-full tw-text-center tw-p-8 tw-max-w-md"
+    [cdkTrapFocus]
   >
     <div *ngIf="!header && !message">
       <ng-content></ng-content>

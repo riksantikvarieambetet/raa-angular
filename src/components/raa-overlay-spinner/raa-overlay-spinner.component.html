@@ -1,5 +1,9 @@
 <div
-  class="tw-fixed tw-left-0 tw-top-0 z-index-9999 tw-w-full tw-h-full white-bg-transparent"
+  #raaSpinner
+  class="tw-fixed tw-left-0 tw-top-0 z-index-9999 tw-w-full tw-h-full white-bg-transparent tw-outline-none"
+  [cdkTrapFocus]
+  tabindex="0"
+  aria-describedby="raa-spinner"
   [ngClass]="{ 'tw-absolute': posAbsolute, 'tw-fixed': posFixed }"
 >
   <div
@@ -11,6 +15,8 @@
     transform-translate-50-50
     font-size-5rem"
   >
-    <raa-spinner></raa-spinner>
+    <div id="raa-spinner" aria-label="Sidan laddas. Var god vänta.">
+      <raa-spinner></raa-spinner>
+    </div>
   </div>
 </div>

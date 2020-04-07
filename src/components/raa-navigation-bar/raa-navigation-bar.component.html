@@ -3,8 +3,8 @@
   tw-flex-row
   tw-items-center
   tw-justify-between
-  tw-py-2
-  tw-px-4
+  tw-p-2
+  sm:tw-p-4
   tw-bg-raa-white
   sm\:tw-w-auto
   md\:tw-w-auto"
@@ -23,7 +23,7 @@
       tw-no-underline"
       [routerLink]="['./']"
     >
-      <img [src]="logoImageSrc" alt="Logotyp" style="height: 50px" title="Gå till startsidan" />
+      <img [src]="logoImageSrc" alt="Logotyp" class="tw-h-10" title="Gå till startsidan" />
     </a>
   </div>
 
@@ -31,9 +31,6 @@
     <a
       *ngFor="let route of applicationRoutes"
       class="tw-no-underline
-        tw-border-r-0
-        tw-border-l-0
-        tw-border-t-0
         tw-border-solid
         tw-border-transparent
         tw-border-b-2
@@ -56,22 +53,20 @@
     </a>
   </nav>
 
-  <div class="lg:tw-hidden md:tw-block sm:tw-block">
-    <button
-      (click)="toggleMenu()"
-      id="menu-button"
-      class="tw-bg-transparent
-        tw-w-auto
-        tw-p-2
-        tw-text-title
-        tw-border-0
-        tw-text-raa-orange-1
-        tw-cursor-pointer
-        min-width-auto"
-    >
-      <i class="raa-icon-menu" title="Huvudmeny"></i>
-    </button>
-  </div>
+  <a
+    *ngIf="applicationRoutes.length"
+    (click)="toggleMenu()"
+    class="tw-select-none tw-cursor-pointer tw-text-lg"
+    [ngClass]="{ 'tw-text-raa-orange': !displayMenu, 'tw-text-raa-gray-5': displayMenu }"
+  >
+    <span class="tw-flex tw-flex-col tw-items-center tw-ml-2">
+      <span
+        [ngClass]="{ 'raa-icon-menu': !displayMenu, 'raa-icon-close': displayMenu }"
+        class=" tw-text-header raa-icon-menu raa-icon-close"
+      ></span>
+      <span class="tw-text-sm tw-font-semibold">MENY</span>
+    </span>
+  </a>
 </div>
 
 <div
@@ -83,8 +78,7 @@
 	  z-index-99999
 	  black-bg-transparent
 	  lg:tw-hidden
-	  sm:tw-block
-	  md:tw-block"
+	  sm:tw-block"
 >
   <div
     class="app-menu
@@ -97,9 +91,6 @@
     tw-overflow-y-auto
     tw-p-0
     tw-w-full
-    tw-border-l-0
-    tw-border-r-0
-    tw-border-b-0
     tw-border-t
     tw-border-solid
     tw-border-raa-gray-3
@@ -119,9 +110,6 @@
           tw-text-center
           tw-uppercase
           tw-cursor-pointer
-          tw-border-t-0
-          tw-border-l-0
-          tw-border-r-0
           tw-border-b
           tw-border-solid
           tw-border-raa-gray-4
