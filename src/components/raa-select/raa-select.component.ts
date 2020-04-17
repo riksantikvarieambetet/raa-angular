@@ -284,7 +284,7 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
       event.preventDefault();
 
       // Sätt activeItem till första värde för att skärmläsare ska förstå.
-      if (!activeItem) {
+      if (!activeItem && this.dropdownItems.first) {
         this.activeItem = this.dropdownItems.first.nativeElement;
       }
 

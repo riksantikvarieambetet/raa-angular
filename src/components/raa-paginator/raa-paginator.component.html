@@ -25,7 +25,9 @@
         <span class="">{{ page.label }}</span>
       </button>
       <button
+        #selectedPage
         *ngIf="p.getCurrent() === page.value"
+        aria-current="page"
         [attr.aria-label]="'paginering sida ' + page.value"
         class="tw-h-8 tw-w-8 tw-flex tw-justify-center tw-items-center tw-rounded tw-bg-raa-orange tw-text-raa-white tw-underline"
       >
