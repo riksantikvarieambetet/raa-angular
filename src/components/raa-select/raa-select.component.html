@@ -1,17 +1,19 @@
 <div #raaSelect class="raa-select">
-  <div class="raa-select-input-row" [ngClass]="{ disabled: disabled }">
+  <div
+    class="raa-select-input-row"
+    [ngClass]="{ disabled: disabled }"
+    aria-owns="raa-dropdown"
+    role="combobox"
+    [attr.aria-expanded]="showDropdown"
+  >
     <input
       [id]="inputElementID"
       class="raa-input raa-select-input z-index-0"
       #inputField
       type="text"
       autocomplete="off"
-      role="combobox"
       [attr.aria-activedescendant]="activeItem?.id"
       aria-autocomplete="list"
-      aria-expanded="false"
-      aria-haspopup="true"
-      aria-owns="raa-dropdown"
       [placeholder]="placeholder"
       [requestFocus]="setFocusToInputField"
       [disabled]="disabled"
@@ -25,12 +27,13 @@
     <button
       class="raa-select-button raa-icon-arrow-down"
       type="button"
-      tabIndex="0"
+      aria-controls="raa-dropdown"
+      [attr.aria-expanded]="showDropdown"
       [disabled]="disabled"
       (click)="toggleDropdown()"
       [ngClass]="{ 'active z-index-2': showDropdown }"
     >
-      <span class="tw-hidden">Expandera</span>
+      <span class="cdk-visually-hidden">Expandera</span>
     </button>
   </div>
 
@@ -43,12 +46,12 @@
   >
     <ul
       #dropdown
-      id="raa-dropdown"
-      role="listbox"
-      [attr.aria-expanded]="true"
       (raaOutsideClick)="focusLost()"
       [includedElement]="raaSelect"
       class="raa-select-dropdown"
+      id="raa-dropdown"
+      role="listbox"
+      aria-label="lista"
       [ngClass]="{ 'dropdown-is-above': dropdownIsAbove, 'dropdown-is-below': !dropdownIsAbove }"
     >
       <li *ngIf="filteredDomainValues.length === 0" role="option" class="raa-select-dropdown-item">
@@ -66,7 +69,8 @@
         (click)="select(item)"
         [ngClass]="{ selected: item.id === value, hovered: hoverIndex === rowIndex }"
       >
-        <span>{{ item.displayValue }}</span>
+        <span aria-hidden="true">{{ item.displayValue }}</span>
+        <span class="cdk-visually-hidden">{{ item.displayValue.toLowerCase() }}</span>
       </li>
     </ul>
   </raa-dropdown>
