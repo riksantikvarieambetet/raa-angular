@@ -25,7 +25,9 @@
   },
   "author": "Riksantikvarietämbetet",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "@angular-devkit/schematics": "^9.1.3"
+  },
   "devDependencies": {
     "@angular/animations": "^8.0.0",
     "@angular/common": "^8.0.0",
