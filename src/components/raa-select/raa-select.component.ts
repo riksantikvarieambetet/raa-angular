@@ -61,21 +61,39 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
 
   @Input()
   inputElementID: string;
+
   @Input()
   domain: any[] = [];
+
   @Input()
   valueAttr: string = '';
+
   @Input()
   displayAttr: string = '';
+
   @Input()
   placeholder: string = '';
+
   @Input()
   disabled: boolean = false;
+
   @Input()
   noAvailableItemsText = 'Inga val tillgängliga';
 
+  @Input()
+  staticData = true;
+
+  @Input()
+  filterByStartsWith = false;
+
+  @Input()
+  showSpinner = false;
+
   @Output()
   onSelect = new EventEmitter<any>();
+
+  @Output()
+  searchQuery = new EventEmitter<string>();
 
   @ViewChild('inputField', { static: false })
   inputField: ElementRef;
@@ -145,7 +163,9 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
       this.domainValues = this.mapDomainValues();
       this.filterValues();
 
-      setTimeout(() => this.focusLost());
+      if (this.staticData) {
+        setTimeout(() => this.focusLost());
+      }
     }
   }
 
@@ -172,7 +192,13 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
     dropdownEl.scrollTop = dropdownItem.offsetTop;
   }
 
-  onFilterdInputChange() {
+  onFilteredInputChange() {
+    if (!this.staticData) {
+      this.domain = [];
+      this.domainValues = [];
+    }
+
+    this.searchQuery.emit(this.filterInput);
     this.filterValues();
   }
 
@@ -223,13 +249,24 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
 
   filterValues() {
     if (typeof this.filterInput === 'undefined' || this.filterInput.length === 0) {
-      this.filteredDomainValues = this.domainValues.slice();
+      if (!this.staticData) {
+        this.filteredDomainValues = [];
+      } else {
+        this.filteredDomainValues = this.domainValues.slice();
+      }
       return;
     }
 
-    this.filteredDomainValues = this.domainValues.filter(
-      item => item.displayValue.toLowerCase().indexOf(this.filterInput.toLocaleLowerCase()) > -1
-    );
+    if (this.filterByStartsWith) {
+      this.filteredDomainValues = this.domainValues.filter(item =>
+        item.displayValue.toLowerCase().startsWith(this.filterInput.toLocaleLowerCase())
+      );
+    } else {
+      this.filteredDomainValues = this.domainValues.filter(
+        item => item.displayValue.toLowerCase().indexOf(this.filterInput.toLocaleLowerCase()) > -1
+      );
+    }
+
     if (this.filteredDomainValues.length > 0) {
       this.hoverIndex = 0;
     }
@@ -323,9 +360,15 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
 
   focusLost = () => {
     this.showDropdown = false;
+    if (!this.staticData) {
+      this.domainValues = [];
+      this.domain = [];
+      this.filteredDomainValues = [];
+    }
 
     // sätter visningsvärde till valt värde, detta om användaren börjar justera men avbryter
     this.filterInput = this.getDisplayValue(this.value);
+    this.showDropdown = false;
     this.hoverIndex = -1;
     this.tabindex = -1;
   };

@@ -1,22 +1,24 @@
 <div #raaSelect class="raa-select">
-  <div class="raa-select-input-row" [ngClass]="{ disabled: disabled }">
+  <div class="raa-select-input-row tw-items-center" [ngClass]="{ disabled: disabled }">
     <input
-      id="{{ inputElementID }}"
-      class="raa-input raa-select-input z-index-0"
+      [id]="inputElementID"
+      class="raa-input raa-select-input tw-z-0"
+      [ngClass]="{ 'tw--mr-4': !staticData, 'tw-border-r-0': staticData }"
       #inputField
       type="text"
-      placeholder="{{ placeholder }}"
+      [placeholder]="placeholder"
       [requestFocus]="setFocusToInputField"
       [disabled]="disabled"
       [ngModelOptions]="{ standalone: true }"
       [(ngModel)]="filterInput"
-      (ngModelChange)="onFilterdInputChange()"
+      (ngModelChange)="onFilteredInputChange()"
       (focus)="focusGained()"
       (click)="openDropdownIfClosed()"
       (keydown)="handleKeyPressed($event)"
     />
     <button
-      class="raa-select-button raa-icon-arrow-down"
+      *ngIf="staticData"
+      class="raa-select-button raa-icon-arrow-down tw-h-10"
       type="button"
       tabIndex="-1"
       [disabled]="disabled"
@@ -25,6 +27,8 @@
     >
       <span class="tw-hidden">Expandera</span>
     </button>
+
+    <raa-spinner *ngIf="showSpinner && !staticData" class="tw-relative right-1rem" size="1rem"></raa-spinner>
   </div>
   <raa-dropdown
     [element]="raaSelect"
@@ -40,7 +44,7 @@
       class="raa-select-dropdown"
       [ngClass]="{ 'dropdown-is-above': dropdownIsAbove, 'dropdown-is-below': !dropdownIsAbove }"
     >
-      <li class="raa-select-dropdown-item" *ngIf="filteredDomainValues.length === 0">
+      <li *ngIf="staticData && filteredDomainValues.length === 0" role="option" class="raa-select-dropdown-item">
         <span>{{ noAvailableItemsText }}</span>
       </li>
       <li
