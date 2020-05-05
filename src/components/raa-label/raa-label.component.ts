@@ -9,9 +9,7 @@ import { Component, Input } from '@angular/core';
     '</label>',
   styleUrls: ['raa-label.component.scss'],
 })
-export class RaaLabel {
+export class RaaLabelComponent {
   @Input()
   required = false;
-
-  constructor() {}
 }

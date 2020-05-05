@@ -34,10 +34,10 @@ export class RaaBottomDialogComponent implements OnInit {
   showLoadingSpinner = false;
 
   @Input()
-  cancelBtnText: string = '';
+  cancelBtnText = '';
 
   @Input()
-  confirmBtnText: string = '';
+  confirmBtnText = '';
 
   @Input()
   confirmBtnColor: 'green' | 'grey' | 'white' = 'white';
@@ -60,17 +60,15 @@ export class RaaBottomDialogComponent implements OnInit {
   @Output()
   onNoAction = new EventEmitter<void>();
 
-  buttonClass: string = 'raa-button-secondary';
-
-  constructor() {}
+  buttonClass = 'raa-button-secondary';
 
   ngOnInit() {
     if (!this.cancelBtnText) {
-      throw 'ERROR: raa-bottom-dialog.component -> cancelBtnText must be specified';
+      throw new Error('ERROR: raa-bottom-dialog.component -> cancelBtnText must be specified');
     }
 
     if (!this.confirmBtnText) {
-      throw 'ERROR: raa-bottom-dialog.component -> confirmBtnText must be specified';
+      throw new Error('ERROR: raa-bottom-dialog.component -> confirmBtnText must be specified');
     }
 
     switch (this.confirmBtnColor) {

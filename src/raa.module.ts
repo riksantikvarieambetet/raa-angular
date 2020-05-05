@@ -6,12 +6,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxPaginationModule } from 'ngx-pagination';
 
 // Components
-import { RaaSelect } from './components/raa-select/raa-select.component';
+import { RaaSelectComponent } from './components/raa-select/raa-select.component';
 import { RaaDropdownComponent } from './components/raa-dropdown/raa-dropdown.component';
 import { RaaModalPageComponent } from './components/raa-modal-page/raa-modal-page.component';
 import { RaaDialogComponent } from './components/raa-dialog/raa-dialog.component';
-import { RaaTextWithSpinner } from './components/raa-text-with-spinner/raa-text-with-spinner.component';
-import { RaaLabel } from './components/raa-label/raa-label.component';
+import { RaaTextWithSpinnerComponent } from './components/raa-text-with-spinner/raa-text-with-spinner.component';
+import { RaaLabelComponent } from './components/raa-label/raa-label.component';
 import { RaaSpinnerComponent } from './components/raa-spinner/raa-spinner.component';
 import { RaaOverlaySpinnerComponent } from './components/raa-overlay-spinner/raa-overlay-spinner.component';
 import { RaaNavigationBarComponent } from './components/raa-navigation-bar/raa-navigation-bar.component';
@@ -21,7 +21,7 @@ import { RaaPaginatorComponent } from './components/raa-paginator/raa-paginator.
 // Directives
 import { OutsideClickDirective } from './directives/raa-outside-click.directive';
 import { RaaRequestFocusDirective } from './directives/raa-request-focus.directive';
-import { RaaSelectAllOnFocus } from './directives/raa-select-all-on-focus.directive';
+import { RaaSelectAllOnFocusDirective } from './directives/raa-select-all-on-focus.directive';
 import { RaaFocusInvalidElementDirective } from './directives/raa-focus-invalid-element.directive';
 import { RaaTrapFocusDirective } from './directives/raa-trap-focus.directive';
 
@@ -31,17 +31,17 @@ import { OrgnummerPipe } from './pipes/orgnummer.pipe';
 @NgModule({
   imports: [CommonModule, FormsModule, RouterModule, BrowserAnimationsModule, NgxPaginationModule],
   declarations: [
-    RaaSelect,
+    RaaSelectComponent,
     RaaDropdownComponent,
     OutsideClickDirective,
     RaaRequestFocusDirective,
-    RaaSelectAllOnFocus,
+    RaaSelectAllOnFocusDirective,
     RaaFocusInvalidElementDirective,
     RaaTrapFocusDirective,
     RaaModalPageComponent,
     RaaDialogComponent,
-    RaaTextWithSpinner,
-    RaaLabel,
+    RaaTextWithSpinnerComponent,
+    RaaLabelComponent,
     RaaSpinnerComponent,
     RaaOverlaySpinnerComponent,
     OrgnummerPipe,
@@ -50,17 +50,17 @@ import { OrgnummerPipe } from './pipes/orgnummer.pipe';
     RaaPaginatorComponent,
   ],
   exports: [
-    RaaSelect,
+    RaaSelectComponent,
     RaaDropdownComponent,
-    RaaTextWithSpinner,
-    RaaLabel,
+    RaaTextWithSpinnerComponent,
+    RaaLabelComponent,
     RaaSpinnerComponent,
     RaaOverlaySpinnerComponent,
     RaaModalPageComponent,
     RaaDialogComponent,
     OutsideClickDirective,
     RaaRequestFocusDirective,
-    RaaSelectAllOnFocus,
+    RaaSelectAllOnFocusDirective,
     RaaFocusInvalidElementDirective,
     OrgnummerPipe,
     RaaTrapFocusDirective,

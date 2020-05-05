@@ -42,35 +42,30 @@ const ignoreOpenOnKeyCodes: { [key: number]: boolean } = {
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => RaaSelect),
+      useExisting: forwardRef(() => RaaSelectComponent),
       multi: true,
     },
   ],
 })
-export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValueAccessor {
-  @HostBinding()
-  tabindex = 0;
-
-  @HostListener('focus', ['$event.target'])
-  onFocus(_event?: FocusEvent) {
-    if (!this.showDropdown) {
-      this.setFocusToInputField.emit();
-      this.focusGained();
-    }
-  }
-
+export class RaaSelectComponent implements OnInit, OnChanges, AfterViewInit, ControlValueAccessor {
   @Input()
   inputElementID: string;
+
   @Input()
   domain: any[] = [];
+
   @Input()
-  valueAttr: string = '';
+  valueAttr = '';
+
   @Input()
-  displayAttr: string = '';
+  displayAttr = '';
+
   @Input()
-  placeholder: string = '';
+  placeholder = '';
+
   @Input()
-  disabled: boolean = false;
+  disabled = false;
+
   @Input()
   noAvailableItemsText = 'Inga val tillgängliga';
 
@@ -99,6 +94,17 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
 
   scrollToSelected = false;
 
+  @HostBinding()
+  tabindex = 0;
+
+  @HostListener('focus', ['$event.target'])
+  onFocus(_event?: FocusEvent) {
+    if (!this.showDropdown) {
+      this.setFocusToInputField.emit();
+      this.focusGained();
+    }
+  }
+
   // Handling of ngModel
   writeValue(value: any) {
     this.filterInput = this.getDisplayValue(value);
@@ -119,15 +125,15 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
 
   ngOnInit() {
     if (!this.domain) {
-      throw 'ERROR: raa-select.component -> domain must be specified';
+      throw new Error('ERROR: raa-select.component -> domain must be specified');
     }
 
     if (!this.valueAttr) {
-      throw 'ERROR: raa-select.component -> valueAttr must be specified';
+      throw new Error('ERROR: raa-select.component -> valueAttr must be specified');
     }
 
     if (!this.displayAttr) {
-      throw 'ERROR: raa-select.component -> displayAttr must be specified';
+      throw new Error('ERROR: raa-select.component -> displayAttr must be specified');
     }
 
     this.showDropdown = false;
@@ -247,11 +253,13 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
     if (typeof itemKey === 'undefined' || itemKey === null || itemKey.length < 1 || this.domainValues.length === 0) {
       return '';
     }
-    let domainObject = this.domainValues.filter(domainItem => domainItem.id === itemKey);
+    const domainObject = this.domainValues.filter(domainItem => domainItem.id === itemKey);
     if (domainObject.length === 0) {
-      throw 'ERROR: raa-select.component -> There is no domain object with key ' +
-        itemKey +
-        '. Make sure the key exists in domain and/or the type (string/number) is correct';
+      throw new Error(
+        'ERROR: raa-select.component -> There is no domain object with key ' +
+          itemKey +
+          '. Make sure the key exists in domain and/or the type (string/number) is correct'
+      );
     }
 
     return domainObject[0].displayValue;
@@ -335,4 +343,7 @@ export class RaaSelect implements OnInit, OnChanges, AfterViewInit, ControlValue
   }
 }
 
-export type DomainValue = { id: any; displayValue: string };
+export interface DomainValue {
+  id: any;
+  displayValue: string;
+}

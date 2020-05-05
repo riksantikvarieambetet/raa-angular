@@ -11,7 +11,7 @@ import { Component, Input } from '@angular/core';
     </div>
   `,
 })
-export class RaaTextWithSpinner {
+export class RaaTextWithSpinnerComponent {
   @Input()
   showSpinner = false;
 }
