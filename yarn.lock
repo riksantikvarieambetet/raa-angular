@@ -7234,7 +7234,7 @@ rxjs@6.5.4:
   dependencies:
     tslib "^1.9.0"
 
-rxjs@^6.5.0, rxjs@^6.5.3:
+rxjs@^6.5.0, rxjs@^6.5.3, rxjs@~6.5.3:
   version "6.5.5"
   resolved "https://artifactory.raa.se:443/artifactory/api/npm/npm/rxjs/-/rxjs-6.5.5.tgz#c5c884e3094c8cfee31bf27eb87e54ccfc87f9ec"
   integrity sha1-xciE4wlMjP7jG/J+uH5UzPyH+ew=
@@ -8900,3 +8900,8 @@ yn@3.1.1:
   version "3.1.1"
   resolved "https://artifactory.raa.se:443/artifactory/api/npm/npm/yn/-/yn-3.1.1.tgz#1e87401a09d767c1d5eab26a6e4c185182d2eb50"
   integrity sha1-HodAGgnXZ8HV6rJqbkwYUYLS61A=
+
+zone.js@~0.10.2:
+  version "0.10.3"
+  resolved "https://artifactory.raa.se:443/artifactory/api/npm/npm/zone.js/-/zone.js-0.10.3.tgz#3e5e4da03c607c9dcd92e37dd35687a14a140c16"
+  integrity sha1-Pl5NoDxgfJ3NkuN901aHoUoUDBY=

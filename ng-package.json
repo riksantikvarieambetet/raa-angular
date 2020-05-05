@@ -3,5 +3,5 @@
   "lib": {
     "entryFile": "src/public_api.ts"
   },
-  "whitelistedNonPeerDependencies": ["angular"]
+  "whitelistedNonPeerDependencies": ["."]
 }
