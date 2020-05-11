@@ -11,7 +11,7 @@ import {
   ViewChild,
 } from '@angular/core';
 
-import throttle from 'lodash-es/throttle';
+import { throttle } from 'lodash-es';
 
 const EXTRA_SPACING = 10;
 const DEFAULT_MAX_HEIGHT = 500;
@@ -207,7 +207,7 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit, OnDestroy {
   private getScrollableParent(element: HTMLElement) {
     const parents = this.getAllParents(element);
 
-    return parents.find(node => {
+    return parents.find((node) => {
       const overflowY = window.getComputedStyle(node).overflowY;
       return overflowY !== 'visible' && overflowY !== 'hidden';
     });

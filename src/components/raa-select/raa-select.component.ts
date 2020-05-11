@@ -169,8 +169,8 @@ export class RaaSelectComponent implements OnInit, OnChanges, AfterViewInit, Con
 
   findSelectedDropdownItem(): HTMLElement | undefined {
     return this.dropdownItems
-      .map(elRef => elRef.nativeElement as HTMLElement)
-      .filter(el => el.classList.contains('selected'))[0];
+      .map((elRef) => elRef.nativeElement as HTMLElement)
+      .filter((el) => el.classList.contains('selected'))[0];
   }
 
   scrollToDropdownItem(dropdownItem: HTMLElement) {
@@ -219,7 +219,7 @@ export class RaaSelectComponent implements OnInit, OnChanges, AfterViewInit, Con
   }
 
   mapDomainValues() {
-    return this.domain.map(item => {
+    return this.domain.map((item) => {
       return {
         id: item[this.valueAttr],
         displayValue: item[this.displayAttr],
@@ -234,7 +234,7 @@ export class RaaSelectComponent implements OnInit, OnChanges, AfterViewInit, Con
     }
 
     this.filteredDomainValues = this.domainValues.filter(
-      item => item.displayValue.toLowerCase().indexOf(this.filterInput.toLocaleLowerCase()) > -1
+      (item) => item.displayValue.toLowerCase().indexOf(this.filterInput.toLocaleLowerCase()) > -1
     );
     if (this.filteredDomainValues.length > 0) {
       this.hoverIndex = 0;
@@ -253,7 +253,7 @@ export class RaaSelectComponent implements OnInit, OnChanges, AfterViewInit, Con
     if (typeof itemKey === 'undefined' || itemKey === null || itemKey.length < 1 || this.domainValues.length === 0) {
       return '';
     }
-    const domainObject = this.domainValues.filter(domainItem => domainItem.id === itemKey);
+    const domainObject = this.domainValues.filter((domainItem) => domainItem.id === itemKey);
     if (domainObject.length === 0) {
       throw new Error(
         'ERROR: raa-select.component -> There is no domain object with key ' +

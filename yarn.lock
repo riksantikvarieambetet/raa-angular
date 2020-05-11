@@ -122,6 +122,13 @@
   resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-9.1.4.tgz#22f64a062103d4903f2c7d862889a88fc6553bc7"
   integrity sha512-gMo/DbCm5BDArladMAeC7/75T2DvhLr4CSUGJt/P/aimTEG2ywoAALs3pzwSSe4qxrHiR0OIksVW3l4km3iXEw==
 
+"@angular/cdk@^9.2.2":
+  version "9.2.2"
+  resolved "https://artifactory.raa.se:443/artifactory/api/npm/npm/@angular/cdk/-/cdk-9.2.2.tgz#776be85aa55146f00dcd4909b81c67da47286c75"
+  integrity sha1-d2voWqVRRvANzUkJuBxn2kcobHU=
+  optionalDependencies:
+    parse5 "^5.0.0"
+
 "@angular/cli@~9.1.4":
   version "9.1.4"
   resolved "https://registry.yarnpkg.com/@angular/cli/-/cli-9.1.4.tgz#0c1938e2342bb3bcd978b32458ab20f1bf007ba5"
@@ -190,6 +197,11 @@
   version "9.1.4"
   resolved "https://registry.yarnpkg.com/@angular/language-service/-/language-service-9.1.4.tgz#2fa2c444e5a5a6036d5ca43d2887826df17d0553"
   integrity sha512-eyVxxiegdb4ESdFGfkuDN+YfUbOVHRQLjIl6ACFJQDNHzVXzbmuqpyr5hIJANIVady103/7+dqRxxJo1DdIdTQ==
+
+"@angular/material@^9.2.2":
+  version "9.2.2"
+  resolved "https://artifactory.raa.se:443/artifactory/api/npm/npm/@angular/material/-/material-9.2.2.tgz#53b2d8a62fe48b79127cdf43b3b8b082e4c3df27"
+  integrity sha1-U7LYpi/ki3kSfN9Ds7iwguTD3yc=
 
 "@angular/platform-browser-dynamic@~9.1.4":
   version "9.1.4"
@@ -1116,7 +1128,7 @@
   dependencies:
     "@types/jasmine" "*"
 
-"@types/lodash-es@^4.17.1":
+"@types/lodash-es@4.x":
   version "4.17.3"
   resolved "https://artifactory.raa.se:443/artifactory/api/npm/npm/@types/lodash-es/-/lodash-es-4.17.3.tgz#87eb0b3673b076b8ee655f1890260a136af09a2d"
   integrity sha1-h+sLNnOwdrjuZV8YkCYKE2rwmi0=
@@ -6097,6 +6109,11 @@ parse5@4.0.0:
   resolved "https://registry.yarnpkg.com/parse5/-/parse5-4.0.0.tgz#6d78656e3da8d78b4ec0b906f7c08ef1dfe3f608"
   integrity sha512-VrZ7eOd3T1Fk4XWNXMgiGBK/z0MG48BWG2uQNU4I72fkQuKUTZpl+u9k+CxEG0twMVzSmXEEz12z5Fnw1jIQFA==
 
+parse5@^5.0.0:
+  version "5.1.1"
+  resolved "https://artifactory.raa.se:443/artifactory/api/npm/npm/parse5/-/parse5-5.1.1.tgz#f68e4e5ba1852ac2cadc00f4555fff6c2abb6178"
+  integrity sha1-9o5OW6GFKsLK3AD0VV//bCq7YXg=
+
 parseurl@~1.3.2, parseurl@~1.3.3:
   version "1.3.3"
   resolved "https://registry.yarnpkg.com/parseurl/-/parseurl-1.3.3.tgz#9da19e7bee8d12dff0513ed5b76957793bc2e8d4"
@@ -8311,10 +8328,10 @@ typescript@3.6.5:
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.6.5.tgz#dae20114a7b4ff4bd642db9c8c699f2953e8bbdb"
   integrity sha512-BEjlc0Z06ORZKbtcxGrIvvwYs5hAnuo6TKdNFL55frVDlB+na3z5bsLhFaIxmT+dPWgBIjMo6aNnTOgHHmHgiQ==
 
-typescript@~3.8.3:
-  version "3.8.3"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.8.3.tgz#409eb8544ea0335711205869ec458ab109ee1061"
-  integrity sha512-MYlEfn5VrLNsgudQTVJeNaQFUAI7DkhnOjdpAp4T+ku1TfQClewlbSuTVHiA+8skNBgaf02TL/kLOvig4y3G8w==
+typescript@~3.7.5:
+  version "3.7.5"
+  resolved "https://artifactory.raa.se:443/artifactory/api/npm/npm/typescript/-/typescript-3.7.5.tgz#0692e21f65fd4108b9330238aac11dd2e177a1ae"
+  integrity sha1-BpLiH2X9QQi5MwI4qsEd0uF3oa4=
 
 unicode-canonical-property-names-ecmascript@^1.0.4:
   version "1.0.4"
