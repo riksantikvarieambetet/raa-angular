@@ -23,9 +23,9 @@ import { RaaAutocompleteComponent } from './components/raa-autocomplete/raa-auto
 import { OutsideClickDirective } from './directives/raa-outside-click.directive';
 import { RaaRequestFocusDirective } from './directives/raa-request-focus.directive';
 import { RaaSelectAllOnFocusDirective } from './directives/raa-select-all-on-focus.directive';
-
 import { RaaFocusInvalidElementDirective } from './directives/raa-focus-invalid-element.directive';
 import { RaaTrapFocusDirective } from './directives/raa-trap-focus.directive';
+
 // Pipes
 import { OrgnummerPipe } from './pipes/orgnummer.pipe';
 
