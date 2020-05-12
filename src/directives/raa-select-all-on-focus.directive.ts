@@ -3,7 +3,7 @@ import { Directive, ElementRef, HostListener } from '@angular/core';
 @Directive({
   selector: '[raaSelectAllOnFocus]',
 })
-export class RaaSelectAllOnFocus {
+export class RaaSelectAllOnFocusDirective {
   constructor(private el: ElementRef) {}
 
   @HostListener('focus')

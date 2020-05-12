@@ -25,15 +25,15 @@ export class RaaTrapFocusDirective implements AfterViewInit, OnChanges {
   }
 
   ngAfterViewInit() {
-    let tabbableElements = Array.prototype.slice
+    const tabbableElements = Array.prototype.slice
       .call(this.element.nativeElement.querySelectorAll('select, input, textarea, button, a'))
       .filter((el: HTMLElement) => !el.hidden);
 
     if (tabbableElements && tabbableElements.length) {
-      let first = tabbableElements[0];
-      let last = tabbableElements[tabbableElements.length - 1];
+      const first = tabbableElements[0];
+      const last = tabbableElements[tabbableElements.length - 1];
 
-      let elementToFocus =
+      const elementToFocus =
         this.initialFocusElement && this.initialFocusElement.nativeElement
           ? this.initialFocusElement.nativeElement
           : tabbableElements[0];
@@ -43,14 +43,14 @@ export class RaaTrapFocusDirective implements AfterViewInit, OnChanges {
       }
 
       last.addEventListener('keydown', (e: KeyboardEvent) => {
-        if (!this.trapDisabled && (e.which === TAB_KEY_CODE && !e.shiftKey)) {
+        if (!this.trapDisabled && e.which === TAB_KEY_CODE && !e.shiftKey) {
           e.preventDefault();
           first.focus();
         }
       });
 
       first.addEventListener('keydown', (e: KeyboardEvent) => {
-        if (!this.trapDisabled && (e.which === TAB_KEY_CODE && e.shiftKey)) {
+        if (!this.trapDisabled && e.which === TAB_KEY_CODE && e.shiftKey) {
           e.preventDefault();
           last.focus();
         }

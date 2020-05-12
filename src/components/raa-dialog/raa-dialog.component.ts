@@ -32,7 +32,7 @@ export class RaaDialogComponent implements OnInit, OnDestroy, AfterContentChecke
   close: Function;
 
   @Input()
-  header: string = '';
+  header = '';
 
   @Output()
   outsideClick = new EventEmitter();
