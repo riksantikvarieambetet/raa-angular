@@ -8240,6 +8240,11 @@ ts-node@~8.10.1:
     source-map-support "^0.5.17"
     yn "3.1.1"
 
+tsickle@~0.38.1:
+  version "0.38.1"
+  resolved "https://artifactory.raa.se:443/artifactory/api/npm/npm/tsickle/-/tsickle-0.38.1.tgz#30762db759d40c435943093b6972c7f2efb384ef"
+  integrity sha1-MHYtt1nUDENZQwk7aXLH8u+zhO8=
+
 tslib@1.11.1, tslib@^1.10.0, tslib@^1.8.1, tslib@^1.9.0:
   version "1.11.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.11.1.tgz#eb15d128827fbee2841549e171f45ed338ac7e35"

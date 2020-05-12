@@ -1,0 +1,49 @@
+<div #raaAutocomplete class="tw-flex tw-flex-col tw-bg-transparent">
+  <div class="tw-flex tw-items-center" [ngClass]="{ disabled: disabled }">
+    <input
+      #inputField
+      [id]="inputElementID"
+      class="raa-input raa-autocomplete-input tw-z-0"
+      type="text"
+      autocomplete="off"
+      [placeholder]="placeholder"
+      [requestFocus]="setFocusToInputField"
+      [disabled]="disabled"
+      [ngModelOptions]="{ standalone: true }"
+      [(ngModel)]="filterInput"
+      (ngModelChange)="onFilteredInputChange()"
+      (focus)="focusGained()"
+      (keydown)="handleKeyPressed($event)"
+    />
+    <div *ngIf="showSpinner" class="tw-flex tw-w-0">
+      <raa-spinner class="tw-relative right-2rem" size="1rem"></raa-spinner>
+    </div>
+  </div>
+
+  <raa-dropdown
+    *ngIf="showDropdown"
+    [element]="raaAutocomplete"
+    (dropdownMovedUp)="dropdownMovedUp($event)"
+    [moveUpHeightThreshold]="120"
+    appendToBody="{{ false }}"
+  >
+    <ul
+      #dropdown
+      (raaOutsideClick)="focusLost()"
+      [includedElement]="raaAutocomplete"
+      class="tw-absolute tw-top-0 tw-left-0 tw-w-full tw-p-0 tw-m-0 tw-overflow-y-auto max-h-17rem tw-bg-raa-white tw-border tw-border-raa-gray-3"
+      [ngClass]="{ 'dropdown-is-above': dropdownIsAbove, 'dropdown-is-below': !dropdownIsAbove }"
+    >
+      <li
+        #dropdownItem
+        *ngFor="let item of filteredDomainValues; let rowIndex = index"
+        class="tw-p-3 tw-cursor-default hover:tw-bg-raa-gray-2"
+        (mouseover)="hoverIndex = rowIndex"
+        (click)="select(item)"
+        [ngClass]="{ selected: item.id === value, hovered: hoverIndex === rowIndex }"
+      >
+        <span>{{ item.displayValue }}</span>
+      </li>
+    </ul>
+  </raa-dropdown>
+</div>

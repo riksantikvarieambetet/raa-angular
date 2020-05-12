@@ -17,6 +17,7 @@ import { RaaOverlaySpinnerComponent } from './components/raa-overlay-spinner/raa
 import { RaaNavigationBarComponent } from './components/raa-navigation-bar/raa-navigation-bar.component';
 import { RaaBottomDialogComponent } from './components/raa-bottom-dialog/raa-bottom-dialog.component';
 import { RaaPaginatorComponent } from './components/raa-paginator/raa-paginator.component';
+import { RaaAutocompleteComponent } from './components/raa-autocomplete/raa-autocomplete.component';
 
 // Directives
 import { OutsideClickDirective } from './directives/raa-outside-click.directive';
@@ -48,6 +49,7 @@ import { OrgnummerPipe } from './pipes/orgnummer.pipe';
     RaaNavigationBarComponent,
     RaaBottomDialogComponent,
     RaaPaginatorComponent,
+    RaaAutocompleteComponent,
   ],
   exports: [
     RaaSelectComponent,
@@ -68,6 +70,7 @@ import { OrgnummerPipe } from './pipes/orgnummer.pipe';
     RaaBottomDialogComponent,
     RaaPaginatorComponent,
     NgxPaginationModule,
+    RaaAutocompleteComponent,
   ],
   providers: [OrgnummerPipe],
 })

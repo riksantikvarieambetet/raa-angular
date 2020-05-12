@@ -1,0 +1,59 @@
+@import '~raa-style/dist/scss/raa-colors';
+
+$border-size: 1px;
+$border-radius-size: 2px;
+
+.max-h-17rem {
+  max-height: 17rem;
+}
+
+.raa-autocomplete-input {
+  &::-ms-clear {
+    // Tar bort IE "clear field"-knapp
+    display: none;
+  }
+
+  position: relative; // Se till att outline
+  width: 100%;
+  padding: 0.75rem;
+  background-color: transparent;
+  border: $border-size solid $raa-gray-3;
+  border-radius: $border-radius-size 0 0 $border-radius-size;
+
+  &.active {
+    border-radius: $border-radius-size 0 0 0;
+  }
+}
+
+:host {
+  &.ng-invalid.ng-dirty,
+  &.ng-invalid.error {
+    .raa-autocomplete-input {
+      background-color: $raa-error-red-light;
+    }
+  }
+}
+
+.dropdown-is-above {
+  border-bottom: none;
+  border-radius: $border-radius-size $border-radius-size 0 0;
+  box-shadow: 5px -5px 10px -3px $raa-gray-3;
+}
+
+.dropdown-is-below {
+  border-top: none;
+  border-radius: 0 0 $border-radius-size $border-radius-size;
+  box-shadow: 5px 5px 10px -3px $raa-gray-3;
+}
+
+.selected {
+  background-color: $raa-gray-2;
+}
+
+.hovered {
+  background-color: $raa-gray-2;
+}
+
+.right-2rem {
+  right: 2rem;
+}
