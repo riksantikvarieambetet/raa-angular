@@ -13,7 +13,6 @@
       [(ngModel)]="filterInput"
       (ngModelChange)="onFilteredInputChange()"
       (focus)="focusGained()"
-      (click)="openDropdownIfClosed()"
       (keydown)="handleKeyPressed($event)"
     />
     <div *ngIf="showSpinner" class="tw-flex tw-w-0">
@@ -32,7 +31,7 @@
       #dropdown
       (raaOutsideClick)="focusLost()"
       [includedElement]="raaAutocomplete"
-      class="tw-overflow-y-auto max-h-17rem tw-border tw-border-raa-gray-3"
+      class="tw-absolute tw-top-0 tw-left-0 tw-w-full tw-p-0 tw-m-0 tw-overflow-y-auto max-h-17rem tw-bg-raa-white tw-border tw-border-raa-gray-3"
       [ngClass]="{ 'dropdown-is-above': dropdownIsAbove, 'dropdown-is-below': !dropdownIsAbove }"
     >
       <li

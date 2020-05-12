@@ -6,46 +6,23 @@ import {
   OnChanges,
   SimpleChanges,
   AfterViewInit,
-  forwardRef,
   EventEmitter,
-  HostListener,
-  HostBinding,
   ViewChild,
   ViewChildren,
   QueryList,
   ElementRef,
 } from '@angular/core';
 
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
-
-const enum KeyCode {
-  Tab = 9,
-  Shift = 16,
-  Ctrl = 17,
-  Alt = 18,
-  Return = 13,
-  Escape = 27,
-  ArrowUp = 38,
-  ArrowDown = 40,
-}
-
-const ignoreOpenOnKeyCodes: { [key: number]: boolean } = {
-  [KeyCode.Alt]: true,
-  [KeyCode.Ctrl]: true,
-  [KeyCode.Shift]: true,
+const ignoreOpenOnKeyCodes: { [key: string]: boolean } = {
+  ['Alt']: true,
+  ['Ctrl']: true,
+  ['Shift']: true,
 };
 
 @Component({
   selector: 'raa-autocomplete',
   templateUrl: './raa-autocomplete.component.html',
   styleUrls: ['./raa-autocomplete.component.scss'],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => RaaAutocompleteComponent),
-      multi: true,
-    },
-  ],
 })
 export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewInit {
   @Input()
@@ -73,10 +50,10 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
   showSpinner = false;
 
   @Output()
-  onSelect = new EventEmitter<any>();
+  searchQuery = new EventEmitter<string>();
 
   @Output()
-  searchQuery = new EventEmitter<string>();
+  onSelect = new EventEmitter<any>();
 
   @ViewChild('inputField')
   inputField: ElementRef;
@@ -96,37 +73,8 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
 
   domainValues: DomainValue[] = [];
   filteredDomainValues: DomainValue[] = [];
-
   setFocusToInputField = new EventEmitter();
-
   scrollToSelected = false;
-
-  @HostBinding()
-  tabindex = 0;
-
-  @HostListener('focus', ['$event.target'])
-  onFocus(_event?: FocusEvent) {
-    if (!this.showDropdown) {
-      this.setFocusToInputField.emit();
-      this.focusGained();
-    }
-  }
-
-  // Handling of ngModel
-  writeValue(value: any) {
-    this.filterInput = this.getDisplayValue(value);
-    this.value = value;
-  }
-
-  propagateChange = (_: any) => {};
-
-  registerOnChange(fn: any) {
-    this.propagateChange = fn;
-  }
-
-  setDisabledState(isDisabled: boolean) {
-    this.disabled = isDisabled;
-  }
 
   ngOnInit() {
     if (!this.domain) {
@@ -184,6 +132,10 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
   onFilteredInputChange() {
     this.searchQuery.emit(this.filterInput);
     this.filterValues();
+
+    if (!this.filterInput) {
+      this.showDropdown = false;
+    }
   }
 
   openDropdownIfClosed() {
@@ -208,18 +160,11 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
       this.value = item.id;
       this.filterInput = item.displayValue;
 
-      this.propagateChange(this.value);
       this.onSelect.emit(this.value);
     }
 
     this.focusLost();
     this.setFocusToInputField.emit();
-  }
-
-  clearSelection() {
-    this.value = undefined;
-    this.filterInput = '';
-    this.propagateChange(this.value);
   }
 
   mapDomainValues() {
@@ -256,10 +201,6 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
     this.filteredDomainValues = this.domainValues.slice();
   }
 
-  getValue(item: any) {
-    return item[this.valueAttr];
-  }
-
   getDisplayValue = (itemKey: any): string => {
     if (typeof itemKey === 'undefined' || itemKey === null || itemKey.length < 1 || this.domainValues.length === 0) {
       return '';
@@ -277,7 +218,7 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
   };
 
   handleKeyPressed(event: KeyboardEvent) {
-    const keyCode = event.which;
+    const keyCode = this.dispatchForCode(event);
     const hoveredItem = this.dropdownItems
       .toArray()
       .find((element) => (element.nativeElement as HTMLElement).classList.contains('hovered'));
@@ -290,7 +231,7 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
       nextSiblingElement = (hoveredItem.nativeElement as HTMLElement).nextElementSibling;
     }
 
-    if (keyCode === KeyCode.ArrowDown) {
+    if (keyCode === 'ArrowDown') {
       event.preventDefault();
 
       if (this.openDropdownIfClosed()) {
@@ -305,7 +246,7 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
       if (hoveredItem && nextSiblingElement) {
         this.hoveredItem = nextSiblingElement;
       }
-    } else if (keyCode === KeyCode.ArrowUp) {
+    } else if (keyCode === 'ArrowUp') {
       event.preventDefault();
 
       if (this.openDropdownIfClosed()) {
@@ -320,16 +261,16 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
       if (hoveredItem && previousSiblingElement) {
         this.hoveredItem = previousSiblingElement;
       }
-    } else if (keyCode === KeyCode.Return) {
+    } else if (keyCode === 'Enter') {
       if (this.hoverIndex > -1) {
         event.preventDefault();
         this.select(this.filteredDomainValues[this.hoverIndex]);
         this.focusLost();
       }
-    } else if (keyCode === KeyCode.Escape) {
+    } else if (keyCode === 'Escape') {
       event.preventDefault();
       this.focusLost();
-    } else if (keyCode === KeyCode.Tab) {
+    } else if (keyCode === 'Tab') {
       this.focusLost();
     } else {
       if (!ignoreOpenOnKeyCodes[keyCode]) {
@@ -362,7 +303,6 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
     this.filterInput = this.getDisplayValue(this.value);
     this.showDropdown = false;
     this.hoverIndex = -1;
-    this.tabindex = -1;
   };
 
   private selectAllTextInInput() {
@@ -387,6 +327,20 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
         nextElement.scrollIntoView({ block: 'end' });
       }
     }
+  }
+
+  private dispatchForCode(event: any) {
+    let code = '';
+
+    if (event.key !== undefined) {
+      code = event.key;
+    } else if (event.keyIdentifier !== undefined) {
+      code = event.keyIdentifier;
+    } else if (event.keyCode !== undefined) {
+      code = event.keyCode;
+    }
+
+    return code;
   }
 }
 

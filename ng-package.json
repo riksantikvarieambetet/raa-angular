@@ -7,5 +7,5 @@
       "ngx-pagination": "ngx-pagination"
     }
   },
-  "whitelistedNonPeerDependencies": ["angular", "zone.js", "rxjs"]
+  "whitelistedNonPeerDependencies": ["."]
 }
