@@ -11,7 +11,7 @@ import {
   ViewChild,
 } from '@angular/core';
 
-import throttle from 'lodash-es/throttle';
+import { throttle } from 'lodash-es';
 
 const EXTRA_SPACING = 10;
 const DEFAULT_MAX_HEIGHT = 500;
@@ -26,6 +26,13 @@ const DEFAULT_MAX_HEIGHT = 500;
   styleUrls: ['./raa-dropdown.component.scss'],
 })
 export class RaaDropdownComponent implements OnInit, AfterViewInit, OnDestroy {
+  private dropdown: HTMLElement;
+  private preferredHeight: number;
+  private parent: HTMLElement;
+  private throttledParentScroll = throttle(() => {
+    this.onParentScroll();
+  }, 16);
+
   @Input()
   private element: HTMLElement;
 
@@ -33,10 +40,10 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit, OnDestroy {
   moveUpHeightThreshold = 120;
 
   @Input()
-  appendToBody: boolean = false;
+  appendToBody = false;
 
   @Input()
-  dropdownBodyZIndex: string = '1000';
+  dropdownBodyZIndex = '1000';
 
   @Output()
   private dropdownMovedUp = new EventEmitter<boolean>(true);
@@ -48,15 +55,6 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit, OnDestroy {
   onWindowResize(_event: Event) {
     this.throttledParentScroll();
   }
-
-  private dropdown: HTMLElement;
-  private preferredHeight: number;
-  private parent: HTMLElement;
-  private throttledParentScroll = throttle(() => {
-    this.onParentScroll();
-  }, 16);
-
-  constructor() {}
 
   ngOnInit() {
     this.dropdown = (this.dropdownElementRef.nativeElement as HTMLElement).firstElementChild as HTMLElement;
@@ -108,7 +106,7 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit, OnDestroy {
     const maxHeight =
       document.defaultView && document.defaultView.getComputedStyle(this.dropdown).getPropertyValue('max-height');
     if (maxHeight && maxHeight.length !== 0) {
-      return parseInt(maxHeight.replace(/\D/g, ''));
+      return Number(maxHeight.replace(/\D/g, ''));
     }
 
     return DEFAULT_MAX_HEIGHT;
@@ -209,8 +207,8 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit, OnDestroy {
   private getScrollableParent(element: HTMLElement) {
     const parents = this.getAllParents(element);
 
-    return parents.find(node => {
-      let overflowY = window.getComputedStyle(node).overflowY;
+    return parents.find((node) => {
+      const overflowY = window.getComputedStyle(node).overflowY;
       return overflowY !== 'visible' && overflowY !== 'hidden';
     });
   }

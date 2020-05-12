@@ -16,7 +16,7 @@ import {
   ElementRef,
 } from '@angular/core';
 
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 const enum KeyCode {
   Tab = 9,
@@ -36,18 +36,18 @@ const ignoreOpenOnKeyCodes: { [key: number]: boolean } = {
 };
 
 @Component({
-  selector: 'raa-select',
-  templateUrl: './raa-select.component.html',
-  styleUrls: ['./raa-select.component.scss'],
+  selector: 'raa-autocomplete',
+  templateUrl: './raa-autocomplete.component.html',
+  styleUrls: ['./raa-autocomplete.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => RaaSelectComponent),
+      useExisting: forwardRef(() => RaaAutocompleteComponent),
       multi: true,
     },
   ],
 })
-export class RaaSelectComponent implements OnInit, OnChanges, AfterViewInit, ControlValueAccessor {
+export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewInit {
   @Input()
   inputElementID: string;
 
@@ -67,15 +67,21 @@ export class RaaSelectComponent implements OnInit, OnChanges, AfterViewInit, Con
   disabled = false;
 
   @Input()
-  noAvailableItemsText = 'Inga val tillgängliga';
+  filterByStartsWith = false;
+
+  @Input()
+  showSpinner = false;
 
   @Output()
   onSelect = new EventEmitter<any>();
 
-  @ViewChild('inputField', { static: false })
+  @Output()
+  searchQuery = new EventEmitter<string>();
+
+  @ViewChild('inputField')
   inputField: ElementRef;
 
-  @ViewChild('dropdown', { static: false })
+  @ViewChild('dropdown')
   dropdown: ElementRef;
 
   @ViewChildren('dropdownItem')
@@ -86,6 +92,7 @@ export class RaaSelectComponent implements OnInit, OnChanges, AfterViewInit, Con
   showDropdown = false;
   hoverIndex = 0;
   dropdownIsAbove = false;
+  hoveredItem: Element;
 
   domainValues: DomainValue[] = [];
   filteredDomainValues: DomainValue[] = [];
@@ -117,23 +124,21 @@ export class RaaSelectComponent implements OnInit, OnChanges, AfterViewInit, Con
     this.propagateChange = fn;
   }
 
-  registerOnTouched() {}
-
   setDisabledState(isDisabled: boolean) {
     this.disabled = isDisabled;
   }
 
   ngOnInit() {
     if (!this.domain) {
-      throw new Error('ERROR: raa-select.component -> domain must be specified');
+      throw new Error('ERROR: raa-autocomplete.component -> domain must be specified');
     }
 
     if (!this.valueAttr) {
-      throw new Error('ERROR: raa-select.component -> valueAttr must be specified');
+      throw new Error('ERROR: raa-autocomplete.component -> valueAttr must be specified');
     }
 
     if (!this.displayAttr) {
-      throw new Error('ERROR: raa-select.component -> displayAttr must be specified');
+      throw new Error('ERROR: raa-autocomplete.component -> displayAttr must be specified');
     }
 
     this.showDropdown = false;
@@ -150,8 +155,6 @@ export class RaaSelectComponent implements OnInit, OnChanges, AfterViewInit, Con
     if (changes.domain) {
       this.domainValues = this.mapDomainValues();
       this.filterValues();
-
-      setTimeout(() => this.focusLost());
     }
   }
 
@@ -178,7 +181,8 @@ export class RaaSelectComponent implements OnInit, OnChanges, AfterViewInit, Con
     dropdownEl.scrollTop = dropdownItem.offsetTop;
   }
 
-  onFilterdInputChange() {
+  onFilteredInputChange() {
+    this.searchQuery.emit(this.filterInput);
     this.filterValues();
   }
 
@@ -229,13 +233,20 @@ export class RaaSelectComponent implements OnInit, OnChanges, AfterViewInit, Con
 
   filterValues() {
     if (typeof this.filterInput === 'undefined' || this.filterInput.length === 0) {
-      this.filteredDomainValues = this.domainValues.slice();
+      this.filteredDomainValues = [];
       return;
     }
 
-    this.filteredDomainValues = this.domainValues.filter(
-      (item) => item.displayValue.toLowerCase().indexOf(this.filterInput.toLocaleLowerCase()) > -1
-    );
+    if (this.filterByStartsWith) {
+      this.filteredDomainValues = this.domainValues.filter((item) =>
+        item.displayValue.toLowerCase().startsWith(this.filterInput.toLocaleLowerCase())
+      );
+    } else {
+      this.filteredDomainValues = this.domainValues.filter(
+        (item) => item.displayValue.toLowerCase().indexOf(this.filterInput.toLocaleLowerCase()) > -1
+      );
+    }
+
     if (this.filteredDomainValues.length > 0) {
       this.hoverIndex = 0;
     }
@@ -256,7 +267,7 @@ export class RaaSelectComponent implements OnInit, OnChanges, AfterViewInit, Con
     const domainObject = this.domainValues.filter((domainItem) => domainItem.id === itemKey);
     if (domainObject.length === 0) {
       throw new Error(
-        'ERROR: raa-select.component -> There is no domain object with key ' +
+        'ERROR: raa-autocomplete.component -> There is no domain object with key ' +
           itemKey +
           '. Make sure the key exists in domain and/or the type (string/number) is correct'
       );
@@ -267,6 +278,17 @@ export class RaaSelectComponent implements OnInit, OnChanges, AfterViewInit, Con
 
   handleKeyPressed(event: KeyboardEvent) {
     const keyCode = event.which;
+    const hoveredItem = this.dropdownItems
+      .toArray()
+      .find((element) => (element.nativeElement as HTMLElement).classList.contains('hovered'));
+
+    let previousSiblingElement;
+    let nextSiblingElement;
+
+    if (hoveredItem) {
+      previousSiblingElement = (hoveredItem.nativeElement as HTMLElement).previousElementSibling;
+      nextSiblingElement = (hoveredItem.nativeElement as HTMLElement).nextElementSibling;
+    }
 
     if (keyCode === KeyCode.ArrowDown) {
       event.preventDefault();
@@ -277,6 +299,11 @@ export class RaaSelectComponent implements OnInit, OnChanges, AfterViewInit, Con
 
       if (this.hoverIndex < this.filteredDomainValues.length - 1) {
         this.hoverIndex += 1;
+        this.scrollDropdownItemIntoView('down');
+      }
+
+      if (hoveredItem && nextSiblingElement) {
+        this.hoveredItem = nextSiblingElement;
       }
     } else if (keyCode === KeyCode.ArrowUp) {
       event.preventDefault();
@@ -287,6 +314,11 @@ export class RaaSelectComponent implements OnInit, OnChanges, AfterViewInit, Con
 
       if (this.hoverIndex > 0) {
         this.hoverIndex -= 1;
+        this.scrollDropdownItemIntoView('up');
+      }
+
+      if (hoveredItem && previousSiblingElement) {
+        this.hoveredItem = previousSiblingElement;
       }
     } else if (keyCode === KeyCode.Return) {
       if (this.hoverIndex > -1) {
@@ -306,15 +338,6 @@ export class RaaSelectComponent implements OnInit, OnChanges, AfterViewInit, Con
     }
   }
 
-  toggleDropdown() {
-    if (!this.showDropdown) {
-      this.onFocus();
-      this.openDropdownIfClosed();
-    } else {
-      this.focusLost();
-    }
-  }
-
   setHoverIndexFromSelectedValue() {
     if (this.value) {
       this.filteredDomainValues.forEach((item, index) => {
@@ -331,15 +354,39 @@ export class RaaSelectComponent implements OnInit, OnChanges, AfterViewInit, Con
 
   focusLost = () => {
     this.showDropdown = false;
+    this.domainValues = [];
+    this.domain = [];
+    this.filteredDomainValues = [];
 
     // sätter visningsvärde till valt värde, detta om användaren börjar justera men avbryter
     this.filterInput = this.getDisplayValue(this.value);
+    this.showDropdown = false;
     this.hoverIndex = -1;
     this.tabindex = -1;
   };
 
   private selectAllTextInInput() {
     this.inputField.nativeElement.select();
+  }
+
+  private scrollDropdownItemIntoView(direction: 'up' | 'down') {
+    const hovered = this.dropdownItems.find((item) =>
+      (item.nativeElement as HTMLElement).classList.contains('hovered')
+    );
+
+    if (hovered && hovered.nativeElement) {
+      let nextElement: Element | null;
+
+      if (direction === 'down') {
+        nextElement = (hovered.nativeElement as HTMLElement).nextElementSibling;
+      } else {
+        nextElement = (hovered.nativeElement as HTMLElement).previousElementSibling;
+      }
+
+      if (nextElement) {
+        nextElement.scrollIntoView({ block: 'end' });
+      }
+    }
   }
 }
 

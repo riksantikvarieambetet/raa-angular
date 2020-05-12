@@ -1,22 +1,23 @@
 export * from './raa.module';
 
 // Components
-export { RaaSelect } from './components/raa-select/raa-select.component';
+export { RaaSelectComponent } from './components/raa-select/raa-select.component';
 export { RaaDropdownComponent } from './components/raa-dropdown/raa-dropdown.component';
 export { RaaModalPageComponent } from './components/raa-modal-page/raa-modal-page.component';
 export { RaaDialogComponent } from './components/raa-dialog/raa-dialog.component';
-export { RaaTextWithSpinner } from './components/raa-text-with-spinner/raa-text-with-spinner.component';
+export { RaaTextWithSpinnerComponent } from './components/raa-text-with-spinner/raa-text-with-spinner.component';
 export { RaaSpinnerComponent } from './components/raa-spinner/raa-spinner.component';
 export { RaaOverlaySpinnerComponent } from './components/raa-overlay-spinner/raa-overlay-spinner.component';
 export { RaaNavigationBarComponent } from './components/raa-navigation-bar/raa-navigation-bar.component';
 export { RaaBottomDialogComponent } from './components/raa-bottom-dialog/raa-bottom-dialog.component';
-export { RaaLabel } from './components/raa-label/raa-label.component';
+export { RaaLabelComponent } from './components/raa-label/raa-label.component';
 export { RaaPaginatorComponent } from './components/raa-paginator/raa-paginator.component';
+export { RaaAutocompleteComponent } from './components/raa-autocomplete/raa-autocomplete.component';
 
 // Directives
 export { OutsideClickDirective } from './directives/raa-outside-click.directive';
 export { RaaRequestFocusDirective } from './directives/raa-request-focus.directive';
-export { RaaSelectAllOnFocus } from './directives/raa-select-all-on-focus.directive';
+export { RaaSelectAllOnFocusDirective } from './directives/raa-select-all-on-focus.directive';
 export { RaaFocusInvalidElementDirective } from './directives/raa-focus-invalid-element.directive';
 export { RaaTrapFocusDirective } from './directives/raa-trap-focus.directive';
 

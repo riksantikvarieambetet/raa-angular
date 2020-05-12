@@ -4,18 +4,18 @@ import { Directive, ElementRef, Input, Output, EventEmitter, HostListener } from
   selector: '[raaOutsideClick]',
 })
 export class OutsideClickDirective {
+  @Input()
+  includedElement: HTMLElement | undefined;
+
+  @Output('raaOutsideClick')
+  onOutsideClick = new EventEmitter<void>();
+
   // Vi måste lyssna på mouseup eller mousedown istället för click. Vid klick så kan element ha tagit borts från DOM:en och då ge ett
   // felaktigt "utanförklick".
   @HostListener('document:mouseup', ['$event'])
   onClick(event: MouseEvent) {
     this.handleClick(event);
   }
-
-  @Output('raaOutsideClick')
-  onOutsideClick = new EventEmitter<void>();
-
-  @Input()
-  includedElement: HTMLElement | undefined;
 
   constructor(private elementRef: ElementRef) {}
 

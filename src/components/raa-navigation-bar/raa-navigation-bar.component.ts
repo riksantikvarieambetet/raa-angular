@@ -7,14 +7,12 @@ import { Component, HostListener, OnInit, Input, ElementRef } from '@angular/cor
 })
 export class RaaNavigationBarComponent implements OnInit {
   @Input()
-  logoImageSrc: string = 'assets/images/logo/RAA_logo_farg_rgb.svg';
+  logoImageSrc = 'assets/images/logo/RAA_logo_farg_rgb.svg';
 
   @Input()
   applicationRoutes: ApplicationRoute[] = [];
 
-  displayMenu: boolean = false;
-  hasNewNotifications = false;
-
+  displayMenu = false;
   menuBtn: HTMLElement | null = null;
 
   constructor(private element: ElementRef) {}

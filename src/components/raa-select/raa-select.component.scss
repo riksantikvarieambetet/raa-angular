@@ -49,6 +49,7 @@ $dropdown-item-selected-bg-color: $raa-gray-2;
   background-color: transparent;
 
   border: $border-size solid $border-color;
+  border-right: none;
   border-radius: $border-radius-size 0 0 $border-radius-size;
 
   &.active {
@@ -142,10 +143,10 @@ $dropdown-item-selected-bg-color: $raa-gray-2;
   }
 }
 
-.z-index-2 {
-  z-index: $z-index-2;
+.z-index-0 {
+  z-index: $z-index-0;
 }
 
-.right-1rem {
-  right: 1rem;
+.z-index-2 {
+  z-index: $z-index-2;
 }
