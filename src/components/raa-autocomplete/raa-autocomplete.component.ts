@@ -11,7 +11,10 @@ import {
   ViewChildren,
   QueryList,
   ElementRef,
+  OnDestroy,
 } from '@angular/core';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 const ignoreOpenOnKeyCodes: { [key: string]: boolean } = {
   ['Alt']: true,
@@ -24,12 +27,21 @@ const ignoreOpenOnKeyCodes: { [key: string]: boolean } = {
   templateUrl: './raa-autocomplete.component.html',
   styleUrls: ['./raa-autocomplete.component.scss'],
 })
-export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewInit {
+export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {
   @Input()
   inputElementID: string;
 
   @Input()
   domain: any[] = [];
+
+  @Input()
+  initSearchString: string;
+
+  @Input()
+  noResultsFoundText = {
+    text: '',
+    showIfGreaterThan: 2,
+  };
 
   @Input()
   valueAttr = '';
@@ -64,6 +76,8 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
   @ViewChildren('dropdownItem')
   dropdownItems: QueryList<ElementRef>;
 
+  private ngUnsubscribe = new Subject<void>();
+
   value: any;
   filterInput = '';
   showDropdown = false;
@@ -90,20 +104,30 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
     }
 
     this.showDropdown = false;
-    this.filterInput = '';
     this.domainValues = this.mapDomainValues();
     this.filterValues();
   }
 
   ngAfterViewInit() {
-    this.dropdownItems.changes.subscribe(() => this.handleDropdownItemsChanged());
+    this.dropdownItems.changes.pipe(takeUntil(this.ngUnsubscribe)).subscribe(() => this.handleDropdownItemsChanged());
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.domain) {
       this.domainValues = this.mapDomainValues();
       this.filterValues();
+    } else if (changes.initSearchString && changes.initSearchString.currentValue !== undefined) {
+      this.filterInput = changes.initSearchString.currentValue;
+
+      if (this.filterInput) {
+        this.onFilteredInputChange();
+      }
     }
+  }
+
+  ngOnDestroy() {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 
   handleDropdownItemsChanged() {
@@ -177,8 +201,12 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
   }
 
   filterValues() {
-    if (typeof this.filterInput === 'undefined' || this.filterInput.length === 0) {
+    if (typeof this.filterInput === 'undefined' || this.filterInput.length === 0 || !this.domainValues.length) {
       this.filteredDomainValues = [];
+      if (this.filterInput.length > this.noResultsFoundText.showIfGreaterThan) {
+        this.filteredDomainValues.push({ id: 0, displayValue: this.noResultsFoundText.text });
+      }
+
       return;
     }
 
@@ -290,17 +318,22 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
   }
 
   focusGained() {
+    if (this.filteredDomainValues.length) {
+      this.openDropdownIfClosed();
+    }
+
     this.clearFilters();
   }
 
-  focusLost = () => {
-    this.showDropdown = false;
-    this.domainValues = [];
-    this.domain = [];
-    this.filteredDomainValues = [];
-
+  focusLost = (clearInput = true) => {
     // sätter visningsvärde till valt värde, detta om användaren börjar justera men avbryter
-    this.filterInput = this.getDisplayValue(this.value);
+    if (clearInput) {
+      this.domainValues = [];
+      this.domain = [];
+      this.filteredDomainValues = [];
+      this.filterInput = this.getDisplayValue(this.value);
+    }
+
     this.showDropdown = false;
     this.hoverIndex = -1;
   };
