@@ -89,6 +89,7 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
   filteredDomainValues: DomainValue[] = [];
   setFocusToInputField = new EventEmitter();
   scrollToSelected = false;
+  timeout: number;
 
   ngOnInit() {
     if (!this.domain) {
@@ -130,7 +131,7 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
     this.ngUnsubscribe.complete();
   }
 
-  handleDropdownItemsChanged() {
+  private handleDropdownItemsChanged() {
     if (this.scrollToSelected) {
       this.scrollToSelected = false;
 
@@ -142,27 +143,18 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
     }
   }
 
-  findSelectedDropdownItem(): HTMLElement | undefined {
+  private findSelectedDropdownItem(): HTMLElement | undefined {
     return this.dropdownItems
       .map((elRef) => elRef.nativeElement as HTMLElement)
       .filter((el) => el.classList.contains('selected'))[0];
   }
 
-  scrollToDropdownItem(dropdownItem: HTMLElement) {
+  private scrollToDropdownItem(dropdownItem: HTMLElement) {
     const dropdownEl = this.dropdown.nativeElement as HTMLElement;
     dropdownEl.scrollTop = dropdownItem.offsetTop;
   }
 
-  onFilteredInputChange() {
-    this.searchQuery.emit(this.filterInput);
-    this.filterValues();
-
-    if (!this.filterInput) {
-      this.showDropdown = false;
-    }
-  }
-
-  openDropdownIfClosed() {
+  private openDropdownIfClosed() {
     if (!this.showDropdown) {
       this.clearFilters();
       this.setHoverIndexFromSelectedValue();
@@ -175,23 +167,7 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
     return false;
   }
 
-  dropdownMovedUp(event: boolean) {
-    this.dropdownIsAbove = event;
-  }
-
-  select(item: DomainValue) {
-    if (typeof item !== 'undefined') {
-      this.value = item.id;
-      this.filterInput = item.displayValue;
-
-      this.onSelect.emit(this.value);
-    }
-
-    this.focusLost();
-    this.setFocusToInputField.emit();
-  }
-
-  mapDomainValues() {
+  private mapDomainValues() {
     return this.domain.map((item) => {
       return {
         id: item[this.valueAttr],
@@ -200,12 +176,19 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
     });
   }
 
-  filterValues() {
+  private filterValues() {
+    this.filteredDomainValues = [];
+
+    if (this.timeout) {
+      clearTimeout(this.timeout);
+    }
+
     if (typeof this.filterInput === 'undefined' || this.filterInput.length === 0 || !this.domainValues.length) {
-      this.filteredDomainValues = [];
-      if (this.filterInput.length > this.noResultsFoundText.showIfGreaterThan) {
-        this.filteredDomainValues.push({ id: 0, displayValue: this.noResultsFoundText.text });
-      }
+      this.timeout = window.setTimeout(() => {
+        if (this.filterInput.length > this.noResultsFoundText.showIfGreaterThan && !this.showSpinner) {
+          this.filteredDomainValues = [{ id: 0, displayValue: this.noResultsFoundText.text }];
+        }
+      }, 250);
 
       return;
     }
@@ -225,8 +208,81 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
     }
   }
 
-  clearFilters() {
+  private clearFilters() {
     this.filteredDomainValues = this.domainValues.slice();
+  }
+
+  private setHoverIndexFromSelectedValue() {
+    if (this.value) {
+      this.filteredDomainValues.forEach((item, index) => {
+        if (item.id === this.value) {
+          this.hoverIndex = index;
+        }
+      });
+    }
+  }
+
+  private selectAllTextInInput() {
+    this.inputField.nativeElement.select();
+  }
+
+  private scrollDropdownItemIntoView(direction: 'up' | 'down') {
+    const hovered = this.dropdownItems.find((item) =>
+      (item.nativeElement as HTMLElement).classList.contains('hovered')
+    );
+
+    if (hovered && hovered.nativeElement) {
+      let nextElement: Element | null;
+
+      if (direction === 'down') {
+        nextElement = (hovered.nativeElement as HTMLElement).nextElementSibling;
+      } else {
+        nextElement = (hovered.nativeElement as HTMLElement).previousElementSibling;
+      }
+
+      if (nextElement) {
+        nextElement.scrollIntoView({ block: 'end' });
+      }
+    }
+  }
+
+  private dispatchForCode(event: any) {
+    let code = '';
+
+    if (event.key !== undefined) {
+      code = event.key;
+    } else if (event.keyIdentifier !== undefined) {
+      code = event.keyIdentifier;
+    } else if (event.keyCode !== undefined) {
+      code = event.keyCode;
+    }
+
+    return code;
+  }
+
+  onFilteredInputChange() {
+    this.searchQuery.emit(this.filterInput);
+    this.filterValues();
+
+    if (!this.filterInput) {
+      this.showDropdown = false;
+    }
+  }
+
+  dropdownMovedUp(event: boolean) {
+    this.dropdownIsAbove = event;
+  }
+
+  select(item: DomainValue) {
+    if (typeof item !== 'undefined') {
+      this.value = item.id;
+      this.filterInput = item.displayValue;
+
+      this.onSelect.emit(this.value);
+    }
+
+    this.focusLost();
+    this.setFocusToInputField.emit();
   }
 
   getDisplayValue = (itemKey: any): string => {
@@ -307,16 +363,6 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
     }
   }
 
-  setHoverIndexFromSelectedValue() {
-    if (this.value) {
-      this.filteredDomainValues.forEach((item, index) => {
-        if (item.id === this.value) {
-          this.hoverIndex = index;
-        }
-      });
-    }
-  }
-
   focusGained() {
     if (this.filteredDomainValues.length) {
       this.openDropdownIfClosed();
@@ -337,44 +383,6 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
     this.showDropdown = false;
     this.hoverIndex = -1;
   };
-
-  private selectAllTextInInput() {
-    this.inputField.nativeElement.select();
-  }
-
-  private scrollDropdownItemIntoView(direction: 'up' | 'down') {
-    const hovered = this.dropdownItems.find((item) =>
-      (item.nativeElement as HTMLElement).classList.contains('hovered')
-    );
-
-    if (hovered && hovered.nativeElement) {
-      let nextElement: Element | null;
-
-      if (direction === 'down') {
-        nextElement = (hovered.nativeElement as HTMLElement).nextElementSibling;
-      } else {
-        nextElement = (hovered.nativeElement as HTMLElement).previousElementSibling;
-      }
-
-      if (nextElement) {
-        nextElement.scrollIntoView({ block: 'end' });
-      }
-    }
-  }
-
-  private dispatchForCode(event: any) {
-    let code = '';
-
-    if (event.key !== undefined) {
-      code = event.key;
-    } else if (event.keyIdentifier !== undefined) {
-      code = event.keyIdentifier;
-    } else if (event.keyCode !== undefined) {
-      code = event.keyCode;
-    }
-
-    return code;
-  }
 }
 
 export interface DomainValue {
