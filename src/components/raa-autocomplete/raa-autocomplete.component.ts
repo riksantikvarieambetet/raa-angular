@@ -15,7 +15,6 @@ import {
 } from '@angular/core';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import Timeout = NodeJS.Timeout;
 
 const ignoreOpenOnKeyCodes: { [key: string]: boolean } = {
   ['Alt']: true,
@@ -90,7 +89,7 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
   filteredDomainValues: DomainValue[] = [];
   setFocusToInputField = new EventEmitter();
   scrollToSelected = false;
-  timeout: Timeout;
+  timeout: number;
 
   ngOnInit() {
     if (!this.domain) {
@@ -185,7 +184,7 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
     }
 
     if (typeof this.filterInput === 'undefined' || this.filterInput.length === 0 || !this.domainValues.length) {
-      this.timeout = setTimeout(() => {
+      this.timeout = window.setTimeout(() => {
         if (this.filterInput.length > this.noResultsFoundText.showIfGreaterThan && !this.showSpinner) {
           this.filteredDomainValues = [{ id: 0, displayValue: this.noResultsFoundText.text }];
         }
