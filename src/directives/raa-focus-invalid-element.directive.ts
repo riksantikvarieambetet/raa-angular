@@ -5,7 +5,7 @@ export class RaaFocusInvalidElementDirective {
   constructor(private element: ElementRef) {}
 
   setFocusToInvalidElement() {
-    let firstInvalidElement = this.element.nativeElement.querySelector('.ng-invalid');
+    const firstInvalidElement = this.element.nativeElement.querySelector('.ng-invalid');
     if (firstInvalidElement) {
       firstInvalidElement.focus();
     }
