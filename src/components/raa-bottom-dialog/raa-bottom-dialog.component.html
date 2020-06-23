@@ -8,18 +8,7 @@
   [@closeConfirmationAnimation]
   (@closeConfirmationAnimation.done)="focusOnInit()"
   id="bottom-dialog"
-  class="tw-absolute
-    tw-bottom-0
-    tw-left-0
-    tw-bg-raa-gray-2
-    tw-border-t
-    tw-border-raa-gray-3
-    tw-w-full
-    tw-flex
-    tw-flex-col
-    tw-items-center
-    tw-justify-center
-    z-index-99999"
+  class="tw-absolute tw-bottom-0 tw-left-0 tw-bg-raa-gray-2 tw-border-t tw-border-raa-gray-3 tw-w-full tw-flex tw-flex-col tw-items-center tw-justify-center z-index-99999"
   [ngClass]="{ 'tw-h-full': fullHeight }"
   *ngIf="isVisible"
 >
@@ -42,7 +31,6 @@
     <div class="tw-flex tw-flex-col sm:tw-flex-row tw-justify-center tw-w-full">
       <button
         #cancelButton
-        aria-label="avbryt"
         class="tw-mr-0 tw-mb-2 sm:tw-mr-2 sm:tw-mb-0 raa-button raa-button-cancel tw-uppercase"
         (click)="noAction()"
         [disabled]="showLoadingSpinner"
@@ -51,7 +39,6 @@
       </button>
 
       <button
-        aria-label="fortsätt"
         class="tw-ml-0 tw-mb-2 sm:tw-ml-2 sm:tw-mb-0 tw-relative raa-button tw-uppercase"
         [disabled]="showLoadingSpinner || confirmBtnDisabled"
         [ngClass]="buttonClass"
