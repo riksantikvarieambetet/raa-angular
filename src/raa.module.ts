@@ -28,9 +28,10 @@ import { RaaTrapFocusDirective } from './directives/raa-trap-focus.directive';
 
 // Pipes
 import { OrgnummerPipe } from './pipes/orgnummer.pipe';
+import { A11yModule } from '@angular/cdk/a11y';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, RouterModule, BrowserAnimationsModule, NgxPaginationModule],
+  imports: [CommonModule, FormsModule, RouterModule, BrowserAnimationsModule, NgxPaginationModule, A11yModule],
   declarations: [
     RaaSelectComponent,
     RaaDropdownComponent,

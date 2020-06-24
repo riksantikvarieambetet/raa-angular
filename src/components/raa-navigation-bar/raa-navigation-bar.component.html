@@ -1,54 +1,22 @@
 <div
-  class="tw-flex
-  tw-flex-row
-  tw-items-center
-  tw-justify-between
-  tw-py-2
-  tw-px-4
-  tw-bg-raa-white
-  sm\:tw-w-auto
-  md\:tw-w-auto"
+  class="tw-flex tw-flex-row tw-items-center tw-justify-between tw-p-2 sm:tw-p-4 tw-bg-raa-white sm\:tw-w-auto md\:tw-w-auto"
 >
   <div>
     <button class="raa-button skip-link" title="Hoppa över navigationen" (click)="skip($event)">
       Hoppa över navigationen
     </button>
     <a
-      class="sm:tw-self-start
-      sm:tw-pl-0
-      sm:tw-ml-0
-      md:tw-self-start
-      md:tw-pl-0
-      md:tw-ml-0
-      tw-no-underline"
+      class="sm:tw-self-start sm:tw-pl-0 sm:tw-ml-0 md:tw-self-start md:tw-pl-0 md:tw-ml-0 tw-no-underline"
       [routerLink]="['./']"
     >
-      <img [src]="logoImageSrc" alt="Logotyp" style="height: 50px" title="Gå till startsidan" />
+      <img [src]="logoImageSrc" alt="Logotyp" class="tw-h-10" title="Gå till startsidan" />
     </a>
   </div>
 
   <nav class="margin-auto-0 lg:tw-block tw-hidden">
     <a
       *ngFor="let route of applicationRoutes"
-      class="tw-no-underline
-        tw-border-r-0
-        tw-border-l-0
-        tw-border-t-0
-        tw-border-solid
-        tw-border-transparent
-        tw-border-b-2
-        tw-rounded
-        tw-cursor-pointer
-        tw-uppercase
-        tw-inline-block
-        tw-text-raa-gray-5
-        tw-mr-4
-        tw-px-4
-        hover:tw-text-raa-gray-6
-        hover:tw-border-raa-orange-1
-        transition-all-0-4
-        letter-spacing-0-5px
-        py-0-3rem"
+      class="tw-no-underline tw-border-solid tw-border-transparent tw-border-b-2 tw-rounded tw-cursor-pointer tw-uppercase tw-inline-block tw-text-raa-gray-5 tw-mr-4 tw-px-4 hover:tw-text-raa-gray-6 hover:tw-border-raa-orange-1 transition-all-0-4 letter-spacing-0-5px py-0-3rem"
       [routerLink]="route.link"
       routerLinkActive="tw-border-raa-orange-hover"
     >
@@ -56,77 +24,34 @@
     </a>
   </nav>
 
-  <div class="lg:tw-hidden md:tw-block sm:tw-block">
-    <button
-      (click)="toggleMenu()"
-      id="menu-button"
-      class="tw-bg-transparent
-        tw-w-auto
-        tw-p-2
-        tw-text-title
-        tw-border-0
-        tw-text-raa-orange-1
-        tw-cursor-pointer
-        min-width-auto"
-    >
-      <i class="raa-icon-menu" title="Huvudmeny"></i>
-    </button>
-  </div>
+  <a
+    *ngIf="applicationRoutes.length"
+    (click)="toggleMenu()"
+    class="tw-select-none tw-cursor-pointer tw-text-lg"
+    [ngClass]="{ 'tw-text-raa-orange': !displayMenu, 'tw-text-raa-gray-5': displayMenu }"
+  >
+    <span class="tw-flex tw-flex-col tw-items-center tw-ml-2">
+      <span
+        [ngClass]="{ 'raa-icon-menu': !displayMenu, 'raa-icon-close': displayMenu }"
+        class="tw-text-header raa-icon-menu raa-icon-close"
+      ></span>
+      <span class="tw-text-sm tw-font-semibold tw-uppercase">meny</span>
+    </span>
+  </a>
 </div>
 
 <div
   *ngIf="displayMenu"
-  class="tw-fixed
-	  tw-left-0
-	  tw-w-full
-	  tw-h-full
-	  z-index-99999
-	  black-bg-transparent
-	  lg:tw-hidden
-	  sm:tw-block
-	  md:tw-block"
+  class="tw-fixed tw-left-0 tw-w-full tw-h-full z-index-99999 black-bg-transparent lg:tw-hidden sm:tw-block"
 >
   <div
-    class="app-menu
-    sm:tw-absolute
-    sm:tw-w-full
-    tw-border-raa-gray-3
-    tw-absolute
-    tw-right-0
-    tw-bg-raa-white
-    tw-overflow-y-auto
-    tw-p-0
-    tw-w-full
-    tw-border-l-0
-    tw-border-r-0
-    tw-border-b-0
-    tw-border-t
-    tw-border-solid
-    tw-border-raa-gray-3
-    min-width-15rem
-    max-height-full-minus-4-5rem
-    z-index-100000"
+    class="app-menu sm:tw-absolute sm:tw-w-full tw-border-raa-gray-3 tw-absolute tw-right-0 tw-bg-raa-white tw-overflow-y-auto tw-p-0 tw-w-full tw-border-t tw-border-solid tw-border-raa-gray-3 min-width-15rem max-height-full-minus-4-5rem z-index-100000"
     (click)="toggleMenu()"
   >
     <nav class="tw-p-0">
       <a
         *ngFor="let route of applicationRoutes"
-        class="tw-no-underline
-          tw-block
-          tw-py-4
-          tw-px-0
-          tw-text-raa-black-1
-          tw-text-center
-          tw-uppercase
-          tw-cursor-pointer
-          tw-border-t-0
-          tw-border-l-0
-          tw-border-r-0
-          tw-border-b
-          tw-border-solid
-          tw-border-raa-gray-4
-          hover:tw-bg-raa-gray-3
-          transition-all-0-4"
+        class="tw-no-underline tw-block tw-py-4 tw-px-0 tw-text-raa-black-1 tw-text-center tw-uppercase tw-cursor-pointer tw-border-b tw-border-solid tw-border-raa-gray-4 hover:tw-bg-raa-gray-3 transition-all-0-4"
         tabindex="0"
         [routerLink]="route.link"
         routerLinkActive="active-link"

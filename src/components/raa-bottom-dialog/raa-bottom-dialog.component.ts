@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { trigger, style, animate, transition } from '@angular/animations';
 
 const closeConfirmationAnimationTime = 250;
@@ -62,6 +62,9 @@ export class RaaBottomDialogComponent implements OnInit {
 
   buttonClass = 'raa-button-secondary';
 
+  @ViewChild('cancelButton', { static: false })
+  cancelButton: ElementRef;
+
   ngOnInit() {
     if (!this.cancelBtnText) {
       throw new Error('ERROR: raa-bottom-dialog.component -> cancelBtnText must be specified');
@@ -81,6 +84,12 @@ export class RaaBottomDialogComponent implements OnInit {
       case 'white':
       default:
         this.buttonClass = 'raa-button-secondary';
+    }
+  }
+
+  focusOnInit() {
+    if (this.isVisible) {
+      this.cancelButton.nativeElement.focus();
     }
   }
 

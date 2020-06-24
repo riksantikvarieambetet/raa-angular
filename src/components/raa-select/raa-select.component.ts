@@ -90,6 +90,8 @@ export class RaaSelectComponent implements OnInit, OnChanges, AfterViewInit, Con
   domainValues: DomainValue[] = [];
   filteredDomainValues: DomainValue[] = [];
 
+  activeItem: Element | null;
+
   setFocusToInputField = new EventEmitter();
 
   scrollToSelected = false;
@@ -178,7 +180,7 @@ export class RaaSelectComponent implements OnInit, OnChanges, AfterViewInit, Con
     dropdownEl.scrollTop = dropdownItem.offsetTop;
   }
 
-  onFilterdInputChange() {
+  onFilteredInputChange() {
     this.filterValues();
   }
 
@@ -236,6 +238,7 @@ export class RaaSelectComponent implements OnInit, OnChanges, AfterViewInit, Con
     this.filteredDomainValues = this.domainValues.filter(
       (item) => item.displayValue.toLowerCase().indexOf(this.filterInput.toLocaleLowerCase()) > -1
     );
+
     if (this.filteredDomainValues.length > 0) {
       this.hoverIndex = 0;
     }
@@ -267,9 +270,25 @@ export class RaaSelectComponent implements OnInit, OnChanges, AfterViewInit, Con
 
   handleKeyPressed(event: KeyboardEvent) {
     const keyCode = event.which;
+    const activeItem = this.dropdownItems
+      .toArray()
+      .find((element) => (element.nativeElement as HTMLElement).classList.contains('hovered'));
+
+    let previousSiblingElement: Element | null = null;
+    let nextSiblingElement: Element | null = null;
+
+    if (activeItem) {
+      previousSiblingElement = (activeItem.nativeElement as HTMLElement).previousElementSibling;
+      nextSiblingElement = (activeItem.nativeElement as HTMLElement).nextElementSibling;
+    }
 
     if (keyCode === KeyCode.ArrowDown) {
       event.preventDefault();
+
+      // Sätt activeItem till första värde för att skärmläsare ska förstå.
+      if (!activeItem && this.dropdownItems.first) {
+        this.activeItem = this.dropdownItems.first.nativeElement;
+      }
 
       if (this.openDropdownIfClosed()) {
         return;
@@ -277,6 +296,11 @@ export class RaaSelectComponent implements OnInit, OnChanges, AfterViewInit, Con
 
       if (this.hoverIndex < this.filteredDomainValues.length - 1) {
         this.hoverIndex += 1;
+        this.scrollDropdownItemIntoView('down');
+      }
+
+      if (activeItem && nextSiblingElement) {
+        this.activeItem = nextSiblingElement;
       }
     } else if (keyCode === KeyCode.ArrowUp) {
       event.preventDefault();
@@ -287,6 +311,11 @@ export class RaaSelectComponent implements OnInit, OnChanges, AfterViewInit, Con
 
       if (this.hoverIndex > 0) {
         this.hoverIndex -= 1;
+        this.scrollDropdownItemIntoView('up');
+      }
+
+      if (activeItem && previousSiblingElement) {
+        this.activeItem = previousSiblingElement;
       }
     } else if (keyCode === KeyCode.Return) {
       if (this.hoverIndex > -1) {
@@ -302,6 +331,26 @@ export class RaaSelectComponent implements OnInit, OnChanges, AfterViewInit, Con
     } else {
       if (!ignoreOpenOnKeyCodes[keyCode]) {
         this.openDropdownIfClosed();
+      }
+    }
+  }
+
+  private scrollDropdownItemIntoView(direction: 'up' | 'down') {
+    const hovered = this.dropdownItems.find((item) =>
+      (item.nativeElement as HTMLElement).classList.contains('hovered')
+    );
+
+    if (hovered && hovered.nativeElement) {
+      let nextElement: Element | null;
+
+      if (direction === 'down') {
+        nextElement = (hovered.nativeElement as HTMLElement).nextElementSibling;
+      } else {
+        nextElement = (hovered.nativeElement as HTMLElement).previousElementSibling;
+      }
+
+      if (nextElement) {
+        nextElement.scrollIntoView({ block: 'end' });
       }
     }
   }
@@ -331,7 +380,7 @@ export class RaaSelectComponent implements OnInit, OnChanges, AfterViewInit, Con
 
   focusLost = () => {
     this.showDropdown = false;
-
+    this.activeItem = null;
     // sätter visningsvärde till valt värde, detta om användaren börjar justera men avbryter
     this.filterInput = this.getDisplayValue(this.value);
     this.hoverIndex = -1;

@@ -1,35 +1,40 @@
-<div role="dialog" raaTrapFocus [trapDisabled]="focusTrapDisabled">
+<div
+  role="dialog"
+  aria-labelledby="raa-modal-page-header"
+  aria-describedby="raa-modal-page-message"
+  [raaTrapFocus]
+  [trapDisabled]="focusTrapDisabled"
+>
   <div class="overlay black-bg-transparent">
     <div
       #content
       tabindex="0"
       class="tw-relative
-                tw-flex-1
-                tw-max-h-full
-                tw-min-h-0
-                tw-overflow-auto
-                tw-bg-raa-white
-                tw-rounded
-                tw-outline-none
-                width-inherit
-                max-width-900px
-                box-shadow
-                z-index-99997"
+        tw-flex-1
+        tw-max-h-full
+        tw-min-h-0
+        tw-overflow-auto
+        tw-bg-raa-white
+        tw-rounded
+        tw-outline-none
+        width-inherit
+        max-width-900px
+        box-shadow
+        z-index-99997"
       [ngClass]="{ 'max-width-600px': size === 'small', 'max-width-1400px': size === 'large' }"
       (raaOutsideClick)="propagateOutsideClick()"
     >
-      <h2 *ngIf="header" class="tw-font-normal width-calc-full-minus-4rem tw-my-10 tw-mx-8">{{ header }}</h2>
-      <ng-content></ng-content>
+      <h2 *ngIf="header" id="raa-modal-page-header" class="tw-font-normal width-calc-full-minus-4rem tw-my-10 tw-mx-8">
+        {{ header }}
+      </h2>
+
+      <ng-content id="raa-modal-page-message"></ng-content>
       <div class="tw-absolute tw-top-0 tw-right-0">
         <button
           *ngIf="close"
           (click)="close()"
-          class="tw-text-lg
-                        raa-button
-                        raa-button-secondary
-                        raa-icon-close
-                        min-width-auto
-                        border-none"
+          aria-label="stäng"
+          class="tw-text-lg raa-button raa-button-secondary raa-icon-close min-width-auto border-none"
         ></button>
       </div>
     </div>
