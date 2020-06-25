@@ -61,6 +61,9 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
   @Input()
   showSpinner = false;
 
+  @Input()
+  showResetInputFieldButton = true;
+
   @Output()
   searchQuery = new EventEmitter<string>();
 
@@ -185,7 +188,11 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
 
     if (typeof this.filterInput === 'undefined' || this.filterInput.length === 0 || !this.domainValues.length) {
       this.timeout = window.setTimeout(() => {
-        if (this.filterInput.length > this.noResultsFoundText.showIfGreaterThan && !this.showSpinner) {
+        if (
+          this.filterInput.replace(/\s/g, '').length &&
+          this.filterInput.trimLeft().length > this.noResultsFoundText.showIfGreaterThan &&
+          !this.showSpinner
+        ) {
           this.filteredDomainValues = [{ id: 0, displayValue: this.noResultsFoundText.text }];
         }
       }, 250);
