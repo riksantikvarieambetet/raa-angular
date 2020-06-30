@@ -21,6 +21,7 @@
         *ngIf="showResetInputFieldButton && !showSpinner && filterInput.length"
         (click)="focusLost(); searchQuery.emit(filterInput)"
         class="tw-flex tw-items-center tw-text-raa-orange tw-relative right-2rem"
+        aria-label="rensa"
       >
         <span class="raa-icon raa-icon-close"></span>
       </button>
