@@ -67,6 +67,9 @@ export class RaaSelectComponent implements OnInit, OnChanges, AfterViewInit, Con
   disabled = false;
 
   @Input()
+  disableFiltration = false;
+
+  @Input()
   noAvailableItemsText = 'Inga val tillgängliga';
 
   @Output()
@@ -189,7 +192,10 @@ export class RaaSelectComponent implements OnInit, OnChanges, AfterViewInit, Con
       this.clearFilters();
       this.setHoverIndexFromSelectedValue();
       this.scrollToSelected = true;
-      this.selectAllTextInInput();
+
+      if (!this.disableFiltration) {
+        this.selectAllTextInInput();
+      }
 
       return (this.showDropdown = true);
     }
@@ -212,12 +218,6 @@ export class RaaSelectComponent implements OnInit, OnChanges, AfterViewInit, Con
 
     this.focusLost();
     this.setFocusToInputField.emit();
-  }
-
-  clearSelection() {
-    this.value = undefined;
-    this.filterInput = '';
-    this.propagateChange(this.value);
   }
 
   mapDomainValues() {
@@ -246,10 +246,6 @@ export class RaaSelectComponent implements OnInit, OnChanges, AfterViewInit, Con
 
   clearFilters() {
     this.filteredDomainValues = this.domainValues.slice();
-  }
-
-  getValue(item: any) {
-    return item[this.valueAttr];
   }
 
   getDisplayValue = (itemKey: any): string => {
@@ -357,7 +353,10 @@ export class RaaSelectComponent implements OnInit, OnChanges, AfterViewInit, Con
 
   toggleDropdown() {
     if (!this.showDropdown) {
-      this.onFocus();
+      if (!this.disableFiltration) {
+        this.onFocus();
+      }
+
       this.openDropdownIfClosed();
     } else {
       this.focusLost();
