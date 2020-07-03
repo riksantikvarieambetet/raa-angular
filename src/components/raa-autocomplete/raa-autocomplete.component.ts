@@ -61,6 +61,9 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
   @Input()
   showSpinner = false;
 
+  @Input()
+  showResetInputFieldButton = true;
+
   @Output()
   searchQuery = new EventEmitter<string>();
 

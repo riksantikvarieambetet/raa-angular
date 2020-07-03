@@ -19,7 +19,7 @@ $border-radius-size: 2px;
   background-color: transparent;
   border: $border-size solid $raa-gray-3;
   border-radius: $border-radius-size 0 0 $border-radius-size;
-
+  border-right: none;
   &.active {
     border-radius: $border-radius-size 0 0 0;
   }

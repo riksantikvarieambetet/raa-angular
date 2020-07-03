@@ -15,8 +15,18 @@
       (focus)="focusGained()"
       (keydown)="handleKeyPressed($event)"
     />
-    <div *ngIf="showSpinner" class="tw-flex tw-w-0">
-      <raa-spinner class="tw-relative right-2rem" size="1rem"></raa-spinner>
+
+    <div class="tw-flex tw-w-0 tw-h-10 tw-border-r tw-border-raa-gray-3 tw-items-center">
+      <button
+        *ngIf="showResetInputFieldButton && !showSpinner && filterInput.length"
+        (click)="focusLost(); searchQuery.emit(filterInput)"
+        class="tw-flex tw-items-center tw-text-raa-orange tw-relative right-2rem"
+        aria-label="rensa"
+      >
+        <span class="raa-icon raa-icon-close"></span>
+      </button>
+
+      <raa-spinner *ngIf="showSpinner" class="tw-relative right-2rem" size="1rem"></raa-spinner>
     </div>
   </div>
 
