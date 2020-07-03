@@ -40,22 +40,12 @@ $dropdown-item-selected-bg-color: $raa-gray-2;
     // Tar bort IE "clear field"-knapp
     display: none;
   }
-
   position: relative; // Se till att outline
-
-  width: 100%;
-  padding: 0.75rem;
   min-width: 0;
-
+  font-family: 'Source Sans Pro', sans-serif;
+  box-sizing: border-box;
   background-color: transparent;
-
-  border: $border-size solid $border-color;
-  border-right: none;
-  border-radius: $border-radius-size 0 0 $border-radius-size;
-
-  &.active {
-    border-radius: $border-radius-size 0 0 0;
-  }
+  border: none;
 }
 
 :host {
@@ -76,14 +66,14 @@ $dropdown-item-selected-bg-color: $raa-gray-2;
   &.active .raa-select-button {
     color: $button-active-color;
     background-color: $button-active-bg-color;
-    border-radius: 0 $border-radius-size 0 0;
+    border: none;
   }
 
   &.disabled {
     background-color: $raa-gray-2;
     .raa-select-button {
       background-color: $raa-gray-2;
-      color: white;
+      color: $raa-gray-4;
       cursor: default;
     }
   }
@@ -96,9 +86,6 @@ $dropdown-item-selected-bg-color: $raa-gray-2;
   align-items: center;
   width: $button-width;
   padding: 0;
-  border: $border-size solid $border-color;
-  border-left: none;
-  border-radius: 0 $border-radius-size $border-radius-size 0;
   cursor: pointer;
 }
 

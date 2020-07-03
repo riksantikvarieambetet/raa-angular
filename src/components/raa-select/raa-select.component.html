@@ -1,6 +1,6 @@
 <div #raaSelect class="raa-select focus-within:tw-shadow-outline tw-rounded">
   <div
-    class="raa-select-input-row"
+    class="raa-select-input-row tw-border tw-rounded"
     [ngClass]="{ disabled: disabled }"
     aria-owns="raa-dropdown"
     role="combobox"
@@ -8,7 +8,8 @@
   >
     <input
       [id]="inputElementID"
-      class="raa-input raa-select-input z-index-0"
+      class="raa-select-input tw-block tw-w-full tw-p-3 tw-h-10 tw-border tw-border-solid tw-border-raa-gray-3 tw-rounded tw-bg-raa-white focus:tw-outline-transparent z-index-0"
+      [ngClass]="{ 'tw-cursor-default': disableFiltration, 'tw-text-raa-gray-4': disabled }"
       #inputField
       type="text"
       autocomplete="off"
@@ -17,6 +18,7 @@
       [placeholder]="placeholder"
       [requestFocus]="setFocusToInputField"
       [disabled]="disabled"
+      [readOnly]="disableFiltration"
       [ngModelOptions]="{ standalone: true }"
       [(ngModel)]="filterInput"
       (ngModelChange)="onFilteredInputChange()"

@@ -61,6 +61,9 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
   @Input()
   showSpinner = false;
 
+  @Input()
+  showResetInputFieldButton = true;
+
   @Output()
   searchQuery = new EventEmitter<string>();
 
@@ -159,7 +162,6 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
       this.clearFilters();
       this.setHoverIndexFromSelectedValue();
       this.scrollToSelected = true;
-      this.selectAllTextInInput();
 
       return (this.showDropdown = true);
     }
@@ -185,8 +187,12 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
 
     if (typeof this.filterInput === 'undefined' || this.filterInput.length === 0 || !this.domainValues.length) {
       this.timeout = window.setTimeout(() => {
-        if (this.filterInput.length > this.noResultsFoundText.showIfGreaterThan && !this.showSpinner) {
-          this.filteredDomainValues = [{ id: 0, displayValue: this.noResultsFoundText.text }];
+        if (
+          this.filterInput.replace(/\s/g, '').length &&
+          this.filterInput.trimLeft().length > this.noResultsFoundText.showIfGreaterThan &&
+          !this.showSpinner
+        ) {
+          this.filteredDomainValues = [{ id: -1, displayValue: this.noResultsFoundText.text }];
         }
       }, 250);
 
@@ -220,10 +226,6 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
         }
       });
     }
-  }
-
-  private selectAllTextInInput() {
-    this.inputField.nativeElement.select();
   }
 
   private scrollDropdownItemIntoView(direction: 'up' | 'down') {
@@ -274,6 +276,10 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
   }
 
   select(item: DomainValue) {
+    if (item.id === -1) {
+      return;
+    }
+
     if (typeof item !== 'undefined') {
       this.value = item.id;
       this.filterInput = item.displayValue;
@@ -353,7 +359,7 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
       }
     } else if (keyCode === 'Escape') {
       event.preventDefault();
-      this.focusLost();
+      this.showDropdown = false;
     } else if (keyCode === 'Tab') {
       this.focusLost();
     } else {
@@ -386,6 +392,6 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
 }
 
 export interface DomainValue {
-  id: any;
+  id: string | -1;
   displayValue: string;
 }
