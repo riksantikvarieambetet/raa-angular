@@ -90,6 +90,7 @@ $dropdown-item-selected-bg-color: $raa-gray-2;
 }
 
 .raa-select-button {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -98,9 +99,12 @@ $dropdown-item-selected-bg-color: $raa-gray-2;
   border: $border-size solid $border-color;
   border-left: none;
   border-radius: 0 $border-radius-size $border-radius-size 0;
-  background-color: transparent;
-  color: $button-color;
   cursor: pointer;
+}
+
+.raa-select-button-icon {
+  border: none;
+  padding: 0;
   font-weight: 700;
   font-size: 26px;
 }
@@ -150,4 +154,8 @@ $dropdown-item-selected-bg-color: $raa-gray-2;
 
 .z-index-2 {
   z-index: $z-index-2;
+}
+
+.rotate-180 {
+  transform: rotate(180deg);
 }
