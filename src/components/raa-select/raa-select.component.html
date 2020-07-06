@@ -36,7 +36,10 @@
       (click)="toggleDropdown()"
       [ngClass]="{ 'active z-index-2': showDropdown }"
     >
-      <span class="raa-select-button-icon raa-icon-arrow-down" [ngClass]="{ 'rotate-180': showDropdown }"></span>
+      <span
+        class="raa-select-button-icon raa-icon-arrow-down tw-transform"
+        [ngClass]="{ 'tw-rotate-180': showDropdown }"
+      ></span>
     </button>
   </div>
 

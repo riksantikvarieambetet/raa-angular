@@ -192,7 +192,10 @@ export class RaaSelectComponent implements OnInit, OnChanges, AfterViewInit, Con
       this.clearFilters();
       this.setHoverIndexFromSelectedValue();
       this.scrollToSelected = true;
-      this.selectAllTextInInput();
+
+      if (!this.disableFiltration) {
+        this.selectAllTextInInput();
+      }
 
       return (this.showDropdown = true);
     }
