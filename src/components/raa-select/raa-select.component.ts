@@ -192,10 +192,7 @@ export class RaaSelectComponent implements OnInit, OnChanges, AfterViewInit, Con
       this.clearFilters();
       this.setHoverIndexFromSelectedValue();
       this.scrollToSelected = true;
-
-      if (!this.disableFiltration) {
-        this.selectAllTextInInput();
-      }
+      this.selectAllTextInInput();
 
       return (this.showDropdown = true);
     }
@@ -324,8 +321,9 @@ export class RaaSelectComponent implements OnInit, OnChanges, AfterViewInit, Con
         this.activeItem = previousSiblingElement;
       }
     } else if (keyCode === KeyCode.Return) {
+      event.preventDefault();
+
       if (this.hoverIndex > -1) {
-        event.preventDefault();
         this.select(this.filteredDomainValues[this.hoverIndex]);
         this.focusLost();
       }
