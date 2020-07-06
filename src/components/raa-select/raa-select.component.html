@@ -1,4 +1,4 @@
-<div #raaSelect class="raa-select">
+<div #raaSelect class="raa-select focus-within:tw-shadow-outline tw-rounded">
   <div
     class="raa-select-input-row tw-border tw-rounded"
     [ngClass]="{ disabled: disabled }"
@@ -8,7 +8,7 @@
   >
     <input
       [id]="inputElementID"
-      class="raa-input raa-select-input z-index-0"
+      class="raa-select-input tw-block tw-w-full tw-p-3 tw-h-10 tw-border tw-border-solid tw-border-raa-gray-3 tw-rounded tw-bg-raa-white focus:tw-outline-transparent z-index-0"
       [ngClass]="{ 'tw-cursor-default': disableFiltration, 'tw-text-raa-gray-4': disabled }"
       #inputField
       type="text"
@@ -27,15 +27,19 @@
       (keydown)="handleKeyPressed($event)"
     />
     <button
-      class="raa-select-button raa-icon-arrow-down"
+      class="raa-select-button tw-bg-raa-white tw-text-raa-orange focus:tw-outline-transparent focus:tw-bg-raa-orange focus:tw-text-raa-white"
       type="button"
       aria-controls="raa-dropdown"
+      aria-label="expandera"
       [attr.aria-expanded]="showDropdown"
       [disabled]="disabled"
       (click)="toggleDropdown()"
       [ngClass]="{ 'active z-index-2': showDropdown }"
     >
-      <span class="cdk-visually-hidden">Expandera</span>
+      <span
+        class="raa-select-button-icon raa-icon-arrow-down tw-transform"
+        [ngClass]="{ 'tw-rotate-180': showDropdown }"
+      ></span>
     </button>
   </div>
 

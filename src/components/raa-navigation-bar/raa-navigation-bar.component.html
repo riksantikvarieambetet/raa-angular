@@ -1,6 +1,4 @@
-<div
-  class="tw-flex tw-flex-row tw-items-center tw-justify-between tw-p-2 sm:tw-p-4 tw-bg-raa-white sm\:tw-w-auto md\:tw-w-auto"
->
+<div class="tw-flex tw-flex-row tw-items-center tw-justify-between tw-p-2 sm:tw-p-4 tw-bg-raa-white sm:tw-w-auto">
   <div>
     <button class="raa-button skip-link" title="Hoppa över navigationen" (click)="skip($event)">
       Hoppa över navigationen
@@ -30,7 +28,7 @@
     class="tw-select-none tw-cursor-pointer tw-text-lg"
     [ngClass]="{ 'tw-text-raa-orange': !displayMenu, 'tw-text-raa-gray-5': displayMenu }"
   >
-    <span class="tw-flex tw-flex-col tw-items-center tw-ml-2">
+    <span class="tw-flex tw-flex-col tw-items-center lg:tw-hidden">
       <span
         [ngClass]="{ 'raa-icon-menu': !displayMenu, 'raa-icon-close': displayMenu }"
         class="tw-text-header raa-icon-menu raa-icon-close"

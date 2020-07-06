@@ -40,13 +40,10 @@ $dropdown-item-selected-bg-color: $raa-gray-2;
     // Tar bort IE "clear field"-knapp
     display: none;
   }
-
   position: relative; // Se till att outline
-
-  width: 100%;
-  padding: 0.75rem;
   min-width: 0;
-
+  font-family: 'Source Sans Pro', sans-serif;
+  box-sizing: border-box;
   background-color: transparent;
   border: none;
 }
@@ -83,14 +80,18 @@ $dropdown-item-selected-bg-color: $raa-gray-2;
 }
 
 .raa-select-button {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   width: $button-width;
   padding: 0;
-  background-color: transparent;
-  color: $button-color;
   cursor: pointer;
+}
+
+.raa-select-button-icon {
+  border: none;
+  padding: 0;
   font-weight: 700;
   font-size: 26px;
 }

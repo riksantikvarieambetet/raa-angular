@@ -220,6 +220,12 @@ export class RaaSelectComponent implements OnInit, OnChanges, AfterViewInit, Con
     this.setFocusToInputField.emit();
   }
 
+  clearSelection() {
+    this.value = undefined;
+    this.filterInput = '';
+    this.propagateChange(this.value);
+  }
+
   mapDomainValues() {
     return this.domain.map((item) => {
       return {
@@ -246,6 +252,10 @@ export class RaaSelectComponent implements OnInit, OnChanges, AfterViewInit, Con
 
   clearFilters() {
     this.filteredDomainValues = this.domainValues.slice();
+  }
+
+  getValue(item: any) {
+    return item[this.valueAttr];
   }
 
   getDisplayValue = (itemKey: any): string => {
@@ -314,8 +324,9 @@ export class RaaSelectComponent implements OnInit, OnChanges, AfterViewInit, Con
         this.activeItem = previousSiblingElement;
       }
     } else if (keyCode === KeyCode.Return) {
+      event.preventDefault();
+
       if (this.hoverIndex > -1) {
-        event.preventDefault();
         this.select(this.filteredDomainValues[this.hoverIndex]);
         this.focusLost();
       }
