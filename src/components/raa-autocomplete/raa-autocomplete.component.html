@@ -47,10 +47,13 @@
       <li
         #dropdownItem
         *ngFor="let item of filteredDomainValues; let rowIndex = index"
-        class="tw-p-3 tw-cursor-default hover:tw-bg-raa-gray-2"
-        (mouseover)="hoverIndex = rowIndex"
+        class="tw-p-3 tw-cursor-default"
+        (mouseover)="hoverIndex = noResults ? -1 : rowIndex"
         (click)="select(item)"
-        [ngClass]="{ selected: item.id === value, hovered: hoverIndex === rowIndex }"
+        [ngClass]="{
+          'hover:tw-bg-raa-gray-2': !noResults,
+          'tw-bg-raa-gray-2': item.id === value || hoverIndex === rowIndex
+        }"
       >
         <span>{{ item.displayValue }}</span>
       </li>

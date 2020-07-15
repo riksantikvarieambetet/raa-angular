@@ -13,7 +13,7 @@ $border-radius-size: 2px;
     display: none;
   }
 
-  position: relative; // Se till att outline
+  position: relative;
   width: 100%;
   padding: 0.75rem;
   background-color: transparent;
@@ -44,14 +44,6 @@ $border-radius-size: 2px;
   border-top: none;
   border-radius: 0 0 $border-radius-size $border-radius-size;
   box-shadow: 5px 5px 10px -3px $raa-gray-3;
-}
-
-.selected {
-  background-color: $raa-gray-2;
-}
-
-.hovered {
-  background-color: $raa-gray-2;
 }
 
 .right-2rem {
