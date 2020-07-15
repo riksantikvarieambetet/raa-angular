@@ -64,6 +64,9 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
   @Input()
   showResetInputFieldButton = true;
 
+  @Input()
+  clearInputField = false;
+
   @Output()
   searchQuery = new EventEmitter<string>();
 
@@ -117,6 +120,10 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    if (changes.clearInputField && changes.clearInputField.currentValue === true) {
+      this.focusLost(true);
+    }
+
     if (changes.domain) {
       this.domainValues = this.mapDomainValues();
       this.filterValues();
