@@ -86,7 +86,7 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
   showDropdown = false;
   hoverIndex = 0;
   dropdownIsAbove = false;
-  hoveredItem: Element;
+  noResults = true;
 
   domainValues: DomainValue[] = [];
   filteredDomainValues: DomainValue[] = [];
@@ -193,6 +193,8 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
           !this.showSpinner
         ) {
           this.filteredDomainValues = [{ id: -1, displayValue: this.noResultsFoundText.text }];
+          this.hoverIndex = -1;
+          this.noResults = true;
         }
       }, 250);
 
@@ -211,6 +213,7 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
 
     if (this.filteredDomainValues.length > 0) {
       this.hoverIndex = 0;
+      this.noResults = false;
     }
   }
 
@@ -230,7 +233,7 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
 
   private scrollDropdownItemIntoView(direction: 'up' | 'down') {
     const hovered = this.dropdownItems.find((item) =>
-      (item.nativeElement as HTMLElement).classList.contains('hovered')
+      (item.nativeElement as HTMLElement).classList.contains('tw-bg-raa-gray-2')
     );
 
     if (hovered && hovered.nativeElement) {
@@ -309,32 +312,17 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
 
   handleKeyPressed(event: KeyboardEvent) {
     const keyCode = this.dispatchForCode(event);
-    const hoveredItem = this.dropdownItems
-      .toArray()
-      .find((element) => (element.nativeElement as HTMLElement).classList.contains('hovered'));
-
-    let previousSiblingElement;
-    let nextSiblingElement;
-
-    if (hoveredItem) {
-      previousSiblingElement = (hoveredItem.nativeElement as HTMLElement).previousElementSibling;
-      nextSiblingElement = (hoveredItem.nativeElement as HTMLElement).nextElementSibling;
-    }
 
     if (keyCode === 'ArrowDown') {
       event.preventDefault();
 
-      if (this.openDropdownIfClosed()) {
+      if (this.openDropdownIfClosed() || (this.filteredDomainValues.length && this.filteredDomainValues[0].id === -1)) {
         return;
       }
 
       if (this.hoverIndex < this.filteredDomainValues.length - 1) {
         this.hoverIndex += 1;
         this.scrollDropdownItemIntoView('down');
-      }
-
-      if (hoveredItem && nextSiblingElement) {
-        this.hoveredItem = nextSiblingElement;
       }
     } else if (keyCode === 'ArrowUp') {
       event.preventDefault();
@@ -347,10 +335,6 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
         this.hoverIndex -= 1;
         this.scrollDropdownItemIntoView('up');
       }
-
-      if (hoveredItem && previousSiblingElement) {
-        this.hoveredItem = previousSiblingElement;
-      }
     } else if (keyCode === 'Enter') {
       if (this.hoverIndex > -1) {
         event.preventDefault();
@@ -361,7 +345,7 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
       event.preventDefault();
       this.showDropdown = false;
     } else if (keyCode === 'Tab') {
-      this.focusLost();
+      this.focusLost(false);
     } else {
       if (!ignoreOpenOnKeyCodes[keyCode]) {
         this.openDropdownIfClosed();
