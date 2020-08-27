@@ -8,7 +8,7 @@
     "registry": "https://artifactory.raa.se/artifactory/api/npm/npm/"
   },
   "scripts": {
-    "build": "yarn run packagr && cp -R src/styles dist/styles",
+    "build": "npm run packagr && cp -R src/styles dist/styles",
     "packagr": "ng-packagr -p ng-package.json",
     "publish:patch": "node publishNewVersion --patch",
     "publish:minor": "node publishNewVersion --minor",
