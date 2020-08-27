@@ -343,6 +343,10 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
         this.scrollDropdownItemIntoView('up');
       }
     } else if (keyCode === 'Enter') {
+      if (!this.filteredDomainValues.length) {
+        return;
+      }
+
       if (this.hoverIndex > -1) {
         event.preventDefault();
         this.select(this.filteredDomainValues[this.hoverIndex]);
@@ -368,7 +372,7 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
     this.clearFilters();
   }
 
-  focusLost = (clearInput = true) => {
+  focusLost = (clearInput: boolean = true) => {
     // sätter visningsvärde till valt värde, detta om användaren börjar justera men avbryter
     if (clearInput) {
       this.domainValues = [];
