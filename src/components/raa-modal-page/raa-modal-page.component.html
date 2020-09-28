@@ -1,4 +1,4 @@
-<div role="dialog" aria-labelledby="raa-modal-page-header" aria-describedby="raa-modal-page-message" cdkTrapFocus>
+<div role="dialog" cdkTrapFocus>
   <div class="overlay black-bg-transparent">
     <div
       #content
@@ -7,11 +7,11 @@
       [ngClass]="{ 'max-width-600px': size === 'small', 'max-width-1400px': size === 'large' }"
       (raaOutsideClick)="propagateOutsideClick()"
     >
-      <h1 *ngIf="header" id="raa-modal-page-header" class="tw-heading-lg width-calc-full-minus-4rem tw-my-10 tw-mx-8">
+      <h1 *ngIf="header" class="tw-heading-lg width-calc-full-minus-4rem tw-my-10 tw-mx-8">
         {{ header }}
       </h1>
 
-      <ng-content id="raa-modal-page-message"></ng-content>
+      <ng-content></ng-content>
       <div class="tw-absolute tw-top-0 tw-right-0 tw-pr-1 tw-pt-1">
         <button
           type="button"
