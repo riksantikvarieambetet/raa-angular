@@ -12,10 +12,10 @@
       aria-label="föregående sida"
       class="tw-rounded raa-button-focus"
     >
-      <span class="raa-icon raa-icon-arrow-left tw-text-lg tw-text-raa-orange"></span>
+      <span class="raa-icon raa-icon-arrow-left tw-text-size-1.75 tw-text-raa-orange"></span>
     </button>
     <button *ngIf="p.isFirstPage()" aria-label="föregående sida" disabled>
-      <span class="raa-icon raa-icon-arrow-left tw-text-lg tw-text-raa-orange tw-opacity-50"></span>
+      <span class="raa-icon raa-icon-arrow-left tw-text-size-1.75 tw-text-raa-orange tw-opacity-50"></span>
     </button>
   </div>
 
@@ -43,10 +43,10 @@
 
   <div class="pagination-next" [class.disabled]="p.isLastPage()">
     <button *ngIf="!p.isLastPage()" (click)="p.next()" aria-label="nästa sida" class="tw-rounded raa-button-focus">
-      <span class="raa-icon raa-icon-arrow-right tw-text-lg tw-text-raa-orange"></span>
+      <span class="raa-icon raa-icon-arrow-right tw-text-size-1.75 tw-text-raa-orange"></span>
     </button>
     <button *ngIf="p.isLastPage()" aria-label="next-button" disabled>
-      <span class="raa-icon raa-icon-arrow-right tw-text-lg tw-text-raa-orange tw-opacity-50"></span>
+      <span class="raa-icon raa-icon-arrow-right tw-text-size-1.75 tw-text-raa-orange tw-opacity-50"></span>
     </button>
   </div>
 </pagination-template>

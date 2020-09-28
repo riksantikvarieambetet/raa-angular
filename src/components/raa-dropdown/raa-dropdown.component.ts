@@ -48,6 +48,9 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit, OnDestroy {
   @Output()
   private dropdownMovedUp = new EventEmitter<boolean>(true);
 
+  @Output()
+  private dropdownHeight = new EventEmitter<number>(true);
+
   @ViewChild('dropdown', { static: true })
   private dropdownElementRef: ElementRef;
 
@@ -159,6 +162,7 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit, OnDestroy {
     this.dropdown.style.top = `inherit`;
 
     this.dropdownMovedUp.emit(true);
+    this.dropdownHeight.emit(maxDropdownHeight);
   }
 
   private setDropdownBelow(spaceBelow: number, elementBoundingClientRect: ClientRect) {
@@ -171,6 +175,7 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit, OnDestroy {
     this.dropdown.style.bottom = `inherit`;
 
     this.dropdownMovedUp.emit(false);
+    this.dropdownHeight.emit(maxDropdownHeight);
   }
 
   private isElementVisibleWithinScrollView(

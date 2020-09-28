@@ -25,7 +25,7 @@
   <a
     *ngIf="applicationRoutes.length"
     (click)="toggleMenu()"
-    class="tw-select-none tw-cursor-pointer tw-text-lg"
+    class="tw-select-none tw-cursor-pointer tw-text-size-1.75"
     [ngClass]="{ 'tw-text-raa-orange': !displayMenu, 'tw-text-raa-gray-5': displayMenu }"
   >
     <span class="tw-flex tw-flex-col tw-items-center lg:tw-hidden">
@@ -33,7 +33,7 @@
         [ngClass]="{ 'raa-icon-menu': !displayMenu, 'raa-icon-close': displayMenu }"
         class="tw-text-header raa-icon-menu raa-icon-close"
       ></span>
-      <span class="tw-text-sm tw-font-semibold tw-uppercase">meny</span>
+      <span class="tw-text-size-0.813 tw-font-semibold tw-uppercase">meny</span>
     </span>
   </a>
 </div>
