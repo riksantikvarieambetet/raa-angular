@@ -49,7 +49,7 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit, OnDestroy {
   private dropdownMovedUp = new EventEmitter<boolean>(true);
 
   @Output()
-  private dropdownHeight = new EventEmitter<number>(true);
+  private dropdownHeight = new EventEmitter<number>();
 
   @ViewChild('dropdown', { static: true })
   private dropdownElementRef: ElementRef;
