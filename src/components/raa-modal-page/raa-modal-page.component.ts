@@ -25,9 +25,6 @@ export class RaaModalPageComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input()
   size: 'small' | 'large';
 
-  @Input()
-  focusTrapDisabled = false;
-
   @Output()
   outsideClick = new EventEmitter();
 
@@ -39,8 +36,12 @@ export class RaaModalPageComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    if (this.focusTrapDisabled) {
-      this.modalContentChild.nativeElement.focus();
+    const tabbableElements = (Array.from(
+      this.modalContentChild.nativeElement.querySelectorAll('select, input, textarea, button, a')
+    ) as HTMLElement[]).filter((el: HTMLElement) => !el.hidden);
+
+    if (tabbableElements.length) {
+      tabbableElements[0].focus();
     }
   }
 
