@@ -20,7 +20,7 @@
       <button
         *ngIf="showResetInputFieldButton && !showSpinner && filterInput.length"
         type="button"
-        (click)="focusLost(); searchQuery.emit(filterInput)"
+        (click)="focusLost(); searchQuery.emit(filterInput); inputField.focus()"
         class="tw-flex tw-items-center tw-text-raa-orange tw-relative right-2rem"
         aria-label="rensa"
       >

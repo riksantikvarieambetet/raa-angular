@@ -343,6 +343,11 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
         this.scrollDropdownItemIntoView('up');
       }
     } else if (keyCode === 'Enter') {
+      if (!this.domain.length) {
+        event.preventDefault();
+        return;
+      }
+
       if (!this.filteredDomainValues.length) {
         return;
       }
