@@ -125,8 +125,6 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
       this.focusLost(true);
     }
 
-    console.log(this.showDropdown);
-
     if (changes.domain) {
       this.domainValues = this.mapDomainValues();
       this.filterValues();
@@ -336,8 +334,6 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
 
     if (keyCode === 'ArrowDown') {
       event.preventDefault();
-
-      console.log(activeItem);
 
       // Sätt activeItem till första värde för att skärmläsare ska förstå.
       if (!activeItem && this.dropdownItems.first) {
