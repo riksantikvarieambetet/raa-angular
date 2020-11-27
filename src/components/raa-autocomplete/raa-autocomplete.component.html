@@ -2,10 +2,16 @@
   <div class="tw-flex tw-items-center" [ngClass]="{ disabled: disabled }">
     <input
       #inputField
+      [attr.aria-expanded]="showDropdown"
       [id]="inputElementID"
       class="raa-input raa-autocomplete-input tw-z-0"
       type="text"
       autocomplete="off"
+      aria-autocomplete="list"
+      aria-owns="raa-dropdown"
+      role="combobox"
+      aria-haspopup="true"
+      [attr.aria-activedescendant]="activeItem?.id"
       [placeholder]="placeholder"
       [requestFocus]="setFocusToInputField"
       [disabled]="disabled"
@@ -43,17 +49,23 @@
       (raaOutsideClick)="focusLost(false)"
       [includedElement]="raaAutocomplete"
       class="tw-absolute tw-top-0 tw-left-0 tw-w-full tw-p-0 tw-m-0 tw-overflow-y-auto max-h-17rem tw-bg-raa-white tw-border tw-border-raa-gray-3"
+      id="raa-dropdown"
+      role="listbox"
+      aria-label="lista"
       [ngClass]="{ 'dropdown-is-above': dropdownIsAbove, 'dropdown-is-below': !dropdownIsAbove }"
     >
       <li
         #dropdownItem
         *ngFor="let item of filteredDomainValues; let rowIndex = index"
-        class="tw-p-3 tw-cursor-default"
+        [id]="item.id.toString() + rowIndex"
+        class="tw-p-3 tw-cursor-default raa-select-dropdown-item"
+        role="option"
         (mouseover)="hoverIndex = noResults ? -1 : rowIndex"
         (click)="select(item)"
         [ngClass]="{
-          'hover:tw-bg-raa-gray-2': !noResults,
-          'tw-bg-raa-gray-2': item.id === value || hoverIndex === rowIndex
+          hovered: !noResults,
+          selected: item.id === value,
+          hovered: hoverIndex === rowIndex
         }"
       >
         <span>{{ item.displayValue }}</span>
