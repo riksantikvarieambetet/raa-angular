@@ -1,5 +1,5 @@
 <div #raaAutocomplete class="tw-flex tw-flex-col tw-bg-transparent">
-  <div class="tw-flex tw-items-center" [ngClass]="{ disabled: disabled }" aria-owns="raa-dropdown" role="combobox">
+  <div class="tw-flex tw-items-center" [ngClass]="{ disabled: disabled }">
     <input
       #inputField
       [attr.aria-expanded]="showDropdown"
@@ -8,6 +8,9 @@
       type="text"
       autocomplete="off"
       aria-autocomplete="list"
+      aria-owns="raa-dropdown"
+      role="combobox"
+      aria-haspopup="true"
       [attr.aria-activedescendant]="activeItem?.id"
       [placeholder]="placeholder"
       [requestFocus]="setFocusToInputField"
@@ -57,7 +60,6 @@
         [id]="item.id.toString() + rowIndex"
         class="tw-p-3 tw-cursor-default raa-select-dropdown-item"
         role="option"
-        [attr.aria-selected]="item.id === value"
         (mouseover)="hoverIndex = noResults ? -1 : rowIndex"
         (click)="select(item)"
         [ngClass]="{
