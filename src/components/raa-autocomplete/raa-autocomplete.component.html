@@ -63,9 +63,8 @@
         (mouseover)="hoverIndex = noResults ? -1 : rowIndex"
         (click)="select(item)"
         [ngClass]="{
-          hovered: !noResults,
-          selected: item.id === value,
-          hovered: hoverIndex === rowIndex
+          hovered: hoverIndex === rowIndex,
+          selected: item.id === value
         }"
       >
         <span>{{ item.displayValue }}</span>
