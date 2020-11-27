@@ -91,6 +91,7 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
   dropdownIsAbove = false;
   noResults = true;
 
+  activeItem: Element | null;
   domainValues: DomainValue[] = [];
   filteredDomainValues: DomainValue[] = [];
   setFocusToInputField = new EventEmitter();
@@ -123,6 +124,8 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
     if (changes.clearInputField && changes.clearInputField.currentValue === true) {
       this.focusLost(true);
     }
+
+    console.log(this.showDropdown);
 
     if (changes.domain) {
       this.domainValues = this.mapDomainValues();
@@ -319,9 +322,27 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
 
   handleKeyPressed(event: KeyboardEvent) {
     const keyCode = this.dispatchForCode(event);
+    const activeItem = this.dropdownItems
+      .toArray()
+      .find((element) => (element.nativeElement as HTMLElement).classList.contains('hovered'));
+
+    let previousSiblingElement: Element | null = null;
+    let nextSiblingElement: Element | null = null;
+
+    if (activeItem) {
+      previousSiblingElement = (activeItem.nativeElement as HTMLElement).previousElementSibling;
+      nextSiblingElement = (activeItem.nativeElement as HTMLElement).nextElementSibling;
+    }
 
     if (keyCode === 'ArrowDown') {
       event.preventDefault();
+
+      console.log(activeItem);
+
+      // Sätt activeItem till första värde för att skärmläsare ska förstå.
+      if (!activeItem && this.dropdownItems.first) {
+        this.activeItem = this.dropdownItems.first.nativeElement;
+      }
 
       if (this.openDropdownIfClosed() || (this.filteredDomainValues.length && this.filteredDomainValues[0].id === -1)) {
         return;
@@ -330,6 +351,10 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
       if (this.hoverIndex < this.filteredDomainValues.length - 1) {
         this.hoverIndex += 1;
         this.scrollDropdownItemIntoView('down');
+      }
+
+      if (activeItem && nextSiblingElement) {
+        this.activeItem = nextSiblingElement;
       }
     } else if (keyCode === 'ArrowUp') {
       event.preventDefault();
@@ -341,6 +366,10 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
       if (this.hoverIndex > 0) {
         this.hoverIndex -= 1;
         this.scrollDropdownItemIntoView('up');
+      }
+
+      if (activeItem && previousSiblingElement) {
+        this.activeItem = previousSiblingElement;
       }
     } else if (keyCode === 'Enter') {
       if (!this.domain.length) {
@@ -380,6 +409,7 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
   focusLost = (clearInput: boolean = true) => {
     // sätter visningsvärde till valt värde, detta om användaren börjar justera men avbryter
     if (clearInput) {
+      this.activeItem = null;
       this.domainValues = [];
       this.domain = [];
       this.filteredDomainValues = [];

@@ -3,6 +3,9 @@
 $border-size: 1px;
 $border-radius-size: 2px;
 
+$dropdown-item-hover-bg-color: $raa-gray-2;
+$dropdown-item-selected-bg-color: $raa-gray-2;
+
 .max-h-17rem {
   max-height: 17rem;
 }
@@ -48,4 +51,16 @@ $border-radius-size: 2px;
 
 .right-2rem {
   right: 2rem;
+}
+
+.raa-select-dropdown-item {
+  cursor: default;
+
+  &.selected {
+    background-color: $dropdown-item-selected-bg-color;
+  }
+
+  &.hovered {
+    background-color: $dropdown-item-hover-bg-color;
+  }
 }
