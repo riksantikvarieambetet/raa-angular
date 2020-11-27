@@ -241,7 +241,7 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
 
   private scrollDropdownItemIntoView(direction: 'up' | 'down') {
     const hovered = this.dropdownItems.find((item) =>
-      (item.nativeElement as HTMLElement).classList.contains('tw-bg-raa-gray-2')
+      (item.nativeElement as HTMLElement).classList.contains('hovered')
     );
 
     if (hovered && hovered.nativeElement) {
