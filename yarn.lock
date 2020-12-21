@@ -8293,10 +8293,10 @@ ts-node@~8.10.1:
     source-map-support "^0.5.17"
     yn "3.1.1"
 
-tsickle@~0.38.1:
-  version "0.38.1"
-  resolved "https://artifactory.raa.se:443/artifactory/api/npm/raa-npm-prod/tsickle/-/tsickle-0.38.1.tgz#30762db759d40c435943093b6972c7f2efb384ef"
-  integrity sha1-MHYtt1nUDENZQwk7aXLH8u+zhO8=
+tsickle@~0.39.1:
+  version "0.39.1"
+  resolved "https://artifactory.raa.se:443/artifactory/api/npm/raa-npm-prod/tsickle/-/tsickle-0.39.1.tgz#7ccf672cde5b430f5dd0b281ee49e170ef390ff9"
+  integrity sha1-fM9nLN5bQw9d0LKB7knhcO85D/k=
 
 tslib@1.11.1:
   version "1.11.1"
@@ -8307,6 +8307,11 @@ tslib@^1.10.0, tslib@^1.13.0, tslib@^1.8.1, tslib@^1.9.0, tslib@^1.9.3:
   version "1.13.0"
   resolved "https://artifactory.raa.se:443/artifactory/api/npm/raa-npm-prod/tslib/-/tslib-1.13.0.tgz#c881e13cc7015894ed914862d276436fa9a47043"
   integrity sha1-yIHhPMcBWJTtkUhi0nZDb6mkcEM=
+
+tslib@^2.0.3:
+  version "2.0.3"
+  resolved "https://artifactory.raa.se:443/artifactory/api/npm/raa-npm-prod/tslib/-/tslib-2.0.3.tgz#8e0741ac45fc0c226e58a17bfc3e64b9bc6ca61c"
+  integrity sha1-jgdBrEX8DCJuWKF7/D5kubxsphw=
 
 tslint@~6.1.0:
   version "6.1.3"
