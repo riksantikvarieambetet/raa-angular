@@ -5,7 +5,7 @@
       (raaOutsideClick)="propagateOutsideClick()"
     >
       <div class="tw-w-full tw-mb-4">
-        <h4 *ngIf="header" class="tw-mt-4 tw-pr-4 tw-mb-4">{{ header }}</h4>
+        <h4 *ngIf="header" class="tw-heading-sm tw-mt-4 tw-pr-4 tw-mb-4">{{ header }}</h4>
         <ng-content></ng-content>
       </div>
 
@@ -18,7 +18,7 @@
           Ja
         </button>
 
-        <button #cancelButton *ngIf="cancel" (click)="cancel()" class="tw-mr-4 raa-button raa-button-cancel flex-1-0-0">
+        <button #cancelButton *ngIf="cancel" (click)="cancel()" class="raa-button raa-button-cancel flex-1-0-0">
           Avbryt
         </button>
 
