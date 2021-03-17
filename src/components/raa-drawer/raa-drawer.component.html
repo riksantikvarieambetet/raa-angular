@@ -1,0 +1,113 @@
+<div
+  [@drawerState]="{
+    value: drawerState,
+    params: {
+      translateY: translateAnimation
+    }
+  }"
+  (@drawerState.start)="animationDone = false"
+  (@drawerState.done)="animationDone = true"
+  [ngClass]="{
+    'raa-drawer-fullscreen': drawerSize === 'fullscreen',
+    'raa-drawer-large': drawerSize === 'large',
+    'raa-drawer-medium': drawerSize === 'medium',
+    'raa-drawer-small': drawerSize === 'small',
+    'raa-drawer-xsmall': drawerSize === 'xsmall',
+    'tw-left-0': position === 'left',
+    'tw-right-0': position === 'right',
+    'tw-top-16 md:tw-top-20': hasTopNavigation,
+    'tw-top-0': !hasTopNavigation
+  }"
+  class="tw-absolute tw-bottom-0 tw-h-auto tw-z-50 tw-bg-raa-white md:raa-unset-min-width tw-border tw-border-raa-gray-3 tw-border-t-0"
+  role="region"
+  aria-label="Sidomeny"
+>
+  <div class="tw-flex tw-flex-col tw-relative tw-h-full tw-flex-1">
+    <!--För mobiler-->
+    <div
+      *ngIf="drawerState === 'closed' && animationDone"
+      class="tw-flex tw-items-center md:tw-hidden tw-cursor-pointer tw-px-4 tw-w-full tw-flex tw-items-center calc-height"
+      (click)="toggleDrawer()"
+      (swipeup)="toggleDrawer()"
+    >
+      <p class="tw-flex-1 tw-text-left">{{ closedDrawerText }}</p>
+      <p class="tw-text-center">
+        <span class="raa-icon raa-icon-arrow-up tw-text-raa-orange tw-text-size-2.5"></span>
+      </p>
+    </div>
+
+    <button
+      *ngIf="handleIsVisible"
+      type="button"
+      id="toggle-button"
+      [attr.aria-label]="isDrawerOpen() ? 'göm sidpanel' : 'öppna sidpanel'"
+      [ngClass]="{ 'tw-border-raa-gray-3': isDrawerOpen(), 'tw-border-raa-gray-5': !isDrawerOpen() && animationDone }"
+      class="tw-hidden tw-pointer-events-auto raa-button-focus tw-bg-raa-white md:tw-flex tw-rounded-tr tw-rounded-br tw-flex tw-absolute tw-top-12 toggle-button-right tw-justify-center tw-items-center tw-h-12 tw-w-6 tw-border tw-border-l-0 tw-text-raa-orange tw-cursor-pointer"
+      (click)="toggleDrawer()"
+    >
+      <span *ngIf="isDrawerOpen()" class="raa-icon-arrow-left tw-text-size-1.75" aria-hidden="true"></span>
+      <span *ngIf="!isDrawerOpen()" class="raa-icon-arrow-right tw-text-size-1.75" aria-hidden="true"></span>
+    </button>
+
+    <div *ngIf="!hideTopButtons && drawerState == 'open'" class="tw-flex">
+      <div
+        class="tw-flex tw-py-1 tw-px-4 tw-w-full"
+        [ngClass]="{
+          'tw-justify-end': hideLeftButton,
+          'tw-justify-between': !hideLeftButton && !hideTopButtons,
+          'tw-justify-center': hideTopButtons
+        }"
+      >
+        <!--        [tabIndex]="drawerState === 'closed' ? -1 : 0"-->
+        <button
+          *ngIf="!hideLeftButton"
+          type="button"
+          (click)="leftButtonClicked.emit()"
+          class="tw-flex tw-items-center raa-link tw-uppercase"
+        >
+          <span class="raa-icon raa-icon-arrow-left" aria-hidden="true"></span>
+          <span class="">{{ leftButtonText }}</span>
+        </button>
+
+        <!--        [tabIndex]="drawerState === 'closed' ? -1 : 0"-->
+
+        <button
+          *ngIf="!hideMiddleButton"
+          class="raa-link tw-uppercase tw-text-size-2.5"
+          (click)="toggleDrawer()"
+          [ngClass]="{ 'tw-visible': !hideOnLargeScreen, 'md:tw-invisible': hideOnLargeScreen }"
+        >
+          <span class="raa-icon raa-icon-arrow-down"></span>
+        </button>
+
+        <!--        [tabIndex]="drawerState === 'closed' ? -1 : 0"-->
+
+        <button
+          class="tw-text-raa-orange raa-link tw-px-1 tw-uppercase"
+          (click)="close()"
+          [ngClass]="{ 'tw-flex': !hideTopButtons, 'tw-hidden': hideTopButtons }"
+        >
+          <span>{{ rightButtonText }}</span>
+        </button>
+      </div>
+    </div>
+    <!--    [ngClass]="{ 'tw-hidden': !isDrawerOpen() && animationDone }"-->
+
+    <div class="tw-h-full md:tw-visible tw-bg-raa-white tw-overflow-auto">
+      <ng-content></ng-content>
+    </div>
+
+    <!--    <button-->
+    <!--      *ngIf="handleIsVisible"-->
+    <!--      [attr.aria-label]="isDrawerOpen() ? 'göm sidpanel' : 'öppna sidpanel'"-->
+    <!--      type="button"-->
+    <!--      id="toggle-button"-->
+    <!--      [ngClass]="{ 'tw-border-raa-gray-3': isDrawerOpen(), 'tw-border-raa-gray-5': !isDrawerOpen() && animationDone }"-->
+    <!--      class="tw-bg-raa-white hover:tw-bg-raa-gray-2 tw-border tw-border-solid tw-border-raa-gray-3 tw-text-raa-gray-5 hide-button raa-button-focus"-->
+    <!--      (click)="toggleHide()"-->
+    <!--    >-->
+    <!--      <span *ngIf="isDrawerOpen()" class="raa-icon-arrow-left tw-text-size-1.75" aria-hidden="true"></span>-->
+    <!--      <span *ngIf="!isDrawerOpen()" class="raa-icon-arrow-right tw-text-size-1.75" aria-hidden="true"></span>-->
+    <!--    </button>-->
+  </div>
+</div>

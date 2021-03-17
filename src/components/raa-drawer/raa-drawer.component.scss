@@ -1,0 +1,21 @@
+$toggle-button-right: 1.5rem;
+
+.toggle-button-right {
+  right: -$toggle-button-right;
+}
+
+.calc-height {
+  height: 10%;
+}
+
+.hide-button {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1.5rem;
+  top: 2.7rem;
+  right: -1.5rem;
+  height: 3rem;
+  cursor: pointer;
+}

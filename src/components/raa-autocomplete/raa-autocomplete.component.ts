@@ -13,7 +13,7 @@ import {
   ElementRef,
   OnDestroy,
 } from '@angular/core';
-import { takeUntil } from 'rxjs/operators';
+// import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
 const ignoreOpenOnKeyCodes: { [key: string]: boolean } = {
@@ -117,7 +117,7 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
   }
 
   ngAfterViewInit() {
-    this.dropdownItems.changes.pipe(takeUntil(this.ngUnsubscribe)).subscribe(() => this.handleDropdownItemsChanged());
+    // this.dropdownItems.changes.pipe(takeUntil(this.ngUnsubscribe)).subscribe(() => this.handleDropdownItemsChanged());
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -142,28 +142,28 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
     this.ngUnsubscribe.complete();
   }
 
-  private handleDropdownItemsChanged() {
-    if (this.scrollToSelected) {
-      this.scrollToSelected = false;
+  // private handleDropdownItemsChanged() {
+  //   if (this.scrollToSelected) {
+  //     this.scrollToSelected = false;
+  //
+  //     const selectedEl = this.findSelectedDropdownItem();
+  //
+  //     if (selectedEl) {
+  //       this.scrollToDropdownItem(selectedEl);
+  //     }
+  //   }
+  // }
 
-      const selectedEl = this.findSelectedDropdownItem();
+  // private findSelectedDropdownItem(): HTMLElement | undefined {
+  //   return this.dropdownItems
+  //     .map((elRef) => elRef.nativeElement as HTMLElement)
+  //     .filter((el) => el.classList.contains('selected'))[0];
+  // }
 
-      if (selectedEl) {
-        this.scrollToDropdownItem(selectedEl);
-      }
-    }
-  }
-
-  private findSelectedDropdownItem(): HTMLElement | undefined {
-    return this.dropdownItems
-      .map((elRef) => elRef.nativeElement as HTMLElement)
-      .filter((el) => el.classList.contains('selected'))[0];
-  }
-
-  private scrollToDropdownItem(dropdownItem: HTMLElement) {
-    const dropdownEl = this.dropdown.nativeElement as HTMLElement;
-    dropdownEl.scrollTop = dropdownItem.offsetTop;
-  }
+  // private scrollToDropdownItem(dropdownItem: HTMLElement) {
+  //   const dropdownEl = this.dropdown.nativeElement as HTMLElement;
+  //   dropdownEl.scrollTop = dropdownItem.offsetTop;
+  // }
 
   private openDropdownIfClosed() {
     if (!this.showDropdown) {

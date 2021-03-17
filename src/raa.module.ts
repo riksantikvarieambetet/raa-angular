@@ -18,6 +18,7 @@ import { RaaNavigationBarComponent } from './components/raa-navigation-bar/raa-n
 import { RaaBottomDialogComponent } from './components/raa-bottom-dialog/raa-bottom-dialog.component';
 import { RaaPaginatorComponent } from './components/raa-paginator/raa-paginator.component';
 import { RaaAutocompleteComponent } from './components/raa-autocomplete/raa-autocomplete.component';
+import { RaaDrawerComponent } from './components/raa-drawer/raa-drawer.component';
 
 // Directives
 import { OutsideClickDirective } from './directives/raa-outside-click.directive';
@@ -51,6 +52,7 @@ import { A11yModule } from '@angular/cdk/a11y';
     RaaBottomDialogComponent,
     RaaPaginatorComponent,
     RaaAutocompleteComponent,
+    RaaDrawerComponent,
   ],
   exports: [
     RaaSelectComponent,
@@ -72,6 +74,7 @@ import { A11yModule } from '@angular/cdk/a11y';
     RaaPaginatorComponent,
     NgxPaginationModule,
     RaaAutocompleteComponent,
+    RaaDrawerComponent,
   ],
   providers: [OrgnummerPipe],
 })
