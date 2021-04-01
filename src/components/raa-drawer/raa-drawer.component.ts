@@ -65,6 +65,8 @@ export class RaaDrawerComponent implements OnInit, OnDestroy {
 
   animationDone = false;
   translateAnimation = '';
+  leftDrawerAnimation = { direction: 'X', percent: this.position === 'left' ? -100 : 100 };
+  rightDrawerAnimation = { direction: 'X', percent: this.position === 'left' ? -100 : 100 };
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
@@ -79,7 +81,7 @@ export class RaaDrawerComponent implements OnInit, OnDestroy {
     if (window.innerWidth <= MOBILE_WINDOW_WIDTH_LIMIT) {
       this.setAnimation({ direction: 'Y', percent: 100 });
     } else {
-      this.setAnimation({ direction: 'X', percent: this.position === 'left' ? -100 : 100 });
+      this.setAnimation();
     }
   }
 
@@ -95,10 +97,7 @@ export class RaaDrawerComponent implements OnInit, OnDestroy {
         percent: 90,
       });
     } else {
-      this.setAnimation({
-        direction: 'X',
-        percent: -100,
-      });
+      this.setAnimation();
     }
 
     this.drawerState = this.drawerState === DRAWER_OPEN ? DRAWER_CLOSED : DRAWER_OPEN;
@@ -117,10 +116,7 @@ export class RaaDrawerComponent implements OnInit, OnDestroy {
         percent: 100,
       });
     } else {
-      this.setAnimation({
-        direction: 'X',
-        percent: -100,
-      });
+      this.setAnimation();
     }
 
     this.drawerState = DRAWER_CLOSED;
