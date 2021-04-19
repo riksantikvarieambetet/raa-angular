@@ -26,14 +26,16 @@
     <!--För mobiler-->
     <div
       *ngIf="drawerState === 'closed' && animationDone"
-      class="tw-flex tw-items-center md:tw-hidden tw-cursor-pointer tw-px-4 tw-w-full tw-flex tw-items-center calc-height"
+      class="tw-flex tw-items-center tw- md:tw-hidden tw-cursor-pointer tw-px-4 tw-w-full tw-flex tw-items-center calc-height bottom-modal"
       (click)="toggleDrawer()"
       (swipeup)="toggleDrawer()"
     >
-      <p class="tw-flex-1 tw-text-left">{{ closedDrawerText }}</p>
-      <p class="tw-text-center">
+      <!--      <p class="tw-flex-1 tw-text-left">{{ closedDrawerText }}</p>-->
+      <!--      <ng-container *ngTemplateOutlet="model.template; context: { data : model}"></ng-container>-->
+      <ng-container *ngTemplateOutlet="closedDrawerTemplate"></ng-container>
+      <button class="tw-text-center">
         <span class="raa-icon raa-icon-arrow-up tw-text-raa-orange tw-text-size-2.5"></span>
-      </p>
+      </button>
     </div>
 
     <button
@@ -93,7 +95,7 @@
     </div>
     <!--    [ngClass]="{ 'tw-hidden': !isDrawerOpen() && animationDone }"-->
 
-    <div class="tw-h-full md:tw-visible tw-bg-raa-white tw-overflow-auto">
+    <div class="tw-h-full tw-bg-raa-white tw-overflow-auto">
       <ng-content></ng-content>
     </div>
 

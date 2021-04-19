@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, Output, EventEmitter, OnInit, HostListener } from '@angular/core';
+import { Component, Input, OnDestroy, Output, EventEmitter, OnInit, HostListener, TemplateRef } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Subject } from 'rxjs';
 
@@ -7,8 +7,7 @@ export type DrawerState = 'open' | 'closed';
 export type DrawerPosition = 'left' | 'right';
 const DRAWER_OPEN: DrawerState = 'open';
 const DRAWER_CLOSED: DrawerState = 'closed';
-export const MOBILE_WINDOW_WIDTH_LIMIT = 520;
-export const MEDIUM_WINDOW_WIDTH_LIMIT = 570;
+export const MOBILE_WINDOW_WIDTH_LIMIT = 570;
 
 @Component({
   selector: 'raa-drawer',
@@ -44,6 +43,8 @@ export class RaaDrawerComponent implements OnInit, OnDestroy {
   @Input() hasTopNavigation = true;
   @Input() closedDrawerText = 'Stängd drawer-text';
 
+  @Input() closedDrawerTemplate: TemplateRef<any>;
+
   @Input() hideTopButtons = false;
   @Input() hideLeftButton = false;
   @Input() hideMiddleButton = false;
@@ -62,6 +63,7 @@ export class RaaDrawerComponent implements OnInit, OnDestroy {
   @Output() leftButtonClicked = new EventEmitter<void>();
   @Output() middleButtonClicked = new EventEmitter<void>();
   @Output() rightButtonClicked = new EventEmitter<void>();
+  //@Output() animationDone = new EventEmitter<boolean>(); // TODO vi behövr ha ut denna till arkreg så att vi kan reagera på när animationen är klar
 
   animationDone = false;
   translateAnimation = '';
