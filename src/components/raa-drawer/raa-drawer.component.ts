@@ -1,12 +1,13 @@
 import { Component, Input, OnDestroy, Output, EventEmitter, OnInit, HostListener, TemplateRef } from '@angular/core';
-import { animate, state, style, transition, trigger } from '@angular/animations';
+import { animate, animateChild, group, query, state, style, transition, trigger } from '@angular/animations';
 import { Subject } from 'rxjs';
 
 export type DrawerSize = 'xsmall' | 'small' | 'medium' | 'large' | 'fullscreen';
-export type DrawerState = 'open' | 'closed';
+export type DrawerState = 'open' | 'closed' | 'hidden';
 export type DrawerPosition = 'left' | 'right';
 const DRAWER_OPEN: DrawerState = 'open';
 const DRAWER_CLOSED: DrawerState = 'closed';
+const DRAWER_HIDDEN: DrawerState = 'hidden';
 export const MOBILE_WINDOW_WIDTH_LIMIT = 570;
 
 @Component({
@@ -24,12 +25,52 @@ export const MOBILE_WINDOW_WIDTH_LIMIT = 570;
       state(
         DRAWER_CLOSED,
         style({
-          transform: '{{translateY}}',
+          transform: '{{translate}}',
         }),
-        { params: { translateY: 'translateY(-100%)' } }
+        { params: { translate: 'translateY(100%)' } }
       ),
-      transition(`${DRAWER_OPEN} => ${DRAWER_CLOSED}`, animate('250ms ease-in')),
-      transition(`${DRAWER_CLOSED} => ${DRAWER_OPEN}`, animate('250ms ease-out')),
+      state(
+        DRAWER_HIDDEN,
+        style({
+          transform: '{{translate}}',
+        }),
+        { params: { translate: 'translateY(100%)' } }
+      ),
+      transition(`${DRAWER_OPEN} => ${DRAWER_CLOSED}`, [
+        group([query('@fadeContent', animateChild()), animate('1000ms ease-in')]),
+      ]),
+      transition(`${DRAWER_CLOSED} => ${DRAWER_OPEN}`, [
+        group([query('@fadeContent', animateChild()), animate('1000ms ease-in')]),
+      ]),
+      transition(`${DRAWER_OPEN} => ${DRAWER_HIDDEN}`, [
+        group([query('@fadeContent', animateChild()), animate('1000ms ease-in')]),
+      ]),
+      transition(`${DRAWER_HIDDEN} => ${DRAWER_OPEN}`, [
+        group([query('@fadeContent', animateChild()), animate('1000ms ease-in')]),
+      ]),
+    ]),
+    trigger('fadeContent', [
+      state(
+        DRAWER_OPEN,
+        style({
+          opacity: 1,
+        })
+      ),
+      state(
+        DRAWER_CLOSED,
+        style({
+          opacity: 1,
+        })
+      ),
+      state(
+        DRAWER_HIDDEN,
+        style({
+          opacity: 0,
+        })
+      ),
+      transition(`${DRAWER_OPEN} => ${DRAWER_HIDDEN}`, animate(1000, style({ opacity: 0 }))),
+      transition(`${DRAWER_OPEN} => ${DRAWER_CLOSED}`, animate(1000, style({ opacity: 1 }))),
+      transition(`${DRAWER_HIDDEN} => ${DRAWER_OPEN}`, animate(1000, style({ opacity: 1 }))),
     ]),
   ],
 })
@@ -37,38 +78,27 @@ export class RaaDrawerComponent implements OnInit, OnDestroy {
   private ngUnsubscribe: Subject<void> = new Subject();
 
   @Input() drawerSize: DrawerSize = 'small';
-  @Input() positionTop = 0;
   @Input() drawerState: DrawerState = DRAWER_OPEN;
   @Input() position: DrawerPosition = 'left';
-  @Input() hasTopNavigation = true;
-  @Input() closedDrawerText = 'Stängd drawer-text';
-
   @Input() closedDrawerTemplate: TemplateRef<any>;
-
   @Input() hideTopButtons = false;
   @Input() hideLeftButton = false;
-  @Input() hideMiddleButton = false;
+  @Input() hideCenterButton = false;
   @Input() hideRightButton = false;
   @Input() hideOnLargeScreen = false;
-
   @Input() handleIsVisible = true;
 
   @Input() leftButtonText = '';
-  @Input() middleButtonText = '';
+  @Input() centerButtonText = '';
   @Input() rightButtonText = '';
-  @Input() closedDrawerLeftButtonText = 'Rensa';
 
   @Output() drawerStateChange = new EventEmitter<DrawerState>();
-
   @Output() leftButtonClicked = new EventEmitter<void>();
-  @Output() middleButtonClicked = new EventEmitter<void>();
   @Output() rightButtonClicked = new EventEmitter<void>();
-  //@Output() animationDone = new EventEmitter<boolean>(); // TODO vi behövr ha ut denna till arkreg så att vi kan reagera på när animationen är klar
+  @Output() animationDoneEmitter = new EventEmitter<boolean>();
 
-  animationDone = false;
+  animationInProgress = false;
   translateAnimation = '';
-  leftDrawerAnimation = { direction: 'X', percent: this.position === 'left' ? -100 : 100 };
-  rightDrawerAnimation = { direction: 'X', percent: this.position === 'left' ? -100 : 100 };
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
@@ -102,13 +132,17 @@ export class RaaDrawerComponent implements OnInit, OnDestroy {
       this.setAnimation();
     }
 
-    this.drawerState = this.drawerState === DRAWER_OPEN ? DRAWER_CLOSED : DRAWER_OPEN;
+    this.drawerState = this.drawerState === DRAWER_OPEN ? DRAWER_HIDDEN : DRAWER_OPEN;
     this.drawerStateChange.emit(this.drawerState);
-    this.middleButtonClicked.emit();
   }
 
   isDrawerOpen() {
     return this.drawerState === DRAWER_OPEN;
+  }
+
+  animationDone() {
+    this.animationInProgress = false;
+    this.animationDoneEmitter.emit();
   }
 
   close() {
@@ -122,7 +156,14 @@ export class RaaDrawerComponent implements OnInit, OnDestroy {
     }
 
     this.drawerState = DRAWER_CLOSED;
-    this.rightButtonClicked.emit();
+
+    // Skicka inte eventet att knappen har klickats på förrän animeringen är färdig
+    const interval = setInterval(() => {
+      if (!this.animationInProgress) {
+        this.rightButtonClicked.emit();
+        clearInterval(interval);
+      }
+    }, 100);
   }
 
   private setAnimation(overrideAnimation?: { direction: 'X' | 'Y'; percent: number }) {

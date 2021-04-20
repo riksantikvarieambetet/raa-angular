@@ -1,7 +1,9 @@
-$toggle-button-right: 1.5rem;
+.toggle-button-left {
+  left: -1.5rem;
+}
 
 .toggle-button-right {
-  right: -$toggle-button-right;
+  right: -1.5rem;
 }
 
 .calc-height {
