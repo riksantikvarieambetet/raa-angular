@@ -37,16 +37,16 @@ export const MOBILE_WINDOW_WIDTH_LIMIT = 570;
         { params: { translate: 'translateY(100%)' } }
       ),
       transition(`${DRAWER_OPEN} => ${DRAWER_CLOSED}`, [
-        group([query('@fadeContent', animateChild()), animate('1000ms ease-in')]),
+        group([query('@fadeContent', animateChild()), animate('2500ms ease-in')]),
       ]),
       transition(`${DRAWER_CLOSED} => ${DRAWER_OPEN}`, [
-        group([query('@fadeContent', animateChild()), animate('1000ms ease-in')]),
+        group([query('@fadeContent', animateChild()), animate('250ms ease-in')]),
       ]),
       transition(`${DRAWER_OPEN} => ${DRAWER_HIDDEN}`, [
-        group([query('@fadeContent', animateChild()), animate('1000ms ease-in')]),
+        group([query('@fadeContent', animateChild()), animate('250ms ease-in')]),
       ]),
       transition(`${DRAWER_HIDDEN} => ${DRAWER_OPEN}`, [
-        group([query('@fadeContent', animateChild()), animate('1000ms ease-in')]),
+        group([query('@fadeContent', animateChild()), animate('250ms ease-in')]),
       ]),
     ]),
     trigger('fadeContent', [
@@ -68,9 +68,9 @@ export const MOBILE_WINDOW_WIDTH_LIMIT = 570;
           opacity: 0,
         })
       ),
-      transition(`${DRAWER_OPEN} => ${DRAWER_HIDDEN}`, animate(1000, style({ opacity: 0 }))),
-      transition(`${DRAWER_OPEN} => ${DRAWER_CLOSED}`, animate(1000, style({ opacity: 1 }))),
-      transition(`${DRAWER_HIDDEN} => ${DRAWER_OPEN}`, animate(1000, style({ opacity: 1 }))),
+      transition(`${DRAWER_OPEN} => ${DRAWER_HIDDEN}`, animate(250, style({ opacity: 0 }))),
+      transition(`${DRAWER_OPEN} => ${DRAWER_CLOSED}`, animate(250, style({ opacity: 1 }))),
+      transition(`${DRAWER_HIDDEN} => ${DRAWER_OPEN}`, animate(250, style({ opacity: 1 }))),
     ]),
   ],
 })
@@ -87,6 +87,7 @@ export class RaaDrawerComponent implements OnInit, OnDestroy {
   @Input() hideRightButton = false;
   @Input() hideOnLargeScreen = false;
   @Input() handleIsVisible = true;
+  @Input() drawerInvisible = false;
 
   @Input() leftButtonText = '';
   @Input() centerButtonText = '';
@@ -133,7 +134,14 @@ export class RaaDrawerComponent implements OnInit, OnDestroy {
     }
 
     this.drawerState = this.drawerState === DRAWER_OPEN ? DRAWER_HIDDEN : DRAWER_OPEN;
-    this.drawerStateChange.emit(this.drawerState);
+
+    // Skicka inte eventet att drawer har togglats förrän animeringen är färdig
+    const interval = setInterval(() => {
+      if (!this.animationInProgress) {
+        this.drawerStateChange.emit(this.drawerState);
+        clearInterval(interval);
+      }
+    }, 100);
   }
 
   isDrawerOpen() {
