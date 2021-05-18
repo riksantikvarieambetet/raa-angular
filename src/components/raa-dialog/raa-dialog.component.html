@@ -21,13 +21,20 @@
           class="md:tw-w-1/2 raa-button raa-button-cancel"
           [ngClass]="{
             'md:tw-mr-4 tw-mb-2 md:tw-mb-0': proceed && !reverseButtons,
-            'md:tw-ml-4 tw-mt-2 md:tw-mt-0': proceed && reverseButtons
+            'md:tw-ml-4 tw-mt-2 md:tw-mt-0': proceed && reverseButtons,
+            'md:tw-w-full': !proceed
           }"
         >
           {{ cancelButtonText }}
         </button>
 
-        <button *ngIf="proceed" #proceedButton (click)="proceed()" class="md:tw-w-1/2 raa-button raa-button-confirm">
+        <button
+          *ngIf="proceed"
+          #proceedButton
+          (click)="proceed()"
+          class="md:tw-w-1/2 raa-button raa-button-confirm"
+          [ngClass]="{ 'md:tw-w-full': !cancel }"
+        >
           {{ proceedButtonText }}
         </button>
       </div>
