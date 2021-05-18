@@ -16,37 +16,21 @@ import {
   styleUrls: ['./raa-dialog.component.scss'],
 })
 export class RaaDialogComponent implements OnInit, OnDestroy, AfterContentChecked {
-  @Input()
-  yes: Function;
+  @Input() proceed: Function;
+  @Input() cancel: Function;
+  @Input() proceedButtonText = 'Ok';
+  @Input() cancelButtonText = 'Avbryt';
+  @Input() close: Function;
+  @Input() header = '';
+  @Input() width = 20;
+  @Input() reverseButtons = false;
 
-  @Input()
-  no: Function;
+  @Output() outsideClick = new EventEmitter<void>();
 
-  @Input()
-  ok: Function;
+  @ViewChild('proceedButton')
+  proceedButton: ElementRef;
 
-  @Input()
-  cancel: Function;
-
-  @Input()
-  close: Function;
-
-  @Input()
-  header = '';
-
-  @Output()
-  outsideClick = new EventEmitter();
-
-  @ViewChild('yesButton', { static: false })
-  yesButton: ElementRef;
-
-  @ViewChild('noButton', { static: false })
-  noButton: ElementRef;
-
-  @ViewChild('okButton', { static: false })
-  okButton: ElementRef;
-
-  @ViewChild('cancelButton', { static: false })
+  @ViewChild('cancelButton')
   cancelButton: ElementRef;
 
   focusElement: ElementRef;
@@ -62,16 +46,12 @@ export class RaaDialogComponent implements OnInit, OnDestroy, AfterContentChecke
   ngAfterContentChecked() {
     if (this.cancelButton) {
       this.focusElement = this.cancelButton;
-    } else if (this.okButton) {
-      this.focusElement = this.okButton;
-    } else if (this.noButton) {
-      this.focusElement = this.noButton;
     } else {
-      this.focusElement = this.yesButton;
+      this.focusElement = this.proceedButton;
     }
   }
 
   propagateOutsideClick() {
-    this.outsideClick.emit('click');
+    this.outsideClick.emit();
   }
 }

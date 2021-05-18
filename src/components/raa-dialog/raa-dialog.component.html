@@ -1,35 +1,42 @@
 <div [raaTrapFocus]="focusElement">
   <div class="overlay black-bg-transparent">
     <div
-      class="tw-relative tw-flex tw-flex-col tw-justify-center tw-bg-raa-white tw-rounded tw-p-4 tw-border tw-border-solid tw-border-raa-gray-5 tw-w-80"
+      class="tw-relative tw-flex tw-flex-col tw-justify-center tw-bg-raa-white tw-rounded tw-p-4 tw-border tw-border-solid tw-border-raa-gray-5"
+      [ngStyle]="{ 'width.rem': width }"
       (raaOutsideClick)="propagateOutsideClick()"
     >
       <div class="tw-w-full tw-mb-4">
-        <h4 *ngIf="header" class="tw-heading-sm tw-mt-4 tw-pr-4 tw-mb-4">{{ header }}</h4>
+        <h4 *ngIf="header" class="tw-heading-md tw-my-4 tw-pr-4">{{ header }}</h4>
         <ng-content></ng-content>
       </div>
 
-      <br />
-
-      <div class="tw-flex tw-flex-row tw-justify-start">
-        <button #noButton *ngIf="no" (click)="no()" class="tw-mr-4 raa-button raa-button-cancel flex-1-0-0">Nej</button>
-
-        <button #yesButton *ngIf="yes" (click)="yes()" class="tw-mr-4 raa-button raa-button-confirm flex-1-0-0">
-          Ja
+      <div
+        class="tw-flex tw-flex-col md:tw-flex-row tw-justify-between"
+        [ngClass]="{ 'tw-flex-col-reverse md:tw-flex-row-reverse': reverseButtons }"
+      >
+        <button
+          *ngIf="cancel"
+          #cancelButton
+          (click)="cancel()"
+          class="md:tw-w-1/2 raa-button raa-button-cancel"
+          [ngClass]="{
+            'md:tw-mr-4 tw-mb-2 md:tw-mb-0': proceed && !reverseButtons,
+            'md:tw-ml-4 tw-mt-2 md:tw-mt-0': proceed && reverseButtons
+          }"
+        >
+          {{ cancelButtonText }}
         </button>
 
-        <button #cancelButton *ngIf="cancel" (click)="cancel()" class="raa-button raa-button-cancel flex-1-0-0">
-          Avbryt
+        <button *ngIf="proceed" #proceedButton (click)="proceed()" class="md:tw-w-1/2 raa-button raa-button-confirm">
+          {{ proceedButtonText }}
         </button>
-
-        <button #okButton *ngIf="ok" (click)="ok()" class="raa-button raa-button-confirm flex-1-0-0">Ok</button>
       </div>
 
       <div class="tw-absolute tw-top-0 tw-right-0">
         <button
           *ngIf="close"
           (click)="close()"
-          class="raa-link tw-text-size-1.75 tw-p-0 tw-m-4 tw-text-raa-orange tw-bg-raa-white tw-w-auto tw-border-none raa-icon-close"
+          class="tw-text-size-1.75 tw-p-0 tw-m-4 tw-text-raa-orange tw-bg-raa-white tw-w-auto tw-border-none raa-icon-close raa-button-focus"
         ></button>
       </div>
     </div>
