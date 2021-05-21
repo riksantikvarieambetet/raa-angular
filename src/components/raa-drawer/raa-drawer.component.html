@@ -17,14 +17,14 @@
     'tw-right-0': position === 'right',
     'tw-invisible': drawerInvisible
   }"
-  class="tw-absolute tw-top-0 tw-bottom-0 tw-h-auto tw-z-50 tw-bg-raa-white md:raa-unset-min-width tw-border tw-border-raa-gray-3 tw-border-t-0"
+  class="tw-absolute tw-top-0 tw-bottom-0 tw-h-auto tw-z-50 tw-bg-raa-white raa-drawer-unset-min-width tw-border tw-border-raa-gray-3 tw-border-t-0"
   role="region"
   aria-label="Sidomeny"
+  #drawer
 >
   <!--För mobiler-->
   <div
-    *ngIf="drawerState === 'hidden' && !animationInProgress && closedDrawerTemplate"
-    id="closedMobileDrawer"
+    *ngIf="drawerState === 'minimized' && !animationInProgress && closedDrawerTemplate"
     class="tw-flex tw-justify-between tw-items-center md:tw-hidden tw-cursor-pointer tw-px-4 tw-w-full tw-flex tw-items-center calc-height"
     (click)="toggleDrawer()"
   >
@@ -60,7 +60,7 @@
     <div
       *ngIf="!hideTopButtons"
       [@fadeContent]="drawerState"
-      [ngClass]="{ 'tw-hidden': (drawerState === 'closed' || drawerState === 'hidden') && !animationInProgress }"
+      [ngClass]="{ 'tw-hidden': (drawerState === 'closed' || drawerState === 'minimized') && !animationInProgress }"
       class="tw-flex"
     >
       <div
@@ -93,7 +93,7 @@
 
         <button
           class="tw-text-raa-orange raa-link tw-px-1 tw-uppercase"
-          (click)="close()"
+          (click)="rightButtonClicked.emit()"
           [ngClass]="{ 'tw-flex': !hideTopButtons, 'tw-hidden': hideTopButtons }"
         >
           <span>{{ rightButtonText }}</span>
@@ -104,7 +104,7 @@
     <div
       [@fadeContent]="drawerState"
       class="tw-h-full tw-bg-raa-white tw-overflow-auto"
-      [ngClass]="{ 'tw-hidden': (drawerState === 'hidden' || drawerState === 'closed') && !animationInProgress }"
+      [ngClass]="{ 'tw-hidden': (drawerState === 'minimized' || drawerState === 'closed') && !animationInProgress }"
     >
       <ng-content></ng-content>
     </div>
