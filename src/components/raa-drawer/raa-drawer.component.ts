@@ -4,27 +4,36 @@ import {
   OnDestroy,
   Output,
   EventEmitter,
-  OnInit,
   HostListener,
   TemplateRef,
   ViewChild,
   ElementRef,
   OnChanges,
   SimpleChanges,
+  OnInit,
 } from '@angular/core';
 import { animate, animateChild, group, query, state, style, transition, trigger } from '@angular/animations';
 import { Subject } from 'rxjs';
 
+export type DrawerEventType = 'resize' | 'animation_done';
+export type DrawerPosition = 'left' | 'right';
 export type DrawerSize = 'xsmall' | 'small' | 'medium' | 'large' | 'fullscreen';
 export type DrawerState = 'open' | 'closed' | 'minimized';
-export type DrawerPosition = 'left' | 'right';
 export type DrawerWindowMode = 'desktop' | 'mobile';
 
-export const DRAWER_OPEN: DrawerState = 'open';
+export const DRAWER_ANIMATION_DONE_EVENT: DrawerEventType = 'animation_done';
 export const DRAWER_CLOSED: DrawerState = 'closed';
-export const DRAWER_MINIMIZED: DrawerState = 'minimized';
 export const DRAWER_DESKTOP: DrawerWindowMode = 'desktop';
+export const DRAWER_MINIMIZED: DrawerState = 'minimized';
 export const DRAWER_MOBILE: DrawerWindowMode = 'mobile';
+export const DRAWER_OPEN: DrawerState = 'open';
+export const DRAWER_RESIZE_EVENT: DrawerEventType = 'resize';
+
+export interface DrawerEvent {
+  type: DrawerEventType;
+  mode: DrawerWindowMode;
+  rect: ClientRect;
+}
 
 export const MOBILE_WINDOW_WIDTH_LIMIT = 570;
 
@@ -92,7 +101,7 @@ export const MOBILE_WINDOW_WIDTH_LIMIT = 570;
     ]),
   ],
 })
-export class RaaDrawerComponent implements OnInit, OnDestroy, OnChanges {
+export class RaaDrawerComponent implements OnDestroy, OnChanges, OnInit {
   private ngUnsubscribe: Subject<void> = new Subject();
 
   @Input() drawerSize: DrawerSize = 'small';
@@ -112,35 +121,27 @@ export class RaaDrawerComponent implements OnInit, OnDestroy, OnChanges {
   @Input() rightButtonText = '';
 
   @Output() drawerStateChange = new EventEmitter<DrawerState>();
-  @Output() drawerWindowMode = new EventEmitter<DrawerWindowMode>();
+  @Output() drawerEventEmitter = new EventEmitter<DrawerEvent>();
   @Output() leftButtonClicked = new EventEmitter<void>();
   @Output() rightButtonClicked = new EventEmitter<void>();
-  @Output() animationDoneEmitter = new EventEmitter<ClientRect>();
 
   @ViewChild('drawer') drawer: ElementRef;
 
+  DRAWER_ANIMATION_DONE_EVENT = DRAWER_ANIMATION_DONE_EVENT;
+  drawerWindowMode: DrawerWindowMode;
   animationInProgress = false;
   translateAnimation = '';
 
   @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
-    if (event.target.innerWidth <= MOBILE_WINDOW_WIDTH_LIMIT) {
-      this.drawerWindowMode.emit(DRAWER_MOBILE);
-      this.setAnimation({ direction: 'Y', percent: 100 });
-    } else {
-      this.drawerWindowMode.emit(DRAWER_DESKTOP);
-      this.setAnimation();
-    }
+  onResize() {
+    this.drawerWindowMode = window.innerWidth < MOBILE_WINDOW_WIDTH_LIMIT ? DRAWER_MOBILE : DRAWER_DESKTOP;
+    this.setAnimation();
+    this.emitDrawerEvent(DRAWER_RESIZE_EVENT);
   }
 
   ngOnInit() {
-    if (window.innerWidth <= MOBILE_WINDOW_WIDTH_LIMIT) {
-      this.setAnimation({ direction: 'Y', percent: 100 });
-      this.drawerWindowMode.emit(DRAWER_MOBILE);
-    } else {
-      this.setAnimation();
-      this.drawerWindowMode.emit(DRAWER_DESKTOP);
-    }
+    this.drawerWindowMode = window.innerWidth < MOBILE_WINDOW_WIDTH_LIMIT ? DRAWER_MOBILE : DRAWER_DESKTOP;
+    this.setAnimation();
   }
 
   ngOnDestroy() {
@@ -150,51 +151,34 @@ export class RaaDrawerComponent implements OnInit, OnDestroy, OnChanges {
 
   ngOnChanges(simpleChanges: SimpleChanges) {
     if (simpleChanges.drawerState?.currentValue === DRAWER_CLOSED) {
-      this.close();
+      this.setAnimation();
     }
   }
 
   toggleDrawer() {
-    if (window.innerWidth <= MOBILE_WINDOW_WIDTH_LIMIT) {
-      this.setAnimation({
-        direction: 'Y',
-        percent: 90,
-      });
-    } else {
-      this.setAnimation();
-    }
-
     this.drawerState = this.drawerState === DRAWER_OPEN ? DRAWER_MINIMIZED : DRAWER_OPEN;
     this.drawerStateChange.emit(this.drawerState);
+    this.setAnimation();
   }
 
   isDrawerOpen() {
     return this.drawerState === DRAWER_OPEN;
   }
 
-  animationDone() {
-    this.animationInProgress = false;
-    this.animationDoneEmitter.emit(this.drawer.nativeElement.getBoundingClientRect());
-  }
-
-  private close() {
-    if (window.innerWidth <= MOBILE_WINDOW_WIDTH_LIMIT) {
-      this.setAnimation({
-        direction: 'Y',
-        percent: 100,
+  emitDrawerEvent(type: DrawerEventType) {
+    setTimeout(() => {
+      this.drawerEventEmitter.emit({
+        type,
+        mode: this.drawerWindowMode,
+        rect: this.drawer.nativeElement.getBoundingClientRect(),
       });
-    } else {
-      this.setAnimation();
-    }
+    });
   }
 
-  private setAnimation(overrideAnimation?: { direction: 'X' | 'Y'; percent: number }) {
-    if (overrideAnimation) {
-      this.translateAnimation = `translate${overrideAnimation.direction}(${overrideAnimation.percent}%)`;
-      return;
-    }
-
-    if (window.innerWidth <= MOBILE_WINDOW_WIDTH_LIMIT) {
+  private setAnimation() {
+    if (this.drawerWindowMode === DRAWER_MOBILE && this.drawerState === DRAWER_MINIMIZED) {
+      this.translateAnimation = `translateY(90%)`;
+    } else if (this.drawerWindowMode === DRAWER_MOBILE && this.drawerState === DRAWER_CLOSED) {
       this.translateAnimation = `translateY(100%)`;
     } else {
       this.translateAnimation = `translateX(${this.position === 'left' ? -100 : 100}%)`;

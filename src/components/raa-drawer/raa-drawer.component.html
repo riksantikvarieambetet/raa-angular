@@ -6,7 +6,7 @@
     }
   }"
   (@drawerState.start)="animationInProgress = true"
-  (@drawerState.done)="animationDone()"
+  (@drawerState.done)="emitDrawerEvent(DRAWER_ANIMATION_DONE_EVENT); animationInProgress = false"
   [ngClass]="{
     'raa-drawer-fullscreen': drawerSize === 'fullscreen',
     'raa-drawer-large': drawerSize === 'large',
@@ -25,11 +25,11 @@
   <!--För mobiler-->
   <div
     *ngIf="drawerState === 'minimized' && !animationInProgress && closedDrawerTemplate"
-    class="tw-flex tw-justify-between tw-items-center md:tw-hidden tw-cursor-pointer tw-px-4 tw-w-full tw-flex tw-items-center calc-height"
+    class="tw-flex tw-justify-between tw-items-center md:tw-hidden tw-cursor-pointer tw-px-4 tw-w-full tw-flex tw-items-center height-10-percent"
     (click)="toggleDrawer()"
   >
     <ng-container *ngTemplateOutlet="closedDrawerTemplate"></ng-container>
-    <button class="tw-text-center">
+    <button aria-label="Visa information" class="tw-text-center">
       <span class="raa-icon raa-icon-arrow-up tw-text-raa-orange tw-text-size-2.5"></span>
     </button>
   </div>
@@ -44,7 +44,7 @@
         'toggle-button-left tw-border-r-0': position === 'right',
         'toggle-button-right tw-border-l-0': position === 'left'
       }"
-      class="tw-hidden tw-pointer-events-auto raa-button-focus tw-bg-raa-white md:tw-flex tw-rounded-tr tw-rounded-br tw-flex tw-absolute tw-top-12 tw-justify-center tw-items-center tw-h-12 tw-w-6 tw-border tw-border-raa-gray-3 tw-text-raa-orange tw-cursor-pointer"
+      class="tw-pointer-events-auto raa-button-focus tw-bg-raa-white md:tw-flex tw-rounded-tr tw-rounded-br tw-flex tw-absolute tw-top-12 tw-justify-center tw-items-center tw-h-12 tw-w-6 tw-border tw-border-raa-gray-3 tw-text-raa-orange tw-cursor-pointer"
       (click)="toggleDrawer()"
     >
       <span
