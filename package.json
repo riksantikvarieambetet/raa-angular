@@ -53,7 +53,7 @@
     "ngx-pagination": "^5.0.0",
     "prettier": "^2.0.5",
     "pretty-quick": "^2.0.1",
-    "raa-style": "^5.0.0",
+    "raa-style": "^5.2.0",
     "rxjs": "^6.6.3",
     "ts-node": "~8.10.1",
     "tslib": "^2.0.0",
@@ -62,6 +62,6 @@
     "zone.js": "~0.10.2"
   },
   "peerDependencies": {
-    "raa-style": "^5.0.0"
+    "raa-style": "^5.2.0"
   }
 }

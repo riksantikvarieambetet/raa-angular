@@ -22,12 +22,12 @@ export type DrawerState = 'open' | 'closed' | 'minimized';
 export type DrawerWindowMode = 'desktop' | 'mobile';
 
 export const DRAWER_ANIMATION_DONE_EVENT: DrawerEventType = 'animation_done';
-export const DRAWER_CLOSED: DrawerState = 'closed';
-export const DRAWER_DESKTOP: DrawerWindowMode = 'desktop';
-export const DRAWER_MINIMIZED: DrawerState = 'minimized';
-export const DRAWER_MOBILE: DrawerWindowMode = 'mobile';
-export const DRAWER_OPEN: DrawerState = 'open';
 export const DRAWER_RESIZE_EVENT: DrawerEventType = 'resize';
+export const DRAWER_CLOSED: DrawerState = 'closed';
+export const DRAWER_MINIMIZED: DrawerState = 'minimized';
+export const DRAWER_OPEN: DrawerState = 'open';
+export const DRAWER_DESKTOP: DrawerWindowMode = 'desktop';
+export const DRAWER_MOBILE: DrawerWindowMode = 'mobile';
 
 export interface DrawerEvent {
   type: DrawerEventType;
@@ -107,18 +107,9 @@ export class RaaDrawerComponent implements OnDestroy, OnChanges, OnInit {
   @Input() drawerSize: DrawerSize = 'small';
   @Input() drawerState: DrawerState = DRAWER_OPEN;
   @Input() position: DrawerPosition = 'left';
-  @Input() closedDrawerTemplate: TemplateRef<any>;
-  @Input() hideTopButtons = false;
-  @Input() hideLeftButton = false;
-  @Input() hideCenterButton = false;
-  @Input() hideRightButton = false;
-  @Input() hideOnLargeScreen = false;
+  @Input() minimizedMobileTemplate: TemplateRef<any>;
   @Input() handleIsVisible = true;
   @Input() drawerInvisible = false;
-
-  @Input() leftButtonText = '';
-  @Input() centerButtonText = '';
-  @Input() rightButtonText = '';
 
   @Output() drawerStateChange = new EventEmitter<DrawerState>();
   @Output() drawerEventEmitter = new EventEmitter<DrawerEvent>();
@@ -127,7 +118,6 @@ export class RaaDrawerComponent implements OnDestroy, OnChanges, OnInit {
 
   @ViewChild('drawer') drawer: ElementRef;
 
-  DRAWER_ANIMATION_DONE_EVENT = DRAWER_ANIMATION_DONE_EVENT;
   drawerWindowMode: DrawerWindowMode;
   animationInProgress = false;
   translateAnimation = '';
@@ -150,7 +140,7 @@ export class RaaDrawerComponent implements OnDestroy, OnChanges, OnInit {
   }
 
   ngOnChanges(simpleChanges: SimpleChanges) {
-    if (simpleChanges.drawerState?.currentValue === DRAWER_CLOSED) {
+    if (simpleChanges.drawerState?.currentValue) {
       this.setAnimation();
     }
   }
@@ -176,7 +166,7 @@ export class RaaDrawerComponent implements OnDestroy, OnChanges, OnInit {
   }
 
   private setAnimation() {
-    if (this.drawerWindowMode === DRAWER_MOBILE && this.drawerState === DRAWER_MINIMIZED) {
+    if (this.drawerWindowMode === DRAWER_MOBILE && this.drawerState !== DRAWER_CLOSED) {
       this.translateAnimation = `translateY(90%)`;
     } else if (this.drawerWindowMode === DRAWER_MOBILE && this.drawerState === DRAWER_CLOSED) {
       this.translateAnimation = `translateY(100%)`;

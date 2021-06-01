@@ -5835,11 +5835,6 @@ normalize-range@^0.1.2:
   resolved "https://artifactory.raa.se:443/artifactory/api/npm/raa-npm-prod/normalize-range/-/normalize-range-0.1.2.tgz#2d10c06bdfd312ea9777695a4d28439456b75942"
   integrity sha1-LRDAa9/TEuqXd2laTShDlFa3WUI=
 
-normalize-scss@^7.0.0:
-  version "7.0.1"
-  resolved "https://artifactory.raa.se:443/artifactory/api/npm/raa-npm-prod/normalize-scss/-/normalize-scss-7.0.1.tgz#74485e82bb5d0526371136422a09fdb868ffc1a4"
-  integrity sha1-dEhegrtdBSY3ETZCKgn9uGj/waQ=
-
 normalize-url@^3.0.0:
   version "3.3.0"
   resolved "https://artifactory.raa.se:443/artifactory/api/npm/raa-npm-prod/normalize-url/-/normalize-url-3.3.0.tgz#b2e1c4dc4f7c6d57743df733a4f5978d18650559"
@@ -6980,12 +6975,10 @@ querystringify@^2.1.1:
   resolved "https://artifactory.raa.se:443/artifactory/api/npm/raa-npm-prod/querystringify/-/querystringify-2.2.0.tgz#3345941b4153cb9d082d8eee4cda2016a9aef7f6"
   integrity sha1-M0WUG0FTy50ILY7uTNogFqmu9/Y=
 
-raa-style@^5.0.0:
-  version "5.0.3"
-  resolved "https://artifactory.raa.se:443/artifactory/api/npm/raa-npm-prod/raa-style/-/raa-style-5.0.3.tgz#cf2c12a6977ef8c9793edbb4d8bd1480cf10c047"
-  integrity sha1-zywSppd++Ml5Ptu02L0UgM8QwEc=
-  dependencies:
-    normalize-scss "^7.0.0"
+raa-style@^5.2.0:
+  version "5.2.0"
+  resolved "https://artifactory.raa.se:443/artifactory/api/npm/raa-npm-prod/raa-style/-/raa-style-5.2.0.tgz#f266cfc219fa49b6968bd1d4b3c0ab542200236c"
+  integrity sha1-8mbPwhn6SbaWi9HUs8CrVCIAI2w=
 
 randombytes@^2.0.0, randombytes@^2.0.1, randombytes@^2.0.5, randombytes@^2.1.0:
   version "2.1.0"

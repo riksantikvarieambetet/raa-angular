@@ -6,7 +6,7 @@
     }
   }"
   (@drawerState.start)="animationInProgress = true"
-  (@drawerState.done)="emitDrawerEvent(DRAWER_ANIMATION_DONE_EVENT); animationInProgress = false"
+  (@drawerState.done)="emitDrawerEvent('animation_done'); animationInProgress = false"
   [ngClass]="{
     'raa-drawer-fullscreen': drawerSize === 'fullscreen',
     'raa-drawer-large': drawerSize === 'large',
@@ -24,11 +24,11 @@
 >
   <!--För mobiler-->
   <div
-    *ngIf="drawerState === 'minimized' && !animationInProgress && closedDrawerTemplate"
+    *ngIf="drawerState === 'minimized' && !animationInProgress && minimizedMobileTemplate"
     class="tw-flex tw-justify-between tw-items-center md:tw-hidden tw-cursor-pointer tw-px-4 tw-w-full tw-flex tw-items-center height-10-percent"
     (click)="toggleDrawer()"
   >
-    <ng-container *ngTemplateOutlet="closedDrawerTemplate"></ng-container>
+    <ng-container *ngTemplateOutlet="minimizedMobileTemplate"></ng-container>
     <button aria-label="Visa information" class="tw-text-center">
       <span class="raa-icon raa-icon-arrow-up tw-text-raa-orange tw-text-size-2.5"></span>
     </button>
@@ -58,47 +58,10 @@
       ></span>
     </button>
     <div
-      *ngIf="!hideTopButtons"
       [@fadeContent]="drawerState"
       [ngClass]="{ 'tw-hidden': (drawerState === 'closed' || drawerState === 'minimized') && !animationInProgress }"
-      class="tw-flex"
     >
-      <div
-        class="tw-flex tw-py-1 tw-px-4 tw-w-full"
-        [ngClass]="{
-          'tw-justify-end': hideLeftButton,
-          'tw-justify-between': !hideLeftButton && !hideTopButtons,
-          'tw-justify-center': hideTopButtons
-        }"
-      >
-        <button
-          *ngIf="!hideLeftButton"
-          type="button"
-          (click)="leftButtonClicked.emit()"
-          class="tw-flex tw-items-center raa-link tw-uppercase"
-        >
-          <span class="raa-icon raa-icon-arrow-left" aria-hidden="true"></span>
-          <span>{{ leftButtonText }}</span>
-        </button>
-
-        <!--Mittenknappen har enbart i uppgift att toggla drawern-->
-        <button
-          *ngIf="!hideCenterButton"
-          class="raa-link tw-uppercase"
-          (click)="toggleDrawer()"
-          [ngClass]="{ 'tw-visible': !hideOnLargeScreen, 'md:tw-invisible': hideOnLargeScreen }"
-        >
-          <span>{{ centerButtonText }}</span>
-        </button>
-
-        <button
-          class="tw-text-raa-orange raa-link tw-px-1 tw-uppercase"
-          (click)="rightButtonClicked.emit()"
-          [ngClass]="{ 'tw-flex': !hideTopButtons, 'tw-hidden': hideTopButtons }"
-        >
-          <span>{{ rightButtonText }}</span>
-        </button>
-      </div>
+      <ng-content select="[header]"></ng-content>
     </div>
 
     <div
@@ -106,7 +69,7 @@
       class="tw-h-full tw-bg-raa-white tw-overflow-auto"
       [ngClass]="{ 'tw-hidden': (drawerState === 'minimized' || drawerState === 'closed') && !animationInProgress }"
     >
-      <ng-content></ng-content>
+      <ng-content select="[body]"></ng-content>
     </div>
   </div>
 </div>
