@@ -1,0 +1,57 @@
+.toggle-button-left {
+  left: -1.5rem;
+}
+
+.toggle-button-right {
+  right: -1.5rem;
+}
+
+.height-10-percent {
+  height: 10%;
+}
+
+.hide-button {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1.5rem;
+  top: 2.7rem;
+  right: -1.5rem;
+  height: 3rem;
+  cursor: pointer;
+}
+
+.raa-drawer-xsmall {
+  min-width: 100vw;
+  width: 19.5rem;
+  max-width: 90%;
+}
+
+.raa-drawer-small {
+  min-width: 100vw;
+  width: 35rem;
+  max-width: 90%;
+}
+
+.raa-drawer-medium {
+  min-width: 100vw;
+  width: 42rem;
+  max-width: 90%;
+}
+
+.raa-drawer-large {
+  min-width: 100vw;
+  width: 65rem;
+  max-width: 90%;
+}
+
+.raa-drawer-fullscreen {
+  min-width: 100vw;
+}
+
+@media (min-width: 570px) {
+  .raa-drawer-unset-min-width {
+    min-width: unset;
+  }
+}

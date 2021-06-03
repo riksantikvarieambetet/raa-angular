@@ -15,3 +15,17 @@ export { RaaNavigationBarComponent } from './components/raa-navigation-bar/raa-n
 export { RaaBottomDialogComponent } from './components/raa-bottom-dialog/raa-bottom-dialog.component';
 export { RaaPaginatorComponent } from './components/raa-paginator/raa-paginator.component';
 export { RaaAutocompleteComponent } from './components/raa-autocomplete/raa-autocomplete.component';
+export {
+  DrawerSize,
+  DrawerState,
+  DrawerPosition,
+  DrawerWindowMode,
+  DrawerEvent,
+  DRAWER_OPEN,
+  DRAWER_CLOSED,
+  DRAWER_MINIMIZED,
+  DRAWER_DESKTOP,
+  DRAWER_MOBILE,
+  DRAWER_RESIZE_EVENT,
+  DRAWER_ANIMATION_DONE_EVENT,
+} from './components/raa-drawer/raa-drawer.component';
