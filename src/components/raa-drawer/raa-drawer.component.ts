@@ -123,8 +123,9 @@ export class RaaDrawerComponent implements OnDestroy, OnChanges, OnInit {
   translateAnimation = '';
 
   @HostListener('window:resize', ['$event'])
-  onResize() {
-    this.drawerWindowMode = window.innerWidth < MOBILE_WINDOW_WIDTH_LIMIT ? DRAWER_MOBILE : DRAWER_DESKTOP;
+  onResize(event: Event) {
+    this.drawerWindowMode =
+      (event.target as Window).innerWidth < MOBILE_WINDOW_WIDTH_LIMIT ? DRAWER_MOBILE : DRAWER_DESKTOP;
     this.setAnimation();
     this.emitDrawerEvent(DRAWER_RESIZE_EVENT);
   }
