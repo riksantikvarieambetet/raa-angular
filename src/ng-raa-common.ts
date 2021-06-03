@@ -15,6 +15,7 @@ export { RaaNavigationBarComponent } from './components/raa-navigation-bar/raa-n
 export { RaaBottomDialogComponent } from './components/raa-bottom-dialog/raa-bottom-dialog.component';
 export { RaaPaginatorComponent } from './components/raa-paginator/raa-paginator.component';
 export { RaaAutocompleteComponent } from './components/raa-autocomplete/raa-autocomplete.component';
+export { RaaDrawerComponent } from './components/raa-drawer/raa-drawer.component';
 export {
   DrawerSize,
   DrawerState,

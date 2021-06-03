@@ -23,3 +23,19 @@ export { RaaTrapFocusDirective } from './directives/raa-trap-focus.directive';
 
 // Pipes
 export { OrgnummerPipe } from './pipes/orgnummer.pipe';
+
+// Drawer types
+export {
+  DrawerSize,
+  DrawerState,
+  DrawerPosition,
+  DrawerWindowMode,
+  DrawerEvent,
+  DRAWER_OPEN,
+  DRAWER_CLOSED,
+  DRAWER_MINIMIZED,
+  DRAWER_DESKTOP,
+  DRAWER_MOBILE,
+  DRAWER_RESIZE_EVENT,
+  DRAWER_ANIMATION_DONE_EVENT,
+} from './components/raa-drawer/raa-drawer.component';
