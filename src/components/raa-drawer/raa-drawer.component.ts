@@ -113,8 +113,6 @@ export class RaaDrawerComponent implements OnDestroy, OnChanges, OnInit {
 
   @Output() drawerStateChange = new EventEmitter<DrawerState>();
   @Output() drawerEventEmitter = new EventEmitter<DrawerEvent>();
-  @Output() leftButtonClicked = new EventEmitter<void>();
-  @Output() rightButtonClicked = new EventEmitter<void>();
 
   @ViewChild('drawer') drawer: ElementRef;
 
