@@ -5,24 +5,26 @@
       [ngStyle]="{ 'width.rem': width }"
       (raaOutsideClick)="propagateOutsideClick()"
     >
-      <div class="tw-w-full tw-mb-4">
+      <div class="tw-w-full">
         <h4 *ngIf="header" class="tw-heading-md tw-my-4 tw-pr-4">{{ header }}</h4>
         <ng-content></ng-content>
       </div>
 
       <div
-        class="tw-flex tw-flex-col md:tw-flex-row tw-justify-between"
-        [ngClass]="{ 'tw-flex-col-reverse md:tw-flex-row-reverse': reverseButtons }"
+        class="tw-flex tw-flex-col md:tw-flex-row tw-justify-center"
+        [ngClass]="{
+          'tw-flex-col-reverse md:tw-flex-row-reverse': reverseButtons,
+          'tw-mb-4 tw-mt-8': proceed || cancel
+        }"
       >
         <button
           *ngIf="cancel"
           #cancelButton
           (click)="cancel()"
-          class="md:tw-w-1/2 raa-button raa-button-cancel"
+          class="raa-button raa-button-cancel tw-w-full md:tw-w-auto"
           [ngClass]="{
             'md:tw-mr-4 tw-mb-2 md:tw-mb-0': proceed && !reverseButtons,
-            'md:tw-ml-4 tw-mt-2 md:tw-mt-0': proceed && reverseButtons,
-            'md:tw-w-full': !proceed
+            'md:tw-ml-4 tw-mt-2 md:tw-mt-0': proceed && reverseButtons
           }"
         >
           {{ cancelButtonText }}
@@ -32,8 +34,7 @@
           *ngIf="proceed"
           #proceedButton
           (click)="proceed()"
-          class="md:tw-w-1/2 raa-button raa-button-confirm"
-          [ngClass]="{ 'md:tw-w-full': !cancel }"
+          class="raa-button raa-button-confirm tw-w-full md:tw-w-auto"
         >
           {{ proceedButtonText }}
         </button>
