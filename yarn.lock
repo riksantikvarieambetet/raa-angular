@@ -138,12 +138,12 @@
   dependencies:
     tslib "^2.2.0"
 
-"@angular/cdk@^11.2.4":
-  version "11.2.4"
-  resolved "https://artifactory.raa.se:443/artifactory/api/npm/raa-npm-prod/@angular/cdk/-/cdk-11.2.4.tgz#7b2afc2609625383903ae458bf67640aa2179b9c"
-  integrity sha1-eyr8JgliU4OQOuRYv2dkCqIXm5w=
+"@angular/cdk@^12.2.4":
+  version "12.2.4"
+  resolved "https://artifactory.raa.se:443/artifactory/api/npm/raa-npm-prod/@angular/cdk/-/cdk-12.2.4.tgz#2d744413d847030f0562c568054db780473c3ef1"
+  integrity sha1-LXREE9hHAw8FYsVoBU23gEc8PvE=
   dependencies:
-    tslib "^2.0.0"
+    tslib "^2.2.0"
   optionalDependencies:
     parse5 "^5.0.0"
 
@@ -235,12 +235,12 @@
   resolved "https://artifactory.raa.se:443/artifactory/api/npm/raa-npm-prod/@angular/language-service/-/language-service-12.2.4.tgz#f06cd74590a7509f8232450158ad3905d645e7c1"
   integrity sha1-8GzXRZCnUJ+CMkUBWK05BdZF58E=
 
-"@angular/material@^11.2.4":
-  version "11.2.4"
-  resolved "https://artifactory.raa.se:443/artifactory/api/npm/raa-npm-prod/@angular/material/-/material-11.2.4.tgz#3ec538414aa23e94dcbc89c6fa8ec5c9e03ba49f"
-  integrity sha1-PsU4QUqiPpTcvInG+o7FyeA7pJ8=
+"@angular/material@^12.2.4":
+  version "12.2.4"
+  resolved "https://artifactory.raa.se:443/artifactory/api/npm/raa-npm-prod/@angular/material/-/material-12.2.4.tgz#7243708ffbe89d5241bf616286628cd03c969dbc"
+  integrity sha1-ckNwj/vonVJBv2FihmKM0DyWnbw=
   dependencies:
-    tslib "^2.0.0"
+    tslib "^2.2.0"
 
 "@angular/platform-browser-dynamic@~12.2.4":
   version "12.2.4"
