@@ -24,7 +24,7 @@
             "tsConfig": "tsconfig.app.json",
             "polyfills": "src/polyfills.ts",
             "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["node_modules/normalize.css/normalize.css", "src/styles/styles.scss", "node_modules/ol/ol.css"],
+            "styles": ["src/styles/styles.scss", "node_modules/ol/ol.css"],
             "scripts": [],
             "vendorChunk": true,
             "extractLicenses": false,
