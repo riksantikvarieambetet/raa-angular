@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgxPaginationModule } from 'ngx-pagination';
 
 // Components
 import { RaaSelectComponent } from './components/raa-select/raa-select.component';
@@ -16,7 +15,6 @@ import { RaaSpinnerComponent } from './components/raa-spinner/raa-spinner.compon
 import { RaaOverlaySpinnerComponent } from './components/raa-overlay-spinner/raa-overlay-spinner.component';
 import { RaaNavigationBarComponent } from './components/raa-navigation-bar/raa-navigation-bar.component';
 import { RaaBottomDialogComponent } from './components/raa-bottom-dialog/raa-bottom-dialog.component';
-import { RaaPaginatorComponent } from './components/raa-paginator/raa-paginator.component';
 import { RaaAutocompleteComponent } from './components/raa-autocomplete/raa-autocomplete.component';
 import { RaaDrawerComponent } from './components/raa-drawer/raa-drawer.component';
 
@@ -32,7 +30,7 @@ import { OrgnummerPipe } from './pipes/orgnummer.pipe';
 import { A11yModule } from '@angular/cdk/a11y';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, RouterModule, BrowserAnimationsModule, NgxPaginationModule, A11yModule],
+  imports: [CommonModule, FormsModule, RouterModule, BrowserAnimationsModule, A11yModule],
   declarations: [
     RaaSelectComponent,
     RaaDropdownComponent,
@@ -50,7 +48,6 @@ import { A11yModule } from '@angular/cdk/a11y';
     OrgnummerPipe,
     RaaNavigationBarComponent,
     RaaBottomDialogComponent,
-    RaaPaginatorComponent,
     RaaAutocompleteComponent,
     RaaDrawerComponent,
   ],
@@ -71,8 +68,6 @@ import { A11yModule } from '@angular/cdk/a11y';
     RaaTrapFocusDirective,
     RaaNavigationBarComponent,
     RaaBottomDialogComponent,
-    RaaPaginatorComponent,
-    NgxPaginationModule,
     RaaAutocompleteComponent,
     RaaDrawerComponent,
   ],

@@ -13,7 +13,6 @@ export { RaaSpinnerComponent } from './components/raa-spinner/raa-spinner.compon
 export { RaaOverlaySpinnerComponent } from './components/raa-overlay-spinner/raa-overlay-spinner.component';
 export { RaaNavigationBarComponent } from './components/raa-navigation-bar/raa-navigation-bar.component';
 export { RaaBottomDialogComponent } from './components/raa-bottom-dialog/raa-bottom-dialog.component';
-export { RaaPaginatorComponent } from './components/raa-paginator/raa-paginator.component';
 export { RaaAutocompleteComponent } from './components/raa-autocomplete/raa-autocomplete.component';
 export { RaaDrawerComponent } from './components/raa-drawer/raa-drawer.component';
 export {

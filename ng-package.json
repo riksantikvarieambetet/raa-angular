@@ -3,8 +3,7 @@
   "lib": {
     "entryFile": "src/public_api.ts",
     "umdModuleIds": {
-      "lodash-es": "lodash-es",
-      "ngx-pagination": "ngx-pagination"
+      "lodash-es": "lodash-es"
     }
   },
   "allowedNonPeerDependencies": ["."]
