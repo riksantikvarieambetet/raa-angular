@@ -6994,10 +6994,10 @@ querystringify@^2.1.1:
   resolved "https://artifactory.raa.se:443/artifactory/api/npm/raa-npm-prod/querystringify/-/querystringify-2.2.0.tgz#3345941b4153cb9d082d8eee4cda2016a9aef7f6"
   integrity sha1-M0WUG0FTy50ILY7uTNogFqmu9/Y=
 
-raa-style@^6.0.2:
-  version "6.0.2"
-  resolved "https://artifactory.raa.se:443/artifactory/api/npm/raa-npm-prod/raa-style/-/raa-style-6.0.2.tgz#c8390a3db0f33d460fc7b1ff13df95e0e626c421"
-  integrity sha1-yDkKPbDzPUYPx7H/E9+V4OYmxCE=
+raa-style@^7.0.3:
+  version "7.0.3"
+  resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/raa-style/-/raa-style-7.0.3.tgz#7330b295c8d3aea0bc17bc1494d6cbc23c101204"
+  integrity sha1-czCylcjTrqC8F7wUlNbLwjwQEgQ=
 
 randombytes@^2.1.0:
   version "2.1.0"
