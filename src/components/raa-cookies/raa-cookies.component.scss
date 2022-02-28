@@ -1,0 +1,15 @@
+@import '~raa-style/dist/scss/raa-colors';
+
+.mat-expansion-panel-header-title {
+  margin-left: 2rem;
+  color: $raa-orange !important;
+}
+
+.mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:hover:not([aria-disabled='true']):hover {
+  background-color: transparent !important;
+}
+
+.mat-expansion-panel-header {
+  font-size: inherit !important;
+  padding: 0 !important;
+}
