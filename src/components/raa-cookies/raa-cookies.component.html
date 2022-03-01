@@ -42,9 +42,8 @@
             <div class="tw-flex tw-pt-2 tw-w-full tw-relative tw-justify-between tw-items-center">
               <mat-accordion>
                 <mat-expansion-panel
-                  role="button"
                   (click)="updateExpanded(cookie)"
-                  class="mat-elevation-z0 tw-text-raa-orange raa-button-focus"
+                  class="mat-elevation-z0 tw-text-raa-orange raa-button-focus tw-flex"
                   hideToggle
                 >
                   <mat-expansion-panel-header class="tw-flex tw-relative">
@@ -53,7 +52,7 @@
                       [ngClass]="{ 'tw-rotate-90': cookie.expanded }"
                       aria-hidden="true"
                     ></span>
-                    <mat-panel-title>{{ cookie.title }}</mat-panel-title>
+                    <mat-panel-title class="tw-max-w-[40%] md:tw-max-w-full">{{ cookie.title }}</mat-panel-title>
                   </mat-expansion-panel-header>
                   <p>{{ cookie.description }}</p>
                 </mat-expansion-panel>

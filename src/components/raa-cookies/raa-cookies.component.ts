@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 interface DefaultCookieObj {
   key: string;
@@ -17,9 +17,9 @@ interface DefaultCookiesArr extends Array<DefaultCookieObj> {}
   templateUrl: './raa-cookies.component.html',
   styleUrls: ['./raa-cookies.component.scss'],
 })
-export class RaaCookies {
+export class RaaCookies implements OnInit {
   @Input()
-  showBottomDialog = true;
+  showBottomDialog = false;
 
   @Input()
   showDialog = false;
@@ -32,6 +32,9 @@ export class RaaCookies {
 
   @Input()
   thirdparty = true;
+
+  @Output()
+  onCookieUpdate = new EventEmitter<DefaultCookiesArr>();
 
   defaultCookies: DefaultCookiesArr = [
     {
@@ -91,6 +94,33 @@ export class RaaCookies {
     return date;
   }
 
+  ngOnInit() {
+    let cookieString = document.cookie;
+    if (cookieString) {
+      cookieString = cookieString + ';';
+      const cookieValues = cookieString.split(' ');
+      const cookies = cookieValues.filter((cookie) => cookie.includes('cookie'));
+      cookies.map((cookie) => {
+        const key = cookie.split('=')[0];
+        const value = cookie.split('=')[1].slice(0, -1);
+        const index = this.defaultCookies.findIndex((obj) => obj.key === key);
+        this.defaultCookies[index].status = value === 'yes';
+      });
+    }
+
+    if (!cookieString) {
+      this.showBottomDialog = true;
+    } else {
+      const cookieValues = cookieString.split(' ');
+      const hasViewed = cookieValues.includes('viewed_cookie_policy=yes;');
+      if (hasViewed) {
+        this.showBottomDialog = false;
+      } else {
+        this.showBottomDialog = true;
+      }
+    }
+  }
+
   acceptAllCookies() {
     const date = this.createDate();
 
@@ -98,12 +128,7 @@ export class RaaCookies {
       document.cookie = `${cookie.key}=yes; expires=${date.toUTCString()}; path=/`;
     });
     this.showBottomDialog = false;
-
-    // props.onCookieUpdate({
-    //   analytics: cookies['cookielawinfo_checkbox_analytics'].status,
-    //   functional: cookies['cookielawinfo_checkbox_functional'].status,
-    //   thirdparty: cookies['cookielawinfo_checkbox_tredjepartscookies'].status
-    // });
+    this.onCookieUpdate.emit(this.defaultCookies);
   }
 
   openSettings() {
@@ -143,11 +168,7 @@ export class RaaCookies {
     });
     document.cookie = `viewed_cookie_policy=yes; expires=${date.toUTCString()}; path=/`;
     this.showDialog = false;
-    // props.onCookieUpdate({
-    //   analytics: cookies['cookielawinfo_checkbox_analytics'].status,
-    //   functional: cookies['cookielawinfo_checkbox_functional'].status,
-    //   thirdparty: cookies['cookielawinfo_checkbox_tredjepartscookies'].status
-    // });
+    this.onCookieUpdate.emit(this.defaultCookies);
   }
 
   updateExpanded(cookie: DefaultCookieObj) {
