@@ -13,6 +13,15 @@
   font-size: inherit !important;
   padding: 0 !important;
 }
+.mat-expansion-panel .mat-expansion-panel-header.cdk-focused:not([aria-disabled='true']) {
+  border: 2px solid rgb(255, 178, 25);
+  background-color: transparent;
+}
+
+.mat-expansion-panel .mat-expansion-panel-header.cdk-keyboard-focused:not([aria-disabled='true']) {
+  border: 2px solid rgb(255, 178, 25);
+  background-color: transparent;
+}
 
 .mat-expansion-panel {
   display: flex !important;
