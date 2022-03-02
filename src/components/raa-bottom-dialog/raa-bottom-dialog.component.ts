@@ -54,6 +54,12 @@ export class RaaBottomDialogComponent implements OnInit {
   @Input()
   message: string | null = null;
 
+  @Input()
+  hideOverlay: boolean = false;
+
+  @Input()
+  background: 'tw-bg-raa-gray-2' | 'tw-bg-raa-white' = 'tw-bg-raa-gray-2';
+
   @Output()
   onYesAction = new EventEmitter<void>();
 

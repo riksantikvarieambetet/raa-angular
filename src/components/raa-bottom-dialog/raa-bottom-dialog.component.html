@@ -1,14 +1,17 @@
 <div
   [@fade]
-  *ngIf="isVisible"
+  *ngIf="isVisible && !hideOverlay"
   class="tw-absolute tw-h-full tw-w-full tw-bg-raa-white tw-opacity-75 tw-left-0 tw-top-0 z-index-10"
 ></div>
+
+<h1>{{ background }}</h1>
 
 <div
   [@closeConfirmationAnimation]
   (@closeConfirmationAnimation.done)="focusOnInit()"
   id="bottom-dialog"
-  class="tw-absolute tw-bottom-0 tw-left-0 tw-bg-raa-gray-2 tw-border-t tw-border-raa-gray-3 tw-w-full tw-flex tw-flex-col tw-items-center tw-justify-center z-index-99999"
+  class="tw-absolute tw-bottom-0 tw-left-0 tw-border-t tw-border-raa-gray-3 tw-w-full tw-flex tw-flex-col tw-items-center tw-justify-center z-index-99999"
+  [class]="background"
   [ngClass]="{ 'tw-h-full': fullHeight }"
   *ngIf="isVisible"
 >
