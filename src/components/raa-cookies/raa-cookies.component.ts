@@ -10,14 +10,12 @@ interface DefaultCookieObj {
   visible: boolean;
 }
 
-interface DefaultCookiesArr extends Array<DefaultCookieObj> {}
-
 @Component({
   selector: 'raa-cookies',
   templateUrl: './raa-cookies.component.html',
   styleUrls: ['./raa-cookies.component.scss'],
 })
-export class RaaCookies implements OnInit {
+export class RaaCookiesComponent implements OnInit {
   @Input()
   showBottomDialog = false;
 
@@ -34,7 +32,7 @@ export class RaaCookies implements OnInit {
   thirdparty = true;
 
   @Output()
-  onCookieUpdate = new EventEmitter<DefaultCookiesArr>();
+  onCookieUpdate = new EventEmitter<DefaultCookies[]>();
 
   defaultCookies: DefaultCookiesArr = [
     {
