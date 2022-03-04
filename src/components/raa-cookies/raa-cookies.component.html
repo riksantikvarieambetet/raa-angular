@@ -54,7 +54,9 @@
                       [ngClass]="{ 'tw-rotate-90': cookie.expanded }"
                       aria-hidden="true"
                     ></span>
-                    <mat-panel-title class="tw-max-w-[40%] md:tw-max-w-full">{{ cookie.title }}</mat-panel-title>
+                    <mat-panel-title class="tw-max-w-[40%] md:tw-max-w-full tw-break-all">{{
+                      cookie.title
+                    }}</mat-panel-title>
                   </mat-expansion-panel-header>
                   <p>{{ cookie.description }}</p>
                 </mat-expansion-panel>

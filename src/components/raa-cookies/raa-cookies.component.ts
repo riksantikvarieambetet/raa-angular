@@ -32,9 +32,9 @@ export class RaaCookiesComponent implements OnInit {
   thirdparty = true;
 
   @Output()
-  onCookieUpdate = new EventEmitter<DefaultCookies[]>();
+  onCookieUpdate = new EventEmitter<DefaultCookieObj[]>();
 
-  defaultCookies: DefaultCookiesArr = [
+  defaultCookies: DefaultCookieObj[] = [
     {
       key: 'viewed_cookie_policy',
       status: false,

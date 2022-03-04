@@ -17,7 +17,7 @@ import { RaaNavigationBarComponent } from './components/raa-navigation-bar/raa-n
 import { RaaBottomDialogComponent } from './components/raa-bottom-dialog/raa-bottom-dialog.component';
 import { RaaAutocompleteComponent } from './components/raa-autocomplete/raa-autocomplete.component';
 import { RaaDrawerComponent } from './components/raa-drawer/raa-drawer.component';
-import { RaaCookies } from './components/raa-cookies/raa-cookies.component';
+import { RaaCookiesComponent } from './components/raa-cookies/raa-cookies.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatExpansionModule } from '@angular/material/expansion';
 
@@ -61,7 +61,7 @@ import { A11yModule } from '@angular/cdk/a11y';
     RaaBottomDialogComponent,
     RaaAutocompleteComponent,
     RaaDrawerComponent,
-    RaaCookies,
+    RaaCookiesComponent,
   ],
   exports: [
     RaaSelectComponent,
@@ -82,7 +82,7 @@ import { A11yModule } from '@angular/cdk/a11y';
     RaaBottomDialogComponent,
     RaaAutocompleteComponent,
     RaaDrawerComponent,
-    RaaCookies,
+    RaaCookiesComponent,
     MatSlideToggleModule,
     MatExpansionModule,
   ],
