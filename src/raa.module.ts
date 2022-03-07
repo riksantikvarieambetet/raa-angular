@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 // Components
 import { RaaSelectComponent } from './components/raa-select/raa-select.component';
@@ -18,8 +20,6 @@ import { RaaBottomDialogComponent } from './components/raa-bottom-dialog/raa-bot
 import { RaaAutocompleteComponent } from './components/raa-autocomplete/raa-autocomplete.component';
 import { RaaDrawerComponent } from './components/raa-drawer/raa-drawer.component';
 import { RaaCookiesComponent } from './components/raa-cookies/raa-cookies.component';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { MatExpansionModule } from '@angular/material/expansion';
 
 // Directives
 import { OutsideClickDirective } from './directives/raa-outside-click.directive';
