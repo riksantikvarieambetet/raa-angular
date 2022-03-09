@@ -1643,10 +1643,10 @@
   resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/@types/node/-/node-17.0.17.tgz#a8ddf6e0c2341718d74ee3dc413a13a042c45a0c"
   integrity sha1-qN324MI0FxjXTuPcQToToELEWgw=
 
-"@types/node@^16.7.13":
-  version "16.11.23"
-  resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/@types/node/-/node-16.11.23.tgz#47677957c66c95f0d85787f4989ee89c58312480"
-  integrity sha1-R2d5V8ZslfDYV4f0mJ7onFgxJIA=
+"@types/node@16.11.26":
+  version "16.11.26"
+  resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/@types/node/-/node-16.11.26.tgz#63d204d136c9916fb4dcd1b50f9740fe86884e47"
+  integrity sha1-Y9IE0TbJkW+03NG1D5dA/oaITkc=
 
 "@types/parse-json@^4.0.0":
   version "4.0.0"
@@ -5825,14 +5825,14 @@ rxjs@6.6.7, rxjs@^6.5.3:
   dependencies:
     tslib "^1.9.0"
 
-rxjs@^7.0.0:
+rxjs@^7.0.0, rxjs@^7.5.5:
   version "7.5.5"
   resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/rxjs/-/rxjs-7.5.5.tgz#2ebad89af0f560f460ad5cc4213219e1f7dd4e9f"
   integrity sha1-LrrYmvD1YPRgrVzEITIZ4ffdTp8=
   dependencies:
     tslib "^2.1.0"
 
-rxjs@^7.2.0, rxjs@^7.3.0:
+rxjs@^7.2.0:
   version "7.5.4"
   resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/rxjs/-/rxjs-7.5.4.tgz#3d6bd407e6b7ce9a123e76b1e770dc5761aa368d"
   integrity sha1-PWvUB+a3zpoSPnax53DcV2GqNo0=
@@ -6751,14 +6751,14 @@ yn@3.1.1:
   resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/yn/-/yn-3.1.1.tgz#1e87401a09d767c1d5eab26a6e4c185182d2eb50"
   integrity sha1-HodAGgnXZ8HV6rJqbkwYUYLS61A=
 
+zone.js@0.11.5:
+  version "0.11.5"
+  resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/zone.js/-/zone.js-0.11.5.tgz#ab0b449e91fadb5ebb2db189ffe1b7b6048dc8b1"
+  integrity sha1-qwtEnpH62167LbGJ/+G3tgSNyLE=
+  dependencies:
+    tslib "^2.3.0"
+
 zone.js@~0.10.3:
   version "0.10.3"
   resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/zone.js/-/zone.js-0.10.3.tgz#3e5e4da03c607c9dcd92e37dd35687a14a140c16"
   integrity sha1-Pl5NoDxgfJ3NkuN901aHoUoUDBY=
-
-zone.js@~0.11.4:
-  version "0.11.4"
-  resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/zone.js/-/zone.js-0.11.4.tgz#0f70dcf6aba80f698af5735cbb257969396e8025"
-  integrity sha1-D3Dc9quoD2mK9XNcuyV5aTlugCU=
-  dependencies:
-    tslib "^2.0.0"
