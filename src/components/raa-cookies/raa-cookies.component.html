@@ -26,10 +26,7 @@
         </div>
       </div>
       <div class="tw-flex tw-flex-col md:tw-flex-row tw-justify-end tw-w-full">
-        <button
-          class="tw-mr-0 tw-mb-2 md:tw-mr-2 md:tw-mb-0 raa-button raa-button-cancel"
-          (click)="openSettings()"
-        >
+        <button class="tw-mr-0 tw-mb-2 md:tw-mr-2 md:tw-mb-0 raa-button raa-button-cancel" (click)="openSettings()">
           Inställningar
         </button>
 
@@ -53,25 +50,27 @@
         <div *ngFor="let cookie of defaultCookies" class="tw-p-[5px]">
           <div *ngIf="cookie.visible">
             <hr class="tw-w-full tw-border-raa-gray-3" />
-            <div class="tw-flex tw-pt-2 tw-w-full tw-relative tw-justify-between tw-items-center">
+            <div class="tw-flex tw-w-full tw-relative tw-justify-between tw-items-center">
               <mat-accordion>
                 <mat-expansion-panel
-                  (click)="updateExpanded(cookie)"
                   class="mat-elevation-z0 tw-text-raa-orange raa-button-focus !tw-flex !tw-flex-wrap"
                   hideToggle
                 >
                   <mat-expansion-panel-header
+                    (click)="updateExpanded(cookie)"
                     class="!tw-flex tw-relative focus:tw-shadow-outline !tw-bg-transparent tw-ml-1 tw-my-1 !tw-p-0"
                   >
-                    <span
-                      class="tw-text-size-1.75 tw-text-raa-orange raa-icon-arrow-right tw-absolute tw-transform"
-                      [ngClass]="{ 'tw-rotate-90': cookie.expanded }"
-                      aria-hidden="true"
-                    ></span>
-                    <mat-panel-title
-                      class="tw-max-w-[40%] md:tw-max-w-full tw-break-all !tw-ml-8 !tw-font-normal !tw-text-size-1 !tw-text-raa-orange"
-                      >{{ cookie.title }}</mat-panel-title
-                    >
+                    <div class="tw-flex tw-items-center">
+                      <span
+                        class="tw-text-size-1.75 tw-text-raa-orange raa-icon-arrow-right tw-absolute tw-transform"
+                        [ngClass]="{ 'tw-rotate-90': cookie.expanded }"
+                        aria-hidden="true"
+                      ></span>
+                      <mat-panel-title
+                        class="tw-max-w-[40%] md:tw-max-w-full tw-break-all !tw-ml-8 !tw-font-normal !tw-text-size-1 !tw-text-raa-orange"
+                        >{{ cookie.title }}</mat-panel-title
+                      >
+                    </div>
                   </mat-expansion-panel-header>
                   <p>{{ cookie.description }}</p>
                 </mat-expansion-panel>
@@ -95,8 +94,10 @@
         </div>
 
         <div class="tw-flex tw-flex-col md:tw-flex-row tw-gap-4 tw-justify-end tw-pt-4">
-          <button (click)="onDenyClick()" class="raa-button raa-button-cancel">avvisa alla</button>
-          <button (click)="onAcceptClick()" class="raa-button raa-button-confirm">spara inställningar</button>
+          <button (click)="onDenyClick()" type="button" class="raa-button raa-button-cancel">avvisa alla</button>
+          <button (click)="onAcceptClick()" type="button" class="raa-button raa-button-confirm">
+            spara inställningar
+          </button>
         </div>
       </div>
     </raa-dialog>
