@@ -13,7 +13,6 @@ interface DefaultCookieObj {
 @Component({
   selector: 'raa-cookies',
   templateUrl: './raa-cookies.component.html',
-  styleUrls: ['./raa-cookies.component.scss'],
 })
 export class RaaCookiesComponent implements OnInit {
   @Input()

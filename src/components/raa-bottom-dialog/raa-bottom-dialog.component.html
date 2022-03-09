@@ -13,18 +13,18 @@
   [ngClass]="{ 'tw-h-full': fullHeight }"
   *ngIf="isVisible"
 >
+  <div #ref>
+    <ng-content></ng-content>
+  </div>
   <div
+    *ngIf="ref.children.lenght == 0"
     role="alertdialog"
     class="tw-w-full tw-text-center tw-p-8 tw-max-w-md"
     [cdkTrapFocus]
   >
-    <div *ngIf="!header && !message">
-      <ng-content></ng-content>
-    </div>
-
     <div *ngIf="header || message">
-      <h3 *ngIf="header" id="dialog-header" class="tw-heading-md tw-w-full tw-text-center tw-py-4">{{ header }}</h3>
-      <p *ngIf="message" id="dialog-message" class="tw-mb-4">{{ message }}</p>
+      <h3 *ngIf="header" class="tw-heading-md tw-w-full tw-text-center tw-py-4">{{ header }}</h3>
+      <p *ngIf="message" class="tw-mb-4">{{ message }}</p>
     </div>
 
     <div class="tw-flex tw-flex-col md:tw-flex-row tw-justify-center tw-w-full">

@@ -3,14 +3,11 @@
     [isVisible]="showBottomDialog"
     cancelBtnText="Inställningar"
     confirmBtnText="Godkänn alla"
-    confirmBtnColor="green"
-    (onYesAction)="acceptAllCookies()"
-    (onNoAction)="openSettings()"
     hideOverlay="true"
     background="tw-bg-raa-white"
   >
-    <div class="tw-flex tw-flex-col md:tw-flex-row tw-items-center tw-justify-between tw-w-full tw-p-6">
-      <div class="tw-flex tw-w-full tw-flex-col tw-mb-8 md:tw-mb-0">
+    <div class="tw-flex md:tw-flex-row tw-items-center tw-justify-between tw-w-full tw-p-6">
+      <div class="tw-flex tw-flex-col tw-mb-8 md:tw-mb-0">
         <p class="tw-pb-2 tw-w-full">Vi använder kakor(cookies) för en bättre användarupplevelse</p>
         <p class="tw-pb-2 tw-w-full">
           Några kakor är nödvändiga för att webbplatsen ska fungera optimalt och andra används till statistik. Genom att
@@ -27,6 +24,21 @@
             Läs mer om kakor här.
           </a>
         </div>
+      </div>
+      <div class="tw-flex tw-flex-col md:tw-flex-row tw-justify-end tw-w-full">
+        <button
+          class="tw-mr-0 tw-mb-2 md:tw-mr-2 md:tw-mb-0 raa-button raa-button-cancel tw-uppercase"
+          (click)="openSettings()"
+        >
+          Inställningar
+        </button>
+
+        <button
+          class="tw-ml-0 tw-mb-2 md:tw-ml-2 md:tw-mb-0 tw-relative raa-button raa-button-confirm tw-uppercase"
+          (click)="acceptAllCookies()"
+        >
+          <span>Godkänn alla</span>
+        </button>
       </div>
     </div>
   </raa-bottom-dialog>
@@ -45,18 +57,21 @@
               <mat-accordion>
                 <mat-expansion-panel
                   (click)="updateExpanded(cookie)"
-                  class="mat-elevation-z0 tw-text-raa-orange raa-button-focus tw-flex"
+                  class="mat-elevation-z0 tw-text-raa-orange raa-button-focus !tw-flex !tw-flex-wrap"
                   hideToggle
                 >
-                  <mat-expansion-panel-header class="tw-flex tw-relative">
+                  <mat-expansion-panel-header
+                    class="!tw-flex tw-relative focus:tw-shadow-outline !tw-bg-transparent tw-ml-1 tw-my-1 !tw-p-0"
+                  >
                     <span
                       class="tw-text-size-1.75 tw-text-raa-orange raa-icon-arrow-right tw-absolute tw-transform"
                       [ngClass]="{ 'tw-rotate-90': cookie.expanded }"
                       aria-hidden="true"
                     ></span>
-                    <mat-panel-title class="tw-max-w-[40%] md:tw-max-w-full tw-break-all">{{
-                      cookie.title
-                    }}</mat-panel-title>
+                    <mat-panel-title
+                      class="tw-max-w-[40%] md:tw-max-w-full tw-break-all !tw-ml-8 !tw-font-normal !tw-text-size-1 !tw-text-raa-orange"
+                      >{{ cookie.title }}</mat-panel-title
+                    >
                   </mat-expansion-panel-header>
                   <p>{{ cookie.description }}</p>
                 </mat-expansion-panel>
