@@ -6,7 +6,7 @@
     hideOverlay="true"
     background="tw-bg-raa-white"
   >
-    <div class="tw-flex md:tw-flex-row tw-items-center tw-justify-between tw-w-full tw-p-6">
+    <div class="tw-flex tw-items-center tw-w-full tw-p-6">
       <div class="tw-flex tw-flex-col tw-mb-8 md:tw-mb-0">
         <p class="tw-pb-2 tw-w-full">Vi använder kakor(cookies) för en bättre användarupplevelse</p>
         <p class="tw-pb-2 tw-w-full">
@@ -27,14 +27,14 @@
       </div>
       <div class="tw-flex tw-flex-col md:tw-flex-row tw-justify-end tw-w-full">
         <button
-          class="tw-mr-0 tw-mb-2 md:tw-mr-2 md:tw-mb-0 raa-button raa-button-cancel tw-uppercase"
+          class="tw-mr-0 tw-mb-2 md:tw-mr-2 md:tw-mb-0 raa-button raa-button-cancel"
           (click)="openSettings()"
         >
           Inställningar
         </button>
 
         <button
-          class="tw-ml-0 tw-mb-2 md:tw-ml-2 md:tw-mb-0 tw-relative raa-button raa-button-confirm tw-uppercase"
+          class="tw-ml-0 tw-mb-2 md:tw-ml-2 md:tw-mb-0 tw-relative raa-button raa-button-confirm"
           (click)="acceptAllCookies()"
         >
           <span>Godkänn alla</span>
@@ -44,7 +44,7 @@
   </raa-bottom-dialog>
   <div class="tw-max-h-[90vh]">
     <raa-dialog *ngIf="showDialog" header="Inställningar för kakor (Cookies)" width="40" [close]="onCloseDialog">
-      <div class="tw-py-4 tw-px-4 tw-overflow-auto">
+      <div class="tw-p-4 tw-overflow-auto">
         <p class="tw-mb-4">
           Nödvändiga kakor används för att webbplatsen ska fungera optimalt för dig som användare. Kakor för statistik
           används som underlag för förbättringsarbeten. Kakor för statistik är valfritt och kan inaktiveras.
