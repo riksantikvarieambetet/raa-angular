@@ -33,57 +33,7 @@ export class RaaCookiesComponent implements OnInit {
   @Output()
   onCookieUpdate = new EventEmitter<DefaultCookieObj[]>();
 
-  defaultCookies: DefaultCookieObj[] = [
-    {
-      key: 'viewed_cookie_policy',
-      status: false,
-      title: 'viewed',
-      description: 'Has viewed cookie settings',
-      expanded: true,
-      disabled: false,
-      visible: false,
-    },
-    {
-      key: 'cookielawinfo_checkbox_necessary',
-      status: true,
-      title: 'Nödvändiga',
-      description:
-        'Nödvändiga kakor går inte att stänga av eftersom webbplatsen inte fungerar utan dessa. Nödvändiga kakor bidrar till att Riksantikvarieämbetets tjänster är säkra och fungerar som förväntat.',
-      expanded: false,
-      disabled: true,
-      visible: true,
-    },
-    {
-      key: 'cookielawinfo_checkbox_analytics',
-      status: false,
-      title: 'Analytics',
-      description:
-        'Analytiska cookies används för att förstå hur besökare interagerar med webbplatsen. Dessa cookies hjälper till att ge information om mätvärden för antalet besökare, avvisningsfrekvens, trafikkälla, etc.',
-      expanded: false,
-      disabled: false,
-      visible: false,
-    },
-    {
-      key: 'cookielawinfo_checkbox_functional',
-      status: false,
-      title: 'Funktionella & Prestanda',
-      description:
-        'Funktionella cookies hjälper till att utföra vissa funktioner som att dela innehållet på webbplatsen på sociala medieplattformar, samla in feedback och andra tredjepartsfunktioner. Prestandacookies används för att förstå och analysera webbplatsens nyckelprestandaindex, vilket hjälper till att leverera en bättre användarupplevelse för besökarna.',
-      expanded: false,
-      disabled: false,
-      visible: false,
-    },
-    {
-      key: 'cookielawinfo_checkbox_tredjepartscookies',
-      status: false,
-      title: 'Tredjepartscookies',
-      description:
-        'Tredjepartscookies används för att ge besökarna relevanta annonser och marknadsföringskampanjer. Dessa kakor används för Youtube, Google maps och Sketchfab data.',
-      expanded: false,
-      disabled: false,
-      visible: false,
-    },
-  ];
+  defaultCookies: DefaultCookieObj[] = [];
 
   private createDate() {
     const date = new Date();
@@ -92,20 +42,57 @@ export class RaaCookiesComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.analytics) {
-      const index = this.defaultCookies.findIndex((obj) => obj.key === 'cookielawinfo_checkbox_analytics');
-      this.defaultCookies[index].visible = true;
-    }
-
-    if (this.functional) {
-      const index = this.defaultCookies.findIndex((obj) => obj.key === 'cookielawinfo_checkbox_functional');
-      this.defaultCookies[index].visible = true;
-    }
-
-    if (this.thirdparty) {
-      const index = this.defaultCookies.findIndex((obj) => obj.key === 'cookielawinfo_checkbox_tredjepartscookies');
-      this.defaultCookies[index].visible = true;
-    }
+    this.defaultCookies = [
+      {
+        key: 'viewed_cookie_policy',
+        status: false,
+        title: 'viewed',
+        description: 'Has viewed cookie settings',
+        expanded: true,
+        disabled: false,
+        visible: false,
+      },
+      {
+        key: 'cookielawinfo_checkbox_necessary',
+        status: true,
+        title: 'Nödvändiga',
+        description:
+          'Nödvändiga kakor går inte att stänga av eftersom webbplatsen inte fungerar utan dessa. Nödvändiga kakor bidrar till att Riksantikvarieämbetets tjänster är säkra och fungerar som förväntat.',
+        expanded: false,
+        disabled: true,
+        visible: true,
+      },
+      {
+        key: 'cookielawinfo_checkbox_analytics',
+        status: false,
+        title: 'Analytics',
+        description:
+          'Analytiska cookies används för att förstå hur besökare interagerar med webbplatsen. Dessa cookies hjälper till att ge information om mätvärden för antalet besökare, avvisningsfrekvens, trafikkälla, etc.',
+        expanded: false,
+        disabled: false,
+        visible: this.analytics,
+      },
+      {
+        key: 'cookielawinfo_checkbox_functional',
+        status: false,
+        title: 'Funktionella & Prestanda',
+        description:
+          'Funktionella cookies hjälper till att utföra vissa funktioner som att dela innehållet på webbplatsen på sociala medieplattformar, samla in feedback och andra tredjepartsfunktioner. Prestandacookies används för att förstå och analysera webbplatsens nyckelprestandaindex, vilket hjälper till att leverera en bättre användarupplevelse för besökarna.',
+        expanded: false,
+        disabled: false,
+        visible: this.functional,
+      },
+      {
+        key: 'cookielawinfo_checkbox_tredjepartscookies',
+        status: false,
+        title: 'Tredjepartscookies',
+        description:
+          'Tredjepartscookies används för att ge besökarna relevanta annonser och marknadsföringskampanjer. Dessa kakor används för Youtube, Google maps och Sketchfab data.',
+        expanded: false,
+        disabled: false,
+        visible: this.thirdparty,
+      },
+    ];
 
     let cookieString = document.cookie;
     if (cookieString) {
