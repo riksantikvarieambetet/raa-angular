@@ -17,23 +17,23 @@
   dependencies:
     "@jridgewell/trace-mapping" "^0.3.0"
 
-"@angular-devkit/architect@0.1302.5":
-  version "0.1302.5"
-  resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/@angular-devkit/architect/-/architect-0.1302.5.tgz#24284a44dcfcfd6bd5ee00a086f10f8d58316ad3"
-  integrity sha1-JChKRNz8/WvV7gCghvEPjVgxatM=
+"@angular-devkit/architect@0.1302.6":
+  version "0.1302.6"
+  resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/@angular-devkit/architect/-/architect-0.1302.6.tgz#76c5c18580c1c387be01dd7bcbcb34a8b5ac62bd"
+  integrity sha1-dsXBhYDBw4e+Ad17y8s0qLWsYr0=
   dependencies:
-    "@angular-devkit/core" "13.2.5"
+    "@angular-devkit/core" "13.2.6"
     rxjs "6.6.7"
 
-"@angular-devkit/build-angular@~13.2.5":
-  version "13.2.5"
-  resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/@angular-devkit/build-angular/-/build-angular-13.2.5.tgz#26c5ef3a5f158e7bbc85fedf9d9480e1726cade8"
-  integrity sha1-JsXvOl8Vjnu8hf7fnZSA4XJsreg=
+"@angular-devkit/build-angular@~13.2.6":
+  version "13.2.6"
+  resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/@angular-devkit/build-angular/-/build-angular-13.2.6.tgz#946cb6037dc311fc63f55665c1db03b0652167b4"
+  integrity sha1-lGy2A33DEfxj9VZlwdsDsGUhZ7Q=
   dependencies:
     "@ampproject/remapping" "1.1.1"
-    "@angular-devkit/architect" "0.1302.5"
-    "@angular-devkit/build-webpack" "0.1302.5"
-    "@angular-devkit/core" "13.2.5"
+    "@angular-devkit/architect" "0.1302.6"
+    "@angular-devkit/build-webpack" "0.1302.6"
+    "@angular-devkit/core" "13.2.6"
     "@babel/core" "7.16.12"
     "@babel/generator" "7.16.8"
     "@babel/helper-annotate-as-pure" "7.16.7"
@@ -44,7 +44,7 @@
     "@babel/runtime" "7.16.7"
     "@babel/template" "7.16.7"
     "@discoveryjs/json-ext" "0.5.6"
-    "@ngtools/webpack" "13.2.5"
+    "@ngtools/webpack" "13.2.6"
     ansi-colors "4.1.1"
     babel-loader "8.2.3"
     babel-plugin-istanbul "6.1.1"
@@ -97,18 +97,18 @@
   optionalDependencies:
     esbuild "0.14.22"
 
-"@angular-devkit/build-webpack@0.1302.5":
-  version "0.1302.5"
-  resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/@angular-devkit/build-webpack/-/build-webpack-0.1302.5.tgz#ea528e557adf2f4c5f005767636fcaaed306cef1"
-  integrity sha1-6lKOVXrfL0xfAFdnY2/KrtMGzvE=
+"@angular-devkit/build-webpack@0.1302.6":
+  version "0.1302.6"
+  resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/@angular-devkit/build-webpack/-/build-webpack-0.1302.6.tgz#ab8e618f13d6611fa6b1356042e566e9449a87fe"
+  integrity sha1-q45hjxPWYR+msTVgQuVm6USah/4=
   dependencies:
-    "@angular-devkit/architect" "0.1302.5"
+    "@angular-devkit/architect" "0.1302.6"
     rxjs "6.6.7"
 
-"@angular-devkit/core@13.2.5":
-  version "13.2.5"
-  resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/@angular-devkit/core/-/core-13.2.5.tgz#376f3d205a75cd381191ddabfe3c368e0e9a7d82"
-  integrity sha1-N289IFp1zTgRkd2r/jw2jg6afYI=
+"@angular-devkit/core@13.2.6":
+  version "13.2.6"
+  resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/@angular-devkit/core/-/core-13.2.6.tgz#7032a7c474efacc564511cff0c21d1636404e437"
+  integrity sha1-cDKnxHTvrMVkURz/DCHRY2QE5Dc=
   dependencies:
     ajv "8.9.0"
     ajv-formats "2.1.1"
@@ -117,21 +117,21 @@
     rxjs "6.6.7"
     source-map "0.7.3"
 
-"@angular-devkit/schematics@13.2.5", "@angular-devkit/schematics@^13.2.5":
-  version "13.2.5"
-  resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/@angular-devkit/schematics/-/schematics-13.2.5.tgz#d1425ab7ce38c835e776329bea61925b333f53b8"
-  integrity sha1-0UJat844yDXndjKb6mGSWzM/U7g=
+"@angular-devkit/schematics@13.2.6", "@angular-devkit/schematics@^13.2.6":
+  version "13.2.6"
+  resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/@angular-devkit/schematics/-/schematics-13.2.6.tgz#c85778b73ede1fbcb6c3af7dde740cd0dc8bfb29"
+  integrity sha1-yFd4tz7eH7y2w6993nQM0NyL+yk=
   dependencies:
-    "@angular-devkit/core" "13.2.5"
+    "@angular-devkit/core" "13.2.6"
     jsonc-parser "3.0.0"
     magic-string "0.25.7"
     ora "5.4.1"
     rxjs "6.6.7"
 
-"@angular/animations@~13.2.5":
-  version "13.2.5"
-  resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/@angular/animations/-/animations-13.2.5.tgz#4473cd54a51ba22cfe4d96d7c3b4a44f02f8ee04"
-  integrity sha1-RHPNVKUboiz+TZbXw7SkTwL47gQ=
+"@angular/animations@~13.2.6":
+  version "13.2.6"
+  resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/@angular/animations/-/animations-13.2.6.tgz#a8f0df5a79396dafb17c47f2a4e9e15e561ef3a1"
+  integrity sha1-qPDfWnk5ba+xfEfypOnhXlYe86E=
   dependencies:
     tslib "^2.3.0"
 
@@ -144,15 +144,15 @@
   optionalDependencies:
     parse5 "^5.0.0"
 
-"@angular/cli@~13.2.5":
-  version "13.2.5"
-  resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/@angular/cli/-/cli-13.2.5.tgz#7a0580720903975e2c22d82e2225d44748a6fa90"
-  integrity sha1-egWAcgkDl14sItguIiXUR0im+pA=
+"@angular/cli@~13.2.6":
+  version "13.2.6"
+  resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/@angular/cli/-/cli-13.2.6.tgz#d532375ac65b7e6204f979756bf12dda8392cd74"
+  integrity sha1-1TI3WsZbfmIE+Xl1a/Et2oOSzXQ=
   dependencies:
-    "@angular-devkit/architect" "0.1302.5"
-    "@angular-devkit/core" "13.2.5"
-    "@angular-devkit/schematics" "13.2.5"
-    "@schematics/angular" "13.2.5"
+    "@angular-devkit/architect" "0.1302.6"
+    "@angular-devkit/core" "13.2.6"
+    "@angular-devkit/schematics" "13.2.6"
+    "@schematics/angular" "13.2.6"
     "@yarnpkg/lockfile" "1.1.0"
     ansi-colors "4.1.1"
     debug "4.3.3"
@@ -169,23 +169,23 @@
     symbol-observable "4.0.0"
     uuid "8.3.2"
 
-"@angular/common@~13.2.5":
-  version "13.2.5"
-  resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/@angular/common/-/common-13.2.5.tgz#d06b07996323dd44a4215e60bc93f37cdfb5180d"
-  integrity sha1-0GsHmWMj3USkIV5gvJPzfN+1GA0=
+"@angular/common@~13.2.6":
+  version "13.2.6"
+  resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/@angular/common/-/common-13.2.6.tgz#cfb4e7d5173d22ed81e978cebfe19796db0759f8"
+  integrity sha1-z7Tn1Rc9Iu2B6XjOv+GXltsHWfg=
   dependencies:
     tslib "^2.3.0"
 
-"@angular/compiler-cli@~13.2.5":
-  version "13.2.5"
-  resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/@angular/compiler-cli/-/compiler-cli-13.2.5.tgz#557384d7c9154d1bc2851d0e23588e02049e1e4b"
-  integrity sha1-VXOE18kVTRvChR0OI1iOAgSeHks=
+"@angular/compiler-cli@~13.2.6":
+  version "13.2.6"
+  resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/@angular/compiler-cli/-/compiler-cli-13.2.6.tgz#929a32af9989c2bf1ee343bc37c72233a81d2c2c"
+  integrity sha1-kpoyr5mJwr8e40O8N8ciM6gdLCw=
   dependencies:
     "@babel/core" "^7.17.2"
     chokidar "^3.0.0"
     convert-source-map "^1.5.1"
     dependency-graph "^0.11.0"
-    magic-string "^0.25.0"
+    magic-string "^0.26.0"
     reflect-metadata "^0.1.2"
     semver "^7.0.0"
     sourcemap-codec "^1.4.8"
@@ -197,10 +197,10 @@
   resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/@angular/compiler/-/compiler-9.0.0.tgz#87e0bef4c369b6cadae07e3a4295778fc93799d5"
   integrity sha1-h+C+9MNptsra4H46QpV3j8k3mdU=
 
-"@angular/compiler@~13.2.5":
-  version "13.2.5"
-  resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/@angular/compiler/-/compiler-13.2.5.tgz#d5a1ef8e4e750ccf61680d7f252e681c4b133d0d"
-  integrity sha1-1aHvjk51DM9haA1/JS5oHEsTPQ0=
+"@angular/compiler@~13.2.6":
+  version "13.2.6"
+  resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/@angular/compiler/-/compiler-13.2.6.tgz#0de8e65fc4fe22273eff1e96917377919dbd2ab3"
+  integrity sha1-DejmX8T+Iic+/x6WkXN3kZ29KrM=
   dependencies:
     tslib "^2.3.0"
 
@@ -209,24 +209,24 @@
   resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/@angular/core/-/core-9.0.0.tgz#227dc53e1ac81824f998c6e76000b7efc522641e"
   integrity sha1-In3FPhrIGCT5mMbnYAC378UiZB4=
 
-"@angular/core@~13.2.5":
-  version "13.2.5"
-  resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/@angular/core/-/core-13.2.5.tgz#15f112b2ac4e21f72a3a77ee0db8fb2a1e72bffc"
-  integrity sha1-FfESsqxOIfcqOnfuDbj7Kh5yv/w=
+"@angular/core@~13.2.6":
+  version "13.2.6"
+  resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/@angular/core/-/core-13.2.6.tgz#685ca3b6de173f9671e251362a2c88f8685454f0"
+  integrity sha1-aFyjtt4XP5Zx4lE2KiyI+GhUVPA=
   dependencies:
     tslib "^2.3.0"
 
-"@angular/forms@~13.2.5":
-  version "13.2.5"
-  resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/@angular/forms/-/forms-13.2.5.tgz#64dfaf17cae034d8c256e1b3005b02271c0eb49d"
-  integrity sha1-ZN+vF8rgNNjCVuGzAFsCJxwOtJ0=
+"@angular/forms@~13.2.6":
+  version "13.2.6"
+  resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/@angular/forms/-/forms-13.2.6.tgz#fc0664bc0136a2cc5103dc0a62b12f3bc48cedd9"
+  integrity sha1-/AZkvAE2osxRA9wKYrEvO8SM7dk=
   dependencies:
     tslib "^2.3.0"
 
-"@angular/language-service@~13.2.5":
-  version "13.2.5"
-  resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/@angular/language-service/-/language-service-13.2.5.tgz#3304781807e59ebf549af77e70b721d2fe0ab26b"
-  integrity sha1-MwR4GAflnr9Umvd+cLch0v4Ksms=
+"@angular/language-service@~13.2.6":
+  version "13.2.6"
+  resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/@angular/language-service/-/language-service-13.2.6.tgz#ee417af8a814b531be54e82e73254c3f18793a3a"
+  integrity sha1-7kF6+KgUtTG+VOgucyVMPxh5Ojo=
 
 "@angular/material@^13.2.5":
   version "13.2.5"
@@ -235,24 +235,24 @@
   dependencies:
     tslib "^2.3.0"
 
-"@angular/platform-browser-dynamic@~13.2.5":
-  version "13.2.5"
-  resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/@angular/platform-browser-dynamic/-/platform-browser-dynamic-13.2.5.tgz#15f52c613deb4d56339a540f8ffb322698f976cf"
-  integrity sha1-FfUsYT3rTVYzmlQPj/syJpj5ds8=
+"@angular/platform-browser-dynamic@~13.2.6":
+  version "13.2.6"
+  resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/@angular/platform-browser-dynamic/-/platform-browser-dynamic-13.2.6.tgz#61e0ea0255982c604e596665b6c1c3441beab9b6"
+  integrity sha1-YeDqAlWYLGBOWWZltsHDRBvqubY=
   dependencies:
     tslib "^2.3.0"
 
-"@angular/platform-browser@~13.2.5":
-  version "13.2.5"
-  resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/@angular/platform-browser/-/platform-browser-13.2.5.tgz#c9baf98d59a8b2b0a85dfeee763aec3c1b41ea66"
-  integrity sha1-ybr5jVmosrCoXf7udjrsPBtB6mY=
+"@angular/platform-browser@~13.2.6":
+  version "13.2.6"
+  resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/@angular/platform-browser/-/platform-browser-13.2.6.tgz#eef3ea0c715c319e7135f80d3432e5a980aefe10"
+  integrity sha1-7vPqDHFcMZ5xNfgNNDLlqYCu/hA=
   dependencies:
     tslib "^2.3.0"
 
-"@angular/router@~13.2.5":
-  version "13.2.5"
-  resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/@angular/router/-/router-13.2.5.tgz#b600798ec3ff8be399784e7d0e71cd6bf411a634"
-  integrity sha1-tgB5jsP/i+OZeE59DnHNa/QRpjQ=
+"@angular/router@~13.2.6":
+  version "13.2.6"
+  resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/@angular/router/-/router-13.2.6.tgz#5755c109877d16cf16585a5fda2a059500a3506b"
+  integrity sha1-V1XBCYd9Fs8WWFpf2ioFlQCjUGs=
   dependencies:
     tslib "^2.3.0"
 
@@ -1354,10 +1354,10 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
-"@ngtools/webpack@13.2.5":
-  version "13.2.5"
-  resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/@ngtools/webpack/-/webpack-13.2.5.tgz#083ac647926403df741d5f6b5a3edd3a545a9b2f"
-  integrity sha1-CDrGR5JkA990HV9rWj7dOlRamy8=
+"@ngtools/webpack@13.2.6":
+  version "13.2.6"
+  resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/@ngtools/webpack/-/webpack-13.2.6.tgz#8fe9c54dce13ec291eeef352ed773b77d1d0bed0"
+  integrity sha1-j+nFTc4T7Cke7vNS7Xc7d9HQvtA=
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
@@ -1468,13 +1468,13 @@
     estree-walker "^1.0.1"
     picomatch "^2.2.2"
 
-"@schematics/angular@13.2.5":
-  version "13.2.5"
-  resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/@schematics/angular/-/angular-13.2.5.tgz#cb07c0355dd4f8586960f9dc7862777f9a662f29"
-  integrity sha1-ywfANV3U+FhpYPnceGJ3f5pmLyk=
+"@schematics/angular@13.2.6":
+  version "13.2.6"
+  resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/@schematics/angular/-/angular-13.2.6.tgz#48f5b6c58d2f26de913873549180122283b22f20"
+  integrity sha1-SPW2xY0vJt6ROHNUkYASIoOyLyA=
   dependencies:
-    "@angular-devkit/core" "13.2.5"
-    "@angular-devkit/schematics" "13.2.5"
+    "@angular-devkit/core" "13.2.6"
+    "@angular-devkit/schematics" "13.2.6"
     jsonc-parser "3.0.0"
 
 "@tootallnate/once@1":
@@ -4357,12 +4357,19 @@ lru-cache@^7.4.1:
   resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/lru-cache/-/lru-cache-7.4.1.tgz#afe07e885ef0cd5bf99f62f4fa7545d48746d779"
   integrity sha1-r+B+iF7wzVv5n2L0+nVF1IdG13k=
 
-magic-string@0.25.7, magic-string@^0.25.0:
+magic-string@0.25.7:
   version "0.25.7"
   resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/magic-string/-/magic-string-0.25.7.tgz#3f497d6fd34c669c6798dcb821f2ef31f5445051"
   integrity sha1-P0l9b9NMZpxnmNy4IfLvMfVEUFE=
   dependencies:
     sourcemap-codec "^1.4.4"
+
+magic-string@^0.26.0:
+  version "0.26.1"
+  resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/magic-string/-/magic-string-0.26.1.tgz#ba9b651354fa9512474199acecf9c6dbe93f97fd"
+  integrity sha1-uptlE1T6lRJHQZms7PnG2+k/l/0=
+  dependencies:
+    sourcemap-codec "^1.4.8"
 
 make-dir@^2.1.0:
   version "2.1.0"
