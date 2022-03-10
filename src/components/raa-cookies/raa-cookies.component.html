@@ -59,12 +59,11 @@
             <div class="tw-flex tw-w-full tw-relative tw-justify-between tw-items-center">
               <mat-accordion>
                 <mat-expansion-panel
+                  (expandedChange)="updateExpanded(cookie)"
                   class="mat-elevation-z0 tw-text-raa-orange raa-button-focus !tw-flex !tw-flex-wrap"
                   hideToggle
                 >
                   <mat-expansion-panel-header
-                    (keydown.Space)="updateExpanded(cookie)"
-                    (click)="updateExpanded(cookie)"
                     [collapsedHeight]="'4rem'"
                     [expandedHeight]="'4rem'"
                     class="!tw-flex tw-relative focus:tw-shadow-outline !tw-bg-transparent tw-ml-1 tw-my-1 !tw-p-0"
