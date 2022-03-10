@@ -26,7 +26,7 @@ export class RaaTrapFocusDirective implements AfterViewInit, OnChanges {
 
   ngAfterViewInit() {
     const tabbableElements = Array.prototype.slice
-      .call(this.element.nativeElement.querySelectorAll('select, input, textarea, button, a'))
+      .call(this.element.nativeElement.querySelectorAll('select, input, textarea, button, a, [role="button"]'))
       .filter((el: HTMLElement) => !el.hidden);
 
     if (tabbableElements && tabbableElements.length) {

@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 // Components
 import { RaaSelectComponent } from './components/raa-select/raa-select.component';
@@ -17,6 +19,7 @@ import { RaaNavigationBarComponent } from './components/raa-navigation-bar/raa-n
 import { RaaBottomDialogComponent } from './components/raa-bottom-dialog/raa-bottom-dialog.component';
 import { RaaAutocompleteComponent } from './components/raa-autocomplete/raa-autocomplete.component';
 import { RaaDrawerComponent } from './components/raa-drawer/raa-drawer.component';
+import { RaaCookiesComponent } from './components/raa-cookies/raa-cookies.component';
 
 // Directives
 import { OutsideClickDirective } from './directives/raa-outside-click.directive';
@@ -30,7 +33,15 @@ import { OrgnummerPipe } from './pipes/orgnummer.pipe';
 import { A11yModule } from '@angular/cdk/a11y';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, RouterModule, BrowserAnimationsModule, A11yModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    RouterModule,
+    BrowserAnimationsModule,
+    A11yModule,
+    MatSlideToggleModule,
+    MatExpansionModule,
+  ],
   declarations: [
     RaaSelectComponent,
     RaaDropdownComponent,
@@ -50,6 +61,7 @@ import { A11yModule } from '@angular/cdk/a11y';
     RaaBottomDialogComponent,
     RaaAutocompleteComponent,
     RaaDrawerComponent,
+    RaaCookiesComponent,
   ],
   exports: [
     RaaSelectComponent,
@@ -70,6 +82,9 @@ import { A11yModule } from '@angular/cdk/a11y';
     RaaBottomDialogComponent,
     RaaAutocompleteComponent,
     RaaDrawerComponent,
+    RaaCookiesComponent,
+    MatSlideToggleModule,
+    MatExpansionModule,
   ],
   providers: [OrgnummerPipe],
 })
