@@ -94,7 +94,7 @@ export class RaaBottomDialogComponent implements OnInit {
   }
 
   focusOnInit() {
-    if (this.isVisible) {
+    if (this.isVisible && this.cancelButton) {
       this.cancelButton.nativeElement.focus();
     }
   }

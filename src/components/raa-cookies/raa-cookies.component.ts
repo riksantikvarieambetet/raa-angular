@@ -61,7 +61,7 @@ export class RaaCookiesComponent implements OnInit {
         'Analytiska cookies används för att förstå hur besökare interagerar med webbplatsen. Dessa cookies hjälper till att ge information om mätvärden för antalet besökare, avvisningsfrekvens, trafikkälla, etc.',
       expanded: false,
       disabled: false,
-      visible: this.analytics,
+      visible: false,
     },
     {
       key: 'cookielawinfo_checkbox_functional',
@@ -71,7 +71,7 @@ export class RaaCookiesComponent implements OnInit {
         'Funktionella cookies hjälper till att utföra vissa funktioner som att dela innehållet på webbplatsen på sociala medieplattformar, samla in feedback och andra tredjepartsfunktioner. Prestandacookies används för att förstå och analysera webbplatsens nyckelprestandaindex, vilket hjälper till att leverera en bättre användarupplevelse för besökarna.',
       expanded: false,
       disabled: false,
-      visible: this.functional,
+      visible: false,
     },
     {
       key: 'cookielawinfo_checkbox_tredjepartscookies',
@@ -81,7 +81,7 @@ export class RaaCookiesComponent implements OnInit {
         'Tredjepartscookies används för att ge besökarna relevanta annonser och marknadsföringskampanjer. Dessa kakor används för Youtube, Google maps och Sketchfab data.',
       expanded: false,
       disabled: false,
-      visible: this.thirdparty,
+      visible: false,
     },
   ];
 
@@ -92,6 +92,21 @@ export class RaaCookiesComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (this.analytics) {
+      const index = this.defaultCookies.findIndex((obj) => obj.key === 'cookielawinfo_checkbox_analytics');
+      this.defaultCookies[index].visible = true;
+    }
+
+    if (this.functional) {
+      const index = this.defaultCookies.findIndex((obj) => obj.key === 'cookielawinfo_checkbox_functional');
+      this.defaultCookies[index].visible = true;
+    }
+
+    if (this.thirdparty) {
+      const index = this.defaultCookies.findIndex((obj) => obj.key === 'cookielawinfo_checkbox_tredjepartscookies');
+      this.defaultCookies[index].visible = true;
+    }
+
     let cookieString = document.cookie;
     if (cookieString) {
       cookieString = cookieString + ';';
@@ -110,11 +125,7 @@ export class RaaCookiesComponent implements OnInit {
     } else {
       const cookieValues = cookieString.split(' ');
       const hasViewed = cookieValues.includes('viewed_cookie_policy=yes;');
-      if (hasViewed) {
-        this.showBottomDialog = false;
-      } else {
-        this.showBottomDialog = true;
-      }
+      this.showBottomDialog = !hasViewed;
     }
   }
 
@@ -152,6 +163,7 @@ export class RaaCookiesComponent implements OnInit {
     document.cookie = `cookielawinfo_checkbox_necessary=yes; expires=${date.toUTCString()}; path=/`;
     document.cookie = `viewed_cookie_policy=yes; expires=${date.toUTCString()}; path=/`;
     this.showDialog = false;
+    this.onCookieUpdate.emit(this.defaultCookies);
   }
 
   onAcceptClick() {

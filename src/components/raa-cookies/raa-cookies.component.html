@@ -4,12 +4,18 @@
     cancelBtnText="Inställningar"
     confirmBtnText="Godkänn alla"
     hideOverlay="true"
-    background="tw-bg-raa-white"
+    [background]="'tw-bg-raa-white'"
   >
-    <div class="tw-flex tw-items-center tw-w-full tw-p-6">
+    <div
+      role="dialog"
+      aria-modal="false"
+      aria-labelledby="title"
+      aria-describedby="description"
+      class="tw-flex tw-items-center tw-w-full tw-p-6"
+    >
       <div class="tw-flex tw-flex-col tw-mb-8 md:tw-mb-0">
-        <p class="tw-pb-2 tw-w-full">Vi använder kakor(cookies) för en bättre användarupplevelse</p>
-        <p class="tw-pb-2 tw-w-full">
+        <p id="title" class="tw-pb-2 tw-w-full">Vi använder kakor(cookies) för en bättre användarupplevelse</p>
+        <p id="description" class="tw-pb-2 tw-w-full">
           Några kakor är nödvändiga för att webbplatsen ska fungera optimalt och andra används till statistik. Genom att
           klicka &quot;Godkänn alla&quot; godkänner du användandet av alla kakor.
         </p>
@@ -47,7 +53,7 @@
           används som underlag för förbättringsarbeten. Kakor för statistik är valfritt och kan inaktiveras.
         </p>
 
-        <div *ngFor="let cookie of defaultCookies" class="tw-p-[5px]">
+        <div *ngFor="let cookie of defaultCookies">
           <div *ngIf="cookie.visible">
             <hr class="tw-w-full tw-border-raa-gray-3" />
             <div class="tw-flex tw-w-full tw-relative tw-justify-between tw-items-center">
@@ -57,7 +63,10 @@
                   hideToggle
                 >
                   <mat-expansion-panel-header
+                    (keydown.Space)="updateExpanded(cookie)"
                     (click)="updateExpanded(cookie)"
+                    [collapsedHeight]="'4rem'"
+                    [expandedHeight]="'4rem'"
                     class="!tw-flex tw-relative focus:tw-shadow-outline !tw-bg-transparent tw-ml-1 tw-my-1 !tw-p-0"
                   >
                     <div class="tw-flex tw-items-center">
@@ -76,8 +85,8 @@
                 </mat-expansion-panel>
               </mat-accordion>
               <div class="tw-flex tw-items-center tw-justify-end tw-absolute tw-right-0 tw-top-0 tw-mt-5">
-                <p *ngIf="cookie.title === 'Nödvändiga'" class="tw-pr-4 tw-mb-0">Alltid aktiverad</p>
-                <p *ngIf="cookie.title !== 'Nödvändiga'" class="tw-hidden md:tw-flex tw-pr-4 tw-mb-0">
+                <p *ngIf="cookie.title === 'Nödvändiga'" class="tw-pr-4 tw-mb-0 tw-p-[5px]">Alltid aktiverad</p>
+                <p *ngIf="cookie.title !== 'Nödvändiga'" class="tw-hidden md:tw-flex tw-pr-4 tw-p-[5px] tw-mb-0">
                   {{ cookie.status ? 'Aktiverad' : 'Inaktiverad' }}
                 </p>
 
