@@ -108,6 +108,7 @@ export class RaaDrawerComponent implements OnDestroy, OnChanges, OnInit {
   @Input() drawerState: DrawerState = DRAWER_OPEN;
   @Input() position: DrawerPosition = 'left';
   @Input() minimizedMobileTemplate: TemplateRef<any>;
+  @Input() zIndex = 50;
   @Input() handleIsVisible = true;
   @Input() drawerInvisible = false;
 

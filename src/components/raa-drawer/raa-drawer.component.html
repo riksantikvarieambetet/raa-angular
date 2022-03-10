@@ -7,6 +7,7 @@
   }"
   (@drawerState.start)="animationInProgress = true"
   (@drawerState.done)="emitDrawerEvent('animation_done'); animationInProgress = false"
+  [ngStyle]="{'zIndex' : zIndex}"
   [ngClass]="{
     'raa-drawer-fullscreen': drawerSize === 'fullscreen',
     'raa-drawer-large': drawerSize === 'large',
@@ -18,7 +19,7 @@
     'tw-invisible': drawerInvisible,
     'tw-border': drawerWindowMode === 'desktop' && (drawerState === 'open' || animationInProgress)
   }"
-  class="tw-absolute tw-top-0 tw-bottom-0 tw-h-auto tw-z-50 tw-bg-raa-white raa-drawer-unset-min-width tw-border-raa-gray-3 tw-border-t-0"
+  class="tw-absolute tw-top-0 tw-bottom-0 tw-h-auto tw-bg-raa-white raa-drawer-unset-min-width tw-border-raa-gray-3 tw-border-t-0"
   role="region"
   aria-label="Sidomeny"
   id="drawer"
