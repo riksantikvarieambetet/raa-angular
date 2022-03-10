@@ -135,10 +135,10 @@
   dependencies:
     tslib "^2.3.0"
 
-"@angular/cdk@^13.2.5":
-  version "13.2.5"
-  resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/@angular/cdk/-/cdk-13.2.5.tgz#424a4c040d4f7af3da75749d63ec8fdfda59b4cb"
-  integrity sha1-QkpMBA1PevPadXSdY+yP39pZtMs=
+"@angular/cdk@^13.2.6":
+  version "13.2.6"
+  resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/@angular/cdk/-/cdk-13.2.6.tgz#4a5cf4b93ccad4123e09a6cbe2c880bb6f3242fe"
+  integrity sha1-Slz0uTzK1BI+CabL4siAu28yQv4=
   dependencies:
     tslib "^2.3.0"
   optionalDependencies:
@@ -228,10 +228,10 @@
   resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/@angular/language-service/-/language-service-13.2.6.tgz#ee417af8a814b531be54e82e73254c3f18793a3a"
   integrity sha1-7kF6+KgUtTG+VOgucyVMPxh5Ojo=
 
-"@angular/material@^13.2.5":
-  version "13.2.5"
-  resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/@angular/material/-/material-13.2.5.tgz#07330419acf9391a84809697ef0f27adad257d0c"
-  integrity sha1-BzMEGaz5ORqEgJaX7w8nra0lfQw=
+"@angular/material@^13.2.6":
+  version "13.2.6"
+  resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/@angular/material/-/material-13.2.6.tgz#615ad63453cd4122ab1775b077e8122c932cab06"
+  integrity sha1-YVrWNFPNQSKrF3Wwd+gSLJMsqwY=
   dependencies:
     tslib "^2.3.0"
 
