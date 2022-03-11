@@ -1,6 +1,6 @@
 <div
   [@fade]
-  *ngIf="isVisible"
+  *ngIf="isVisible && !hideOverlay"
   class="tw-absolute tw-h-full tw-w-full tw-bg-raa-white tw-opacity-75 tw-left-0 tw-top-0 z-index-10"
 ></div>
 
@@ -8,24 +8,23 @@
   [@closeConfirmationAnimation]
   (@closeConfirmationAnimation.done)="focusOnInit()"
   id="bottom-dialog"
-  class="tw-absolute tw-bottom-0 tw-left-0 tw-bg-raa-gray-2 tw-border-t tw-border-raa-gray-3 tw-w-full tw-flex tw-flex-col tw-items-center tw-justify-center z-index-99999"
+  class="tw-absolute tw-bottom-0 tw-left-0 tw-border-t tw-border-raa-gray-3 tw-w-full tw-flex tw-flex-col tw-items-center tw-justify-center z-index-99999"
+  [class]="background"
   [ngClass]="{ 'tw-h-full': fullHeight }"
   *ngIf="isVisible"
 >
+  <div #ref>
+    <ng-content></ng-content>
+  </div>
   <div
+    *ngIf="ref.children.length == 0"
     role="alertdialog"
-    aria-labelledby="dialog-header"
-    aria-describedby="dialog-message"
     class="tw-w-full tw-text-center tw-p-8 tw-max-w-md"
     [cdkTrapFocus]
   >
-    <div *ngIf="!header && !message">
-      <ng-content></ng-content>
-    </div>
-
     <div *ngIf="header || message">
-      <h3 *ngIf="header" id="dialog-header" class="tw-heading-md tw-w-full tw-text-center tw-py-4">{{ header }}</h3>
-      <p *ngIf="message" id="dialog-message" class="tw-mb-4">{{ message }}</p>
+      <h3 *ngIf="header" class="tw-heading-md tw-w-full tw-text-center tw-py-4">{{ header }}</h3>
+      <p *ngIf="message" class="tw-mb-4">{{ message }}</p>
     </div>
 
     <div class="tw-flex tw-flex-col md:tw-flex-row tw-justify-center tw-w-full">

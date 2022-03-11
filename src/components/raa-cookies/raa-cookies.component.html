@@ -1,0 +1,113 @@
+<div>
+  <raa-bottom-dialog
+    [isVisible]="showBottomDialog"
+    cancelBtnText="Inställningar"
+    confirmBtnText="Godkänn alla"
+    hideOverlay="true"
+    [background]="'tw-bg-raa-white'"
+  >
+    <div
+      role="dialog"
+      aria-modal="false"
+      aria-labelledby="title"
+      aria-describedby="description"
+      class="tw-flex tw-items-center tw-w-full tw-p-6"
+    >
+      <div class="tw-flex tw-flex-col tw-mb-8 md:tw-mb-0">
+        <p id="title" class="tw-pb-2 tw-w-full">Vi använder kakor(cookies) för en bättre användarupplevelse</p>
+        <p id="description" class="tw-pb-2 tw-w-full">
+          Några kakor är nödvändiga för att webbplatsen ska fungera optimalt och andra används till statistik. Genom att
+          klicka &quot;Godkänn alla&quot; godkänner du användandet av alla kakor.
+        </p>
+        <div>
+          <a
+            class="raa-link"
+            target="_blank"
+            href="https://raa.se/om-webbplatsen/dessa-filer-sparar-vi-pa-din-dator/"
+            rel="noreferrer"
+          >
+            <span class="raa-icon raa-icon-externallink tw-mr-1"></span>
+            Läs mer om kakor här.
+          </a>
+        </div>
+      </div>
+      <div class="tw-flex tw-flex-col md:tw-flex-row tw-justify-end tw-w-full">
+        <button class="tw-mr-0 tw-mb-2 md:tw-mr-2 md:tw-mb-0 raa-button raa-button-cancel" (click)="openSettings()">
+          Inställningar
+        </button>
+
+        <button
+          class="tw-ml-0 tw-mb-2 md:tw-ml-2 md:tw-mb-0 tw-relative raa-button raa-button-confirm"
+          (click)="acceptAllCookies()"
+        >
+          <span>Godkänn alla</span>
+        </button>
+      </div>
+    </div>
+  </raa-bottom-dialog>
+  <div class="tw-max-h-[90vh]">
+    <raa-dialog *ngIf="showDialog" header="Inställningar för kakor (Cookies)" width="40" [close]="onCloseDialog">
+      <div class="tw-p-4 tw-overflow-auto">
+        <p class="tw-mb-4">
+          Nödvändiga kakor används för att webbplatsen ska fungera optimalt för dig som användare. Kakor för statistik
+          används som underlag för förbättringsarbeten. Kakor för statistik är valfritt och kan inaktiveras.
+        </p>
+
+        <div *ngFor="let cookie of defaultCookies">
+          <div *ngIf="cookie.visible">
+            <hr class="tw-w-full tw-border-raa-gray-3" />
+            <div class="tw-flex tw-w-full tw-relative tw-justify-between tw-items-center">
+              <mat-accordion>
+                <mat-expansion-panel
+                  (expandedChange)="updateExpanded(cookie)"
+                  class="mat-elevation-z0 tw-text-raa-orange raa-button-focus !tw-flex !tw-flex-wrap"
+                  hideToggle
+                >
+                  <mat-expansion-panel-header
+                    [collapsedHeight]="'4rem'"
+                    [expandedHeight]="'4rem'"
+                    class="!tw-flex tw-relative focus:tw-shadow-outline !tw-bg-transparent tw-ml-1 tw-my-1 !tw-p-0"
+                  >
+                    <div class="tw-flex tw-items-center">
+                      <span
+                        class="tw-text-size-1.75 tw-text-raa-orange raa-icon-arrow-right tw-absolute tw-transform"
+                        [ngClass]="{ 'tw-rotate-90': cookie.expanded }"
+                        aria-hidden="true"
+                      ></span>
+                      <mat-panel-title
+                        class="tw-max-w-[40%] md:tw-max-w-full !tw-ml-8 !tw-font-normal !tw-text-size-1 !tw-text-raa-orange"
+                        >{{ cookie.title }}</mat-panel-title
+                      >
+                    </div>
+                  </mat-expansion-panel-header>
+                  <p>{{ cookie.description }}</p>
+                </mat-expansion-panel>
+              </mat-accordion>
+              <div class="tw-flex tw-items-center tw-justify-end tw-absolute tw-right-0 tw-top-0 tw-mt-5">
+                <p *ngIf="cookie.title === 'Nödvändiga'" class="tw-pr-4 tw-mb-0 tw-p-[5px]">Alltid aktiverad</p>
+                <p *ngIf="cookie.title !== 'Nödvändiga'" class="tw-hidden md:tw-flex tw-pr-4 tw-p-[5px] tw-mb-0">
+                  {{ cookie.status ? 'Aktiverad' : 'Inaktiverad' }}
+                </p>
+
+                <div *ngIf="cookie.title !== 'Nödvändiga'">
+                  <mat-slide-toggle
+                    (change)="updateCookieStatus(cookie)"
+                    [disabled]="cookie.disabled"
+                    [checked]="cookie.status"
+                  ></mat-slide-toggle>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tw-flex tw-flex-col md:tw-flex-row tw-gap-4 tw-justify-end tw-pt-4">
+          <button (click)="onDenyClick()" type="button" class="raa-button raa-button-cancel">avvisa alla</button>
+          <button (click)="onAcceptClick()" type="button" class="raa-button raa-button-confirm">
+            spara inställningar
+          </button>
+        </div>
+      </div>
+    </raa-dialog>
+  </div>
+</div>
