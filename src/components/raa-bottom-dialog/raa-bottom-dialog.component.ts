@@ -72,6 +72,7 @@ export class RaaBottomDialogComponent implements OnInit {
   cancelButton: ElementRef;
 
   ngOnInit() {
+
     if (!this.cancelBtnText) {
       throw new Error('ERROR: raa-bottom-dialog.component -> cancelBtnText must be specified');
     }
