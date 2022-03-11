@@ -1594,7 +1594,7 @@
   dependencies:
     "@types/node" "*"
 
-"@types/jasmine@*", "@types/jasmine@3.10.3":
+"@types/jasmine@*", "@types/jasmine@~3.10.3":
   version "3.10.3"
   resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/@types/jasmine/-/jasmine-3.10.3.tgz#a89798b3d5a8bd23ca56e855a9aee3e5a93bdaaa"
   integrity sha1-qJeYs9WovSPKVuhVqa7j5ak72qo=
@@ -1638,7 +1638,7 @@
   resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/@types/node/-/node-17.0.17.tgz#a8ddf6e0c2341718d74ee3dc413a13a042c45a0c"
   integrity sha1-qN324MI0FxjXTuPcQToToELEWgw=
 
-"@types/node@17.0.21":
+"@types/node@^17.0.21":
   version "17.0.21"
   resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/@types/node/-/node-17.0.21.tgz#864b987c0c68d07b4345845c3e63b75edd143644"
   integrity sha1-hkuYfAxo0HtDRYRcPmO3Xt0UNkQ=
@@ -6374,7 +6374,7 @@ tree-kill@1.2.2:
   resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/tree-kill/-/tree-kill-1.2.2.tgz#4ca09a9092c88b73a7cdc5e8a01b507b0790a0cc"
   integrity sha1-TKCakJLIi3OnzcXooBtQeweQoMw=
 
-ts-node@10.7.0:
+ts-node@~10.7.0:
   version "10.7.0"
   resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/ts-node/-/ts-node-10.7.0.tgz#35d503d0fab3e2baa672a0e94f4b40653c2463f5"
   integrity sha1-NdUD0Pqz4rqmcqDpT0tAZTwkY/U=
@@ -6447,10 +6447,10 @@ typed-assert@^1.0.8:
   resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/typed-assert/-/typed-assert-1.0.9.tgz#8af9d4f93432c4970ec717e3006f33f135b06213"
   integrity sha1-ivnU+TQyxJcOxxfjAG8z8TWwYhM=
 
-typescript@4.6.2:
-  version "4.6.2"
-  resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/typescript/-/typescript-4.6.2.tgz#fe12d2727b708f4eef40f51598b3398baa9611d4"
-  integrity sha1-/hLScntwj07vQPUVmLM5i6qWEdQ=
+typescript@~4.5.5:
+  version "4.5.5"
+  resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/typescript/-/typescript-4.5.5.tgz#d8c953832d28924a9e3d37c73d729c846c5896f3"
+  integrity sha1-2MlTgy0okkqePTfHPXKchGxYlvM=
 
 unicode-canonical-property-names-ecmascript@^2.0.0:
   version "2.0.0"
@@ -6759,14 +6759,14 @@ yn@3.1.1:
   resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/yn/-/yn-3.1.1.tgz#1e87401a09d767c1d5eab26a6e4c185182d2eb50"
   integrity sha1-HodAGgnXZ8HV6rJqbkwYUYLS61A=
 
-zone.js@0.11.5:
+zone.js@~0.10.3:
+  version "0.10.3"
+  resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/zone.js/-/zone.js-0.10.3.tgz#3e5e4da03c607c9dcd92e37dd35687a14a140c16"
+  integrity sha1-Pl5NoDxgfJ3NkuN901aHoUoUDBY=
+
+zone.js@~0.11.5:
   version "0.11.5"
   resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/zone.js/-/zone.js-0.11.5.tgz#ab0b449e91fadb5ebb2db189ffe1b7b6048dc8b1"
   integrity sha1-qwtEnpH62167LbGJ/+G3tgSNyLE=
   dependencies:
     tslib "^2.3.0"
-
-zone.js@~0.10.3:
-  version "0.10.3"
-  resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/zone.js/-/zone.js-0.10.3.tgz#3e5e4da03c607c9dcd92e37dd35687a14a140c16"
-  integrity sha1-Pl5NoDxgfJ3NkuN901aHoUoUDBY=
