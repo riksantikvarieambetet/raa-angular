@@ -13,22 +13,22 @@
   [ngClass]="{ 'tw-h-full': fullHeight }"
   *ngIf="isVisible"
 >
-  <div #ref>
-    <ng-content></ng-content>
-  </div>
-  <div
-    *ngIf="ref.children.length == 0"
-    role="alertdialog"
-    class="tw-w-full tw-text-center tw-p-8 tw-max-w-md"
-    [cdkTrapFocus]
-  >
-    <div *ngIf="header || message">
-      <h3 *ngIf="header" class="tw-heading-md tw-w-full tw-text-center tw-py-4">{{ header }}</h3>
+  <div role="alertdialog" class="tw-flex tw-flex-col tw-items-center tw-w-full tw-p-8" [cdkTrapFocus]>
+    <div *ngIf="!header && !message" class="tw-w-full">
+      <ng-content></ng-content>
+    </div>
+
+    <div *ngIf="header || message" class="tw-max-w-md tw-text-center">
+      <h3 *ngIf="header" class="tw-heading-md tw-w-full tw-py-4">{{ header }}</h3>
       <p *ngIf="message" class="tw-mb-4">{{ message }}</p>
     </div>
 
-    <div class="tw-flex tw-flex-col md:tw-flex-row tw-justify-center tw-w-full">
+    <div
+      *ngIf="onNoAction.observed || onYesAction.observed"
+      class="tw-flex tw-flex-col md:tw-flex-row tw-justify-center tw-w-full"
+    >
       <button
+        *ngIf="onNoAction.observed"
         #cancelButton
         class="tw-mr-0 tw-mb-2 md:tw-mr-2 md:tw-mb-0 raa-button raa-button-cancel tw-uppercase"
         (click)="noAction()"
@@ -38,6 +38,7 @@
       </button>
 
       <button
+        *ngIf="onYesAction.observed"
         class="tw-ml-0 tw-mb-2 md:tw-ml-2 md:tw-mb-0 tw-relative raa-button tw-uppercase"
         [disabled]="showLoadingSpinner || confirmBtnDisabled"
         [ngClass]="buttonClass"
