@@ -84,6 +84,8 @@ export class RaaSelectComponent implements OnInit, OnChanges, AfterViewInit, Con
   @ViewChildren('dropdownItem')
   dropdownItems: QueryList<ElementRef>;
 
+  @HostBinding() tabindex = 0;
+
   value: any;
   filterInput = '';
   showDropdown = false;
@@ -99,11 +101,8 @@ export class RaaSelectComponent implements OnInit, OnChanges, AfterViewInit, Con
 
   scrollToSelected = false;
 
-  @HostBinding()
-  tabindex = 0;
-
   @HostListener('focus', ['$event.target'])
-  onFocus(_event?: FocusEvent) {
+  onFocus() {
     if (!this.showDropdown) {
       this.setFocusToInputField.emit();
       this.focusGained();
@@ -116,12 +115,14 @@ export class RaaSelectComponent implements OnInit, OnChanges, AfterViewInit, Con
     this.value = value;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function,@typescript-eslint/no-unused-vars
   propagateChange = (_: any) => {};
 
   registerOnChange(fn: any) {
     this.propagateChange = fn;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   registerOnTouched() {}
 
   setDisabledState(isDisabled: boolean) {
@@ -227,12 +228,10 @@ export class RaaSelectComponent implements OnInit, OnChanges, AfterViewInit, Con
   }
 
   mapDomainValues() {
-    return this.domain.map((item) => {
-      return {
-        id: item[this.valueAttr],
-        displayValue: item[this.displayAttr],
-      };
-    });
+    return this.domain.map((item) => ({
+      id: item[this.valueAttr],
+      displayValue: item[this.displayAttr],
+    }));
   }
 
   filterValues() {
@@ -255,10 +254,11 @@ export class RaaSelectComponent implements OnInit, OnChanges, AfterViewInit, Con
   }
 
   getValue(item: any) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return item[this.valueAttr];
   }
 
-  getDisplayValue = (itemKey: any): string => {
+  getDisplayValue = (itemKey: string): string => {
     if (typeof itemKey === 'undefined' || itemKey === null || itemKey.length < 1 || this.domainValues.length === 0) {
       return '';
     }
@@ -342,26 +342,6 @@ export class RaaSelectComponent implements OnInit, OnChanges, AfterViewInit, Con
     }
   }
 
-  private scrollDropdownItemIntoView(direction: 'up' | 'down') {
-    const hovered = this.dropdownItems.find((item) =>
-      (item.nativeElement as HTMLElement).classList.contains('hovered')
-    );
-
-    if (hovered && hovered.nativeElement) {
-      let nextElement: Element | null;
-
-      if (direction === 'down') {
-        nextElement = (hovered.nativeElement as HTMLElement).nextElementSibling;
-      } else {
-        nextElement = (hovered.nativeElement as HTMLElement).previousElementSibling;
-      }
-
-      if (nextElement) {
-        nextElement.scrollIntoView({ block: 'end' });
-      }
-    }
-  }
-
   toggleDropdown() {
     if (!this.showDropdown) {
       if (!this.disableFiltration) {
@@ -397,8 +377,28 @@ export class RaaSelectComponent implements OnInit, OnChanges, AfterViewInit, Con
     this.tabindex = -1;
   };
 
+  private scrollDropdownItemIntoView(direction: 'up' | 'down') {
+    const hovered = this.dropdownItems.find((item) =>
+      (item.nativeElement as HTMLElement).classList.contains('hovered')
+    );
+
+    if (hovered && hovered.nativeElement) {
+      let nextElement: Element | null;
+
+      if (direction === 'down') {
+        nextElement = (hovered.nativeElement as HTMLElement).nextElementSibling;
+      } else {
+        nextElement = (hovered.nativeElement as HTMLElement).previousElementSibling;
+      }
+
+      if (nextElement) {
+        nextElement.scrollIntoView({ block: 'end' });
+      }
+    }
+  }
+
   private selectAllTextInInput() {
-    this.inputField.nativeElement.select();
+    (this.inputField.nativeElement as HTMLInputElement).select();
   }
 }
 

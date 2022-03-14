@@ -12,6 +12,8 @@ export { RaaNavigationBarComponent } from './components/raa-navigation-bar/raa-n
 export { RaaBottomDialogComponent } from './components/raa-bottom-dialog/raa-bottom-dialog.component';
 export { RaaLabelComponent } from './components/raa-label/raa-label.component';
 export { RaaAutocompleteComponent } from './components/raa-autocomplete/raa-autocomplete.component';
+export { RaaCookiesComponent } from './components/raa-cookies/raa-cookies.component';
+export { RaaDrawerComponent } from './components/raa-drawer/raa-drawer.component';
 
 // Directives
 export { OutsideClickDirective } from './directives/raa-outside-click.directive';

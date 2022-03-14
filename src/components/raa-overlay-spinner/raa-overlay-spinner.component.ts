@@ -1,18 +1,18 @@
-import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnDestroy, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'raa-overlay-spinner',
   templateUrl: './raa-overlay-spinner.component.html',
   styleUrls: ['./raa-overlay-spinner.component.scss'],
 })
-export class RaaOverlaySpinnerComponent implements AfterViewInit {
+export class RaaOverlaySpinnerComponent implements AfterViewInit, OnDestroy {
   @Input()
   posAbsolute: boolean;
 
   @Input()
   posFixed: boolean;
 
-  @ViewChild('raaSpinner', { static: true }) spinner: ElementRef;
+  @ViewChild('raaSpinner', { static: true }) spinner: ElementRef<HTMLElement>;
 
   private focusedElement: Element;
 

@@ -102,8 +102,6 @@ export const MOBILE_WINDOW_WIDTH_LIMIT = 570;
   ],
 })
 export class RaaDrawerComponent implements OnDestroy, OnChanges, OnInit {
-  private ngUnsubscribe: Subject<void> = new Subject();
-
   @Input() drawerSize: DrawerSize = 'small';
   @Input() drawerState: DrawerState = DRAWER_OPEN;
   @Input() position: DrawerPosition = 'left';
@@ -120,6 +118,8 @@ export class RaaDrawerComponent implements OnDestroy, OnChanges, OnInit {
   drawerWindowMode: DrawerWindowMode;
   animationInProgress = false;
   translateAnimation = '';
+
+  private ngUnsubscribe: Subject<void> = new Subject();
 
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {
@@ -160,7 +160,7 @@ export class RaaDrawerComponent implements OnDestroy, OnChanges, OnInit {
       this.drawerEventEmitter.emit({
         type,
         mode: this.drawerWindowMode,
-        rect: this.drawer.nativeElement.getBoundingClientRect(),
+        rect: (this.drawer.nativeElement as HTMLElement).getBoundingClientRect(),
       });
     });
   }

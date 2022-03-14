@@ -126,9 +126,18 @@
             }
           },
           "defaultConfiguration": ""
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
+          }
         }
       }
     }
   },
-  "defaultProject": "raa-angular"
+  "defaultProject": "raa-angular",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  }
 }

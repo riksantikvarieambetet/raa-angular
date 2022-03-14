@@ -29,3 +29,4 @@ export {
   DRAWER_RESIZE_EVENT,
   DRAWER_ANIMATION_DONE_EVENT,
 } from './components/raa-drawer/raa-drawer.component';
+export { RaaCookiesComponent } from './components/raa-cookies/raa-cookies.component';

@@ -16,11 +16,11 @@ export class RaaTrapFocusDirective implements AfterViewInit, OnChanges {
   @Input()
   trapDisabled = false;
 
-  constructor(private element: ElementRef) {}
+  constructor(private element: ElementRef<HTMLElement>) {}
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['initialFocusElement'] && changes['initialFocusElement'].currentValue) {
-      changes['initialFocusElement'].currentValue.nativeElement.focus();
+      (changes['initialFocusElement'].currentValue.nativeElement as HTMLElement).focus();
     }
   }
 
@@ -30,10 +30,10 @@ export class RaaTrapFocusDirective implements AfterViewInit, OnChanges {
       .filter((el: HTMLElement) => !el.hidden);
 
     if (tabbableElements && tabbableElements.length) {
-      const first = tabbableElements[0];
-      const last = tabbableElements[tabbableElements.length - 1];
+      const first: HTMLElement = tabbableElements[0];
+      const last: HTMLElement = tabbableElements[tabbableElements.length - 1];
 
-      const elementToFocus =
+      const elementToFocus: HTMLElement =
         this.initialFocusElement && this.initialFocusElement.nativeElement
           ? this.initialFocusElement.nativeElement
           : tabbableElements[0];

@@ -82,8 +82,6 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
   @ViewChildren('dropdownItem')
   dropdownItems: QueryList<ElementRef>;
 
-  private ngUnsubscribe = new Subject<void>();
-
   value: any;
   filterInput = '';
   showDropdown = false;
@@ -97,6 +95,8 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
   setFocusToInputField = new EventEmitter();
   scrollToSelected = false;
   timeout: number;
+
+  private ngUnsubscribe = new Subject<void>();
 
   ngOnInit() {
     if (!this.domain) {
@@ -142,6 +142,149 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
     this.ngUnsubscribe.complete();
   }
 
+  handleKeyPressed(event: KeyboardEvent) {
+    const keyCode = this.dispatchForCode(event);
+    const activeItem = this.dropdownItems
+      .toArray()
+      .find((element) => (element.nativeElement as HTMLElement).classList.contains('hovered'));
+
+    let previousSiblingElement: Element | null = null;
+    let nextSiblingElement: Element | null = null;
+
+    if (activeItem) {
+      previousSiblingElement = (activeItem.nativeElement as HTMLElement).previousElementSibling;
+      nextSiblingElement = (activeItem.nativeElement as HTMLElement).nextElementSibling;
+    }
+
+    if (keyCode === 'ArrowDown') {
+      event.preventDefault();
+
+      // Sätt activeItem till första värde för att skärmläsare ska förstå.
+      if (!activeItem && this.dropdownItems.first) {
+        this.activeItem = this.dropdownItems.first.nativeElement;
+      }
+
+      if (this.openDropdownIfClosed() || (this.filteredDomainValues.length && this.filteredDomainValues[0].id === -1)) {
+        return;
+      }
+
+      if (this.hoverIndex < this.filteredDomainValues.length - 1) {
+        this.hoverIndex += 1;
+        this.scrollDropdownItemIntoView('down');
+      }
+
+      if (activeItem && nextSiblingElement) {
+        this.activeItem = nextSiblingElement;
+      }
+    } else if (keyCode === 'ArrowUp') {
+      event.preventDefault();
+
+      if (this.openDropdownIfClosed()) {
+        return;
+      }
+
+      if (this.hoverIndex > 0) {
+        this.hoverIndex -= 1;
+        this.scrollDropdownItemIntoView('up');
+      }
+
+      if (activeItem && previousSiblingElement) {
+        this.activeItem = previousSiblingElement;
+      }
+    } else if (keyCode === 'Enter') {
+      if (!this.domain.length) {
+        event.preventDefault();
+        return;
+      }
+
+      if (!this.filteredDomainValues.length) {
+        return;
+      }
+
+      if (this.hoverIndex > -1) {
+        event.preventDefault();
+        this.select(this.filteredDomainValues[this.hoverIndex]);
+        this.focusLost();
+      }
+    } else if (keyCode === 'Escape') {
+      event.preventDefault();
+      this.showDropdown = false;
+    } else if (keyCode === 'Tab') {
+      this.focusLost(false);
+    } else {
+      if (!ignoreOpenOnKeyCodes[keyCode]) {
+        this.openDropdownIfClosed();
+      }
+    }
+  }
+
+  focusGained() {
+    if (this.filteredDomainValues.length) {
+      this.openDropdownIfClosed();
+    }
+
+    this.clearFilters();
+  }
+
+  focusLost = (clearInput = true) => {
+    // sätter visningsvärde till valt värde, detta om användaren börjar justera men avbryter
+    if (clearInput) {
+      this.activeItem = null;
+      this.domainValues = [];
+      this.domain = [];
+      this.filteredDomainValues = [];
+      this.filterInput = this.getDisplayValue(this.value);
+    }
+
+    this.showDropdown = false;
+    this.hoverIndex = -1;
+  };
+
+  onFilteredInputChange() {
+    this.searchQuery.emit(this.filterInput);
+    this.filterValues();
+
+    if (!this.filterInput) {
+      this.showDropdown = false;
+    }
+  }
+
+  dropdownMovedUp(event: boolean) {
+    this.dropdownIsAbove = event;
+  }
+
+  select(item: DomainValue) {
+    if (item.id === -1) {
+      return;
+    }
+
+    if (typeof item !== 'undefined') {
+      this.value = item.id;
+      this.filterInput = item.displayValue;
+
+      this.onSelect.emit(this.value);
+    }
+
+    this.focusLost();
+    this.setFocusToInputField.emit();
+  }
+
+  getDisplayValue = (itemKey: string): string => {
+    if (typeof itemKey === 'undefined' || itemKey === null || itemKey.length < 1 || this.domainValues.length === 0) {
+      return '';
+    }
+    const domainObject = this.domainValues.filter((domainItem) => domainItem.id === itemKey);
+    if (domainObject.length === 0) {
+      throw new Error(
+        'ERROR: raa-autocomplete.component -> There is no domain object with key ' +
+          itemKey +
+          '. Make sure the key exists in domain and/or the type (string/number) is correct'
+      );
+    }
+
+    return domainObject[0].displayValue;
+  };
+
   private handleDropdownItemsChanged() {
     if (this.scrollToSelected) {
       this.scrollToSelected = false;
@@ -178,12 +321,10 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
   }
 
   private mapDomainValues() {
-    return this.domain.map((item) => {
-      return {
-        id: item[this.valueAttr],
-        displayValue: item[this.displayAttr],
-      };
-    });
+    return this.domain.map((item) => ({
+      id: item[this.valueAttr],
+      displayValue: item[this.displayAttr],
+    }));
   }
 
   private filterValues() {
@@ -272,149 +413,6 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
 
     return code;
   }
-
-  onFilteredInputChange() {
-    this.searchQuery.emit(this.filterInput);
-    this.filterValues();
-
-    if (!this.filterInput) {
-      this.showDropdown = false;
-    }
-  }
-
-  dropdownMovedUp(event: boolean) {
-    this.dropdownIsAbove = event;
-  }
-
-  select(item: DomainValue) {
-    if (item.id === -1) {
-      return;
-    }
-
-    if (typeof item !== 'undefined') {
-      this.value = item.id;
-      this.filterInput = item.displayValue;
-
-      this.onSelect.emit(this.value);
-    }
-
-    this.focusLost();
-    this.setFocusToInputField.emit();
-  }
-
-  getDisplayValue = (itemKey: any): string => {
-    if (typeof itemKey === 'undefined' || itemKey === null || itemKey.length < 1 || this.domainValues.length === 0) {
-      return '';
-    }
-    const domainObject = this.domainValues.filter((domainItem) => domainItem.id === itemKey);
-    if (domainObject.length === 0) {
-      throw new Error(
-        'ERROR: raa-autocomplete.component -> There is no domain object with key ' +
-          itemKey +
-          '. Make sure the key exists in domain and/or the type (string/number) is correct'
-      );
-    }
-
-    return domainObject[0].displayValue;
-  };
-
-  handleKeyPressed(event: KeyboardEvent) {
-    const keyCode = this.dispatchForCode(event);
-    const activeItem = this.dropdownItems
-      .toArray()
-      .find((element) => (element.nativeElement as HTMLElement).classList.contains('hovered'));
-
-    let previousSiblingElement: Element | null = null;
-    let nextSiblingElement: Element | null = null;
-
-    if (activeItem) {
-      previousSiblingElement = (activeItem.nativeElement as HTMLElement).previousElementSibling;
-      nextSiblingElement = (activeItem.nativeElement as HTMLElement).nextElementSibling;
-    }
-
-    if (keyCode === 'ArrowDown') {
-      event.preventDefault();
-
-      // Sätt activeItem till första värde för att skärmläsare ska förstå.
-      if (!activeItem && this.dropdownItems.first) {
-        this.activeItem = this.dropdownItems.first.nativeElement;
-      }
-
-      if (this.openDropdownIfClosed() || (this.filteredDomainValues.length && this.filteredDomainValues[0].id === -1)) {
-        return;
-      }
-
-      if (this.hoverIndex < this.filteredDomainValues.length - 1) {
-        this.hoverIndex += 1;
-        this.scrollDropdownItemIntoView('down');
-      }
-
-      if (activeItem && nextSiblingElement) {
-        this.activeItem = nextSiblingElement;
-      }
-    } else if (keyCode === 'ArrowUp') {
-      event.preventDefault();
-
-      if (this.openDropdownIfClosed()) {
-        return;
-      }
-
-      if (this.hoverIndex > 0) {
-        this.hoverIndex -= 1;
-        this.scrollDropdownItemIntoView('up');
-      }
-
-      if (activeItem && previousSiblingElement) {
-        this.activeItem = previousSiblingElement;
-      }
-    } else if (keyCode === 'Enter') {
-      if (!this.domain.length) {
-        event.preventDefault();
-        return;
-      }
-
-      if (!this.filteredDomainValues.length) {
-        return;
-      }
-
-      if (this.hoverIndex > -1) {
-        event.preventDefault();
-        this.select(this.filteredDomainValues[this.hoverIndex]);
-        this.focusLost();
-      }
-    } else if (keyCode === 'Escape') {
-      event.preventDefault();
-      this.showDropdown = false;
-    } else if (keyCode === 'Tab') {
-      this.focusLost(false);
-    } else {
-      if (!ignoreOpenOnKeyCodes[keyCode]) {
-        this.openDropdownIfClosed();
-      }
-    }
-  }
-
-  focusGained() {
-    if (this.filteredDomainValues.length) {
-      this.openDropdownIfClosed();
-    }
-
-    this.clearFilters();
-  }
-
-  focusLost = (clearInput: boolean = true) => {
-    // sätter visningsvärde till valt värde, detta om användaren börjar justera men avbryter
-    if (clearInput) {
-      this.activeItem = null;
-      this.domainValues = [];
-      this.domain = [];
-      this.filteredDomainValues = [];
-      this.filterInput = this.getDisplayValue(this.value);
-    }
-
-    this.showDropdown = false;
-    this.hoverIndex = -1;
-  };
 }
 
 export interface DomainValue {

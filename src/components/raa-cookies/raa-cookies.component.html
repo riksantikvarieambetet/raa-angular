@@ -1,8 +1,8 @@
 <raa-bottom-dialog
   [isVisible]="showBottomDialog"
-  cancelBtnText="Inställningar"
-  confirmBtnText="Godkänn alla"
-  hideOverlay="true"
+  [cancelBtnText]="'Inställningar'"
+  [confirmBtnText]="'Godkänn alla'"
+  [hideOverlay]="true"
   [background]="'tw-bg-raa-white'"
 >
   <div class="tw-flex tw-items-center tw-w-full tw-p-6">
@@ -40,7 +40,7 @@
 </raa-bottom-dialog>
 
 <div class="tw-max-h-[90vh]">
-  <raa-dialog *ngIf="showDialog" header="Inställningar för kakor (Cookies)" width="40" [close]="onCloseDialog">
+  <raa-dialog *ngIf="showDialog" [header]="'Inställningar för kakor (Cookies)'" [width]="40" [close]="onCloseDialog">
     <div class="tw-p-4 tw-overflow-auto">
       <p class="tw-mb-4">
         Nödvändiga kakor används för att webbplatsen ska fungera optimalt för dig som användare. Kakor för statistik

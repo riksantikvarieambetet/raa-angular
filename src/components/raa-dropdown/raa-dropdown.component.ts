@@ -26,16 +26,6 @@ const DEFAULT_MAX_HEIGHT = 500;
   styleUrls: ['./raa-dropdown.component.scss'],
 })
 export class RaaDropdownComponent implements OnInit, AfterViewInit, OnDestroy {
-  private dropdown: HTMLElement;
-  private preferredHeight: number;
-  private parent: HTMLElement;
-  private throttledParentScroll = throttle(() => {
-    this.onParentScroll();
-  }, 16);
-
-  @Input()
-  private element: HTMLElement;
-
   @Input()
   moveUpHeightThreshold = 120;
 
@@ -44,6 +34,9 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @Input()
   dropdownBodyZIndex = '1000';
+
+  @Input()
+  private element: HTMLElement;
 
   @Output()
   private dropdownMovedUp = new EventEmitter<boolean>(true);
@@ -54,8 +47,15 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('dropdown', { static: true })
   private dropdownElementRef: ElementRef;
 
+  private dropdown: HTMLElement;
+  private preferredHeight: number;
+  private parent: HTMLElement;
+  private throttledParentScroll = throttle(() => {
+    this.onParentScroll();
+  }, 16);
+
   @HostListener('window:resize', ['$event'])
-  onWindowResize(_event: Event) {
+  onWindowResize() {
     this.throttledParentScroll();
   }
 
