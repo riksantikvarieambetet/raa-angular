@@ -66,10 +66,10 @@ export class RaaBottomDialogComponent implements OnInit {
   @Output()
   onNoAction = new EventEmitter<void>();
 
+  buttonClass = 'raa-button-secondary';
+
   @ViewChild('cancelButton', { static: false })
   cancelButton: ElementRef;
-
-  buttonClass = 'raa-button-secondary';
 
   ngOnInit() {
     if (!this.cancelBtnText) {

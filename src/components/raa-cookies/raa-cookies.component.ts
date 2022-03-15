@@ -35,6 +35,12 @@ export class RaaCookiesComponent implements OnInit {
 
   defaultCookies: DefaultCookieObj[] = [];
 
+  private createDate() {
+    const date = new Date();
+    date.setFullYear(date.getFullYear() + 1);
+    return date;
+  }
+
   ngOnInit() {
     this.defaultCookies = [
       {
@@ -169,11 +175,5 @@ export class RaaCookiesComponent implements OnInit {
   updateCookieStatus(cookie: DefaultCookieObj) {
     const objIndex = this.defaultCookies.findIndex((obj) => obj.key === cookie.key);
     this.defaultCookies[objIndex].status = !this.defaultCookies[objIndex].status;
-  }
-
-  private createDate() {
-    const date = new Date();
-    date.setFullYear(date.getFullYear() + 1);
-    return date;
   }
 }

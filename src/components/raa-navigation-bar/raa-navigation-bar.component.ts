@@ -17,6 +17,11 @@ export class RaaNavigationBarComponent implements OnInit {
 
   constructor(private element: ElementRef) {}
 
+  ngOnInit() {
+    this.displayMenu = false;
+    this.menuBtn = document.getElementById('menu-button');
+  }
+
   @HostListener('document:click', ['$event'])
   handleChange(event: MouseEvent) {
     if (
@@ -27,11 +32,6 @@ export class RaaNavigationBarComponent implements OnInit {
     ) {
       this.displayMenu = false;
     }
-  }
-
-  ngOnInit() {
-    this.displayMenu = false;
-    this.menuBtn = document.getElementById('menu-button');
   }
 
   toggleMenu() {
