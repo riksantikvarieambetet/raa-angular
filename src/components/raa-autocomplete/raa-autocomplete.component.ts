@@ -13,7 +13,6 @@ import {
   ElementRef,
   OnDestroy,
 } from '@angular/core';
-import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
 const ignoreOpenOnKeyCodes: { [key: string]: boolean } = {
@@ -117,7 +116,7 @@ export class RaaAutocompleteComponent implements OnInit, OnChanges, AfterViewIni
   }
 
   ngAfterViewInit() {
-    this.dropdownItems.changes.pipe(takeUntil(this.ngUnsubscribe)).subscribe(() => this.handleDropdownItemsChanged());
+    this.dropdownItems.changes.subscribe(() => this.handleDropdownItemsChanged());
   }
 
   ngOnChanges(changes: SimpleChanges) {
