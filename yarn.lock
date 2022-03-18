@@ -6445,10 +6445,10 @@ queue-microtask@^1.2.2:
   resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/queue-microtask/-/queue-microtask-1.2.3.tgz#4929228bbc724dfac43e0efb058caf7b6cfb6243"
   integrity sha1-SSkii7xyTfrEPg77BYyve2z7YkM=
 
-raa-style@^7.0.5:
-  version "7.0.5"
-  resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/raa-style/-/raa-style-7.0.5.tgz#8c912095fa337d571cdfe7f0c9082faec0f33406"
-  integrity sha1-jJEglfozfVcc3+fwyQgvrsDzNAY=
+raa-style@^7.0.6:
+  version "7.0.6"
+  resolved "https://artifactory.raa.se/artifactory/api/npm/raa-npm-prod/raa-style/-/raa-style-7.0.6.tgz#799f171b72d84c068cd6b8b72f22e6dde65e4be6"
+  integrity sha1-eZ8XG3LYTAaM1ri3LyLm3eZeS+Y=
 
 randombytes@^2.1.0:
   version "2.1.0"
