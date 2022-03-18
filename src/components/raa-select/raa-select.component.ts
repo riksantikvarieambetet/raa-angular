@@ -103,7 +103,7 @@ export class RaaSelectComponent implements OnInit, OnChanges, AfterViewInit, Con
   tabindex = 0;
 
   @HostListener('focus', ['$event.target'])
-  onFocus(_event?: FocusEvent) {
+  onFocus() {
     if (!this.showDropdown) {
       this.setFocusToInputField.emit();
       this.focusGained();
@@ -227,12 +227,10 @@ export class RaaSelectComponent implements OnInit, OnChanges, AfterViewInit, Con
   }
 
   mapDomainValues() {
-    return this.domain.map((item) => {
-      return {
-        id: item[this.valueAttr],
-        displayValue: item[this.displayAttr],
-      };
-    });
+    return this.domain.map((item) => ({
+      id: item[this.valueAttr],
+      displayValue: item[this.displayAttr],
+    }));
   }
 
   filterValues() {
@@ -398,7 +396,7 @@ export class RaaSelectComponent implements OnInit, OnChanges, AfterViewInit, Con
   };
 
   private selectAllTextInInput() {
-    this.inputField.nativeElement.select();
+    (this.inputField.nativeElement as HTMLInputElement).select();
   }
 }
 

@@ -4,10 +4,10 @@ import { Directive, ElementRef, HostListener } from '@angular/core';
   selector: '[raaSelectAllOnFocus]',
 })
 export class RaaSelectAllOnFocusDirective {
-  constructor(private el: ElementRef) {}
+  constructor(private elementRef: ElementRef<HTMLInputElement>) {}
 
   @HostListener('focus')
   onFocus() {
-    this.el.nativeElement.select();
+    this.elementRef.nativeElement.select();
   }
 }

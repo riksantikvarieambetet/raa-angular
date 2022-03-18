@@ -17,7 +17,7 @@ import {
 })
 export class RaaModalPageComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input()
-  close: Function;
+  close: () => void;
 
   @Input()
   header: string;
@@ -36,9 +36,11 @@ export class RaaModalPageComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    const tabbableElements = (Array.from(
+    const elements: HTMLElement[] = Array.from(
       this.modalContentChild.nativeElement.querySelectorAll('select, input, textarea, button, a')
-    ) as HTMLElement[]).filter((el: HTMLElement) => !el.hidden);
+    );
+
+    const tabbableElements = elements.filter((el: HTMLElement) => !el.hidden);
 
     if (tabbableElements.length) {
       tabbableElements[0].focus();

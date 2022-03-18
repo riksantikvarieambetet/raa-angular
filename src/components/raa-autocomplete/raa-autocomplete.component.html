@@ -13,7 +13,7 @@
       aria-haspopup="true"
       [attr.aria-activedescendant]="activeItem?.id"
       [placeholder]="placeholder"
-      [requestFocus]="setFocusToInputField"
+      [raaRequestFocus]="setFocusToInputField"
       [disabled]="disabled"
       [ngModelOptions]="{ standalone: true }"
       [(ngModel)]="filterInput"
@@ -42,7 +42,7 @@
     [element]="raaAutocomplete"
     (dropdownMovedUp)="dropdownMovedUp($event)"
     [moveUpHeightThreshold]="120"
-    appendToBody="{{ false }}"
+    [appendToBody]="false"
   >
     <ul
       #dropdown

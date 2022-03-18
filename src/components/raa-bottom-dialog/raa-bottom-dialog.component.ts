@@ -55,7 +55,7 @@ export class RaaBottomDialogComponent implements OnInit {
   message: string | null = null;
 
   @Input()
-  hideOverlay: boolean = false;
+  hideOverlay = false;
 
   @Input()
   background: 'tw-bg-raa-gray-2' | 'tw-bg-raa-white' = 'tw-bg-raa-gray-2';
@@ -72,7 +72,6 @@ export class RaaBottomDialogComponent implements OnInit {
   cancelButton: ElementRef;
 
   ngOnInit() {
-
     if (!this.cancelBtnText) {
       throw new Error('ERROR: raa-bottom-dialog.component -> cancelBtnText must be specified');
     }
@@ -96,7 +95,7 @@ export class RaaBottomDialogComponent implements OnInit {
 
   focusOnInit() {
     if (this.isVisible && this.cancelButton) {
-      this.cancelButton.nativeElement.focus();
+      (this.cancelButton.nativeElement as HTMLElement).focus();
     }
   }
 

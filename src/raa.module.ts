@@ -83,8 +83,6 @@ import { A11yModule } from '@angular/cdk/a11y';
     RaaAutocompleteComponent,
     RaaDrawerComponent,
     RaaCookiesComponent,
-    MatSlideToggleModule,
-    MatExpansionModule,
   ],
   providers: [OrgnummerPipe],
 })

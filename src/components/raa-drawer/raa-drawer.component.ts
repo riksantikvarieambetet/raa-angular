@@ -160,7 +160,7 @@ export class RaaDrawerComponent implements OnDestroy, OnChanges, OnInit {
       this.drawerEventEmitter.emit({
         type,
         mode: this.drawerWindowMode,
-        rect: this.drawer.nativeElement.getBoundingClientRect(),
+        rect: (this.drawer.nativeElement as HTMLElement).getBoundingClientRect(),
       });
     });
   }

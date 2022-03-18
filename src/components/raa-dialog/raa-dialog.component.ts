@@ -16,11 +16,11 @@ import {
   styleUrls: ['./raa-dialog.component.scss'],
 })
 export class RaaDialogComponent implements OnInit, OnDestroy, AfterContentChecked {
-  @Input() proceed: Function;
-  @Input() cancel: Function;
+  @Input() proceed: () => void;
+  @Input() cancel: () => void;
   @Input() proceedButtonText = 'Ok';
   @Input() cancelButtonText = 'Avbryt';
-  @Input() close: Function;
+  @Input() close: () => void;
   @Input() header = '';
   @Input() width = 20;
   @Input() reverseButtons = false;

@@ -55,7 +55,7 @@ export class RaaDropdownComponent implements OnInit, AfterViewInit, OnDestroy {
   private dropdownElementRef: ElementRef;
 
   @HostListener('window:resize', ['$event'])
-  onWindowResize(_event: Event) {
+  onWindowResize() {
     this.throttledParentScroll();
   }
 

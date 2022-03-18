@@ -46,7 +46,7 @@ export class RaaNavigationBarComponent implements OnInit {
     for (let i = 0; i < tabbables.length; i++) {
       if (activeElement === tabbables.item(i)) {
         activeElementIndex = i;
-      } else if (activeElementIndex >= 0 && !this.element.nativeElement.contains(tabbables.item(i))) {
+      } else if (activeElementIndex >= 0 && !(this.element.nativeElement as HTMLElement).contains(tabbables.item(i))) {
         const item = tabbables.item(i) as HTMLElement;
         item.focus();
         break;
